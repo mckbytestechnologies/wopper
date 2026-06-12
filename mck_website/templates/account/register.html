@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Create Account — Wopper{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block trust_ribbon %}{% endblock %}
+{% block newsletter %}{% endblock %}
+
+{% block body_class %}page-auth{% endblock %}
+
+{% block content %}
+<div class="auth-page-wrapper">
+    <div class="auth-card auth-card--wide">
+
+        <div class="auth-logo">
+            <a href="{% url 'home:index' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Wopper" width="56" height="54">
+            </a>
+        </div>
+
+        <h1 class="auth-title">Create Your Account</h1>
+        <p class="auth-subtitle">Join 10 million+ satisfied customers</p>
+
+        <form method="POST" action="{% url 'account:register' %}" novalidate>
+            {% csrf_token %}
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="id_first_name">First Name</label>
+                    <input type="text" id="id_first_name" name="first_name"
+                           class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                           value="{{ form.first_name.value|default:'' }}"
+                           placeholder="First name" autocomplete="given-name" required>
+                    {% if form.first_name.errors %}<div class="invalid-feedback">{{ form.first_name.errors.0 }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_last_name">Last Name</label>
+                    <input type="text" id="id_last_name" name="last_name"
+                           class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                           value="{{ form.last_name.value|default:'' }}"
+                           placeholder="Last name" autocomplete="family-name" required>
+                    {% if form.last_name.errors %}<div class="invalid-feedback">{{ form.last_name.errors.0 }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                    <label for="id_email">Email Address</label>
+                    <input type="email" id="id_email" name="email"
+                           class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                           value="{{ form.email.value|default:'' }}"
+                           placeholder="your@email.com" autocomplete="email" required>
+                    {% if form.email.errors %}<div class="invalid-feedback">{{ form.email.errors.0 }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                    <label for="id_phone">Phone Number</label>
+                    <input type="tel" id="id_phone" name="phone"
+                           class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+                           value="{{ form.phone.value|default:'' }}"
+                           placeholder="+91 XXXXXXXXXX" autocomplete="tel" required>
+                    {% if form.phone.errors %}<div class="invalid-feedback">{{ form.phone.errors.0 }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_reg_password">Password</label>
+                    <div class="password-input-wrap">
+                        <input type="password" id="id_reg_password" name="password1"
+                               class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
+                               placeholder="Create a password" autocomplete="new-password" required>
+                        <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                            <i class="far fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    {% if form.password1.errors %}<div class="invalid-feedback d-block">{{ form.password1.errors.0 }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                    <label for="id_password2">Confirm Password</label>
+                    <input type="password" id="id_password2" name="password2"
+                           class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
+                           placeholder="Confirm your password" autocomplete="new-password" required>
+                    {% if form.password2.errors %}<div class="invalid-feedback">{{ form.password2.errors.0 }}</div>{% endif %}
+                </div>
+            </div>
+
+            <div class="form-check mt-3">
+                <input class="form-check-input" type="checkbox" id="agreeTerms" name="agree_terms" required>
+                <label class="form-check-label" for="agreeTerms">
+                    I agree to the <a href="{% url 'pages:terms' %}">Terms of Service</a> and
+                    <a href="{% url 'pages:privacy' %}">Privacy Policy</a>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-auth-submit mt-3">Create Account</button>
+        </form>
+
+        <div class="auth-footer-links mt-3">
+            <p>Already have an account? <a href="{% url 'account:login' %}">Sign in</a></p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

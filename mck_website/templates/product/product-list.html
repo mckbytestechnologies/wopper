@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title|default:"All Products" }} — Wopper{% endblock %}
+{% block meta_description %}{{ page_description|default:"Browse Wopper's complete range of premium cleaning and hygiene products. Filter by category, price, and discount." }}{% endblock %}
+
+{% block body_class %}page-product-list{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/product-list.css' %}">
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="listing-main-wrapper container">
+
+    {# ──────────────────────────────
+       FILTER SIDEBAR (LEFT)
+    ────────────────────────────── #}
+    <aside class="filter-sidebar" id="filterSidebar" aria-label="Product filters">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fw-bold mb-0 fs-6">Filters</h2>
+            <span class="text-muted small" id="filterCount">({{ product_count }} products)</span>
+        </div>
+
+        <form method="GET" action="" id="filterForm" aria-label="Filter products">
+
+            {# Category Filter #}
+            <div class="filter-group">
+                <div class="filter-title" id="categoryFilterTitle">
+                    Category
+                    <i class="fas fa-chevron-down filter-chevron" aria-hidden="true"></i>
+                </div>
+                <ul class="filter-options" id="categoryFilter" aria-labelledby="categoryFilterTitle" role="group">
+                    {% for cat in filter_categories %}
+                    <li>
+                        <input type="checkbox"
+                               id="cat_{{ cat.slug }}"
+                               name="category"
+                               value="{{ cat.slug }}"
+                               {% if cat.slug in selected_categories %}checked{% endif %}>
+                        <label for="cat_{{ cat.slug }}">{{ cat.name }} <span class="filter-count">({{ cat.product_count }})</span></label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {# Price Range Filter #}
+            <div class="filter-group">
+                <div class="filter-title" id="priceFilterTitle">Price Range</div>
+                <div class="price-range-slider">
+                    <div class="price-inputs">
+                        <label for="minPrice" class="sr-only">Minimum price</label>
+                        <input type="number" id="minPrice" name="price_min" placeholder="Min" value="{{ price_min|default:0 }}" min="0">
+                        <span aria-hidden="true">–</span>
+                        <label for="maxPrice" class="sr-only">Maximum price</label>
+                        <input type="number" id="maxPrice" name="price_max" placeholder="Max" value="{{ price_max|default:5000 }}" min="0">
+                    </div>
+                    <button type="submit" class="apply-price-btn">Apply</button>
+                </div>
+            </div>
+
+            {# Discount Filter #}
+            <div class="filter-group">
+                <div class="filter-title" id="discountFilterTitle">Discount %</div>
+                <ul class="filter-options" id="discountFilter" aria-labelledby="discountFilterTitle" role="group">
+                    <li>
+                        <input type="checkbox" id="disc50" name="discount" value="50" {% if "50" in selected_discounts %}checked{% endif %}>
+                        <label for="disc50">50% or more</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="disc60" name="discount" value="60" {% if "60" in selected_discounts %}checked{% endif %}>
+                        <label for="disc60">60% or more</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="disc70" name="discount" value="70" {% if "70" in selected_discounts %}checked{% endif %}>
+                        <label for="disc70">70% or more</label>
+                    </li>
+                </ul>
+            </div>
+
+            {# Brand Filter #}
+            {% if filter_brands %}
+            <div class="filter-group">
+                <div class="filter-title" id="brandFilterTitle">Brand</div>
+                <ul class="filter-options" aria-labelledby="brandFilterTitle" role="group">
+                    {% for brand in filter_brands %}
+                    <li>
+                        <input type="checkbox"
+                               id="brand_{{ brand.slug }}"
+                               name="brand"
+                               value="{{ brand.slug }}"
+                               {% if brand.slug in selected_brands %}checked{% endif %}>
+                        <label for="brand_{{ brand.slug }}">{{ brand.name }}</label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </form>
+
+        <a href="{{ request.path }}" class="clear-filters" id="clearFiltersBtn">
+            <i class="fas fa-times me-1" aria-hidden="true"></i> Clear all filters
+        </a>
+
+    </aside>
+
+    {# ──────────────────────────────
+       PRODUCT GRID AREA (RIGHT)
+    ────────────────────────────── #}
+    <div class="products-grid-area">
+
+        {# Mobile filter toggle #}
+        <button class="mobile-filter-toggle" id="mobileFilterToggle" aria-expanded="false" aria-controls="filterSidebar">
+            <i class="fas fa-sliders-h" aria-hidden="true"></i> Filters
+            {% if active_filter_count %}<span class="filter-badge">{{ active_filter_count }}</span>{% endif %}
+        </button>
+
+        {# Active filters summary #}
+        {% if active_filters %}
+        <div class="active-filters" aria-label="Active filters">
+            {% for filter in active_filters %}
+            <span class="active-filter-tag">
+                {{ filter.label }}
+                <a href="{{ filter.remove_url }}" aria-label="Remove {{ filter.label }} filter">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </a>
+            </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="listing-header">
+            <h1>{{ page_title|default:"All Products" }}
+                <span class="product-count-label">({{ page_obj.paginator.count }})</span>
+            </h1>
+            <div class="sort-by">
+                <label for="sortSelect" class="sr-only">Sort products by</label>
+                <select id="sortSelect" name="sort" aria-label="Sort products">
+                    <option value="default" {% if sort == "default" %}selected{% endif %}>Sort by: Featured</option>
+                    <option value="price_asc" {% if sort == "price_asc" %}selected{% endif %}>Price: Low to High</option>
+                    <option value="price_desc" {% if sort == "price_desc" %}selected{% endif %}>Price: High to Low</option>
+                    <option value="discount" {% if sort == "discount" %}selected{% endif %}>Discount: High to Low</option>
+                    <option value="newest" {% if sort == "newest" %}selected{% endif %}>Newest First</option>
+                    <option value="popular" {% if sort == "popular" %}selected{% endif %}>Most Popular</option>
+                </select>
+            </div>
+        </div>
+
+        {# Product Grid #}
+        {% if page_obj.object_list %}
+        <div class="product-grid" id="productGridContainer" role="list" aria-label="Product listing">
+            {% for product in page_obj.object_list %}
+            <div role="listitem">
+                {% include "includes/product-card.html" with product=product %}
+            </div>
+            {% endfor %}
+        </div>
+
+        {# Pagination #}
+        {% include "includes/pagination.html" with page_obj=page_obj %}
+
+        {% else %}
+        <div class="no-products">
+            <i class="fas fa-search fa-3x mb-3 text-muted" aria-hidden="true"></i>
+            <h3>No products found</h3>
+            <p>Try adjusting your filters or <a href="{{ request.path }}">clear all filters</a>.</p>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/product-list.js' %}" defer></script>
+{% endblock %}

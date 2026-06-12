@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login — Wopper{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block trust_ribbon %}{% endblock %}
+{% block newsletter %}{% endblock %}
+
+{% block body_class %}page-auth{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="auth-page-wrapper">
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            <a href="{% url 'home:index' %}">
+                <img src="{% static 'img/logo.png' %}" alt="Wopper" width="56" height="54">
+            </a>
+        </div>
+
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to your Wopper account</p>
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'account:login' %}" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.GET.next|default:'' }}">
+
+            <div class="form-group">
+                <label for="id_username">Email or Phone</label>
+                <input type="text"
+                       id="id_username"
+                       name="username"
+                       class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                       placeholder="Enter your email or phone"
+                       value="{{ form.username.value|default:'' }}"
+                       autocomplete="username"
+                       required>
+                {% if form.username.errors %}
+                <div class="invalid-feedback">{{ form.username.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="id_password">
+                    Password
+                    <a href="{% url 'account:forgot_password' %}" class="forgot-link">Forgot password?</a>
+                </label>
+                <div class="password-input-wrap">
+                    <input type="password"
+                           id="id_password"
+                           name="password"
+                           class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+                           placeholder="Enter your password"
+                           autocomplete="current-password"
+                           required>
+                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                        <i class="far fa-eye" aria-hidden="true"></i>
+                    </button>
+                </div>
+                {% if form.password.errors %}
+                <div class="invalid-feedback d-block">{{ form.password.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-auth-submit">Sign In</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <div class="auth-footer-links">
+            <p>Don't have an account? <a href="{% url 'account:register' %}">Create one</a></p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

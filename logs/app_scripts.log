@@ -1,0 +1,45 @@
+2026-06-12 10:54:40,187 INFO Starting ...
+2026-06-12 10:54:40,187 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : dropDatabase
+2026-06-12 10:54:40,187 INFO django.db.backends.sqlite3
+2026-06-12 10:54:40,187 DEBUG dropping database...D:\Bharath\wensite\wopper\django basic setup\appsource\mck.sqlite3
+2026-06-12 10:54:40,194 DEBUG dropped database...D:\Bharath\wensite\wopper\django basic setup\appsource\mck.sqlite3
+2026-06-12 10:54:40,194 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : dropDatabase in 0:00:00.006791 seconds
+2026-06-12 10:54:40,194 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : createDatabase
+2026-06-12 10:54:40,194 DEBUG creating database...D:\Bharath\wensite\wopper\django basic setup\appsource\mck.sqlite3
+2026-06-12 10:54:40,194 DEBUG created database...D:\Bharath\wensite\wopper\django basic setup\appsource\mck.sqlite3
+2026-06-12 10:54:40,194 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : createDatabase in 0:00:00 seconds
+2026-06-12 10:54:40,194 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : run_migrations
+2026-06-12 10:54:40,914 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : run_migrations in 0:00:00.720352 seconds
+2026-06-12 10:54:40,914 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_authusers
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_authusers in 0:00:00.360018 seconds
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-06-12 10:54:41,274 WARNING fixture_path: D:\Bharath\wensite\wopper\django basic setup\appsource\mck_master\fixtures\xlsx\mck_master.xlsx - Not Found
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-06-12 10:54:41,274 WARNING fixture_path: D:\Bharath\wensite\wopper\django basic setup\appsource\mck_auth\fixtures\xlsx\mck_auth.xlsx - Not Found
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-06-12 10:54:41,274 WARNING fixture_path: D:\Bharath\wensite\wopper\django basic setup\appsource\mck_admin_console\fixtures\xlsx\mck_admin_console.xlsx - Not Found
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json
+2026-06-12 10:54:41,274 WARNING fixture_path: D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\fixtures\xlsx\mck_website.xlsx - Not Found
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : xlsx_to_json in 0:00:00 seconds
+2026-06-12 10:54:41,274 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_build.py'] : build_fixtures in 0:00:00 seconds
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures
+2026-06-12 10:54:41,274 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-06-12 10:54:41,274 INFO D:\Bharath\wensite\wopper\django basic setup\appsource\mck_auth\fixtures\json\dxe_auth-00-accounttype.json
+2026-06-12 10:54:41,327 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.053116 seconds
+2026-06-12 10:54:41,327 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture
+2026-06-12 10:54:41,327 INFO D:\Bharath\wensite\wopper\django basic setup\appsource\mck_auth\fixtures\json\dxe_auth-01-accounttyperole.json
+2026-06-12 10:54:41,344 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : _load_fixture in 0:00:00.017066 seconds
+2026-06-12 10:54:41,344 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_fixtures_run.py'] : run_fixtures in 0:00:00.070182 seconds
+2026-06-12 10:54:41,345 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_superuser_account
+2026-06-12 10:54:41,354 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_superuser_account in 0:00:00.009709 seconds
+2026-06-12 10:54:41,354 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission
+2026-06-12 10:54:41,459 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\generate_master_permission.py'] : generate_master_permission in 0:00:00.105186 seconds
+2026-06-12 10:54:41,459 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission
+2026-06-12 10:54:41,461 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\update_mck_role_master_permissions.py'] : update_role_master_permission in 0:00:00.001739 seconds
+2026-06-12 10:54:41,461 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_company_profile
+2026-06-12 10:54:41,844 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\scripts\\script_db_init.py'] : create_company_profile in 0:00:00.383032 seconds
+2026-06-12 10:54:41,844 INFO End !!!

@@ -1,0 +1,79 @@
+{# templates/includes/product-card.html #}
+{#
+    Usage:
+    {% for product in products %}
+        {% include "includes/product-card.html" with product=product %}
+    {% endfor %}
+#}
+{% load static %}
+
+<article class="product-card-standard" itemscope itemtype="https://schema.org/Product">
+
+    {# Discount badge #}
+    {% if product.discount_percent %}
+    <span class="discount-badge" aria-label="{{ product.discount_percent }}% off">
+        {{ product.badge_label|default:product.discount_percent|stringformat:"d" }}%
+    </span>
+    {% endif %}
+
+    {# Product Image #}
+    <a href="{{ product.get_absolute_url }}" class="prod-img-link" tabindex="-1" aria-hidden="true">
+        <div class="prod-img-box">
+            <img src="{{ product.primary_image.url|default:'' }}"
+                 alt="{{ product.name }}"
+                 loading="lazy"
+                 width="300" height="300"
+                 itemprop="image"
+                 onerror="this.src='{% static "img/placeholder.jpg" %}'">
+
+            {# Wishlist toggle #}
+            <button class="prod-wishlist-btn"
+                    data-product-id="{{ product.id }}"
+                    aria-label="Add {{ product.name }} to wishlist"
+                    aria-pressed="{% if product.id in wishlist_ids %}true{% else %}false{% endif %}">
+                <i class="{% if product.id in wishlist_ids %}fas{% else %}far{% endif %} fa-heart" aria-hidden="true"></i>
+            </button>
+        </div>
+    </a>
+
+    {# Live viewers indicator #}
+    {% if product.live_viewers %}
+    <div class="viewing-indicator" aria-live="polite">
+        <span class="viewing-dot" aria-hidden="true"></span>
+        {{ product.live_viewers }} Viewing
+    </div>
+    {% endif %}
+
+    {# Product Title #}
+    <a href="{{ product.get_absolute_url }}" class="prod-title-link" itemprop="url">
+        <div class="prod-title-text" itemprop="name">{{ product.name }}</div>
+    </a>
+
+    {# Pricing #}
+    <div class="prod-pricing-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <span class="price-current" itemprop="price" content="{{ product.selling_price }}">
+            ₹{{ product.selling_price }}
+        </span>
+        <meta itemprop="priceCurrency" content="INR">
+        {% if product.original_price %}
+        <span class="price-slashed">₹{{ product.original_price }}</span>
+        <span class="price-percentage">({{ product.discount_percent }}% off)</span>
+        {% endif %}
+        <link itemprop="availability" href="https://schema.org/{% if product.in_stock %}InStock{% else %}OutOfStock{% endif %}">
+    </div>
+
+    {# Add to Cart #}
+    {% if product.in_stock %}
+    <button class="add-cart-solid-btn"
+            data-product-id="{{ product.id }}"
+            data-product-name="{{ product.name }}"
+            aria-label="Add {{ product.name }} to cart">
+        Add to Cart
+    </button>
+    {% else %}
+    <button class="add-cart-solid-btn out-of-stock" disabled aria-label="{{ product.name }} is out of stock">
+        Out of Stock
+    </button>
+    {% endif %}
+
+</article>

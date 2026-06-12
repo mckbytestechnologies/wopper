@@ -1,0 +1,631 @@
+{% extends 'layouts/admin_layout.html' %}
+{% load static %}
+
+{% block head_css %}
+<link rel="stylesheet" href="{{page_kwargs.media_url}}css/sweetalert2.min.css">
+<link rel="stylesheet" href="{{page_kwargs.media_url}}plugins/DataTables/datatables.css">
+<style>
+    /* Professional CSS - Same functionality, better appearance */
+    :root {
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --danger: #ef4444;
+        --danger-dark: #dc2626;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --gray-500: #6b7280;
+        --gray-600: #4b5563;
+        --gray-700: #374151;
+        --gray-800: #1f2937;
+        --gray-900: #111827;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        --radius: 0.5rem;
+    }
+
+    /* Page Layout */
+    .table_page {
+        padding: 1.5rem;
+        background: var(--gray-50);
+        min-height: calc(100vh - 60px);
+    }
+
+    /* Page Header */
+    .page-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-header h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--gray-900);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .btn-add {
+        background: var(--primary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        font-size: 0.875rem;
+        font-weight: 500;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+
+    .btn-add:hover {
+        background: var(--primary-dark);
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+    }
+
+    /* Card */
+    .card {
+        background: white;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--gray-200);
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 0;
+    }
+
+    /* Search Bar */
+    .search-section {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--gray-200);
+        background: white;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .search-wrapper {
+        position: relative;
+        width: 300px;
+    }
+
+    .search-wrapper input {
+        width: 100%;
+        padding: 0.5rem 0.75rem 0.5rem 2rem;
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        font-size: 0.875rem;
+        transition: all 0.2s;
+    }
+
+    .search-wrapper input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    .search-wrapper i {
+        position: absolute;
+        left: 0.625rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--gray-400);
+        font-size: 0.875rem;
+    }
+
+    /* Data Table */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+    }
+
+    .table thead th {
+        background: var(--gray-50);
+        padding: 0.875rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--gray-700);
+        border-bottom: 1px solid var(--gray-200);
+        white-space: nowrap;
+    }
+
+    .table tbody td {
+        padding: 0.875rem 1rem;
+        color: var(--gray-600);
+        border-bottom: 1px solid var(--gray-100);
+        vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+        background: var(--gray-50);
+    }
+
+    /* Action Buttons in Table */
+    .action-group {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .action-btn {
+        width: 2rem;
+        height: 2rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--gray-200);
+        background: white;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--gray-500);
+    }
+
+    .action-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .action-btn.edit:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        background: #eff6ff;
+    }
+
+    .action-btn.delete:hover {
+        border-color: var(--danger);
+        color: var(--danger);
+        background: #fef2f2;
+    }
+
+    /* Badge Styles */
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.625rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        line-height: 1;
+    }
+
+    .badge-active {
+        background: #ecfdf5;
+        color: #065f46;
+    }
+
+    .badge-inactive {
+        background: #fef2f2;
+        color: #991b1b;
+    }
+
+    /* DataTables Overrides */
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter,
+    .dataTables_wrapper .dataTables_info,
+    .dataTables_wrapper .dataTables_paginate {
+        padding: 1rem 1.25rem;
+    }
+
+    .dataTables_wrapper .dataTables_length select,
+    .dataTables_wrapper .dataTables_filter input {
+        padding: 0.375rem 0.75rem;
+        border: 1px solid var(--gray-300);
+        border-radius: var(--radius);
+        font-size: 0.875rem;
+    }
+
+    .dataTables_wrapper .dataTables_filter input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.375rem 0.75rem;
+        margin: 0 0.25rem;
+        border-radius: var(--radius);
+        border: 1px solid var(--gray-200);
+        background: white;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: var(--gray-100);
+        border-color: var(--gray-300);
+    }
+
+    /* Footer */
+    .footer-section {
+        padding: 1rem 1.25rem;
+        border-top: 1px solid var(--gray-200);
+        background: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .table_page {
+            padding: 1rem;
+        }
+
+        .row {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .row .col-md-6 {
+            width: 100%;
+        }
+
+        .action-buttons {
+            justify-content: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .search-section {
+            justify-content: flex-start;
+        }
+
+        .search-wrapper {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .table thead th,
+        .table tbody td {
+            padding: 0.625rem 0.75rem;
+            font-size: 0.8125rem;
+        }
+
+        .action-group {
+            justify-content: flex-start;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            padding: 0.75rem 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .table_page {
+            padding: 0.75rem;
+        }
+
+        .page-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .btn-add {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8125rem;
+        }
+
+        .action-btn {
+            width: 1.75rem;
+            height: 1.75rem;
+            font-size: 0.75rem;
+        }
+
+        .search-wrapper {
+            max-width: 100%;
+        }
+    }
+
+    /* Mobile Table - Horizontal Scroll */
+    @media (max-width: 640px) {
+        .table-responsive {
+            overflow-x: auto;
+            display: block;
+        }
+        
+        .table {
+            min-width: 500px;
+        }
+    }
+
+    /* ========================================
+   PAGE HEADER
+======================================== */
+
+.page-header{
+    margin-bottom:1.5rem;
+}
+
+.header-flex{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    gap:15px;
+}
+
+.header-content{
+    flex:1;
+}
+
+.header-content h3{
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--gray-900);
+    margin:0;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+}
+
+.header-content p{
+    font-size:0.875rem;
+    color:var(--gray-500);
+    margin-top:4px;
+    margin-bottom:0;
+}
+
+.btn-add{
+    background:var(--primary);
+    color:#fff;
+    padding:10px 18px;
+    border-radius:var(--radius);
+    font-size:14px;
+    font-weight:500;
+    border:none;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    transition:all .3s ease;
+    white-space:nowrap;
+    margin-left:auto;
+}
+
+.btn-add:hover{
+    background:var(--primary-dark);
+    color:#fff;
+    transform:translateY(-1px);
+    box-shadow:var(--shadow-md);
+}
+
+@media(max-width:768px){
+
+    .header-flex{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .btn-add{
+        margin-left:0;
+    }
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="table_page mt-5">
+    <div class="page-header">
+
+    <div class="header-flex">
+
+        <div class="header-content">
+
+            <h3>
+                <i class="bi bi-table"></i>
+                {{ table_data.title }}
+            </h3>
+
+            {% if table_data.sub_title %}
+            <p>
+                {{ table_data.sub_title }}
+            </p>
+            {% endif %}
+
+        </div>
+
+        {% if table_data.create_url %}
+        <a href="{{ table_data.create_url }}" class="btn-add">
+            <i class="bi bi-plus-lg"></i>
+            Add {{ table_data.title }}
+        </a>
+        {% endif %}
+
+    </div>
+
+</div>
+
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <div class="search-section">
+                    <div class="search-wrapper">
+                        <i class="bi bi-search"></i>
+                        <input type="text" data-table-filter="search" placeholder="Search...">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table" id="common_table1">
+                        <thead>
+                            <tr>
+                                {% for column in table_data.columns %}
+                                <th {% if column.class_name %}class="{{ column.class_name }}"{% endif %}>
+                                    {{ column.display_name }}
+                                </th>
+                                {% endfor %}
+                                {% if not table_data.hide_action %}
+                                <th class="text-end">Actions</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data loaded via AJAX -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="footer-section">
+                    <!-- Footer content if needed -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block body_js %}
+<script src="{% static 'js/sweetalert2.js' %}"></script>
+<script src="{% static 'plugins/DataTables/datatables.js' %}"></script>
+
+<script>
+    function delete_object(id) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this record!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#6b7280',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Processing...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+                
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ table_data.delete_url|safe }}".replace('0', id),
+                    data: {
+                        "csrfmiddlewaretoken": '{{ csrf_token }}'
+                    },
+                    contentType: "application/x-www-form-urlencoded",
+                    success: function (data) {
+                        if (data.result) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Deleted!',
+                                text: data.message || 'Record deleted successfully',
+                                timer: 1500,
+                                showConfirmButton: false
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: data.message || 'Something went wrong'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'An error occurred'
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        var cols = [
+            {% for column in table_data.columns %}
+            {
+                "name": "{{ column.search_key }}",
+                "orderable": true
+            },
+            {% endfor %}
+            {% if not table_data.hide_action %}
+            {
+                "name": "",
+                "orderable": false
+            }
+            {% endif %}
+        ];
+
+        var mck_table = $('#common_table1').DataTable({
+            "serverSide": true,
+            "ajax": {
+                "url": "{{ table_data.load_url }}",
+                "type": "POST",
+                "data": {
+                    "csrfmiddlewaretoken": '{{ csrf_token }}'
+                }
+            },
+            "order": [[0, 'desc']],
+            "ordering": true,
+            "columns": cols,
+            "deferRender": true,
+            "info": true,
+            "colReorder": true,
+            "responsive": false,
+            "autoWidth": false,
+            "language": {
+                "search": "Search:",
+                "lengthMenu": "Show _MENU_ entries",
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries",
+                "infoEmpty": "Showing 0 to 0 of 0 entries",
+                "emptyTable": "No data available",
+                "paginate": {
+                    "first": "«",
+                    "last": "»",
+                    "next": "›",
+                    "previous": "‹"
+                }
+            }
+        });
+
+        // Search handler
+        $('[data-table-filter="search"]').on('keyup', function () {
+            mck_table.search($(this).val()).draw();
+        });
+
+        // Column visibility
+        function update_column_visibility(column_index) {
+            let column = mck_table.column(column_index);
+            column.visible(!column.visible());
+        }
+
+        {% for column in table_data.columns %}
+        {% if not column.can_show %}
+        update_column_visibility({{ forloop.counter0 }});
+        {% endif %}
+        {% endfor %}
+    });
+</script>
+{% endblock %}
+
+{% include 'mck_custom/includes/footer.html' %}

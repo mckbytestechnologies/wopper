@@ -1,0 +1,485 @@
+{% extends 'layouts/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content mt-5">
+    <style>
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+        }
+        .modal-container {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 8px;
+            width: 500px;
+            max-width: 90%;
+            z-index: 10000;
+        }
+        .modal-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-body { padding: 20px; }
+        .modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #ddd;
+            text-align: right;
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 8px;
+            border: none;
+            font-size: 14px;
+        }
+        .btn-approve { background: #28a745; color: white; }
+        .btn-approve:hover { background: #218838; }
+        .btn-reject { background: #dc3545; color: white; }
+        .btn-reject:hover { background: #c82333; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .info-row {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .form-field { margin-bottom: 15px; }
+        .form-field label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-field textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .metric-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .metric-value { font-size: 24px; font-weight: bold; }
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-pending { background: #ffc107; color: #000; }
+        .badge-approved { background: #28a745; color: white; }
+        .badge-rejected { background: #dc3545; color: white; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        .filters { margin-bottom: 15px; display: flex; gap: 10px; }
+        .filters select { padding: 6px 10px; border-radius: 4px; border: 1px solid #ddd; }
+        .action-buttons { display: flex; gap: 5px; }
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+            z-index: 99999;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        #toast.success { background: #28a745; }
+        #toast.error { background: #dc3545; }
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+
+    <!-- URL Templates for JS — uses Django url tag so no hardcoding -->
+    <input type="hidden" id="approveUrlTemplate" value="{% url 'svm_admin_console:custom_admin_approve_upi' request_id='00000000-0000-0000-0000-000000000000' %}">
+    <input type="hidden" id="rejectUrlTemplate" value="{% url 'svm_admin_console:custom_admin_reject_upi' request_id='00000000-0000-0000-0000-000000000000' %}">
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <!-- METRICS -->
+    <div class="metrics">
+        <div class="metric-card">
+            <div class="metric-value">{{ total_pending }}</div>
+            <div>Pending</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{ total_approved }}</div>
+            <div>Approved</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">{{ total_rejected }}</div>
+            <div>Rejected</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">₹{{ total_revenue|default:"0"|floatformat:0 }}</div>
+            <div>Revenue</div>
+        </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filters">
+        <select id="statusFilter" onchange="applyFilters()">
+            <option value="">All Status</option>
+            {% for value, label in status_choices %}
+            <option value="{{ value }}" {% if status_filter == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+        <select id="planFilter" onchange="applyFilters()">
+            <option value="">All Plans</option>
+            {% for value, label in plan_choices %}
+            <option value="{{ value }}" {% if plan_filter == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <!-- TABLE -->
+    <div style="background: white; border-radius: 8px; overflow: hidden;">
+        <table>
+            <thead style="background: #f5f5f5;">
+                <tr>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Plan</th>
+                    <th>UTR</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                {% for upi_req in upi_requests %}
+                <tr data-status="{{ upi_req.status }}" data-plan="{{ upi_req.plan }}">
+                    <td>
+                        {{ upi_req.submitted_at|date:"M d, Y" }}<br>
+                        <small>{{ upi_req.submitted_at|date:"h:i A" }}</small>
+                    </td>
+                    <td>{{ upi_req.user.email }}</td>
+                    <td>
+                        {{ upi_req.get_plan_display }}<br>
+                        ₹{{ upi_req.amount|floatformat:0 }}
+                    </td>
+                    <td>{{ upi_req.utr_number|default:"-" }}</td>
+                    <td>
+                        <span class="badge badge-{{ upi_req.status|lower }}">{{ upi_req.status }}</span>
+                    </td>
+                    <td>
+                        {% if upi_req.status == 'PENDING' %}
+                        <div class="action-buttons">
+                            <button class="btn btn-approve"
+                                    onclick="openApproveModal('{{ upi_req.id }}', '{{ upi_req.user.email }}', '{{ upi_req.get_plan_display }}', '{{ upi_req.amount|floatformat:0 }}')">
+                                ✓ Approve
+                            </button>
+                            <button class="btn btn-reject"
+                                    onclick="openRejectModal('{{ upi_req.id }}', '{{ upi_req.user.email }}', '{{ upi_req.get_plan_display }}')">
+                                ✕ Reject
+                            </button>
+                        </div>
+                        {% else %}
+                        <span style="color: #999;">—</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center; padding: 40px; color: #999;">
+                        No payment requests found
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if upi_requests.has_other_pages %}
+    <div style="margin-top: 20px; text-align: center;">
+        {% if upi_requests.has_previous %}
+        <a href="?page={{ upi_requests.previous_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if plan_filter %}&plan={{ plan_filter }}{% endif %}"
+           class="btn btn-secondary">← Previous</a>
+        {% endif %}
+        <span style="margin: 0 15px;">Page {{ upi_requests.number }} of {{ upi_requests.paginator.num_pages }}</span>
+        {% if upi_requests.has_next %}
+        <a href="?page={{ upi_requests.next_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if plan_filter %}&plan={{ plan_filter }}{% endif %}"
+           class="btn btn-secondary">Next →</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- ===================== APPROVE MODAL ===================== -->
+<div id="approveModal" class="modal-overlay">
+    <div class="modal-container" id="approveModalContainer">
+        <div class="modal-header">
+            <h3 style="margin:0;">✓ Approve Payment</h3>
+            <button onclick="closeApproveModal()" style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1;">✕</button>
+        </div>
+        <div class="modal-body">
+            <div id="approveInfo" class="info-row"></div>
+            <div class="form-field">
+                <label>Admin Notes (optional)</label>
+                <textarea id="approveNote" rows="3" placeholder="Add remarks about this approval..."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeApproveModal()">Cancel</button>
+            <button type="button" class="btn btn-approve" id="approveSubmitBtn" onclick="submitApprove()">Confirm Approval</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===================== REJECT MODAL ===================== -->
+<div id="rejectModal" class="modal-overlay">
+    <div class="modal-container" id="rejectModalContainer">
+        <div class="modal-header">
+            <h3 style="margin:0;">✕ Reject Payment</h3>
+            <button onclick="closeRejectModal()" style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1;">✕</button>
+        </div>
+        <div class="modal-body">
+            <div id="rejectInfo" class="info-row"></div>
+            <div class="form-field">
+                <label>Reason for Rejection <span style="color: red;">*</span></label>
+                <textarea id="rejectNote" rows="3" placeholder="Please provide a reason for rejection..."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeRejectModal()">Cancel</button>
+            <button type="button" class="btn btn-reject" id="rejectSubmitBtn" onclick="submitReject()">Confirm Rejection</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ── State ──────────────────────────────────────────────
+    let currentApproveId = null;
+    let currentRejectId = null;
+
+    // ── URL builder using Django-generated URLs ────────────
+    function buildApproveUrl(id) {
+        return document.getElementById('approveUrlTemplate').value
+            .replace('00000000-0000-0000-0000-000000000000', id);
+    }
+    function buildRejectUrl(id) {
+        return document.getElementById('rejectUrlTemplate').value
+            .replace('00000000-0000-0000-0000-000000000000', id);
+    }
+
+    // ── CSRF token from cookie ─────────────────────────────
+    function getCsrfToken() {
+        const cookie = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken='));
+        return cookie ? cookie.trim().split('=')[1] : '';
+    }
+
+    // ── Toast notification ─────────────────────────────────
+    function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = type;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 3500);
+    }
+
+    // ── Approve Modal ──────────────────────────────────────
+    function openApproveModal(id, email, plan, amount) {
+        currentApproveId = id;
+        document.getElementById('approveInfo').innerHTML =
+            '<strong>User:</strong> ' + email + '<br>' +
+            '<strong>Plan:</strong> ' + plan + '<br>' +
+            '<strong>Amount:</strong> ₹' + amount;
+        document.getElementById('approveNote').value = '';
+        document.getElementById('approveSubmitBtn').disabled = false;
+        document.getElementById('approveSubmitBtn').textContent = 'Confirm Approval';
+        document.getElementById('approveModal').style.display = 'block';
+    }
+
+    function closeApproveModal() {
+        document.getElementById('approveModal').style.display = 'none';
+        currentApproveId = null;
+    }
+
+    // ── Reject Modal ───────────────────────────────────────
+    function openRejectModal(id, email, plan) {
+        currentRejectId = id;
+        document.getElementById('rejectInfo').innerHTML =
+            '<strong>User:</strong> ' + email + '<br>' +
+            '<strong>Plan:</strong> ' + plan;
+        document.getElementById('rejectNote').value = '';
+        document.getElementById('rejectSubmitBtn').disabled = false;
+        document.getElementById('rejectSubmitBtn').textContent = 'Confirm Rejection';
+        document.getElementById('rejectModal').style.display = 'block';
+    }
+
+    function closeRejectModal() {
+        document.getElementById('rejectModal').style.display = 'none';
+        currentRejectId = null;
+    }
+
+    // ── Submit Approve ─────────────────────────────────────
+    async function submitApprove() {
+        if (!currentApproveId) return;
+
+        const note = document.getElementById('approveNote').value;
+        const btn = document.getElementById('approveSubmitBtn');
+
+        btn.disabled = true;
+        btn.textContent = 'Processing...';
+
+        try {
+            const formData = new FormData();
+            formData.append('admin_note', note);
+
+            const response = await fetch(buildApproveUrl(currentApproveId), {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrfToken(),
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            });
+
+            // Check content type before parsing JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                console.error('Non-JSON response:', text);
+                showToast('Server error — check console for details', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Approval';
+                return;
+            }
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                closeApproveModal();
+                showToast('✓ Payment approved successfully!', 'success');
+                setTimeout(() => window.location.reload(), 1200);
+            } else {
+                showToast('Error: ' + (data.error || 'Unknown error'), 'error');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Approval';
+            }
+        } catch (error) {
+            console.error('Approve error:', error);
+            showToast('Error: ' + error.message, 'error');
+            btn.disabled = false;
+            btn.textContent = 'Confirm Approval';
+        }
+    }
+
+    // ── Submit Reject ──────────────────────────────────────
+    async function submitReject() {
+        if (!currentRejectId) return;
+
+        const note = document.getElementById('rejectNote').value.trim();
+        if (!note) {
+            showToast('Please provide a reason for rejection', 'error');
+            document.getElementById('rejectNote').focus();
+            return;
+        }
+
+        const btn = document.getElementById('rejectSubmitBtn');
+        btn.disabled = true;
+        btn.textContent = 'Processing...';
+
+        try {
+            const formData = new FormData();
+            formData.append('admin_note', note);
+
+            const response = await fetch(buildRejectUrl(currentRejectId), {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCsrfToken(),
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: formData
+            });
+
+            // Check content type before parsing JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                const text = await response.text();
+                console.error('Non-JSON response:', text);
+                showToast('Server error — check console for details', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Rejection';
+                return;
+            }
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                closeRejectModal();
+                showToast('✗ Payment rejected.', 'error');
+                setTimeout(() => window.location.reload(), 1200);
+            } else {
+                showToast('Error: ' + (data.error || 'Unknown error'), 'error');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Rejection';
+            }
+        } catch (error) {
+            console.error('Reject error:', error);
+            showToast('Error: ' + error.message, 'error');
+            btn.disabled = false;
+            btn.textContent = 'Confirm Rejection';
+        }
+    }
+
+    // ── Close modal on overlay click only ─────────────────
+    document.getElementById('approveModal').addEventListener('click', function(e) {
+        if (e.target === this) closeApproveModal();
+    });
+    document.getElementById('rejectModal').addEventListener('click', function(e) {
+        if (e.target === this) closeRejectModal();
+    });
+
+    // Stop clicks inside modal box bubbling to overlay
+    document.getElementById('approveModalContainer').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+    document.getElementById('rejectModalContainer').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // ── ESC key closes modals ──────────────────────────────
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeApproveModal();
+            closeRejectModal();
+        }
+    });
+
+    // ── Filters — server-side redirect ────────────────────
+    function applyFilters() {
+        const status = document.getElementById('statusFilter').value;
+        const plan = document.getElementById('planFilter').value;
+        const params = new URLSearchParams(window.location.search);
+        if (status) params.set('status', status); else params.delete('status');
+        if (plan) params.set('plan', plan); else params.delete('plan');
+        params.delete('page');
+        window.location.search = params.toString();
+    }
+</script>
+{% endblock %}

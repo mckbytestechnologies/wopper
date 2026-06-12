@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us — Wopper{% endblock %}
+{% block meta_description %}Get in touch with Wopper's customer support team. We're here to help with orders, products, bulk inquiries and more.{% endblock %}
+
+{% block body_class %}page-contact{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5">
+    <div class="row g-5">
+
+        {# Contact info #}
+        <div class="col-lg-5">
+            <h1>Contact Us</h1>
+            <p class="text-muted mb-4">Have a question or need help with your order? Our team is here for you.</p>
+
+            <div class="contact-info-item">
+                <div class="contact-info-icon" aria-hidden="true"><i class="fas fa-phone-alt"></i></div>
+                <div>
+                    <div class="contact-info-label">Call Us</div>
+                    <a href="tel:+919677051121" class="contact-info-value">+91 9677051121</a>
+                </div>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-info-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <div class="contact-info-label">Email Us</div>
+                    <a href="mailto:info@wopper.in" class="contact-info-value">info@wopper.in</a>
+                </div>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-info-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
+                <div>
+                    <div class="contact-info-label">Business Hours</div>
+                    <div class="contact-info-value">Monday – Saturday<br>9:00 AM – 6:00 PM IST</div>
+                </div>
+            </div>
+
+            <div class="contact-social mt-4">
+                <a href="https://wa.me/919677051121" class="btn-whatsapp" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp me-2" aria-hidden="true"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+
+        {# Contact form #}
+        <div class="col-lg-7">
+            <div class="contact-form-card">
+                <h2>Send us a Message</h2>
+                {% if success_message %}
+                <div class="alert alert-success" role="alert">{{ success_message }}</div>
+                {% endif %}
+                <form method="POST" action="{% url 'pages:contact' %}" novalidate>
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="contact_name">Name *</label>
+                            <input type="text" id="contact_name" name="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="contact_phone">Phone *</label>
+                            <input type="tel" id="contact_phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="contact_email">Email *</label>
+                            <input type="email" id="contact_email" name="email" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="contact_subject">Subject</label>
+                            <select id="contact_subject" name="subject" class="form-control">
+                                <option value="">Select a topic…</option>
+                                <option value="order">Order Inquiry</option>
+                                <option value="product">Product Question</option>
+                                <option value="bulk">Bulk / B2B Order</option>
+                                <option value="return">Return / Refund</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="contact_message">Message *</label>
+                            <textarea id="contact_message" name="message" class="form-control" rows="5" required placeholder="How can we help you?"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-hero-shop">
+                                Send Message <i class="fas fa-paper-plane ms-2" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

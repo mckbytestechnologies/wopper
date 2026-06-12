@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Checkout — Wopper{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block trust_ribbon %}{% endblock %}
+{% block newsletter %}{% endblock %}
+
+{% block body_class %}page-checkout{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="checkout-wrapper container px-4 py-4">
+    <h1 class="checkout-title">Checkout</h1>
+
+    {# Checkout progress steps #}
+    <div class="checkout-steps" aria-label="Checkout progress">
+        <div class="checkout-step active" aria-current="step">
+            <span class="step-num">1</span> Address
+        </div>
+        <div class="checkout-step-sep" aria-hidden="true"></div>
+        <div class="checkout-step">
+            <span class="step-num">2</span> Review
+        </div>
+        <div class="checkout-step-sep" aria-hidden="true"></div>
+        <div class="checkout-step">
+            <span class="step-num">3</span> Payment
+        </div>
+    </div>
+
+    <div class="row g-4">
+
+        {# ── Delivery Address ── #}
+        <div class="col-lg-7">
+            <div class="checkout-section">
+                <h2 class="checkout-section-title">Delivery Address</h2>
+
+                {% if user_addresses %}
+                <div class="saved-addresses">
+                    {% for address in user_addresses %}
+                    <label class="saved-address-card {% if forloop.first %}selected{% endif %}"
+                           for="addr_{{ address.id }}">
+                        <input type="radio"
+                               id="addr_{{ address.id }}"
+                               name="selected_address"
+                               value="{{ address.id }}"
+                               {% if forloop.first %}checked{% endif %}>
+                        <div class="address-details">
+                            <strong>{{ address.full_name }}</strong>
+                            {% if address.is_default %}<span class="badge-default">Default</span>{% endif %}
+                            <p>{{ address.line1 }}{% if address.line2 %}, {{ address.line2 }}{% endif %}</p>
+                            <p>{{ address.city }}, {{ address.state }} – {{ address.pincode }}</p>
+                            <p>Phone: {{ address.phone }}</p>
+                        </div>
+                    </label>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="add-new-address {% if not user_addresses %}open{% endif %}">
+                    <button class="btn-add-address" id="toggleNewAddress" type="button" aria-expanded="false">
+                        + Add New Address
+                    </button>
+                    <div class="new-address-form" id="newAddressForm" {% if user_addresses %}hidden{% endif %}>
+                        <form method="POST" action="{% url 'account:addresses' %}" novalidate>
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="full_name">Full Name</label>
+                                    <input type="text" id="full_name" name="full_name" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="line1">Address Line 1</label>
+                                    <input type="text" id="line1" name="line1" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="line2">Address Line 2 (optional)</label>
+                                    <input type="text" id="line2" name="line2" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="pincode">Pincode</label>
+                                    <input type="text" id="pincode" name="pincode" class="form-control" maxlength="6" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="city">City</label>
+                                    <input type="text" id="city" name="city" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="state">State</label>
+                                    <input type="text" id="state" name="state" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="setDefault" name="is_default">
+                                        <label class="form-check-label" for="setDefault">Set as default address</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-save-address mt-3">Save Address</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {# ── Order Summary ── #}
+        <div class="col-lg-5">
+            <div class="order-summary-card">
+                <h2 class="summary-title">Order Summary</h2>
+                {% for item in cart_items %}
+                <div class="summary-item">
+                    <span>{{ item.product.name }} × {{ item.quantity }}</span>
+                    <span>₹{{ item.line_total }}</span>
+                </div>
+                {% endfor %}
+                <hr>
+                <div class="summary-row"><span>Subtotal</span><span>₹{{ cart_subtotal }}</span></div>
+                <div class="summary-row"><span>Discount</span><span class="text-success">– ₹{{ cart_discount }}</span></div>
+                <div class="summary-row"><span>Delivery</span><span>{% if cart_subtotal >= 999 %}FREE{% else %}₹49{% endif %}</span></div>
+                <div class="summary-row summary-total"><span>Total</span><span>₹{{ cart_total }}</span></div>
+                <button type="submit" form="checkoutForm" class="btn-checkout">
+                    Continue to Payment <i class="fas fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/checkout.js' %}" defer></script>
+{% endblock %}

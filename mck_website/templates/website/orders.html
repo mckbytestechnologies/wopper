@@ -1,0 +1,451 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | {{ site_name|default:"The Better Home" }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-teal: #00828a;
+            --text-dark: #222;
+            --text-muted: #555;
+            --border-color: #e5e5e5;
+            --discount-red: #eb3c24;
+            --success-green: #10b981;
+            --warning-orange: #f59e0b;
+            --bg-light: #f8f9fa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); }
+        
+        .orders-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .orders-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .orders-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .orders-header p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+        
+        /* Order Cards */
+        .order-card {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .order-header {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .order-info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .order-info-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .order-info-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .order-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-pending { background: #fef3c7; color: #d97706; }
+        .status-confirmed { background: #dbeafe; color: #2563eb; }
+        .status-processing { background: #e0e7ff; color: #4f46e5; }
+        .status-shipped { background: #d1fae5; color: #059669; }
+        .status-delivered { background: #d1fae5; color: #059669; }
+        .status-cancelled { background: #fee2e2; color: #dc2626; }
+        
+        .order-items {
+            padding: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f5f5;
+            flex-shrink: 0;
+        }
+        
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .order-item-name a:hover {
+            color: var(--primary-teal);
+        }
+        
+        .order-item-sku {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+        
+        .order-item-price {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .order-item-quantity {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .order-item-total {
+            text-align: right;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--primary-teal);
+        }
+        
+        .order-footer {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-totals {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .order-total-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .order-total-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .order-total-value {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .order-grand-total {
+            color: var(--primary-teal);
+            font-size: 18px;
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-view-order {
+            padding: 8px 20px;
+            background: var(--primary-teal);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-view-order:hover {
+            background: #006b72;
+            color: white;
+        }
+        
+        /* Empty State */
+        .empty-orders {
+            text-align: center;
+            padding: 80px 20px;
+            background: white;
+            border-radius: 12px;
+        }
+        
+        .empty-icon {
+            font-size: 80px;
+            color: var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .empty-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .empty-message {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
+        .btn-shop-now {
+            display: inline-block;
+            background: var(--primary-teal);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .btn-shop-now:hover {
+            background: #006b72;
+            color: white;
+        }
+        
+        /* Loading State */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--primary-teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .orders-container {
+                padding: 20px 15px;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .order-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .order-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .order-totals {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .order-total-item {
+                align-items: flex-start;
+            }
+            
+            .order-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .order-item-image {
+                margin: 0 auto;
+            }
+            
+            .order-item-total {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <div class="orders-header">
+            <h1><i class="fas fa-box"></i> My Orders</h1>
+            <p>View and track all your orders</p>
+        </div>
+        
+        <div id="ordersList">
+            {% if orders %}
+                {% for order in orders %}
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <div class="order-info-item">
+                                <span class="order-info-label">Order Number</span>
+                                <span class="order-info-value">{{ order.order_number }}</span>
+                            </div>
+                            <div class="order-info-item">
+                                <span class="order-info-label">Order Date</span>
+                                <span class="order-info-value">{{ order.created_on|date:"M d, Y" }}</span>
+                            </div>
+                            <div class="order-info-item">
+                                <span class="order-info-label">Total Amount</span>
+                                <span class="order-info-value">₹{{ order.total_amount|floatformat:2 }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="order-status status-{{ order.status }}">
+                                {{ order.get_status_display }}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="order-items">
+                        {% for item in order.items.all %}
+                        <div class="order-item">
+                            <div class="order-item-image">
+                                {% if item.product_image %}
+                                    <img src="{{ item.product_image }}" alt="{{ item.product_name }}">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/80x80?text=No+Image" alt="{{ item.product_name }}">
+                                {% endif %}
+                            </div>
+                            <div class="order-item-details">
+                                <div class="order-item-name">
+                                    <a href="{% url 'wopper:product_detail' slug=item.product.slug %}">{{ item.product_name }}</a>
+                                </div>
+                                <div class="order-item-sku">SKU: {{ item.product_sku }}</div>
+                                <div class="order-item-price">₹{{ item.unit_price|floatformat:2 }}</div>
+                                <div class="order-item-quantity">Quantity: {{ item.quantity }}</div>
+                            </div>
+                            <div class="order-item-total">
+                                ₹{{ item.total_price|floatformat:2 }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="order-footer">
+                        <div class="order-totals">
+                            <div class="order-total-item">
+                                <span class="order-total-label">Subtotal</span>
+                                <span class="order-total-value">₹{{ order.subtotal|floatformat:2 }}</span>
+                            </div>
+                            {% if order.discount_amount > 0 %}
+                            <div class="order-total-item">
+                                <span class="order-total-label">Discount</span>
+                                <span class="order-total-value" style="color: var(--discount-red);">-₹{{ order.discount_amount|floatformat:2 }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="order-total-item">
+                                <span class="order-total-label">Shipping</span>
+                                <span class="order-total-value">₹{{ order.shipping_charge|floatformat:2 }}</span>
+                            </div>
+                            <div class="order-total-item">
+                                <span class="order-total-label">Tax</span>
+                                <span class="order-total-value">₹{{ order.tax_amount|floatformat:2 }}</span>
+                            </div>
+                            <div class="order-total-item">
+                                <span class="order-total-label">Total</span>
+                                <span class="order-total-value order-grand-total">₹{{ order.total_amount|floatformat:2 }}</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <a href="{% url 'wopper:order_success' order_number=order.order_number %}" class="btn-view-order">
+                                View Order Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-orders">
+                    <div class="empty-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h2 class="empty-title">No Orders Yet</h2>
+                    <p class="empty-message">You haven't placed any orders yet. Start shopping to see your orders here!</p>
+                    <a href="{% url 'wopper:all_products' %}" class="btn-shop-now">
+                        <i class="fas fa-shopping-bag"></i> Start Shopping
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}My Wishlist — Wopper{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+
+{% block body_class %}page-wishlist{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-4">
+    <h1 class="mb-4">My Wishlist <span class="product-count-label">({{ wishlist_count }} items)</span></h1>
+
+    {% if wishlist_items %}
+    <div class="product-grid" role="list">
+        {% for item in wishlist_items %}
+        <div role="listitem">
+            {% include "includes/product-card.html" with product=item.product %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-wishlist text-center py-5">
+        <i class="far fa-heart fa-4x text-muted mb-4" aria-hidden="true"></i>
+        <h2>Your wishlist is empty</h2>
+        <p class="text-muted">Save items you love here and shop them later.</p>
+        <a href="{% url 'products:list' %}" class="btn-hero-shop mt-3">Explore Products</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

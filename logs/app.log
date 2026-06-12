@@ -1,0 +1,48 @@
+2026-06-09 13:46:29,588 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : LandingPage.get
+2026-06-12 16:47:40,348 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get
+2026-06-12 16:47:40,349 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:47:40,354 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004530 seconds
+2026-06-12 16:47:40,354 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
+2026-06-12 16:47:40,433 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00.077886 seconds
+2026-06-12 16:47:40,450 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get in 0:00:00.101454 seconds
+2026-06-12 16:47:40,603 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post
+2026-06-12 16:47:40,603 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:47:40,606 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003454 seconds
+2026-06-12 16:47:40,606 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
+2026-06-12 16:47:40,606 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
+2026-06-12 16:47:40,607 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data
+2026-06-12 16:47:40,618 ERROR Error at 1345:'Order' object has no attribute 'customer'
+2026-06-12 16:47:40,618 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data in 0:00:00.010986 seconds
+2026-06-12 16:47:40,618 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post in 0:00:00.015650 seconds
+2026-06-12 16:57:18,294 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
+2026-06-12 16:57:18,298 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:57:18,306 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.008000 seconds
+2026-06-12 16:57:18,307 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
+2026-06-12 16:57:18,308 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001086 seconds
+2026-06-12 16:57:18,316 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.022017 seconds
+2026-06-12 16:57:18,614 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
+2026-06-12 16:57:18,615 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:57:18,617 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002002 seconds
+2026-06-12 16:57:18,617 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
+2026-06-12 16:57:18,618 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001000 seconds
+2026-06-12 16:57:18,618 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
+2026-06-12 16:57:18,625 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.006999 seconds
+2026-06-12 16:57:18,625 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.010997 seconds
+2026-06-12 16:57:42,963 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get
+2026-06-12 16:57:42,963 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:57:42,968 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005016 seconds
+2026-06-12 16:57:42,968 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
+2026-06-12 16:57:42,969 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00.000981 seconds
+2026-06-12 16:57:42,970 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get in 0:00:00.006997 seconds
+2026-06-12 16:57:43,141 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post
+2026-06-12 16:57:43,141 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-12 16:57:43,149 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.008144 seconds
+2026-06-12 16:57:43,149 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
+2026-06-12 16:57:43,150 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00.001001 seconds
+2026-06-12 16:57:43,150 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data
+2026-06-12 16:57:43,158 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data in 0:00:00.007433 seconds
+2026-06-12 16:57:43,158 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post in 0:00:00.016578 seconds
+2026-06-12 16:58:27,209 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url
+2026-06-12 16:58:27,273 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url in 0:00:00.064125 seconds
+2026-06-12 16:58:29,179 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignIn.get
+2026-06-12 16:58:29,440 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignIn.get in 0:00:00.259461 seconds

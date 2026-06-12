@@ -1,0 +1,41 @@
+{# templates/includes/breadcrumb.html #}
+{#
+    Usage:
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+
+    breadcrumbs = list of dicts: [{'label': 'Home', 'url': '/'}, ..., {'label': 'Current Page', 'url': None}]
+#}
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="{% url 'home:index' %}" itemprop="item" aria-label="Home">
+                <i class="fas fa-home" aria-hidden="true"></i>
+                <span itemprop="name">Home</span>
+            </a>
+            <meta itemprop="position" content="1">
+        </li>
+
+        {% for crumb in breadcrumbs %}
+        <li class="breadcrumb-item {% if forloop.last %}active{% endif %}"
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+            {% if forloop.last %}aria-current="page"{% endif %}>
+
+            <i class="fas fa-chevron-right breadcrumb-sep" aria-hidden="true"></i>
+
+            {% if crumb.url and not forloop.last %}
+            <a href="{{ crumb.url }}" itemprop="item">
+                <span itemprop="name">{{ crumb.label }}</span>
+            </a>
+            {% else %}
+            <span itemprop="name">{{ crumb.label }}</span>
+            {% endif %}
+
+            <meta itemprop="position" content="{{ forloop.counter|add:1 }}">
+        </li>
+        {% endfor %}
+
+    </ol>
+</nav>

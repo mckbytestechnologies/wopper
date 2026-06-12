@@ -1,0 +1,39 @@
+{# templates/includes/search-modal.html #}
+<div class="search-modal-overlay"
+     id="searchModal"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Search"
+     aria-hidden="true">
+    <div class="search-modal-inner">
+        <button class="search-modal-close"
+                id="searchModalClose"
+                aria-label="Close search">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <form action="" method="GET" class="search-modal-form">
+            <div class="search-modal-input-wrap">
+                <i class="fas fa-search search-modal-icon" aria-hidden="true"></i>
+                <input type="search"
+                       name="q"
+                       id="searchModalInput"
+                       class="search-modal-input"
+                       placeholder="Search products, categories, brands…"
+                       autocomplete="off"
+                       aria-label="Search products">
+                <button type="submit" class="search-modal-btn">Search</button>
+            </div>
+        </form>
+        <div class="search-quick-links">
+            <p class="search-quick-label">Popular Searches:</p>
+            <div class="search-quick-tags">
+                <a href="/products/?q=glass+cleaner">Glass Cleaner</a>
+                <a href="/products/?q=car+wash">Car Wash</a>
+                <a href="/products/?q=fabric+conditioner">Fabric Conditioner</a>
+                <a href="/products/?q=wood+polish">Wood Polish</a>
+                <a href="/products/?q=vessel+wash">Vessel Wash</a>
+                <a href="/products/?q=multipurpose">Multipurpose Spray</a>
+            </div>
+        </div>
+    </div>
+</div>

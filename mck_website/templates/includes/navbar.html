@@ -1,0 +1,116 @@
+
+{# Requires context var `nav_categories` (QuerySet) from context processor #}
+<nav class="nav-menu-bar" role="navigation" aria-label="Main navigation">
+    <ul class="nav-menu-list" role="menubar">
+
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem">Shop All</a>
+        </li>
+
+        <li class="nav-menu-item flash-sale" role="none">
+            <a href="" role="menuitem">
+                <i class="fas fa-tags me-1" aria-hidden="true"></i>Sale
+            </a>
+        </li>
+
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem">Offers</a>
+        </li>
+
+        {# Dynamic categories from context processor #}
+        {% for category in nav_categories %}
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                {{ category.name }}
+                {% if category.subcategories.all %}
+                <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+                {% endif %}
+            </a>
+            {% if category.subcategories.all %}
+            <div class="dropdown-mega" role="menu" aria-label="{{ category.name }} submenu">
+                <div class="dd-section-title">{{ category.name }}</div>
+                {% for sub in category.subcategories.all %}
+                <a href="" role="menuitem">{{ sub.name }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </li>
+        {% empty %}
+        {# Fallback static nav when no context processor #}
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                Household <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">Household Products</div>
+                <a href="" role="menuitem">Glass Cleaner</a>
+                <a href="" role="menuitem">Multipurpose Cleaner</a>
+                <a href="" role="menuitem">Wood Polish</a>
+                <a href="" role="menuitem">Vessel Wash Gel</a>
+                <a href="" role="menuitem">Home Cleaning Combo</a>
+            </div>
+        </li>
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                Laundry <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">Laundry Care</div>
+                <a href="" role="menuitem">Fabric Conditioner</a>
+                <a href="" role="menuitem">Detergent Solutions</a>
+                <a href="" role="menuitem">Laundry Additives</a>
+                <a href="" role="menuitem">Stain Removers</a>
+            </div>
+        </li>
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                Hospital <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">Hospital Solutions</div>
+                <a href="" role="menuitem">Surface Sanitizers</a>
+                <a href="" role="menuitem">Disinfectants</a>
+                <a href="" role="menuitem">Cleaning Chemicals</a>
+                <a href="" role="menuitem">Floor Care Products</a>
+            </div>
+        </li>
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                Industrial &amp; Institutional <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">Industrial Products</div>
+                <a href="" role="menuitem">Heavy Duty Cleaners</a>
+                <a href="" role="menuitem">Floor Maintenance</a>
+                <a href="" role="menuitem">Degreasers</a>
+                <a href="" role="menuitem">Bulk Cleaning Solutions</a>
+            </div>
+        </li>
+        <li class="nav-menu-item" role="none">
+            <a href="" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                Bakery / Restaurant <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">Food Service Cleaning</div>
+                <a href="" role="menuitem">Kitchen Cleaners</a>
+                <a href="/products/dish-wash/" role="menuitem">Dish Wash Solutions</a>
+                <a href="/products/food-area-sanitizers/" role="menuitem">Food Area Sanitizers</a>
+                <a href="/products/restaurant-hygiene/" role="menuitem">Restaurant Hygiene Products</a>
+            </div>
+        </li>
+        <li class="nav-menu-item" role="none">
+            <a href="/products/more/" role="menuitem" aria-haspopup="true" aria-expanded="false">
+                More <i class="fas fa-chevron-down ms-1" style="font-size:10px;" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-mega" role="menu">
+                <div class="dd-section-title">More Categories</div>
+                <a href="/products/automobile-care/" role="menuitem">Automobile Care</a>
+                <a href="/products/car-wash-shampoo/" role="menuitem">Car Wash Shampoo</a>
+                <a href="/products/specialty-cleaners/" role="menuitem">Specialty Cleaners</a>
+                <a href="/products/upcoming/" role="menuitem">Upcoming Products</a>
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>
+</nav>

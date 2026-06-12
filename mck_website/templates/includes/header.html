@@ -1,0 +1,76 @@
+{# templates/includes/header.html #}
+{% load static %}
+<header class="main-header" role="banner">
+    <div class="container-fluid container d-flex justify-content-between align-items-center flex-wrap header-main-row p-0">
+
+        {# ── Brand Logo ── #}
+        <a href="" class="brand-logo" aria-label="Wopper — Home">
+            <img src="{% static 'img/logo.png' %}"
+                 alt="Wopper Logo"
+                 width="48" height="46"
+                 loading="eager">
+        </a>
+
+        {# ── Search Bar ── #}
+        <div class="search-container" role="search">
+            <form action="" method="GET" class="search-form">
+                <input type="search"
+                       name="q"
+                       class="search-input"
+                       placeholder="Search for products, categories or brands..."
+                       value="{{ request.GET.q|default:'' }}"
+                       aria-label="Search products"
+                       autocomplete="off">
+                <button type="submit" class="search-submit-btn" aria-label="Submit search">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+
+        {# ── Header Action Icons ── #}
+        <div class="d-flex align-items-center">
+            <div class="header-actions-icons d-flex align-items-center">
+
+                {# Account #}
+                {% if user.is_authenticated %}
+                <a href="" class="header-icon-link" aria-label="My Account">
+                    <i class="far fa-user"></i>
+                    <span class="header-icon-label d-none d-lg-block">Account</span>
+                </a>
+                {% else %}
+                <a href="" class="header-icon-link" aria-label="Login">
+                    <i class="far fa-user"></i>
+                    <span class="header-icon-label d-none d-lg-block">Login</span>
+                </a>
+                {% endif %}
+
+                {# Wishlist #}
+                <a href="" class="header-icon-link" aria-label="Wishlist">
+                    <i class="far fa-heart"></i>
+                    {% if wishlist_count %}
+                    <span class="header-badge">{{ wishlist_count }}</span>
+                    {% endif %}
+                </a>
+
+                {# Cart #}
+                <a href="" class="header-icon-link" aria-label="Shopping Cart ({{ cart_count|default:0 }} items)">
+                    <i class="fas fa-shopping-bag"></i>
+                    {% if cart_count %}
+                    <span class="header-badge">{{ cart_count }}</span>
+                    {% endif %}
+                </a>
+
+            </div>
+
+            {# Mobile Hamburger #}
+            <button class="mobile-nav-toggle ms-3"
+                    id="mobileNavToggle"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileNavDrawer">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+
+    </div>
+</header>

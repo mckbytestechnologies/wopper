@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ brand.name }} Products — Wopper{% endblock %}
+{% block meta_description %}Shop all {{ brand.name }} products on Wopper. {{ brand.description|default:"" }}{% endblock %}
+
+{% block body_class %}page-brand{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="brand-hero container-fluid container px-4 py-5 text-center">
+    {% if brand.logo %}
+    <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="brand-hero-logo mb-3" loading="eager">
+    {% endif %}
+    <h1>{{ brand.name }}</h1>
+    {% if brand.description %}<p class="text-muted mx-auto" style="max-width:600px;">{{ brand.description }}</p>{% endif %}
+</div>
+
+<div class="listing-main-wrapper container">
+    <aside class="filter-sidebar" id="filterSidebar">
+        {% include "products/_filter_sidebar.html" %}
+    </aside>
+    <div class="products-grid-area">
+        {% include "products/_product_grid.html" %}
+    </div>
+</div>
+{% endblock %}

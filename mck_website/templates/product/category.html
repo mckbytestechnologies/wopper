@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ category.name }} — Wopper{% endblock %}
+{% block meta_description %}Shop {{ category.name }} products from Wopper. Premium quality cleaning and hygiene solutions at the best prices.{% endblock %}
+
+{% block body_class %}page-category{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+{# ── Category Hero Banner ── #}
+{% if category.banner %}
+<div class="category-hero-banner">
+    <img src="{{ category.banner.url }}"
+         alt="{{ category.name }} banner"
+         class="category-banner-img"
+         loading="eager"
+         width="1500" height="300">
+    <div class="category-banner-overlay">
+        <h1>{{ category.name }}</h1>
+        {% if category.description %}
+        <p>{{ category.description }}</p>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="category-header-plain container-fluid container px-4 py-4">
+    <h1>{{ category.name }}</h1>
+    {% if category.description %}<p class="text-muted">{{ category.description }}</p>{% endif %}
+</div>
+{% endif %}
+
+{# ── Sub-categories ── #}
+{% if sub_categories %}
+<div class="sub-category-strip container-fluid container px-4 py-3">
+    <div class="sub-cat-chips">
+        {% for sub in sub_categories %}
+        <a href="{% url 'products:category' sub.slug %}" class="sub-cat-chip {% if active_sub == sub.slug %}active{% endif %}">
+            {{ sub.name }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{# ── Reuse product-list layout ── #}
+<div class="listing-main-wrapper container">
+    <aside class="filter-sidebar" id="filterSidebar" aria-label="Filters">
+        {% include "products/_filter_sidebar.html" %}
+    </aside>
+    <div class="products-grid-area">
+        {% include "products/_product_grid.html" %}
+    </div>
+</div>
+
+{% endblock %}

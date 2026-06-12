@@ -1,0 +1,141 @@
+{% load static %}
+
+<div class="sticky">
+    <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+
+    <div class="app-sidebar">
+        <div class="side-header">
+            <h3>MM</h3>
+        </div>
+
+        <div class="main-sidemenu">
+
+            <ul class="side-menu">
+
+                <li class="sub-category">
+                    <h3>Menu</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_category_list' %}">
+                        <i class="side-menu__icon bi bi-grid"></i>
+                        <span class="side-menu__label">Categories</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_product_list' %}">
+                        <i class="side-menu__icon bi bi-box-seam"></i>
+                        <span class="side-menu__label">Products</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_homepage_video_list' %}">
+                        <i class="side-menu__icon bi bi-camera-reels"></i>
+                        <span class="side-menu__label">Video</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_hero_banner_list' %}">
+                        <i class="side-menu__icon bi bi-images"></i>
+                        <span class="side-menu__label">Hero Banner</span>
+                    </a>
+                </li>
+
+                <li class="sub-category">
+                    <h3>Customer Management</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_customer_list' %}">
+                        <i class="side-menu__icon bi bi-people"></i>
+                        <span class="side-menu__label">Customers</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_address_list' %}">
+                        <i class="side-menu__icon bi bi-geo-alt"></i>
+                        <span class="side-menu__label">Addresses</span>
+                    </a>
+                </li>
+
+                <li class="sub-category">
+                    <h3>Marketing</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_coupon_list' %}">
+                        <i class="side-menu__icon bi bi-ticket-perforated"></i>
+                        <span class="side-menu__label">Coupons</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_newsletter_list' %}">
+                        <i class="side-menu__icon bi bi-envelope"></i>
+                        <span class="side-menu__label">Newsletter</span>
+                    </a>
+                </li>
+
+                <li class="sub-category">
+                    <h3>Orders & Payments</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_order_list' %}">
+                        <i class="side-menu__icon bi bi-cart-check"></i>
+                        <span class="side-menu__label">Orders</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_cart_list' %}">
+                        <i class="side-menu__icon bi bi-cart"></i>
+                        <span class="side-menu__label">Carts</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_payment_gateway_list' %}">
+                        <i class="side-menu__icon bi bi-credit-card"></i>
+                        <span class="side-menu__label">Payment Gateways</span>
+                    </a>
+                </li>
+
+                <li class="sub-category">
+                    <h3>Reviews & Feedback</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_product_review_list' %}">
+                        <i class="side-menu__icon bi bi-star"></i>
+                        <span class="side-menu__label">Product Reviews</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_contact_us_list' %}">
+                        <i class="side-menu__icon bi bi-chat-dots"></i>
+                        <span class="side-menu__label">Contact Us</span>
+                    </a>
+                </li>
+
+                <li class="sub-category">
+                    <h3>Settings</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_site_settings' %}">
+                        <i class="side-menu__icon bi bi-gear"></i>
+                        <span class="side-menu__label">Site Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>

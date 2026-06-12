@@ -1,0 +1,34 @@
+{% extends 'layouts/admin_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<div style="
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+">
+    <h1 style="font-size: 2.2rem; color: #1e293b; margin-bottom: 10px;">
+        Welcome to Admin Dashboard
+    </h1>
+
+    <p style="color: #64748b; font-size: 1rem;">
+        Your functions and analytics will go here.
+    </p>
+
+    <div style="
+        margin-top: 30px;
+        padding: 20px 30px;
+        border-radius: 12px;
+        background: #f1f5f9;
+        color: #475569;
+        font-size: 0.9rem;
+    ">
+        🚀 This is a clean starter layout. You can build stats, charts, and reports later.
+    </div>
+</div>
+
+{% endblock %}

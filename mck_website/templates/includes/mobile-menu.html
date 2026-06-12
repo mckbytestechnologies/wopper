@@ -1,0 +1,161 @@
+{# templates/includes/mobile-menu.html #}
+{% load static %}
+
+{# Overlay #}
+<div class="mobile-nav-overlay"
+     id="mobileNavOverlay"
+     role="presentation"
+     aria-hidden="true"></div>
+
+{# Drawer #}
+<nav class="mobile-nav-drawer"
+     id="mobileNavDrawer"
+     aria-label="Mobile navigation"
+     aria-hidden="true"
+     role="dialog">
+
+    <button class="mobile-nav-close"
+            id="mobileNavClose"
+            aria-label="Close navigation menu">
+        <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+
+    {# Brand #}
+    <div class="mobile-nav-brand">
+        <a href="">
+            <img src="{% static 'img/logo.png' %}" alt="Wopper" width="40" height="38">
+        </a>
+    </div>
+
+    {# User state #}
+    <div class="mobile-nav-user">
+        {% if user.is_authenticated %}
+        <a href="" class="mobile-user-link">
+            <i class="far fa-user-circle me-2"></i> Hi, {{ user.first_name|default:user.username }}
+        </a>
+        {% else %}
+        <div class="d-flex gap-2">
+            <a href="" class="mobile-auth-btn login">Login</a>
+            <a href="" class="mobile-auth-btn register">Sign Up</a>
+        </div>
+        {% endif %}
+    </div>
+
+    {# Navigation Links #}
+    <ul class="mobile-nav-list" role="menu">
+
+        <li class="mobile-nav-item" role="none">
+            <a href="" role="menuitem">Shop All</a>
+        </li>
+
+        <li class="mobile-nav-item flash-sale" role="none">
+            <a href="" role="menuitem">
+                <i class="fas fa-tags me-1" aria-hidden="true"></i> Sale
+            </a>
+        </li>
+
+        <li class="mobile-nav-item" role="none">
+            <a href="" role="menuitem">Offers</a>
+        </li>
+
+        {# Category: Household #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/household/" role="menuitem">Household</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle Household submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/glass-cleaner/" role="menuitem">Glass Cleaner</a></li>
+                <li><a href="/products/multipurpose-cleaner/" role="menuitem">Multipurpose Cleaner</a></li>
+                <li><a href="/products/wood-polish/" role="menuitem">Wood Polish</a></li>
+                <li><a href="/products/vessel-wash-gel/" role="menuitem">Vessel Wash Gel</a></li>
+            </ul>
+        </li>
+
+        {# Category: Laundry #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/laundry/" role="menuitem">Laundry</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle Laundry submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/fabric-conditioner/" role="menuitem">Fabric Conditioner</a></li>
+                <li><a href="/products/laundry-care/" role="menuitem">Laundry Care</a></li>
+                <li><a href="/products/stain-removers/" role="menuitem">Stain Removers</a></li>
+            </ul>
+        </li>
+
+        {# Category: Hospital #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/hospital/" role="menuitem">Hospital</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle Hospital submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/sanitizers/" role="menuitem">Sanitizers</a></li>
+                <li><a href="/products/disinfectants/" role="menuitem">Disinfectants</a></li>
+                <li><a href="/products/floor-care/" role="menuitem">Floor Care</a></li>
+            </ul>
+        </li>
+
+        {# Category: Industrial #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/industrial/" role="menuitem">Industrial &amp; Institutional</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle Industrial submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/heavy-duty-cleaners/" role="menuitem">Heavy Duty Cleaners</a></li>
+                <li><a href="/products/degreasers/" role="menuitem">Degreasers</a></li>
+                <li><a href="/products/bulk-solutions/" role="menuitem">Bulk Solutions</a></li>
+            </ul>
+        </li>
+
+        {# Category: Bakery #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/bakery-restaurant/" role="menuitem">Bakery / Restaurant</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle Bakery submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/kitchen-cleaners/" role="menuitem">Kitchen Cleaners</a></li>
+                <li><a href="/products/dish-wash/" role="menuitem">Dish Wash</a></li>
+                <li><a href="/products/food-area-sanitizers/" role="menuitem">Food Area Sanitizers</a></li>
+            </ul>
+        </li>
+
+        {# Category: More #}
+        <li class="mobile-nav-item has-sub" role="none">
+            <div class="mobile-nav-row">
+                <a href="/products/more/" role="menuitem">More</a>
+                <button class="mobile-sub-toggle" aria-expanded="false" aria-label="Toggle More submenu">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <ul class="mobile-sub-menu" aria-hidden="true" role="menu">
+                <li><a href="/products/automobile-care/" role="menuitem">Automobile Care</a></li>
+                <li><a href="/products/car-wash-shampoo/" role="menuitem">Car Wash Shampoo</a></li>
+                <li><a href="/products/upcoming/" role="menuitem">Upcoming Products</a></li>
+            </ul>
+        </li>
+
+    </ul>
+
+    {# Mobile footer links #}
+    <div class="mobile-nav-footer">
+        <a href=""><i class="fas fa-info-circle me-2"></i>About Us</a>
+        <a href=""><i class="fas fa-phone me-2"></i>Contact</a>
+        <a href=""><i class="fas fa-question-circle me-2"></i>FAQs</a>
+    </div>
+
+</nav>

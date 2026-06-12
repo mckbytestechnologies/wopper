@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% if query %}Search results for "{{ query }}"{% else %}Search{% endif %} — Wopper{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
+
+{% block body_class %}page-search{% endblock %}
+
+{% block breadcrumb %}
+<div class="container-fluid container px-4 pt-3">
+    {% include "includes/breadcrumb.html" with breadcrumbs=breadcrumbs %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="listing-main-wrapper container">
+
+    <aside class="filter-sidebar" id="filterSidebar" aria-label="Filters">
+        {% include "products/_filter_sidebar.html" %}
+    </aside>
+
+    <div class="products-grid-area">
+        <div class="listing-header">
+            <h1>
+                {% if query %}
+                    Results for <em>"{{ query }}"</em>
+                    <span class="product-count-label">({{ page_obj.paginator.count }} products)</span>
+                {% else %}
+                    All Products
+                {% endif %}
+            </h1>
+            <div class="sort-by">
+                <select id="sortSelect" aria-label="Sort products">
+                    <option value="relevance">Most Relevant</option>
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                    <option value="discount">Discount: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        {% if page_obj.object_list %}
+        <div class="product-grid" role="list">
+            {% for product in page_obj.object_list %}
+            <div role="listitem">
+                {% include "includes/product-card.html" with product=product %}
+            </div>
+            {% endfor %}
+        </div>
+        {% include "includes/pagination.html" with page_obj=page_obj %}
+        {% else %}
+        <div class="no-products">
+            <i class="fas fa-search fa-3x mb-3 text-muted" aria-hidden="true"></i>
+            <h3>No results for "{{ query }}"</h3>
+            <p>Try a different spelling or check out our <a href="{% url 'products:list' %}">full catalog</a>.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
