@@ -55,7 +55,7 @@ class LandingPage(TemplateView):
                 return HttpResponseRedirect(reverse("mck_admin_console:mck_dashboard"))
             else:
                 # Regular user - redirect to website home
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
         
         # Not authenticated - show landing page
         context = super().get_context_data(**kwargs)
@@ -92,7 +92,7 @@ class DashboardView(TemplateView):
             if not has_permission:
                 logger.warning(f"Non-admin user {request.user.username} attempted to access admin dashboard")
                 messages.error(request, "You don't have permission to access the admin area.")
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
 
         # Validate requested user function
         has_permission, accountuser = rv.validate_requested_user_function(request)
@@ -134,7 +134,7 @@ class SignIn(TemplateView):
                 return HttpResponseRedirect(reverse("mck_admin_console:mck_dashboard"))
             else:
                 # Regular user trying to access admin login - redirect to website
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
                 
         return render(request, self.template_name, context)
 
@@ -182,7 +182,7 @@ class WebsiteSignIn(TemplateView):
                 return HttpResponseRedirect(reverse("mck_admin_console:mck_dashboard"))
             else:
                 # Regular user - redirect to website home
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
                 
         return render(request, self.template_name, context)
 
@@ -198,7 +198,7 @@ class WebsiteSignIn(TemplateView):
                 return HttpResponseRedirect(reverse("mck_admin_console:mck_dashboard"))
             else:
                 # Regular user - redirect to website home
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
                 
         context = super().get_context_data(**kwargs)
         context['page_kwargs'] = seo.get_page_tags("website_signin")
@@ -219,7 +219,7 @@ class WebsiteSignUp(TemplateView):
             if request.user.is_staff or request.user.is_superuser:
                 return HttpResponseRedirect(reverse("mck_admin_console:mck_dashboard"))
             else:
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
         
         context = super().get_context_data(**kwargs)
         context['page_kwargs'] = seo.get_page_tags("website_signup")

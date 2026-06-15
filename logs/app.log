@@ -712,3 +712,47 @@ NameError: name 'NoReverseMatch' is not defined
 2026-06-15 15:48:36,678 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
 2026-06-15 15:48:36,681 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.003001 seconds
 2026-06-15 15:48:36,681 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.005002 seconds
+2026-06-15 16:20:08,613 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
+2026-06-15 16:20:08,621 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get in 0:00:00.007935 seconds
+2026-06-15 16:20:27,030 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
+2026-06-15 16:20:27,030 INFO Registration attempt for email: bharathmck@gmail.com
+2026-06-15 16:20:27,037 INFO Deleted existing OTPs for bharathmck@gmail.com
+2026-06-15 16:20:27,041 INFO Created new OTP for bharathmck@gmail.com: 052751
+2026-06-15 16:20:27,041 INFO Attempting to send OTP email to bharathmck@gmail.com
+2026-06-15 16:20:28,125 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
+2026-06-15 16:20:28,125 INFO Registration attempt for email: bharathmck@gmail.com
+2026-06-15 16:20:28,143 INFO Deleted existing OTPs for bharathmck@gmail.com
+2026-06-15 16:20:28,144 INFO Created new OTP for bharathmck@gmail.com: 201517
+2026-06-15 16:20:28,144 INFO Attempting to send OTP email to bharathmck@gmail.com
+2026-06-15 16:20:29,639 ERROR Failed to send OTP email to bharathmck@gmail.com
+2026-06-15 16:20:29,641 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:02.611437 seconds
+2026-06-15 16:20:30,650 ERROR Failed to send OTP email to bharathmck@gmail.com
+2026-06-15 16:20:30,654 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:02.528383 seconds
+2026-06-15 16:24:01,802 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url
+2026-06-15 16:24:01,817 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url in 0:00:00.015373 seconds
+2026-06-15 16:24:03,429 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
+2026-06-15 16:24:03,440 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get in 0:00:00.010374 seconds
+2026-06-15 16:24:11,986 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
+2026-06-15 16:24:11,986 INFO Registration attempt for email: bharathmckbytes@gmail.com
+2026-06-15 16:24:11,999 INFO Deleted existing OTPs for bharathmckbytes@gmail.com
+2026-06-15 16:24:12,005 INFO Created new OTP for bharathmckbytes@gmail.com: 724114
+2026-06-15 16:24:12,005 INFO Attempting to send OTP email to bharathmckbytes@gmail.com
+2026-06-15 16:24:15,708 INFO OTP email sent successfully to bharathmckbytes@gmail.com
+2026-06-15 16:24:15,710 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:03.724466 seconds
+2026-06-15 16:24:15,719 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
+2026-06-15 16:24:15,730 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.011273 seconds
+2026-06-15 16:26:26,826 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : ResendOTPView.post
+2026-06-15 16:26:30,678 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : ResendOTPView.post in 0:00:03.852705 seconds
+2026-06-15 16:26:30,684 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
+2026-06-15 16:26:30,711 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.026451 seconds
+2026-06-15 16:26:43,725 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.post
+2026-06-15 16:26:43,734 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : website_user_register
+2026-06-15 16:26:44,243 ERROR Account creation failed but user was created: AccountUser.save() got an unexpected keyword argument 'force_insert'
+2026-06-15 16:26:44,243 INFO User registered successfully: bharathmckbytes@gmail.com
+2026-06-15 16:26:44,243 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : website_user_register in 0:00:00.508737 seconds
+2026-06-15 16:26:44,750 ERROR OTP verification error at line 388: Reverse for 'profile_page' not found. 'profile_page' is not a valid view function or pattern name.
+2026-06-15 16:26:44,751 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.post in 0:00:01.026518 seconds
+2026-06-15 16:26:44,759 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
+2026-06-15 16:26:44,762 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.002970 seconds
+2026-06-15 16:26:44,768 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
+2026-06-15 16:26:44,770 ERROR Function 'WebsiteSignUp.get' raised NoReverseMatch with error 'Reverse for 'home_page' not found. 'home_page' is not a valid view function or pattern name.'

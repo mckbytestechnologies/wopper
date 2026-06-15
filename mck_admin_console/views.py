@@ -54,7 +54,7 @@ class LandingPage(TemplateView):
                 return HttpResponseRedirect(reverse("svm_admin_console:mck_dashboard"))
             else:
                 # Regular user - redirect to website home
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
         
         # Not authenticated - show landing page
         context = super().get_context_data(**kwargs)
@@ -87,7 +87,7 @@ class DashboardView(TemplateView):
             if not has_permission:
                 logger.warning(f"Non-admin user {request.user.username} attempted to access admin dashboard")
                 messages.error(request, "You don't have permission to access the admin area.")
-                return HttpResponseRedirect(reverse("mck_website:home_page"))
+                return HttpResponseRedirect(reverse("wopper:website_home"))
 
         # Validate requested user function
         has_permission, accountuser = rv.validate_requested_user_function(request)

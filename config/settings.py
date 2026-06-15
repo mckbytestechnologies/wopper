@@ -22,18 +22,8 @@ sys.path.insert(0, str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production 
 SECRET_KEY = 'django-insecure-adkq2p-(e(l)7xqztab_j@)x0)eu2nr@vi&6@))gz^1u&owj#-'
-DEBUG = False
-
-ALLOWED_HOSTS = [
-    'mckbytes.tech',
-    'www.mckbytes.tech',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://mckbytes.tech',
-    'https://www.mckbytes.tech',
-]
-
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -228,7 +218,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # or your email host
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bharathmckbytes@gmail.com'
-EMAIL_HOST_PASSWORD = 'towh nrqf wnhf pbps'  # Use app password for Gmail
+EMAIL_HOST_PASSWORD = 'ccvo xyhw qrum kguw'  # Use app password for Gmail
 DEFAULT_FROM_EMAIL = 'SRI VARAM MANAMALAI <supportsrivarammanamalai@gmail.com>'
 SUPPORT_EMAIL = 'bharathmckbytes@gmail.com'
 

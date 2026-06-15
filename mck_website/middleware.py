@@ -38,7 +38,7 @@ class RegistrationStatusMiddleware:
         'mck_website:payment_success_page',
         'mck_website:payment_failure',
         'mck_website:payment_callback',
-        'mck_website:home_page',
+        'wopper:website_home',
         'mck_website:about_page',
         'mck_website:privacy_policy_page',
         'mck_website:terms_page',
