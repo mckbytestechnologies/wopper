@@ -9,11 +9,23 @@
         </div>
 
         <div class="main-sidemenu">
-
             <ul class="side-menu">
 
+                <!-- Dashboard Section -->
                 <li class="sub-category">
-                    <h3>Menu</h3>
+                    <h3>Dashboard</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'svm_admin_console:mck_dashboard' %}">
+                        <i class="side-menu__icon bi bi-speedometer2"></i>
+                        <span class="side-menu__label">Overview</span>
+                    </a>
+                </li>
+
+                <!-- Catalog Management Section -->
+                <li class="sub-category">
+                    <h3>Catalog Management</h3>
                 </li>
 
                 <li class="slide">
@@ -30,30 +42,36 @@
                     </a>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item" href="{% url 'mck_website:mck_homepage_video_list' %}">
-                        <i class="side-menu__icon bi bi-camera-reels"></i>
-                        <span class="side-menu__label">Video</span>
-                    </a>
+                <!-- Content Management Section -->
+                <li class="sub-category">
+                    <h3>Content Management</h3>
                 </li>
 
                 <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_hero_banner_list' %}">
                         <i class="side-menu__icon bi bi-images"></i>
-                        <span class="side-menu__label">Hero Banner</span>
+                        <span class="side-menu__label">Hero Banners</span>
                     </a>
                 </li>
 
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_homepage_video_list' %}">
+                        <i class="side-menu__icon bi bi-camera-reels"></i>
+                        <span class="side-menu__label">Homepage Videos</span>
+                    </a>
+                </li>
+
+                <!-- Customer Management Section -->
                 <li class="sub-category">
                     <h3>Customer Management</h3>
                 </li>
 
-                <li class="slide">
+                <!-- <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_customer_list' %}">
                         <i class="side-menu__icon bi bi-people"></i>
                         <span class="side-menu__label">Customers</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_address_list' %}">
@@ -62,26 +80,9 @@
                     </a>
                 </li>
 
+                <!-- Orders & Transactions Section -->
                 <li class="sub-category">
-                    <h3>Marketing</h3>
-                </li>
-
-                <li class="slide">
-                    <a class="side-menu__item" href="{% url 'mck_website:mck_coupon_list' %}">
-                        <i class="side-menu__icon bi bi-ticket-perforated"></i>
-                        <span class="side-menu__label">Coupons</span>
-                    </a>
-                </li>
-
-                <li class="slide">
-                    <a class="side-menu__item" href="{% url 'mck_website:mck_newsletter_list' %}">
-                        <i class="side-menu__icon bi bi-envelope"></i>
-                        <span class="side-menu__label">Newsletter</span>
-                    </a>
-                </li>
-
-                <li class="sub-category">
-                    <h3>Orders & Payments</h3>
+                    <h3>Orders & Transactions</h3>
                 </li>
 
                 <li class="slide">
@@ -94,7 +95,7 @@
                 <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_cart_list' %}">
                         <i class="side-menu__icon bi bi-cart"></i>
-                        <span class="side-menu__label">Carts</span>
+                        <span class="side-menu__label">Shopping Carts</span>
                     </a>
                 </li>
 
@@ -105,6 +106,26 @@
                     </a>
                 </li>
 
+                <!-- Marketing Section -->
+                <li class="sub-category">
+                    <h3>Marketing</h3>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_coupon_list' %}">
+                        <i class="side-menu__icon bi bi-ticket-perforated"></i>
+                        <span class="side-menu__label">Coupons & Discounts</span>
+                    </a>
+                </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_website:mck_newsletter_list' %}">
+                        <i class="side-menu__icon bi bi-envelope"></i>
+                        <span class="side-menu__label">Newsletter Subscribers</span>
+                    </a>
+                </li>
+
+                <!-- Reviews & Feedback Section -->
                 <li class="sub-category">
                     <h3>Reviews & Feedback</h3>
                 </li>
@@ -119,23 +140,37 @@
                 <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_contact_us_list' %}">
                         <i class="side-menu__icon bi bi-chat-dots"></i>
-                        <span class="side-menu__label">Contact Us</span>
+                        <span class="side-menu__label">Contact Messages</span>
                     </a>
                 </li>
 
+                <!-- System Settings Section -->
                 <li class="sub-category">
-                    <h3>Settings</h3>
+                    <h3>System</h3>
                 </li>
 
-                <li class="slide">
+                <!-- <li class="slide">
                     <a class="side-menu__item" href="{% url 'mck_website:mck_site_settings' %}">
                         <i class="side-menu__icon bi bi-gear"></i>
                         <span class="side-menu__label">Site Settings</span>
                     </a>
+                </li> -->
+
+                <!-- Optional: User Section at Bottom -->
+                <li class="sub-category">
+                    <h3>Account</h3>
+                </li>
+
+               
+
+                <li class="slide">
+                    <a class="side-menu__item" href="{% url 'mck_auth:mck_logout' %}">
+                        <i class="side-menu__icon bi bi-box-arrow-right"></i>
+                        <span class="side-menu__label">Logout</span>
+                    </a>
                 </li>
 
             </ul>
-
         </div>
     </div>
 </div>

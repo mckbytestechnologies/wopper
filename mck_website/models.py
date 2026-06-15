@@ -552,38 +552,34 @@ class CartItem(models.Model):
 # ══════════════════════════════════════════════════════════════════════════════
 # Wishlist - Updated to use User
 # ══════════════════════════════════════════════════════════════════════════════
-
 class Wishlist(models.Model):
-
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,  # Changed from 'User'
+    user = models.ForeignKey(  # Changed from OneToOneField to ForeignKey
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='wishlist_items',
         blank=True, null=True
     )
-    product  = models.ForeignKey(
+    product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         related_name='wishlisted_by'
     )
-
+    
     created_by = models.CharField(max_length=8, blank=True)
     updated_by = models.CharField(max_length=8, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-    datamode   = models.CharField(
+    datamode = models.CharField(
         max_length=20, default='A', choices=gv.DATAMODE_CHOICES
     )
 
     class Meta:
         db_table = 'wishlist'
-        unique_together = ('user', 'product')
+        unique_together = ('user', 'product')  # This prevents duplicate user-product pairs
         ordering = ['-created_on']
 
     def __str__(self):
         return f"{self.user} ♥ {self.product.name}"
-
-
 # ══════════════════════════════════════════════════════════════════════════════
 # Order - Updated to use User
 # ══════════════════════════════════════════════════════════════════════════════

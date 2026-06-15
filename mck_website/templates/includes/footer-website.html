@@ -1,0 +1,462 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Component</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Footer Styles - No Underlines */
+        .footer-clean {
+            background-color: #00222a;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin-top: 60px;
+        }
+
+        .footer-clean .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 60px 24px 30px;
+        }
+
+        /* Footer Headings */
+        .footer-clean h4, 
+        .footer-clean h5 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        /* Footer Links - NO UNDERLINES */
+        .footer-clean a {
+            color: #aaaaaa;
+            text-decoration: none !important;
+            transition: color 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-clean a:hover {
+            color: #ffffff;
+            text-decoration: none !important;
+        }
+
+        /* Footer Lists */
+        .footer-clean ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-clean ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-clean ul li a {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Newsletter Section */
+        .footer-newsletter-wrapper {
+            margin-top: 16px;
+        }
+
+        .footer-newsletter-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #33535a;
+            padding: 10px 16px;
+            color: #ffffff;
+            font-size: 13px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .footer-newsletter-input:focus {
+            outline: none;
+            border-color: #00828a;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-input::placeholder {
+            color: #889ca3;
+        }
+
+        .footer-newsletter-btn {
+            background: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            color: #00222a;
+            font-weight: 600;
+            font-size: 13px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .footer-newsletter-btn:hover {
+            background: #00828a;
+            color: #ffffff;
+            transform: translateX(2px);
+        }
+
+        /* Footer Description Text */
+        .footer-description {
+            color: #aaaaaa;
+            font-size: 12px;
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+
+        /* Brand Logo */
+        .footer-brand {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            text-decoration: none !important;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand span {
+            color: #00828a;
+        }
+
+        /* Social Icons */
+        .footer-social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social-icons a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .footer-social-icons a:hover {
+            background: #00828a;
+            transform: translateY(-2px);
+        }
+
+        .footer-social-icons i {
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        /* Divider */
+        .footer-divider {
+            border-top: 1px solid #33535a;
+            margin: 30px 0 20px;
+        }
+
+        /* Copyright Section */
+        .footer-copyright {
+            font-size: 11px;
+            color: #889ca3;
+            text-align: center;
+        }
+
+        .footer-links-bottom {
+            display: flex;
+            gap: 24px;
+            justify-content: flex-end;
+        }
+
+        .footer-links-bottom a {
+            font-size: 11px;
+            color: #889ca3;
+            text-decoration: none !important;
+        }
+
+        .footer-links-bottom a:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer-clean .container {
+                padding: 40px 20px 20px;
+            }
+            
+            .footer-links-bottom {
+                justify-content: center;
+                margin-top: 16px;
+            }
+            
+            .footer-copyright {
+                text-align: center;
+            }
+        }
+
+        /* Remove any global underline styles */
+        a, 
+        a:hover, 
+        a:focus, 
+        a:active,
+        button,
+        button:hover,
+        .footer-clean a,
+        .footer-clean a:hover {
+            text-decoration: none !important;
+            outline: none !important;
+        }
+
+        /* Utility classes */
+        .text-secondary-custom {
+            color: #aaaaaa;
+        }
+        
+        .mt-3 { margin-top: 16px; }
+        .mb-3 { margin-bottom: 16px; }
+        .mb-4 { margin-bottom: 24px; }
+    </style>
+</head>
+<body>
+
+<!-- Clean Footer - No Underlines -->
+<footer class="footer-clean">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: Brand Info -->
+            <div class="col-12 col-md-4 mb-4 mb-md-0">
+                <a href="/" class="footer-brand">
+                    the better <span>home</span>
+                </a>
+                <p class="footer-description">
+                    The Better Home offers innovative, premium-quality products that transform living spaces. 
+                    Find everything from stylish appliances and décor to functional furnishings, storage 
+                    solutions, kitchen and dining essentials, and travel gear.
+                </p>
+                <div class="footer-social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Shop Links -->
+            <div class="col-6 col-md-2 offset-md-1 mb-4 mb-md-0">
+                <h5>Shop</h5>
+                <ul>
+                    <li><a href="{% url 'wopper:category_products' slug='household' %}">Household</a></li>
+<li><a href="{% url 'wopper:category_products' slug='laundry' %}">Laundry</a></li>
+<li><a href="{% url 'wopper:category_products' slug='hospital' %}">Hospital</a></li>
+<li><a href="{% url 'wopper:category_products' slug='industrial-institutional' %}">Industrial & Institutional</a></li>
+<li><a href="{% url 'wopper:category_products' slug='bakery-restaurant' %}">Bakery & Restaurant</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Bestselling Categories -->
+            <div class="col-6 col-md-2 mb-4 mb-md-0">
+                <h5>Bestsellers</h5>
+                <ul>
+                    <li><a href="#">Blenders & Grinders</a></li>
+                    <li><a href="#">Idols & Figurines</a></li>
+                    <li><a href="#">Sling & Cross-Body Bags</a></li>
+                    <li><a href="#">Sports & Fitness</a></li>
+                    <li><a href="#">Travel Gear</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Quick Links & Newsletter -->
+            <div class="col-12 col-md-3">
+                <h5>Quick Links</h5>
+                <ul class="mb-3">
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                </ul>
+                
+                <h5 class="mt-3">Newsletter</h5>
+                <div class="footer-newsletter-wrapper d-flex gap-2">
+                    <input type="email" class="footer-newsletter-input flex-grow-1" placeholder="Your email address" id="footerEmail">
+                    <button class="footer-newsletter-btn" onclick="subscribeNewsletter()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="footer-divider"></div>
+
+        <!-- Bottom Bar -->
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6">
+                <div class="footer-copyright">
+                    &copy; COPYRIGHT 2026, Merhaki Foods And Nutrition Pvt Ltd. All Rights Reserved.
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="footer-links-bottom">
+                    <a href="#">Refund Policy</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// CSRF Token function
+function getCookie(name) {
+    let value = null;
+    if (document.cookie && document.cookie !== '') {
+        document.cookie.split(';').forEach(c => {
+            c = c.trim();
+            if (c.startsWith(name + '=')) {
+                value = decodeURIComponent(c.slice(name.length + 1));
+            }
+        });
+    }
+    return value;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+// Notification function
+function showNotification(message, type = 'info') {
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.cssText = 'position:fixed;top:20px;right:20px;z-index:9999;';
+        document.body.appendChild(container);
+    }
+    
+    const notification = document.createElement('div');
+    const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6';
+    
+    notification.style.cssText = `
+        background: ${bgColor};
+        color: white;
+        padding: 12px 20px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    notification.textContent = message;
+    container.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+    
+    notification.onclick = () => notification.remove();
+}
+
+// Add animation styles
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Newsletter subscription
+function subscribeNewsletter() {
+    const emailInput = document.getElementById('footerEmail');
+    const email = emailInput.value.trim();
+    
+    if (!email) {
+        showNotification('Please enter your email address', 'warning');
+        return;
+    }
+    
+    if (!email.includes('@') || !email.includes('.')) {
+        showNotification('Please enter a valid email address', 'warning');
+        return;
+    }
+    
+    fetch('/api/newsletter/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showNotification('Thanks for subscribing!', 'success');
+            emailInput.value = '';
+        } else {
+            showNotification(data.message || 'Subscription failed', 'error');
+        }
+    })
+    .catch(() => {
+        showNotification('Network error. Please try again.', 'error');
+    });
+}
+
+// Smooth scroll for footer links
+document.querySelectorAll('.footer-clean a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>

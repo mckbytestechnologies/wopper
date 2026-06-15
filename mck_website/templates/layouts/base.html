@@ -1,148 +1,322 @@
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# ── SEO Meta ── #}
-    <title>{% block title %}Wopper — Premium Cleaning & Hygiene Solutions{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}Wopper delivers premium cleaning and hygiene solutions for households, hospitals, industries, restaurants, laundries, and automobiles.{% endblock %}">
-    <meta name="keywords" content="{% block meta_keywords %}wopper, cleaning products, hygiene, household cleaner, glass cleaner, fabric conditioner, wood polish{% endblock %}">
-    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
-    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <title>
+        {% block title %}
+        Wopper - Premium Cleaning Solutions
+        {% endblock %}
+    </title>
 
-    {# ── Open Graph ── #}
-    <meta property="og:title" content="{% block og_title %}Wopper — Premium Cleaning & Hygiene Solutions{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Shop professional cleaning products for home, hospital, industrial, and restaurant use.{% endblock %}">
-    <meta property="og:image" content="{% block og_image %}{% load static %}{% static 'img/og-default.jpg' %}{% endblock %}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Wopper">
-
-    {# ── Twitter Card ── #}
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% block twitter_title %}Wopper — Premium Cleaning & Hygiene Solutions{% endblock %}">
-    <meta name="twitter:description" content="{% block twitter_description %}Shop professional cleaning products for every need.{% endblock %}">
-
-    {# ── Favicon ── #}
-    {% load static %}
-    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
-
-    {# ── Preconnects for performance ── #}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-    {# ── Google Fonts ── #}
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    {# ── Bootstrap CSS ── #}
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    {# ── Font Awesome ── #}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    {# ── Global Site CSS ── #}
-    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
-    {# ── Page-specific CSS ── #}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Remove underline from mobile nav */
+    .mob-nav-item a, .mob-nav-row a, .mob-sub-list li a {
+        text-decoration: none !important;
+    }
+    .mob-nav-item a:hover, .mob-nav-row a:hover, .mob-sub-list li a:hover {
+        text-decoration: none !important;
+    }
+    </style>
+
     {% block extra_css %}{% endblock %}
 
-    {# ── Structured Data (JSON-LD) ── #}
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Wopper",
-        "url": "{{ request.scheme }}://{{ request.get_host }}",
-        "logo": "{{ request.scheme }}://{{ request.get_host }}{% static 'img/logo.png' %}",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+91-9677051121",
-            "contactType": "Customer Service",
-            "availableLanguage": ["English", "Tamil"]
-        },
-        "sameAs": [
-            "https://www.facebook.com/wopper",
-            "https://www.instagram.com/wopper",
-            "https://www.youtube.com/wopper"
-        ]
-    }
-    </script>
-    {% block structured_data %}{% endblock %}
 </head>
 
-<body class="{% block body_class %}{% endblock %}">
+<body>
 
-    {# ── Top Utility Bar ── #}
-    {% include "includes/top-bar.html" %}
+    <!-- ================= HEADER ================= -->
+    {% include "includes/header.html" %}
+    <!-- ================= END HEADER ================= -->
 
-    {# ── Sticky Header ── #}
-    <div id="siteHeader" class="site-header-wrapper">
-        {% include "includes/header.html" %}
-        {% include "includes/navbar.html" %}
-    </div>
 
-    {# ── Mobile Menu Drawer ── #}
-    {% include "includes/mobile-menu.html" %}
-
-    {# ── Search Modal ── #}
-    {% include "includes/search-modal.html" %}
-
-    {# ── Flash Messages ── #}
-    {% if messages %}
-    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index:9999;">
-        {% for message in messages %}
-        <div class="toast align-items-center text-white {% if message.tags == 'error' %}bg-danger{% elif message.tags == 'success' %}bg-success{% else %}bg-dark{% endif %} border-0 show" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">{{ message }}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    {# ── Main Content ── #}
-    <main id="mainContent">
-        {% block breadcrumb %}{% endblock %}
-        {% block content %}{% endblock %}
+    <!-- ================= PAGE CONTENT ================= -->
+    <main>
+        {% block content %}
+        {% endblock %}
     </main>
+    <!-- ================= END PAGE CONTENT ================= -->
 
-    {# ── Trust Ribbon ── #}
-    {% block trust_ribbon %}
-        {% include "includes/trust-ribbon.html" %}
-    {% endblock %}
 
-    {# ── Newsletter ── #}
-    {% block newsletter %}
-        {% include "includes/newsletter.html" %}
-    {% endblock %}
+    <!-- ================= FOOTER ================= -->
+    {% include "includes/footer-website.html" %}
+    <!-- ================= END FOOTER ================= -->
 
-    {# ── Footer ── #}
-    {% include "includes/footer.html" %}
 
-    {# ── Back to Top Button ── #}
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    {# ── Bootstrap JS ── #}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Global JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+/* ══ CSRF ══ */
+function getCookie(n) {
+    let v = null;
+    document.cookie && document.cookie.split(';').forEach(c => {
+        c = c.trim();
+        if (c.startsWith(n + '=')) v = decodeURIComponent(c.slice(n.length + 1));
+    });
+    return v;
+}
+const csrf = getCookie('csrftoken');
+const isAuth = {{ user.is_authenticated|lower }};
 
-    {# ── Global Site JS ── #}
-    <script src="{% static 'js/main.js' %}" defer></script>
-    <script src="{% static 'js/header.js' %}" defer></script>
-    <script src="{% static 'js/slider.js' %}" defer></script>
+/* ══ NOTIFICATIONS ══ */
+function showNotif(msg, type = 'info') {
+    let box = document.getElementById('_notif');
+    if (!box) {
+        box = document.createElement('div');
+        box.id = '_notif';
+        box.style.cssText = 'position:fixed;top:18px;right:18px;z-index:9999;max-width:300px;';
+        document.body.appendChild(box);
+    }
+    const n = document.createElement('div');
+    const bg = { success:'#10b981', error:'#ef4444', warning:'#f59e0b', info:'#3b82f6' }[type] || '#3b82f6';
+    n.style.cssText = `background:${bg};color:#fff;padding:11px 16px;margin-bottom:8px;border-radius:8px;font-size:13px;font-weight:500;box-shadow:0 4px 14px rgba(0,0,0,.15);cursor:pointer;font-family:var(--font);`;
+    n.textContent = msg;
+    n.onclick = () => n.remove();
+    box.appendChild(n);
+    setTimeout(() => n.parentNode && n.remove(), 3500);
+}
 
-    {# ── Page-specific JS ── #}
+/* ══ USER DROPDOWN (click toggle) ══ */
+(function () {
+    const wrap = document.getElementById('userMenuWrap');
+    const btn  = document.getElementById('userToggleBtn');
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+        if (!wrap.contains(e.target)) {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+
+/* ══ MOBILE NAV ══ */
+function openMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.add('open');
+    o.style.display = 'block';
+    requestAnimationFrame(() => o.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.remove('open');
+    o.classList.remove('open');
+    setTimeout(() => { o.style.display = 'none'; }, 280);
+    document.body.style.overflow = '';
+}
+function toggleMobSub(btn) {
+    const sub  = btn.closest('.mob-nav-item').querySelector('.mob-sub-list');
+    const icon = btn.querySelector('i');
+    if (!sub) return;
+    const opening = !sub.classList.contains('open');
+    document.querySelectorAll('.mob-sub-list.open').forEach(s => {
+        s.classList.remove('open');
+        const b = s.closest('.mob-nav-item').querySelector('.mob-sub-toggle i');
+        if (b) b.className = 'fas fa-plus';
+    });
+    if (opening) {
+        sub.classList.add('open');
+        icon.className = 'fas fa-minus';
+    }
+}
+
+/* ══ SLIDER ══ */
+const SS = {};
+function _itemW(track) {
+    const first = track.querySelector('.slide-item');
+    if (!first) return 0;
+    return first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14);
+}
+function _visible(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 1;
+    const vp    = s.querySelector('.slider-viewport');
+    const track = s.querySelector('.slider-track');
+    const first = track && track.querySelector('.slide-item');
+    if (!vp || !first) return 1;
+    return Math.max(1, Math.round(vp.clientWidth / (first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14))));
+}
+function _total(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 0;
+    const t = s.querySelector('.slider-track');
+    return t ? t.querySelectorAll('.slide-item').length : 0;
+}
+function _updBtns(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const state = SS[id] || { i: 0 };
+    const max   = _total(id) - _visible(id);
+    const prev  = s.querySelector('.sldr-btn.prev');
+    const next  = s.querySelector('.sldr-btn.next');
+    if (prev) prev.disabled = state.i <= 0;
+    if (next) next.disabled = state.i >= max;
+}
+function slide(id, dir) {
+    if (!SS[id]) SS[id] = { i: 0 };
+    const s     = document.getElementById(id);
+    const track = s && s.querySelector('.slider-track');
+    if (!track) return;
+    const max = _total(id) - _visible(id);
+    SS[id].i  = Math.max(0, Math.min(SS[id].i + dir, max));
+    track.style.transform = `translateX(-${SS[id].i * _itemW(track)}px)`;
+    _updBtns(id);
+}
+
+/* Touch swipe support */
+function addSwipe(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const vp = s.querySelector('.slider-viewport');
+    if (!vp) return;
+    let startX = 0;
+    vp.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) slide(id, dx < 0 ? 1 : -1);
+    }, { passive: true });
+}
+
+function initSliders() {
+    document.querySelectorAll('.slider-wrap').forEach(s => {
+        if (s.id) { SS[s.id] = { i: 0 }; _updBtns(s.id); addSwipe(s.id); }
+    });
+}
+window.addEventListener('resize', () => {
+    Object.keys(SS).forEach(id => {
+        SS[id].i = 0;
+        const s = document.getElementById(id);
+        if (s) { const t = s.querySelector('.slider-track'); if (t) t.style.transform = 'translateX(0)'; }
+        _updBtns(id);
+    });
+});
+
+/* ══ VIDEO: fix desktop width to 5-up ══ */
+function fixVideoSlider() {
+    const track = document.getElementById('vid-track');
+    if (!track) return;
+    const vp = track.closest('.slider-viewport');
+    if (!vp) return;
+    if (window.innerWidth > 600) {
+        // On desktop override to 5 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(20% - 12px)';
+        });
+    } else {
+        // On mobile: 2 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(50% - 7px)';
+        });
+    }
+    // Reset slider position
+    if (SS['vid-sec']) { SS['vid-sec'].i = 0; track.style.transform = 'translateX(0)'; _updBtns('vid-sec'); }
+}
+
+/* ══ COUNTDOWN ══ */
+function startCountdown() {
+    let s = 11 * 3600 + 28 * 60 + 41;
+    const el = document.getElementById('countdown-timer');
+    if (!el) return;
+    setInterval(() => {
+        if (--s < 0) s = 86399;
+        el.textContent = [Math.floor(s/3600), Math.floor((s%3600)/60), s%60].map(n => String(n).padStart(2,'0')).join(':');
+    }, 1000);
+}
+
+/* ══ WISHLIST ══ */
+async function toggleWishlist(slug, btn) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    const ico = btn.querySelector('i');
+    btn.disabled = true;
+    try {
+        const r = await fetch("{% url 'wopper:toggle_wishlist' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_slug:slug}) });
+        const d = await r.json();
+        if (d.success) {
+            ico.classList.replace(d.in_wishlist?'far':'fas', d.in_wishlist?'fas':'far');
+            ico.style.color = d.in_wishlist ? '#eb3c24' : '';
+            showNotif(d.in_wishlist ? 'Added to wishlist!' : 'Removed from wishlist', d.in_wishlist ? 'success' : 'info');
+            document.querySelectorAll('.wishlist-count-badge').forEach(b => {
+                b.textContent = d.wishlist_count;
+                b.style.display = d.wishlist_count > 0 ? 'flex' : 'none';
+            });
+        } else showNotif(d.message || 'Error', 'error');
+    } catch { showNotif('Network error', 'error'); }
+    finally { setTimeout(() => btn.disabled = false, 500); }
+}
+
+/* ══ ADD TO CART ══ */
+async function addToCart(pid, qty = 1) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    try {
+        const r = await fetch("{% url 'wopper:add_to_cart' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_id:pid,quantity:qty}) });
+        const d = await r.json();
+        if (d.success) {
+            document.querySelectorAll('.cart-count-badge').forEach(b => {
+                b.textContent = d.cart_count;
+                b.style.display = d.cart_count > 0 ? 'flex' : 'none';
+            });
+            showNotif('Added to cart!', 'success');
+        } else showNotif(d.message || 'Error adding to cart', 'error');
+    } catch { showNotif('Network error', 'error'); }
+}
+
+/* ══ NEWSLETTER ══ */
+function subscribeNewsletter() {
+    const el = document.getElementById('footer-email');
+    if (!el || !el.value.includes('@')) { showNotif('Enter a valid email', 'warning'); return; }
+    fetch('/api/newsletter/subscribe/', { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({email:el.value}) })
+        .then(r=>r.json()).then(d=>{ if(d.success){showNotif('Subscribed!','success');el.value='';}else showNotif(d.message||'Failed','error'); })
+        .catch(()=>showNotif('Failed','error'));
+}
+
+/* ══ INIT ══ */
+document.addEventListener('DOMContentLoaded', () => {
+    initSliders();
+    fixVideoSlider();
+    startCountdown();
+});
+window.addEventListener('resize', fixVideoSlider);
+</script>
+
     {% block extra_js %}{% endblock %}
 
 </body>
 </html>
+```

@@ -243,4 +243,8 @@ path('contact-us/<int:id>/delete/',
 path('site-settings/',
      views.SiteSettingsUpdateView.as_view(),
      name='mck_site_settings'),
+
+path('contact/', views.ContactPageView.as_view(), name='contact'),
+path('contact/ajax-submit/', views.ajax_contact_submit, name='contact_ajax_submit'),
+
 ]

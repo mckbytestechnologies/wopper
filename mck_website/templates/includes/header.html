@@ -1,76 +1,1539 @@
-{# templates/includes/header.html #}
 {% load static %}
-<header class="main-header" role="banner">
-    <div class="container-fluid container d-flex justify-content-between align-items-center flex-wrap header-main-row p-0">
 
-        {# ── Brand Logo ── #}
-        <a href="" class="brand-logo" aria-label="Wopper — Home">
-            <img src="{% static 'img/logo.png' %}"
-                 alt="Wopper Logo"
-                 width="48" height="46"
-                 loading="eager">
+<style>
+    /* ════════════════════════════════════════════
+       RESET & ROOT
+    ════════════════════════════════════════════ */
+    :root {
+        --teal:        #00828a;
+        --teal-dark:   #006d73;
+        --teal-light:  #e0f4f5;
+        --red:         #eb3c24;
+        --dark:        #222222;
+        --muted:       #666666;
+        --border:      #e5e5e5;
+        --border-l:    #e2e2e6;
+        --bg-gray:     #f1f3f4;
+        --bg-card:     #f5f6f9;
+        --flash-bg:    #aadfe4;
+        --best-bg:     #fbebd4;
+        --footer-bg:   #00222a;
+        --font:        'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; font-family: var(--font); color: var(--dark); background: var(--bg-gray); }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ════════════════════════════════════════════
+       TOP UTILITY BAR
+    ════════════════════════════════════════════ */
+    .top-utility-bar {
+        background: var(--teal);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .util-inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 7px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .util-social a {
+        color: #fff;
+        margin-right: 12px;
+        font-size: 13px;
+        opacity: .85;
+        transition: opacity .2s;
+    }
+    .util-social a:hover { opacity: 1; }
+    .util-promo { flex: 1; text-align: center; font-size: 12px; }
+    .util-right { min-width: 100px; }
+
+    /* ════════════════════════════════════════════
+       MAIN HEADER
+    ════════════════════════════════════════════ */
+    .main-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 600;
+    width: 100%;
+}
+.header-inner {
+    max-width: 1600px;        /* widened so the header lines up with wider sections */
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;       /* vertically centers logo, search, icons */
+    justify-content: space-between;
+    gap: 14px;
+}
+ /* ── LOGO ── */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* centers the image inside its box */
+    flex-shrink: 0;
+}
+.brand-logo img {
+    height: 56px;               /* bigger logo */
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+}
+.site-logo-img {
+    height: 56px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+}
+
+/* ── RESPONSIVE LOGO SIZING ── */
+@media (max-width: 1024px) {
+    .brand-logo img,
+    .site-logo-img { height: 60px; max-width: 200px; }
+}
+@media (max-width: 480px) {
+    .brand-logo img,
+    .site-logo-img { height: 48px; max-width: 160px; }
+}
+
+
+    /* Search */
+    .header-search {
+        flex: 1;
+        max-width: 540px;
+        display: flex;
+        background: var(--bg-gray);
+        border: 1.5px solid transparent;
+        border-radius: 6px;
+        overflow: hidden;
+        transition: border-color .2s;
+    }
+    .header-search:focus-within { border-color: var(--teal); background: #fff; }
+    .header-search input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 9px 14px;
+        font-size: 13px;
+        font-family: var(--font);
+        outline: none;
+        color: var(--dark);
+    }
+    .header-search button {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+        padding: 0 14px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background .2s;
+    }
+    .header-search button:hover { background: var(--teal-dark); }
+
+    /* Header right cluster */
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+    }
+    .hdr-auth-desktop { display: flex; align-items: center; gap: 6px; }
+
+    /* Auth buttons - SMALL */
+    .hdr-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 13px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: var(--font);
+        cursor: pointer;
+        transition: all .22s;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+    .hdr-btn-outline {
+        border: 1.5px solid var(--teal);
+        color: var(--teal);
+        background: transparent;
+    }
+    .hdr-btn-outline:hover { background: var(--teal); color: #fff; }
+    .hdr-btn-fill { background: var(--teal); color: #fff; border: 1.5px solid var(--teal); }
+    .hdr-btn-fill:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+
+    /* Icon buttons */
+    .hdr-icon-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        color: var(--dark);
+        font-size: 18px;
+        text-decoration: none;
+        transition: background .15s;
+        flex-shrink: 0;
+    }
+    .hdr-icon-btn:hover { background: var(--bg-gray); color: var(--dark); }
+    .hdr-badge {
+        position: absolute;
+        top: 2px; right: 2px;
+        background: var(--red);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        width: 16px; height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+    /* ── User dropdown ── */
+    .user-menu-wrap { position: relative; }
+    .user-toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 13px;
+        color: var(--dark);
+        padding: 6px 8px;
+        border-radius: 6px;
+        transition: background .15s;
+        white-space: nowrap;
+    }
+    .user-toggle-btn:hover { background: var(--bg-gray); }
+    .uarrow { font-size: 9px; transition: transform .22s; }
+    .user-menu-wrap.open .uarrow { transform: rotate(180deg); }
+
+    .user-drop-panel {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.14);
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity .22s, visibility .22s, transform .22s;
+        z-index: 700;
+        overflow: hidden;
+    }
+    .user-menu-wrap.open .user-drop-panel {
+        opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .drop-user-info { padding: 14px 16px 10px; }
+    .drop-greet { font-size: 11px; color: var(--muted); }
+    .drop-username { font-size: 14px; font-weight: 700; margin-top: 2px; }
+    .drop-divider { height: 1px; background: var(--border); }
+    .user-drop-panel a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        font-size: 13px;
+        color: var(--dark);
+        transition: background .15s;
+    }
+    .user-drop-panel a:hover { background: #f5f5f5; }
+    .drop-ico { color: var(--teal); width: 14px; text-align: center; }
+    .drop-logout .drop-ico { color: var(--red); }
+    .drop-logout { color: var(--red) !important; }
+
+    /* ── Hamburger ── */
+    .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+    .hamburger-btn:hover { background: var(--bg-gray); }
+    .hamburger-btn span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--dark);
+        border-radius: 2px;
+        transition: all .2s;
+    }
+
+    /* ════════════════════════════════════════════
+       DESKTOP NAV
+    ════════════════════════════════════════════ */
+    .desktop-nav {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 60px; /* below header */
+        z-index: 500;
+    }
+    .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    .nav-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+    }
+    .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 12px 12px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dark);
+        white-space: nowrap;
+        border-radius: 4px;
+        transition: background .15s;
+    }
+    .nav-item > a:hover { background: #f5f5f5; }
+    .sale-item > a { color: #d9383a !important; font-weight: 700; }
+    .nav-arrow { font-size: 9px; transition: transform .22s; }
+    .nav-item.has-drop:hover .nav-arrow { transform: rotate(180deg); }
+
+    .nav-drop {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 8px;
+        box-shadow: 0 8px 28px rgba(0,0,0,.12);
+        min-width: 210px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .2s, transform .2s, visibility .2s;
+        z-index: 600;
+    }
+    .nav-item.has-drop { position: relative; }
+    .nav-item.has-drop:hover .nav-drop {
+        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+    }
+    .nav-drop-title {
+        padding: 5px 18px 3px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+    }
+    .nav-drop a {
+        display: block;
+        padding: 9px 18px;
+        font-size: 13px;
+        color: #333;
+        transition: background .15s;
+    }
+    .nav-drop a:hover { background: #f5f5f5; color: #000; }
+
+    /* ════════════════════════════════════════════
+       MOBILE DRAWER
+    ════════════════════════════════════════════ */
+    .mob-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.55);
+        z-index: 900;
+        opacity: 0;
+        transition: opacity .25s;
+    }
+    .mob-overlay.open { opacity: 1; }
+
+    .mob-drawer {
+        position: fixed;
+        top: 0; right: -310px;
+        width: min(300px, 88vw);
+        height: 100%;
+        background: #fff;
+        z-index: 950;
+        overflow-y: auto;
+        transition: right .3s cubic-bezier(.4,0,.2,1);
+        box-shadow: -6px 0 30px rgba(0,0,0,.18);
+    }
+    .mob-drawer.open { right: 0; }
+
+    .mob-drawer-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+    .mob-close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--dark);
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 6px;
+    }
+    .mob-close-btn:hover { background: var(--bg-gray); }
+
+    .mob-search-wrap { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .mob-search-form {
+        display: flex;
+        border: 1.5px solid var(--border-l);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .mob-search-form input {
+        flex: 1;
+        border: none;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-family: var(--font);
+        outline: none;
+        background: #fafafa;
+    }
+    .mob-search-form button {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+        padding: 0 13px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .mob-user-block {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px 10px;
+        background: var(--teal-light);
+    }
+    .mob-user-avatar { font-size: 36px; color: var(--teal); line-height: 1; }
+    .mob-greet { font-size: 11px; color: var(--muted); }
+    .mob-uname { font-size: 15px; font-weight: 700; }
+
+    .mob-user-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--teal-light);
+    }
+    .mob-user-links a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--dark);
+        padding: 8px 10px;
+        background: #fff;
+        border-radius: 6px;
+        border: 1px solid var(--border-l);
+    }
+    .mob-user-links a i { color: var(--teal); }
+
+    .mob-logout {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        font-size: 12px;
+        color: var(--red);
+        border-bottom: 1px solid var(--border);
+        background: var(--teal-light);
+        cursor: pointer;
+    }
+
+    .mob-auth-row {
+        display: flex;
+        gap: 8px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .mob-nav-list { padding: 0; }
+    .mob-nav-item { border-bottom: 1px solid var(--border); }
+    .mob-nav-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mob-nav-row a {
+        flex: 1;
+        padding: 13px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark);
+    }
+    .mob-nav-item.sale-item .mob-nav-row a { color: #d9383a; }
+    .mob-nav-item:not(.has-sub) > a {
+        display: block;
+        padding: 13px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark);
+    }
+    .mob-sub-toggle {
+        background: none;
+        border: none;
+        padding: 13px 16px;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 12px;
+    }
+    .mob-sub-list {
+        display: none;
+        background: #fafafa;
+        padding: 4px 0 8px;
+    }
+    .mob-sub-list.open { display: block; }
+    .mob-sub-list li a {
+        display: block;
+        padding: 8px 32px;
+        font-size: 13px;
+        color: #555;
+    }
+    .mob-sub-list li a:hover { color: var(--teal); }
+
+    /* ════════════════════════════════════════════
+       SHARED LAYOUT HELPERS
+    ════════════════════════════════════════════ */
+    .site-wrap { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+
+    /* Section header row */
+    .sec-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+    .sec-title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -.4px;
+        color: #000;
+    }
+    .view-all {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 14px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        transition: background .15s;
+        white-space: nowrap;
+    }
+    .view-all:hover { background: #f5f5f5; }
+
+    /* ════════════════════════════════════════════
+       SLIDER SYSTEM
+    ════════════════════════════════════════════ */
+    .slider-wrap { position: relative; padding: 0 2px; }
+    .slider-viewport { overflow: hidden; }
+    .slider-track {
+        display: flex;
+        gap: 14px;
+        transition: transform .38s cubic-bezier(.4,0,.2,1);
+        will-change: transform;
+    }
+    .slider-track .slide-item { flex: 0 0 calc(16.666% - 12px); min-width: 0; }
+    .slider-track.cols-5 .slide-item  { flex: 0 0 calc(20% - 12px); }
+    .slider-track.cols-4 .slide-item  { flex: 0 0 calc(25% - 11px); }
+    .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }  /* video 2-col */
+
+    .sldr-btn {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        width: 34px; height: 34px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        font-size: 12px;
+        color: #333;
+        transition: all .2s;
+    }
+    .sldr-btn:hover { background: #000; color: #fff; border-color: #000; }
+    .sldr-btn.prev { left: -17px; }
+    .sldr-btn.next { right: -17px; }
+    .sldr-btn:disabled { opacity: .3; pointer-events: none; }
+
+    /* ════════════════════════════════════════════
+       HERO SECTION
+    ════════════════════════════════════════════ */
+    .hero-wrap { max-width: 1440px; margin: 0 auto; padding: 18px 24px; }
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.9fr 1.1fr;
+        gap: 18px;
+    }
+    .hero-main {
+        position: relative;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 500px;
+        background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .hero-main img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 50px;
+        max-width: 440px;
+    }
+    .hero-content h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+    .hero-content p  { font-size: 18px; color: #444; margin-bottom: 28px; }
+    .hero-shop-btn {
+        display: inline-block;
+        border: 1.5px solid #000;
+        color: #000;
+        padding: 11px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        transition: all .25s;
+    }
+    .hero-shop-btn:hover { background: #000; color: #fff; }
+
+    .hero-stack { display: flex; flex-direction: column; gap: 18px; }
+    .hero-sub {
+        flex: 1;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 235px;
+        position: relative;
+    }
+    .hero-sub img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ════════════════════════════════════════════
+       PRODUCT CARD
+    ════════════════════════════════════════════ */
+    .pcard {
+        background: #fff;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .pcard-img {
+        position: relative;
+        width: 100%;
+        padding-top: 100%;
+        background: #f7f7f7;
+        overflow: hidden;
+    }
+    .pcard-img img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform .3s;
+    }
+    .pcard:hover .pcard-img img { transform: scale(1.04); }
+    .disc-badge {
+        position: absolute;
+        top: 8px; left: 8px;
+        background: var(--red);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 3px;
+        z-index: 2;
+    }
+    .wish-btn {
+        position: absolute;
+        top: 8px; right: 8px;
+        background: rgba(255,255,255,.92);
+        border: none;
+        border-radius: 50%;
+        width: 30px; height: 30px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .15s;
+        font-size: 13px;
+        color: #555;
+    }
+    .wish-btn:hover { transform: scale(1.1); }
+    .pcard-body { padding: 8px 8px 0; flex: 1; display: flex; flex-direction: column; }
+    .pcard-live {
+        font-size: 10px;
+        font-weight: 600;
+        color: #444;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 3px;
+    }
+    .green-dot { width: 6px; height: 6px; background: #29be53; border-radius: 50%; display: inline-block; }
+    .pcard-name {
+        font-size: 12px;
+        color: #333;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 34px;
+        margin-bottom: 4px;
+    }
+    .pcard-price { font-size: 12px; padding-bottom: 8px; }
+    .p-cur { font-weight: 700; color: #000; }
+    .p-old { text-decoration: line-through; color: #999; margin-left: 4px; font-size: 11px; }
+    .p-off { color: var(--red); font-weight: 600; margin-left: 3px; font-size: 11px; }
+    .pcard-atc {
+        background: #000;
+        color: #fff;
+        border: none;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: auto;
+        cursor: pointer;
+        font-family: var(--font);
+        transition: background .2s;
+    }
+    .pcard-atc:hover { background: #333; }
+
+    /* ════════════════════════════════════════════
+       BESTSELLERS SECTION
+    ════════════════════════════════════════════ */
+    .bestsellers-sec {
+        background: var(--best-bg);
+        background-image: radial-gradient(#f3dec2 1px, transparent 1px);
+        background-size: 16px 16px;
+        padding: 28px 0;
+    }
+
+    /* ════════════════════════════════════════════
+       FEATURED COLLECTIONS
+    ════════════════════════════════════════════ */
+    .feat-coll-sec { background: #fff; padding: 32px 0; }
+    .coll-card {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 130%;
+        border-radius: 4px;
+    }
+    .coll-card img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform .3s;
+    }
+    .coll-card:hover img { transform: scale(1.04); }
+    .coll-label {
+        position: absolute;
+        bottom: 12px; left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255,255,255,.94);
+        padding: 6px 16px;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        border-radius: 2px;
+        width: 82%;
+        text-align: center;
+    }
+
+    /* ════════════════════════════════════════════
+       FLASH SALE
+    ════════════════════════════════════════════ */
+    .flash-sec {
+        background: var(--flash-bg);
+        background-image: radial-gradient(#9bcad0 1px, transparent 1px);
+        background-size: 14px 14px;
+        padding: 28px 0;
+    }
+    .timer-chip {
+        background: var(--red);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* ════════════════════════════════════════════
+       VIDEO SECTION
+    ════════════════════════════════════════════ */
+    .video-sec { padding: 28px 0; }
+    .video-card-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .video-reel {
+        position: relative;
+        width: 100%;
+        padding-top: 170%;
+        overflow: hidden;
+        background: #111;
+        border-radius: 6px 6px 0 0;
+    }
+    .video-reel video {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .video-overlay {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        padding: 14px 12px 10px;
+        background: linear-gradient(transparent, rgba(0,0,0,.82));
+        color: #fff;
+    }
+    .video-thumb {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid #fff;
+    }
+    .video-meta { font-size: 13px; line-height: 1.3; }
+    .video-meta strong { display: block; font-size: 12px; }
+    .video-explore {
+        display: block;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 0 0 6px 6px;
+        transition: background .2s;
+    }
+    .video-explore:hover { background: #333; color: #fff; }
+
+    /* ════════════════════════════════════════════
+       HOME CATEGORY COMBO
+    ════════════════════════════════════════════ */
+    .cat-combo-sec { background: var(--bg-card); padding: 28px 0; }
+    .cat-hero-card {
+        background: #fff;
+        border: 1px solid var(--border-l);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .cat-hero-img { position: relative; width: 100%; padding-top: 72%; overflow: hidden; }
+    .cat-hero-img img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .promo-badge {
+        position: absolute;
+        top: 12px; right: 12px;
+        background: #14a4b9;
+        color: #fff;
+        width: 62px; height: 62px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        line-height: 1.1;
+        z-index: 5;
+    }
+    .promo-badge span:nth-child(1) { font-size: 9px; font-weight: 400; }
+    .promo-badge span:nth-child(2) { font-size: 18px; }
+    .promo-badge span:nth-child(3) { font-size: 10px; font-weight: 400; }
+    .cat-hero-body { padding: 24px 16px; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .cat-hero-body h3 { font-size: 26px; font-weight: 800; }
+    .cat-hero-body p  { font-size: 14px; color: var(--muted); margin: 6px 0 14px; }
+    .cat-hero-body a  { border: 1.5px solid #333; padding: 7px 30px; font-size: 14px; font-weight: 500; transition: all .25s; color: #000; }
+    .cat-hero-body a:hover { background: #000; color: #fff; }
+
+    .sub-tile {
+        background: #fff;
+        text-align: center;
+        padding-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+    .sub-tile-img { position: relative; width: 100%; padding-top: 100%; overflow: hidden; background: #f7f7f7; margin-bottom: 8px; }
+    .sub-tile-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .sub-tile span { font-size: 13px; color: #444; font-weight: 500; padding: 0 6px; }
+
+    /* ════════════════════════════════════════════
+       CATEGORY PROFILE CARDS
+    ════════════════════════════════════════════ */
+    .profile-sec { background: #fff; padding: 28px 0; }
+    .profile-card { position: relative; overflow: hidden; border: 1px solid var(--border-l); }
+    .profile-card img { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .profile-label {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        background: rgba(255,255,255,.9);
+        padding: 10px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* ════════════════════════════════════════════
+       TRUST SECTION
+    ════════════════════════════════════════════ */
+    .trust-sec {
+        background: linear-gradient(135deg, #00222a, #003540);
+        padding: 52px 0;
+        margin-top: 28px;
+    }
+    .trust-sec .sec-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); text-align: center; margin-bottom: 8px; }
+    .trust-sec .sec-head-title { font-size: 26px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 40px; }
+    .trust-card {
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 10px;
+        padding: 28px 20px;
+        text-align: center;
+        height: 100%;
+    }
+    .trust-icon {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--teal), #00b8c4);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 22px;
+        color: #fff;
+    }
+    .trust-card h5 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .trust-card p  { font-size: 12px; color: rgba(255,255,255,.6); margin: 0; }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    footer {
+        background: var(--footer-bg);
+        color: #fff;
+        font-size: 13px;
+        padding: 48px 0 20px;
+    }
+    footer h5 { font-size: 13px; font-weight: 700; margin-bottom: 18px; letter-spacing: .4px; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul li a { color: #aaa; transition: color .15s; }
+    footer ul li a:hover { color: #fff; }
+    .newsletter-row { display: flex; margin-top: 14px; }
+    .newsletter-row input {
+        flex: 1;
+        background: transparent;
+        border: 1px solid #33535a;
+        padding: 8px 12px;
+        color: #fff;
+        font-size: 12px;
+        font-family: var(--font);
+        outline: none;
+    }
+    .newsletter-row button {
+        background: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 16px;
+        border-top: 1px solid #1a3d47;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        color: #777;
+    }
+    .footer-bottom a { color: #777; transition: color .15s; }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(25% - 11px); }
+    }
+
+    @media (max-width: 900px) {
+        /* Hide desktop nav, show hamburger */
+        .desktop-nav { display: none; }
+        .hamburger-btn { display: flex; }
+
+        /* Hero stacks vertically */
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-main { min-height: 380px; }
+        .hero-content { padding: 30px; }
+        .hero-content h1 { font-size: 26px; }
+
+        /* Sliders: 3 per row on tablet */
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(33.333% - 10px); }
+    }
+
+    @media (max-width: 600px) {
+        /* Utility bar */
+        .util-inner { padding: 7px 14px; }
+        .util-promo { font-size: 11px; }
+
+        /* Header */
+        .header-inner { padding: 9px 14px; gap: 10px; }
+        .header-search { display: none; } /* moved into drawer */
+        .hdr-auth-desktop { display: none; } /* moved into drawer */
+        .brand-logo img { height: 32px; }
+
+        /* Site wrap padding reduction */
+        .site-wrap { padding: 0 14px; }
+        .hero-wrap { padding: 12px 14px; }
+
+        /* Hero */
+        .hero-main { min-height: 260px; }
+        .hero-content { padding: 20px; }
+        .hero-content h1 { font-size: 20px; }
+        .hero-content p  { font-size: 14px; margin-bottom: 16px; }
+        .hero-shop-btn { padding: 9px 26px; font-size: 13px; }
+
+        /* Sliders: 2 per row on mobile */
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(50% - 7px); }
+        /* Video: 2 per row already set via cols-2v */
+        .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }
+
+        /* Section titles */
+        .sec-title { font-size: 16px; }
+
+        /* Category combo */
+        .cat-combo-sec .row { gap: 0; }
+
+        /* Profile cards */
+        .profile-card img { height: 200px; }
+
+        /* Trust section */
+        .trust-sec { padding: 36px 0; }
+        .trust-sec .sec-head-title { font-size: 20px; }
+
+        /* Footer */
+        footer { padding: 36px 0 16px; }
+        .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+
+        /* Slider buttons hidden on very small (touch swipe instead) */
+        .sldr-btn { display: none; }
+    }
+
+    @media (max-width: 380px) {
+        .brand-logo img { height: 28px; }
+        .hdr-icon-btn { width: 34px; height: 34px; font-size: 16px; }
+        .hamburger-btn { width: 34px; height: 34px; }
+    }
+
+    /* Remove underline from mobile nav */
+    .mob-nav-item a, .mob-nav-row a, .mob-sub-list li a {
+        text-decoration: none !important;
+    }
+    .mob-nav-item a:hover, .mob-nav-row a:hover, .mob-sub-list li a:hover {
+        text-decoration: none !important;
+    }
+    
+    </style>
+
+    
+<!-- ══════════════════════════════
+     TOP UTILITY BAR
+══════════════════════════════ -->
+<div class="top-utility-bar">
+    <div class="util-inner">
+        <div class="util-social d-none d-md-flex">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+        </div>
+        <div class="util-promo">🔥 Limited Time! Get 5% EXTRA OFF via UPI or Debit/Credit Card!</div>
+        <div class="util-right d-none d-md-block"></div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════
+     MAIN HEADER
+══════════════════════════════ -->
+<header class="main-header">
+    <div class="header-inner">
+
+        <!-- Logo -->
+        <a href="{% url 'wopper:website_home' %}" class="brand-logo">
+            {% if site_settings.site_logo %}
+                <img src="{{ site_settings.site_logo.url }}" alt="{{ site_name }}">
+            {% else %}
+                <img src="https://static.wixstatic.com/media/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png/v1/crop/x_170,y_140,w_810,h_800/fill/w_96,h_91,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png" alt="Wopper">
+            {% endif %}
         </a>
 
-        {# ── Search Bar ── #}
-        <div class="search-container" role="search">
-            <form action="" method="GET" class="search-form">
-                <input type="search"
-                       name="q"
-                       class="search-input"
-                       placeholder="Search for products, categories or brands..."
-                       value="{{ request.GET.q|default:'' }}"
-                       aria-label="Search products"
-                       autocomplete="off">
-                <button type="submit" class="search-submit-btn" aria-label="Submit search">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-        </div>
+        <!-- Search (hidden on mobile, shown in drawer) -->
+        <form action="{% url 'wopper:search' %}" method="get" class="header-search">
+            <input type="text" name="q" placeholder="Search products, categories or brands..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
 
-        {# ── Header Action Icons ── #}
-        <div class="d-flex align-items-center">
-            <div class="header-actions-icons d-flex align-items-center">
+        <!-- Right cluster -->
+        <div class="header-right">
 
-                {# Account #}
+            <!-- Auth / User (desktop) -->
+            <div class="hdr-auth-desktop">
                 {% if user.is_authenticated %}
-                <a href="" class="header-icon-link" aria-label="My Account">
-                    <i class="far fa-user"></i>
-                    <span class="header-icon-label d-none d-lg-block">Account</span>
-                </a>
+                    <div class="user-menu-wrap" id="userMenuWrap">
+                        <button class="user-toggle-btn" id="userToggleBtn" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-user-circle" style="font-size:18px;"></i>
+                            <span class="user-name-text">{{ user.first_name|default:user.username }}</span>
+                            <i class="fas fa-chevron-down uarrow"></i>
+                        </button>
+                        <div class="user-drop-panel" id="userDropPanel" role="menu">
+                            <div class="drop-user-info">
+                                <div class="drop-greet">Hello 👋</div>
+                                <div class="drop-username">{{ user.first_name|default:user.username }}</div>
+                            </div>
+                            <div class="drop-divider"></div>
+                       
+                            <a href="{% url 'wopper:orders' %}" role="menuitem"><i class="fas fa-box drop-ico"></i> My Orders</a>
+                            <a href="{% url 'wopper:wishlist' %}" role="menuitem"><i class="fas fa-heart drop-ico"></i> Wishlist</a>
+                            <a href="{% url 'wopper:cart' %}" role="menuitem"><i class="fas fa-shopping-bag drop-ico"></i> Cart</a>
+                            <div class="drop-divider"></div>
+                            <a href="{% url 'mck_auth:website_logout' %}" role="menuitem" class="drop-logout"><i class="fas fa-sign-out-alt drop-ico"></i> Logout</a>
+                        </div>
+                    </div>
                 {% else %}
-                <a href="" class="header-icon-link" aria-label="Login">
-                    <i class="far fa-user"></i>
-                    <span class="header-icon-label d-none d-lg-block">Login</span>
-                </a>
+                    <a href="{% url 'mck_auth:website_signin' %}?next={{ request.get_full_path|urlencode }}" class="hdr-btn hdr-btn-outline">Sign In</a>
+                    <a href="{% url 'mck_auth:website_signup' %}" class="hdr-btn hdr-btn-fill">Register</a>
                 {% endif %}
-
-                {# Wishlist #}
-                <a href="" class="header-icon-link" aria-label="Wishlist">
-                    <i class="far fa-heart"></i>
-                    {% if wishlist_count %}
-                    <span class="header-badge">{{ wishlist_count }}</span>
-                    {% endif %}
-                </a>
-
-                {# Cart #}
-                <a href="" class="header-icon-link" aria-label="Shopping Cart ({{ cart_count|default:0 }} items)">
-                    <i class="fas fa-shopping-bag"></i>
-                    {% if cart_count %}
-                    <span class="header-badge">{{ cart_count }}</span>
-                    {% endif %}
-                </a>
-
             </div>
 
-            {# Mobile Hamburger #}
-            <button class="mobile-nav-toggle ms-3"
-                    id="mobileNavToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                    aria-controls="mobileNavDrawer">
-                <i class="fas fa-bars" aria-hidden="true"></i>
+            <!-- Wishlist icon -->
+            <a href="{% url 'wopper:wishlist' %}" class="hdr-icon-btn" aria-label="Wishlist">
+                <i class="far fa-heart"></i>
+                <span class="hdr-badge wishlist-count-badge" style="display:{% if wishlist_count > 0 %}flex{% else %}none{% endif %};">{{ wishlist_count|default:0 }}</span>
+            </a>
+
+            <!-- Cart icon -->
+            <a href="{% url 'wopper:cart' %}" class="hdr-icon-btn" aria-label="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="hdr-badge cart-count-badge" style="display:{% if cart_count > 0 %}flex{% else %}none{% endif %};">{{ cart_count|default:0 }}</span>
+            </a>
+
+            <!-- Hamburger -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" onclick="openMobileNav()">
+                <span></span><span></span><span></span>
             </button>
         </div>
-
     </div>
 </header>
+
+<!-- ══════════════════════════════
+     DESKTOP NAV
+══════════════════════════════ -->
+<nav class="desktop-nav">
+    <div class="nav-inner">
+        <ul class="nav-list">
+            <li class="nav-item sale-item"><a href="{% url 'wopper:all_products' %}?sale=true"><i class="fas fa-bolt"></i> Flash Sale</a></li>
+            <li class="nav-item"><a href="{% url 'wopper:all_products' %}">Shop All</a></li>
+            
+            {% for category in categories|slice:":6" %}
+            <li class="nav-item has-drop">
+                <a href="{% url 'wopper:category_products' slug=category.slug %}">
+                    {{ category.name }} <i class="fas fa-chevron-down nav-arrow"></i>
+                </a>
+                <div class="nav-drop">
+                    <div class="nav-drop-title">{{ category.name }}</div>
+                    {% for product in category.products.all|slice:":5" %}
+                        <a href="{% url 'wopper:product_detail' slug=product.slug %}">{{ product.name|truncatewords:3 }}</a>
+                    {% empty %}
+                        <a href="{% url 'wopper:category_products' slug=category.slug %}">Explore {{ category.name }}</a>
+                    {% endfor %}
+                </div>
+            </li>
+            {% endfor %}
+            <li class="nav-item has-drop">
+                <a href="#">More <i class="fas fa-chevron-down nav-arrow"></i></a>
+                <div class="nav-drop">
+                    <div class="nav-drop-title">More</div>
+                    <a href="{% url 'wopper:all_products' %}">All Products</a>
+                    <li class="nav-item"><a href="{% url 'mck_website:contact' %}">Contact</a></li>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ══════════════════════════════
+     MOBILE DRAWER
+══════════════════════════════ -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMobileNav()"></div>
+<div class="mob-drawer" id="mobDrawer" role="dialog" aria-modal="true">
+
+    <div class="mob-drawer-top">
+        <a href="{% url 'wopper:website_home' %}" class="brand-logo" onclick="closeMobileNav()">
+            {% if site_settings.site_logo %}
+                <img src="{{ site_settings.site_logo.url }}" alt="{{ site_name }}" style="height:30px;">
+            {% else %}
+                <img src="https://static.wixstatic.com/media/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png/v1/crop/x_170,y_140,w_810,h_800/fill/w_96,h_91,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png" alt="Wopper" style="height:30px;">
+            {% endif %}
+        </a>
+        <button onclick="closeMobileNav()" class="mob-close-btn" aria-label="Close"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Mobile search -->
+    <div class="mob-search-wrap">
+        <form action="{% url 'wopper:search' %}" method="get" class="mob-search-form">
+            <input type="text" name="q" placeholder="Search products..." required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- Mobile user -->
+    {% if user.is_authenticated %}
+    <div class="mob-user-block">
+        <div class="mob-user-avatar"><i class="fas fa-user-circle"></i></div>
+        <div>
+            <div class="mob-greet">Welcome back!</div>
+            <div class="mob-uname">{{ user.first_name|default:user.username }}</div>
+        </div>
+    </div>
+    <div class="mob-user-links">
+        <!-- <a href="{% url 'wopper:profile' %}"><i class="fas fa-user"></i> Profile</a> -->
+        <a href="{% url 'wopper:orders' %}"><i class="fas fa-box"></i> Orders</a>
+        <a href="{% url 'wopper:wishlist' %}"><i class="fas fa-heart"></i> Wishlist</a>
+        <a href="{% url 'wopper:cart' %}"><i class="fas fa-shopping-bag"></i> Cart</a>
+    </div>
+    <a href="{% url 'mck_auth:website_logout' %}" class="mob-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    {% else %}
+    <div class="mob-auth-row">
+        <a href="{% url 'mck_auth:website_signin' %}?next={{ request.get_full_path|urlencode }}" class="hdr-btn hdr-btn-outline" style="flex:1;text-align:center;">Sign In</a>
+        <a href="{% url 'mck_auth:website_signup' %}" class="hdr-btn hdr-btn-fill" style="flex:1;text-align:center;">Register</a>
+    </div>
+    {% endif %}
+
+    <!-- Mobile nav links -->
+    <ul class="mob-nav-list">
+        <li class="mob-nav-item sale-item"><a href="{% url 'wopper:all_products' %}?sale=true">🏷️ Flash Sale</a></li>
+        <li class="mob-nav-item"><a href="{% url 'wopper:all_products' %}">Shop All</a></li>
+        
+        {% for category in categories|slice:":10" %}
+        <li class="mob-nav-item has-sub">
+            <div class="mob-nav-row">
+                <a href="{% url 'wopper:category_products' slug=category.slug %}">{{ category.name }}</a>
+                <button class="mob-sub-toggle" onclick="toggleMobSub(this)" type="button"><i class="fas fa-plus"></i></button>
+            </div>
+            <ul class="mob-sub-list">
+                {% for product in category.products.all|slice:":4" %}
+                    <li><a href="{% url 'wopper:product_detail' slug=product.slug %}">{{ product.name|truncatewords:4 }}</a></li>
+                {% empty %}
+                    <li><a href="{% url 'wopper:category_products' slug=category.slug %}">Explore {{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li class="mob-nav-item"><a href="{% url 'mck_website:contact' %}">Contact</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+/* ══ CSRF ══ */
+function getCookie(n) {
+    let v = null;
+    document.cookie && document.cookie.split(';').forEach(c => {
+        c = c.trim();
+        if (c.startsWith(n + '=')) v = decodeURIComponent(c.slice(n.length + 1));
+    });
+    return v;
+}
+const csrf = getCookie('csrftoken');
+const isAuth = {{ user.is_authenticated|lower }};
+
+/* ══ NOTIFICATIONS ══ */
+function showNotif(msg, type = 'info') {
+    let box = document.getElementById('_notif');
+    if (!box) {
+        box = document.createElement('div');
+        box.id = '_notif';
+        box.style.cssText = 'position:fixed;top:18px;right:18px;z-index:9999;max-width:300px;';
+        document.body.appendChild(box);
+    }
+    const n = document.createElement('div');
+    const bg = { success:'#10b981', error:'#ef4444', warning:'#f59e0b', info:'#3b82f6' }[type] || '#3b82f6';
+    n.style.cssText = `background:${bg};color:#fff;padding:11px 16px;margin-bottom:8px;border-radius:8px;font-size:13px;font-weight:500;box-shadow:0 4px 14px rgba(0,0,0,.15);cursor:pointer;font-family:var(--font);`;
+    n.textContent = msg;
+    n.onclick = () => n.remove();
+    box.appendChild(n);
+    setTimeout(() => n.parentNode && n.remove(), 3500);
+}
+
+/* ══ USER DROPDOWN (click toggle) ══ */
+(function () {
+    const wrap = document.getElementById('userMenuWrap');
+    const btn  = document.getElementById('userToggleBtn');
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+        if (!wrap.contains(e.target)) {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+
+/* ══ MOBILE NAV ══ */
+function openMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.add('open');
+    o.style.display = 'block';
+    requestAnimationFrame(() => o.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.remove('open');
+    o.classList.remove('open');
+    setTimeout(() => { o.style.display = 'none'; }, 280);
+    document.body.style.overflow = '';
+}
+function toggleMobSub(btn) {
+    const sub  = btn.closest('.mob-nav-item').querySelector('.mob-sub-list');
+    const icon = btn.querySelector('i');
+    if (!sub) return;
+    const opening = !sub.classList.contains('open');
+    document.querySelectorAll('.mob-sub-list.open').forEach(s => {
+        s.classList.remove('open');
+        const b = s.closest('.mob-nav-item').querySelector('.mob-sub-toggle i');
+        if (b) b.className = 'fas fa-plus';
+    });
+    if (opening) {
+        sub.classList.add('open');
+        icon.className = 'fas fa-minus';
+    }
+}
+
+/* ══ SLIDER ══ */
+const SS = {};
+function _itemW(track) {
+    const first = track.querySelector('.slide-item');
+    if (!first) return 0;
+    return first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14);
+}
+function _visible(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 1;
+    const vp    = s.querySelector('.slider-viewport');
+    const track = s.querySelector('.slider-track');
+    const first = track && track.querySelector('.slide-item');
+    if (!vp || !first) return 1;
+    return Math.max(1, Math.round(vp.clientWidth / (first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14))));
+}
+function _total(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 0;
+    const t = s.querySelector('.slider-track');
+    return t ? t.querySelectorAll('.slide-item').length : 0;
+}
+function _updBtns(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const state = SS[id] || { i: 0 };
+    const max   = _total(id) - _visible(id);
+    const prev  = s.querySelector('.sldr-btn.prev');
+    const next  = s.querySelector('.sldr-btn.next');
+    if (prev) prev.disabled = state.i <= 0;
+    if (next) next.disabled = state.i >= max;
+}
+function slide(id, dir) {
+    if (!SS[id]) SS[id] = { i: 0 };
+    const s     = document.getElementById(id);
+    const track = s && s.querySelector('.slider-track');
+    if (!track) return;
+    const max = _total(id) - _visible(id);
+    SS[id].i  = Math.max(0, Math.min(SS[id].i + dir, max));
+    track.style.transform = `translateX(-${SS[id].i * _itemW(track)}px)`;
+    _updBtns(id);
+}
+
+/* Touch swipe support */
+function addSwipe(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const vp = s.querySelector('.slider-viewport');
+    if (!vp) return;
+    let startX = 0;
+    vp.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) slide(id, dx < 0 ? 1 : -1);
+    }, { passive: true });
+}
+
+function initSliders() {
+    document.querySelectorAll('.slider-wrap').forEach(s => {
+        if (s.id) { SS[s.id] = { i: 0 }; _updBtns(s.id); addSwipe(s.id); }
+    });
+}
+window.addEventListener('resize', () => {
+    Object.keys(SS).forEach(id => {
+        SS[id].i = 0;
+        const s = document.getElementById(id);
+        if (s) { const t = s.querySelector('.slider-track'); if (t) t.style.transform = 'translateX(0)'; }
+        _updBtns(id);
+    });
+});
+
+/* ══ VIDEO: fix desktop width to 5-up ══ */
+function fixVideoSlider() {
+    const track = document.getElementById('vid-track');
+    if (!track) return;
+    const vp = track.closest('.slider-viewport');
+    if (!vp) return;
+    if (window.innerWidth > 600) {
+        // On desktop override to 5 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(20% - 12px)';
+        });
+    } else {
+        // On mobile: 2 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(50% - 7px)';
+        });
+    }
+    // Reset slider position
+    if (SS['vid-sec']) { SS['vid-sec'].i = 0; track.style.transform = 'translateX(0)'; _updBtns('vid-sec'); }
+}
+
+/* ══ COUNTDOWN ══ */
+function startCountdown() {
+    let s = 11 * 3600 + 28 * 60 + 41;
+    const el = document.getElementById('countdown-timer');
+    if (!el) return;
+    setInterval(() => {
+        if (--s < 0) s = 86399;
+        el.textContent = [Math.floor(s/3600), Math.floor((s%3600)/60), s%60].map(n => String(n).padStart(2,'0')).join(':');
+    }, 1000);
+}
+
+/* ══ WISHLIST ══ */
+async function toggleWishlist(slug, btn) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    const ico = btn.querySelector('i');
+    btn.disabled = true;
+    try {
+        const r = await fetch("{% url 'wopper:toggle_wishlist' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_slug:slug}) });
+        const d = await r.json();
+        if (d.success) {
+            ico.classList.replace(d.in_wishlist?'far':'fas', d.in_wishlist?'fas':'far');
+            ico.style.color = d.in_wishlist ? '#eb3c24' : '';
+            showNotif(d.in_wishlist ? 'Added to wishlist!' : 'Removed from wishlist', d.in_wishlist ? 'success' : 'info');
+            document.querySelectorAll('.wishlist-count-badge').forEach(b => {
+                b.textContent = d.wishlist_count;
+                b.style.display = d.wishlist_count > 0 ? 'flex' : 'none';
+            });
+        } else showNotif(d.message || 'Error', 'error');
+    } catch { showNotif('Network error', 'error'); }
+    finally { setTimeout(() => btn.disabled = false, 500); }
+}
+
+/* ══ ADD TO CART ══ */
+async function addToCart(pid, qty = 1) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    try {
+        const r = await fetch("{% url 'wopper:add_to_cart' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_id:pid,quantity:qty}) });
+        const d = await r.json();
+        if (d.success) {
+            document.querySelectorAll('.cart-count-badge').forEach(b => {
+                b.textContent = d.cart_count;
+                b.style.display = d.cart_count > 0 ? 'flex' : 'none';
+            });
+            showNotif('Added to cart!', 'success');
+        } else showNotif(d.message || 'Error adding to cart', 'error');
+    } catch { showNotif('Network error', 'error'); }
+}
+
+/* ══ NEWSLETTER ══ */
+function subscribeNewsletter() {
+    const el = document.getElementById('footer-email');
+    if (!el || !el.value.includes('@')) { showNotif('Enter a valid email', 'warning'); return; }
+    fetch('/api/newsletter/subscribe/', { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({email:el.value}) })
+        .then(r=>r.json()).then(d=>{ if(d.success){showNotif('Subscribed!','success');el.value='';}else showNotif(d.message||'Failed','error'); })
+        .catch(()=>showNotif('Failed','error'));
+}
+
+/* ══ INIT ══ */
+document.addEventListener('DOMContentLoaded', () => {
+    initSliders();
+    fixVideoSlider();
+    startCountdown();
+});
+window.addEventListener('resize', fixVideoSlider);
+</script>

@@ -1,0 +1,811 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+    <meta name="theme-color" content="#00828a">
+    <meta name="description" content="Get in touch with Wopper for premium cleaning and hygiene solutions. Our experts are ready to help you find the perfect products for your home, office, or business.">
+    <meta name="keywords" content="contact Wopper, cleaning products, customer support, hygiene solutions">
+    <title>Contact Wopper | Premium Cleaning & Home Solutions</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'web/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'web/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'web/style.css' %}">
+    
+    <style>
+        :root {
+            --teal: #00828a;
+            --teal-dark: #006d73;
+            --teal-light: #e0f4f5;
+            --teal-soft: #d6f0f2;
+            --red: #eb3c24;
+            --dark: #1a1a2e;
+            --dark-soft: #2d2d44;
+            --muted: #6c757d;
+            --border: #e5e5e5;
+            --bg-light: #f8f9fc;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 40px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
+            --shadow-hover: 0 25px 50px -12px rgba(0,0,0,0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: var(--bg-light);
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            padding: 100px 20px 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 200%;
+            background: rgba(255,255,255,0.05);
+            transform: rotate(35deg);
+            pointer-events: none;
+        }
+        
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, var(--bg-light), transparent);
+            pointer-events: none;
+        }
+        
+        .contact-hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .contact-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.95);
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+        
+        /* Main Content */
+        .contact-wrapper {
+            padding: 80px 0;
+            background: var(--bg-light);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Info Card */
+        .contact-info-card {
+            background: var(--bg-card);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--teal), var(--teal-dark));
+        }
+        
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .contact-info-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-info-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--teal);
+            border-radius: 3px;
+        }
+        
+        .info-item {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 30px;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        
+        .info-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .info-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--teal-light), var(--teal-soft));
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: var(--transition);
+        }
+        
+        .info-item:hover .info-icon {
+            background: var(--teal);
+            color: #fff;
+            transform: scale(1.05);
+        }
+        
+        .info-item strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .info-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .social-icons li a {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--teal-light);
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 18px;
+        }
+        
+        .social-icons li a:hover {
+            background: var(--teal);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        
+        /* Form Card */
+        .contact-form-card {
+            background: var(--bg-card);
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        
+        .contact-form-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .contact-form-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .contact-form-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--teal);
+            border-radius: 3px;
+        }
+        
+        .form-control {
+            height: 54px;
+            border-radius: 14px;
+            border: 1.5px solid var(--border);
+            box-shadow: none;
+            font-size: 14px;
+            padding: 0 18px;
+            transition: var(--transition);
+            background: #fff;
+        }
+        
+        .form-control:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(0,130,138,0.1);
+            outline: none;
+        }
+        
+        .form-control.is-invalid {
+            border-color: var(--red);
+        }
+        
+        textarea.form-control {
+            height: auto;
+            padding: 15px 18px;
+            resize: vertical;
+        }
+        
+        .btn-contact {
+            width: 100%;
+            height: 56px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,130,138,0.3);
+        }
+        
+        .btn-contact:active {
+            transform: translateY(0);
+        }
+        
+        .btn-contact i {
+            font-size: 18px;
+        }
+        
+        /* Alert Styles */
+        #alertContainer {
+            margin-bottom: 25px;
+        }
+        
+        .alert {
+            border-radius: 14px;
+            border: none;
+            padding: 15px 20px;
+            font-size: 14px;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid var(--red);
+        }
+        
+        /* Loading Spinner */
+        #loadingSpinner {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--teal);
+            font-size: 14px;
+        }
+        
+        /* Help Banner */
+        .help-banner {
+            margin-top: 60px;
+            background: linear-gradient(135deg, var(--dark), var(--dark-soft));
+            border-radius: 28px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .help-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 60%;
+            height: 200%;
+            background: rgba(255,255,255,0.03);
+            transform: rotate(25deg);
+            pointer-events: none;
+        }
+        
+        .help-banner h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: #fff;
+        }
+        
+        .help-banner p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .help-banner a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 25px;
+            padding: 14px 32px;
+            background: var(--teal);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .help-banner a:hover {
+            background: var(--teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Map Section */
+        .map-section {
+            margin-top: 60px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            display: block;
+            filter: grayscale(0.1) contrast(1.05);
+            transition: var(--transition);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1100px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 44px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 60px 20px 80px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 34px;
+            }
+            
+            .contact-hero p {
+                font-size: 16px;
+            }
+            
+            .contact-wrapper {
+                padding: 50px 0;
+            }
+            
+            .contact-info-card,
+            .contact-form-card {
+                padding: 30px;
+            }
+            
+            .contact-info-card h3,
+            .contact-form-card h3 {
+                font-size: 24px;
+            }
+            
+            .info-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 18px;
+            }
+            
+            .help-banner {
+                padding: 35px 25px;
+            }
+            
+            .help-banner h3 {
+                font-size: 26px;
+            }
+            
+            .map-section iframe {
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .contact-info-card,
+            .contact-form-card {
+                padding: 25px;
+            }
+            
+            .info-item {
+                gap: 12px;
+            }
+            
+            .info-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+            
+            .btn-contact {
+                height: 50px;
+                font-size: 14px;
+            }
+            
+            .help-banner h3 {
+                font-size: 22px;
+            }
+            
+            .help-banner p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include "includes/header.html" %}
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Let's Talk</h1>
+            <p>
+                Have questions about our premium cleaning and hygiene solutions? 
+                Our expert team is here to help you find the perfect products for your space.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="contact-wrapper">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Info Card -->
+                <div class="contact-info-card">
+                    <h3>Get in Touch</h3>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <strong>Visit Us</strong>
+                            <p>No.39, Old No.81, Sami Naicken Street,<br>Chennai - 600001, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <strong>Call Us</strong>
+                            <p>+91 90030 87995</p>
+                            <p style="font-size:12px;">Mon-Sat, 9AM - 7PM</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <strong>Email Us</strong>
+                            <p>info@wopper.com</p>
+                            <p style="font-size:12px;">support@wopper.com</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong>Working Hours</strong>
+                            <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                            <p>Sunday: Closed</p>
+                        </div>
+                    </div>
+
+                    <ul class="social-icons">
+                        <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="contact-form-card">
+                    <h3>Send a Message</h3>
+                    
+                    <div id="alertContainer" style="display:none;"></div>
+
+                    <form method="post" action="{% url 'mck_website:contact' %}" id="contactForm">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
+                                <div class="invalid-feedback" id="nameError"></div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone Number (Optional)">
+                            <div class="invalid-feedback" id="phoneError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <select name="subject" id="subject" class="form-control" required>
+                                <option value="">Select Subject</option>
+                                <option value="product">Product Inquiry</option>
+                                <option value="order">Order Status</option>
+                                <option value="return">Return/Exchange</option>
+                                <option value="wholesale">Wholesale/Bulk Order</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="invalid-feedback" id="subjectError"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea name="message" id="message" rows="5" class="form-control" placeholder="Write your message here..." required></textarea>
+                            <div class="invalid-feedback" id="messageError"></div>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-contact">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+
+                        <div id="loadingSpinner" style="display:none;">
+                            <i class="fa fa-spinner fa-spin"></i> Sending...
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Banner -->
+            <div class="help-banner">
+                <h3>Need Expert Advice?</h3>
+                <p>
+                    Our cleaning specialists are ready to recommend the perfect products for your home, 
+                    office, hospital, or commercial space. Get personalized assistance today!
+                </p>
+                <a href="tel:+919003087995">
+                    <i class="fas fa-headset"></i> Talk to an Expert
+                </a>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.123456789012!2d80.278!3d13.082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526f123456789%3A0x123456789abcdef!2sSami%20Naicken%20St%2C%20Chennai!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+    {% include "includes/footer-website.html" %}
+
+    <!-- Scripts -->
+    <script src="{% static 'webjs/jquery.min.js' %}"></script>
+    <script src="{% static 'webjs/popper.min.js' %}"></script>
+    <script src="{% static 'webjs/bootstrap.min.js' %}"></script>
+    <script src="{% static 'webjs/select-opt.js' %}"></script>
+    <script src="{% static 'webjs/slick.js' %}"></script>
+    <script src="{% static 'webjs/custom.js' %}"></script>
+
+    <!-- AJAX Contact Form Script -->
+    <script>
+    $(document).ready(function() {
+        console.log("Contact page loaded");
+        
+        $('#contactForm').on('submit', function(e) {
+            e.preventDefault();
+            console.log("Form submitted");
+            
+            // Reset previous errors
+            $('.form-control').removeClass('is-invalid');
+            $('.invalid-feedback').html('');
+            
+            // Show loading
+            $('#submitBtn').prop('disabled', true);
+            $('#submitBtn').html('<i class="fas fa-spinner fa-spin"></i> Sending...');
+            $('#loadingSpinner').show();
+            
+            var formData = new FormData(this);
+            var ajaxUrl = "{% url 'mck_website:contact_ajax_submit' %}";
+            
+            $.ajax({
+                url: ajaxUrl,
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                success: function(response) {
+                    console.log("Success:", response);
+                    if (response.success) {
+                        showAlert('success', response.message);
+                        $('#contactForm')[0].reset();
+                    } else {
+                        showAlert('danger', response.message);
+                        if (response.errors) {
+                            $.each(response.errors, function(field, error) {
+                                $('#' + field).addClass('is-invalid');
+                                $('#' + field + 'Error').html(error[0] || error);
+                            });
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error:", error);
+                    console.error("Response:", xhr.responseText);
+                    showAlert('danger', 'Something went wrong. Please try again later.');
+                },
+                complete: function() {
+                    $('#submitBtn').prop('disabled', false);
+                    $('#submitBtn').html('<i class="fas fa-paper-plane"></i> Send Message');
+                    $('#loadingSpinner').hide();
+                }
+            });
+        });
+        
+        function showAlert(type, message) {
+            var alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            var icon = type === 'success' ? '<i class="fas fa-check-circle me-2"></i>' : '<i class="fas fa-exclamation-circle me-2"></i>';
+            
+            var alertHtml = '<div class="alert ' + alertClass + ' alert-dismissible fade show" role="alert">' +
+                            icon + message +
+                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>' +
+                            '</div>';
+            
+            $('#alertContainer').html(alertHtml).fadeIn();
+            
+            setTimeout(function() {
+                $('#alertContainer').fadeOut();
+            }, 5000);
+        }
+        
+        // Smooth scroll for anchor links
+        $('a[href^="#"]').on('click', function(e) {
+            e.preventDefault();
+            var target = $(this.hash);
+            if (target.length) {
+                $('html, body').animate({
+                    scrollTop: target.offset().top - 100
+                }, 800);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

@@ -5,1065 +5,1195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page_title|default:"Wopper - Premium Cleaning & Home Solutions" }}</title>
-    <meta name="description" content="{{ page_description|default:'Discover premium cleaning and hygiene solutions for your home, office, hospital, or business.' }}">
+    <meta name="description" content="{{ page_description|default:'Discover premium cleaning and hygiene solutions for your home.' }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-teal: #00828a;
-            --text-dark: #222222;
-            --text-muted: #555555;
-            --bg-light-beige: #f9f6f0;
-            --border-color: #e5e5e5;
-            --font-main: 'Inter', sans-serif;
-            --max-site-width: 1500px;
-            --bestseller-bg: #fbebd4;
-            --flash-bg: #aadfe4;
-            --discount-red: #eb3c24;
-            --btn-black: #000000;
-            --layout-gray: #f5f6f9;
-            --badge-teal: #14a4b9;
-            --border-light: #e2e2e6;
-            --footer-dark: #00222a;
-        }
+    /* ════════════════════════════════════════════
+       RESET & ROOT
+    ════════════════════════════════════════════ */
+    :root {
+        --teal:        #00828a;
+        --teal-dark:   #006d73;
+        --teal-light:  #e0f4f5;
+        --red:         #eb3c24;
+        --dark:        #222222;
+        --muted:       #666666;
+        --border:      #e5e5e5;
+        --border-l:    #e2e2e6;
+        --bg-gray:     #f1f3f4;
+        --bg-card:     #f5f6f9;
+        --flash-bg:    #aadfe4;
+        --best-bg:     #fbebd4;
+        --footer-bg:   #00222a;
+        --font:        'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; font-family: var(--font); color: var(--dark); background: var(--bg-gray); }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
 
-        html, body { overflow-x: hidden !important; }
-        *, *::before, *::after { box-sizing: border-box; }
+    /* ════════════════════════════════════════════
+       TOP UTILITY BAR
+    ════════════════════════════════════════════ */
+    .top-utility-bar {
+        background: var(--teal);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .util-inner {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 7px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .util-social a {
+        color: #fff;
+        margin-right: 12px;
+        font-size: 13px;
+        opacity: .85;
+        transition: opacity .2s;
+    }
+    .util-social a:hover { opacity: 1; }
+    .util-promo { flex: 1; text-align: center; font-size: 12px; }
+    .util-right { min-width: 100px; }
 
-        body {
-            font-family: var(--font-main);
-            color: var(--text-dark);
-            background-color: #f1f3f4;
-            margin: 0; padding: 0;
-        }
+    /* ════════════════════════════════════════════
+       MAIN HEADER
+    ════════════════════════════════════════════ */
+    .main-header {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 600;
+    width: 100%;
+}
+.header-inner {
+    max-width: 1600px;        /* widened so the header lines up with wider sections */
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;       /* vertically centers logo, search, icons */
+    justify-content: space-between;
+    gap: 14px;
+}
+ /* ── LOGO ── */
+.brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* centers the image inside its box */
+    flex-shrink: 0;
+}
+.brand-logo img {
+    height: 56px;               /* bigger logo */
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+}
+.site-logo-img {
+    height: 56px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+}
 
-        /* ── SITE-WIDE MAX WIDTH WRAPPER (Amazon/Flipkart style) ── */
-        .site-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        /* Full-bleed sections still use site-inner for their content */
-        .section-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ── TOP UTILITY BAR ── */
-        .top-utility-bar {
-            background-color: var(--primary-teal);
-            color: #fff;
-            font-size: 13px;
-            font-weight: 500;
-            width: 100%;
-        }
-        .top-utility-bar .util-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 8px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .top-utility-bar a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 14px;
-            transition: opacity .2s;
-        }
-        .top-utility-bar a:hover { opacity: .8; }
-
-        /* ── MAIN HEADER ── */
-        .main-header {
-            border-bottom: 1px solid var(--border-color);
-            background: #fff;
-            width: 100%;
-        }
-        .header-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 14px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-        .brand-logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -.5px;
-            color: #000;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        .brand-logo span { color: var(--primary-teal); }
-        .search-container { position: relative; width: 100%; max-width: 550px; }
-        .search-input {
-            width: 100%;
-            padding: 10px 20px;
-            background-color: #f1f3f4;
-            border: 1px solid transparent;
-            border-radius: 4px;
-            font-size: 14px;
-            outline: none;
-        }
-        .header-actions-icons a,
-        .header-actions-icons button {
-            color: var(--text-dark);
-            font-size: 20px;
-            margin-left: 25px;
-            position: relative;
-            text-decoration: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-        .auth-btn {
-            background: transparent;
-            border: 1px solid var(--primary-teal);
-            color: var(--primary-teal);
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-            margin-left: 12px;
-            transition: all .3s;
-        }
-        .auth-btn:hover { background: var(--primary-teal); color: #fff; }
-        .auth-btn.primary { background: var(--primary-teal); color: #fff; }
-
-        .user-menu-dropdown { position: relative; display: inline-block; }
-        .user-menu-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-dark);
-            font-size: 14px;
-        }
-        .user-dropdown-menu {
-            position: absolute;
-            top: calc(100% + 10px);
-            right: 0;
-            background: #fff;
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,.15);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity .25s, visibility .25s;
-            z-index: 100;
-        }
-        .user-menu-dropdown:hover .user-dropdown-menu { opacity: 1; visibility: visible; }
-        .user-dropdown-menu a,
-        .user-dropdown-menu button {
-            display: block;
-            width: 100%;
-            padding: 12px 16px;
-            border: none;
-            background: none;
-            text-align: left;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background .15s;
-        }
-        .user-dropdown-menu a:hover,
-        .user-dropdown-menu button:hover { background: #f5f5f5; }
-
-        /* ── NAV MENU ── */
-        .nav-menu-bar {
-            background: #ffffff;
-            border-bottom: 1px solid var(--border-color);
-            width: 100%;
-            position: relative;
-            z-index: 99;
-        }
-        .nav-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        .nav-menu-list {
-            list-style: none;
-            margin: 0; padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-        }
-        .nav-menu-item { position: relative; }
-        .nav-menu-item > a {
-            display: block;
-            padding: 14px 0;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        .nav-menu-item.flash-sale > a { color: #d9383a; font-weight: 600; }
-        .nav-menu-item > a .fa-chevron-down { transition: transform .25s ease; }
-        .nav-menu-item:hover > a .fa-chevron-down { transform: rotate(180deg); }
-
-        .dropdown-mega {
-            position: absolute;
-            top: calc(100% + 1px);
-            left: 50%;
-            transform: translateX(-50%) translateY(-8px);
-            background: #fff;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 8px 32px rgba(0,0,0,.12);
-            min-width: 220px;
-            padding: 12px 0;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity .22s ease, transform .22s ease, visibility .22s;
-            z-index: 200;
-            border-radius: 2px;
-        }
-        .nav-menu-item:hover .dropdown-mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-        .dropdown-mega a {
-            display: block;
-            padding: 9px 22px;
-            font-size: 13px;
-            color: #333;
-            text-decoration: none;
-            transition: background .15s, color .15s;
-        }
-        .dropdown-mega a:hover { background: #f5f5f5; color: #000; }
-        .dropdown-mega .dd-section-title {
-            padding: 6px 22px 4px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: .6px;
-        }
-
-        /* ── HERO SECTION ── */
-        .hero-section-container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 20px 24px;
-        }
-        .hero-master-grid {
-            display: grid;
-            grid-template-columns: 1.95fr 1.05fr;
-            gap: 20px;
-        }
-        .hero-left-banner {
-            background-size: cover;
-            background-position: center;
-            border-radius: 4px;
-            min-height: 520px;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-content-wrapper { position: relative; z-index: 2; max-width: 450px; }
-        .hero-title-main { font-size: 38px; font-weight: 700; line-height: 1.2; margin-bottom: 15px; color: #111; }
-        .hero-subtitle-sub { font-size: 20px; font-weight: 400; color: #333; margin-bottom: 35px; }
-        .btn-hero-shop {
-            display: inline-block;
-            border: 1px solid #000;
-            background: transparent;
-            color: #000;
-            padding: 12px 45px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 15px;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            width: fit-content;
-            transition: all .3s ease;
-        }
-        .btn-hero-shop:hover { background: #000; color: #fff; }
-        .hero-right-stack { display: flex; flex-direction: column; gap: 20px; }
-        .right-stack-card {
-            flex: 1;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 240px;
-            padding: 30px;
-        }
-
-        /* ── SLIDER SYSTEM ── */
-        .slider-section { position: relative; padding: 0 2px; }
-        .slider-wrapper { overflow: hidden; }
-        .slider-track {
-            display: flex;
-            gap: 16px;
-            transition: transform .38s cubic-bezier(.4,0,.2,1);
-            will-change: transform;
-        }
-        .slider-track .slide-item { flex: 0 0 calc(16.666% - 14px); min-width: 0; }
-        .slider-track.slides-5 .slide-item { flex: 0 0 calc(20% - 13px); }
-        .slider-track.slides-featured .slide-item { flex: 0 0 calc(20% - 13px); }
-        .slider-track.slides-profile .slide-item { flex: 0 0 calc(20% - 13px); }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 36px;
-            height: 36px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 10px rgba(0,0,0,.13);
-            transition: all .2s;
-            font-size: 13px;
-            color: #333;
-        }
-        .slider-btn:hover { background: #000; color: #fff; border-color: #000; }
-        .slider-btn.prev { left: -18px; }
-        .slider-btn.next { right: -18px; }
-        .slider-btn:disabled { opacity: .3; pointer-events: none; }
-
-        /* ── DISCOUNT BADGE + CARD UTILITIES ── */
-        .discount-badge {
-            position: absolute;
-            top: 8px; left: 8px;
-            background-color: var(--discount-red);
-            color: white;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 2px;
-            z-index: 2;
-        }
-        .view-all-btn {
-            background: white;
-            border: 1px solid #ccc;
-            padding: 4px 14px;
-            font-size: 13px;
-            border-radius: 4px;
-            color: #333;
-            font-weight: 500;
-            transition: all .2s;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .view-all-btn:hover { background: #f5f5f5; }
-        .custom-card {
-            background: white;
-            border: none;
-            border-radius: 0;
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-img-wrapper {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-            overflow: hidden;
-            background-color: #f7f7f7;
-        }
-        .card-img-wrapper img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .add-to-cart-btn {
-            background-color: var(--btn-black);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 8px 0;
-            font-size: 14px;
-            font-weight: 600;
-            margin-top: auto;
-            cursor: pointer;
-            transition: background .2s;
-        }
-        .add-to-cart-btn:hover { background-color: #333; }
-
-        /* ── BESTSELLERS ── */
-        #bestsellers-section {
-            background-color: var(--bestseller-bg);
-            background-image: radial-gradient(#f3dec2 1px, transparent 1px);
-            background-size: 16px 16px;
-            padding: 30px 0;
-        }
-        .viewing-indicator {
-            font-size: 11px;
-            color: #444;
-            margin: 6px 8px 2px 8px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .viewing-dot {
-            height: 7px; width: 7px;
-            background-color: #2ec156;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .product-title {
-            font-size: 13px;
-            line-height: 1.4;
-            color: #333;
-            margin: 4px 8px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 36px;
-        }
-        .price-container { padding: 2px 8px 10px 8px; font-size: 12px; }
-        .current-price { font-weight: 700; color: #000; }
-        .old-price { text-decoration: line-through; color: #888; margin-left: 4px; font-size: 11px; }
-        .discount-text { color: var(--discount-red); font-weight: 600; margin-left: 4px; font-size: 11px; }
-
-        /* ── FEATURED COLLECTIONS ── */
-        #featured-collections { padding: 40px 0; background: #fff; }
-        .collection-card {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            padding-top: 135%;
-        }
-        .collection-card img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .collection-label {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 6px 16px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #000;
-            white-space: nowrap;
-            box-shadow: 0 2px 8px rgba(0,0,0,.1);
-            text-align: center;
-            width: 85%;
-        }
-
-        /* ── FLASH SALE ── */
-        #flash-sale-section {
-            background-color: var(--flash-bg);
-            background-image: radial-gradient(#9bcad0 1px, transparent 1px);
-            background-size: 14px 14px;
-            padding: 30px 0;
-        }
-        .timer-box {
-            background: #eb3c24;
-            color: white;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* ── VIDEO SECTION ── */
-        .video-reel-card {
-            position: relative;
-            width: 100%;
-            padding-top: 175%;
-            overflow: hidden;
-            background: #eee;
-        }
-        .video-main-cover {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .video-overlay-content {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(transparent, rgba(0,0,0,.85));
-            color: #fff;
-        }
-        .video-mini-thumb {
-            width: 52px; height: 52px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid #fff;
-        }
-        .video-meta-text { font-size: 14px; line-height: 1.2; }
-        .explore-btn-video {
-            background: #000000;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 500;
-            text-align: center;
-            padding: 6px 0;
-            width: 100%;
-            display: block;
-            text-decoration: none;
-            border-top: 1px solid #222;
-        }
-
-        /* ── CATEGORY HERO COMBO ── */
-        .category-hero-card {
-            background: #ffffff;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            border: 1px solid var(--border-light);
-        }
-        .cat-hero-img-container {
-            position: relative;
-            width: 100%;
-            padding-top: 75%;
-            overflow: hidden;
-        }
-        .cat-hero-img-container img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .promo-circle-badge {
-            position: absolute;
-            top: 15px; right: 15px;
-            background: var(--badge-teal);
-            color: white;
-            width: 68px; height: 68px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-weight: 700;
-            line-height: 1.1;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 10;
-        }
-        .promo-circle-badge .badge-top { font-size: 10px; font-weight: 400; }
-        .promo-circle-badge .badge-middle { font-size: 16px; }
-        .promo-circle-badge .badge-bottom { font-size: 11px; font-weight: 400; }
-        .cat-hero-text-block {
-            padding: 30px 20px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-        }
-        .cat-hero-text-block h3 { font-size: 32px; font-weight: 800; margin-bottom: 5px; }
-        .cat-hero-text-block p { font-size: 18px; color: #555555; margin-bottom: 15px; }
-        .cat-hero-btn {
-            background: transparent;
-            border: 1px solid #333;
-            font-size: 16px;
-            padding: 6px 35px;
-            font-weight: 500;
-            color: #000;
-            text-decoration: none;
-            display: inline-block;
-            transition: all .3s;
-        }
-        .cat-hero-btn:hover { background: #000; color: #fff; }
-
-        .sub-cat-tile {
-            background: #ffffff;
-            text-align: center;
-            padding-bottom: 18px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .sub-cat-img {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-            overflow: hidden;
-            background: #f7f7f7;
-            margin-bottom: 8px;
-        }
-        .sub-cat-img img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .sub-cat-tile span { font-size: 16px; color: #444444; font-weight: 500; }
-
-        /* ── PRODUCT CARDS ── */
-        .product-card-standard {
-            background: #fff;
-            border: none;
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .prod-img-box {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-            background: #f8f8f8;
-        }
-        .prod-img-box img {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-        .prod-indicator-row {
-            font-size: 11px;
-            font-weight: 600;
-            margin: 6px 4px 2px 4px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            min-height: 16px;
-        }
-        .green-dot-pulse { width: 6px; height: 6px; background-color: #29be53; border-radius: 50%; }
-        .prod-title-text {
-            font-size: 12px;
-            color: #333;
-            margin: 4px;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            height: 34px;
-        }
-        .prod-pricing-row { padding: 2px 4px 12px 4px; font-size: 12px; }
-        .price-current { font-weight: 700; color: #000; }
-        .price-slashed { text-decoration: line-through; color: #888; margin-left: 4px; font-size: 11px; }
-        .price-percentage { color: var(--discount-red); font-weight: 600; margin-left: 4px; font-size: 11px; }
-        .add-cart-solid-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            width: 100%;
-            padding: 8px 0;
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: auto;
-            cursor: pointer;
-            transition: background .2s;
-        }
-        .add-cart-solid-btn:hover { background: #333; }
-
-        .hybrid-container {
-            background-color: var(--layout-gray);
-            padding: 30px 0;
-        }
-        .hybrid-inner {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ── WISHLIST BTN ── */
-        .wishlist-btn {
-            position: absolute;
-            top: 10px; right: 10px;
-            background: white;
-            border: none;
-            border-radius: 50%;
-            width: 32px; height: 32px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all .2s;
-        }
-        .wishlist-btn:hover { transform: scale(1.05); background: #f5f5f5; }
-
-        /* ── PROFILE NAV CARDS ── */
-        .profile-nav-card {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            background: #fff;
-            border: 1px solid var(--border-light);
-        }
-        .profile-nav-card img {
-            width: 100%;
-            height: 400px;
-            display: block;
-            object-fit: cover;
-        }
-        .profile-nav-label-strip {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            background: rgba(255,255,255,.9);
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .profile-nav-label-strip span { font-weight: 700; font-size: 15px; color: #000; }
-
- /* Trust Points Ribbon Block */
-       /* Trust & Footer */
-        .trust-ribbon-new { background: linear-gradient(135deg, #00222a 0%, #003540 100%); padding: 56px 0 52px; margin-top: 40px; }
-        .trust-ribbon-new .section-label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--primary-teal); text-align: center; margin-bottom: 8px; }
-        .trust-ribbon-new .section-headline { font-size: 28px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 48px; }
-        .trust-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 32px 24px; text-align: center; height: 100%; }
-        .trust-card-icon { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-teal), #00b8c4); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 24px; color: #fff; }
-        .trust-card h5 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .trust-card p { font-size: 13px; color: rgba(255,255,255,.65); margin: 0; }
+/* ── RESPONSIVE LOGO SIZING ── */
+@media (max-width: 1024px) {
+    .brand-logo img,
+    .site-logo-img { height: 60px; max-width: 200px; }
+}
+@media (max-width: 480px) {
+    .brand-logo img,
+    .site-logo-img { height: 48px; max-width: 160px; }
+}
 
 
-        /* Footer System Styling Layout */
-        footer { background-color: var(--footer-dark); color: #ffffff; font-size: 13px; padding: 50px 0 20px 0; }
-        footer h5 { font-size: 14px; font-weight: 700; margin-bottom: 20px; color: #ffffff; text-transform: none; letter-spacing: 0.5px; }
-        footer ul { list-style: none; padding: 0; margin: 0; }
-        footer ul li { margin-bottom: 12px; }
-        footer ul li a { color: #aaaaaa; text-decoration: none; }
-        footer ul li a:hover { color: #ffffff; }
-        
-        .footer-newsletter-input {
-            background: transparent; border: 1px solid #33535a; padding: 8px 12px; color: white; width: 100%; font-size: 13px;
-        }
-        .footer-newsletter-btn {
-            background: white; border: none; padding: 8px 20px; color: black; font-weight: 600;
-        }
+    /* Search */
+    .header-search {
+        flex: 1;
+        max-width: 540px;
+        display: flex;
+        background: var(--bg-gray);
+        border: 1.5px solid transparent;
+        border-radius: 6px;
+        overflow: hidden;
+        transition: border-color .2s;
+    }
+    .header-search:focus-within { border-color: var(--teal); background: #fff; }
+    .header-search input {
+        flex: 1;
+        border: none;
+        background: transparent;
+        padding: 9px 14px;
+        font-size: 13px;
+        font-family: var(--font);
+        outline: none;
+        color: var(--dark);
+    }
+    .header-search button {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+        padding: 0 14px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background .2s;
+    }
+    .header-search button:hover { background: var(--teal-dark); }
 
-        /* ── MOBILE NAV ── */
-        .mobile-nav-toggle { display: none; background: none; border: none; font-size: 22px; color: #333; cursor: pointer; padding: 4px; }
-        .mobile-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 300; opacity: 0; transition: opacity .25s; }
-        .mobile-nav-overlay.open { opacity: 1; }
-        .mobile-nav-drawer { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: #fff; z-index: 400; overflow-y: auto; transition: right .3s ease; padding: 20px 0; box-shadow: -4px 0 30px rgba(0,0,0,.15); }
-        .mobile-nav-drawer.open { right: 0; }
-        .mobile-nav-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #333; }
-        .mobile-nav-item { border-bottom: 1px solid #f0f0f0; }
-        .mobile-nav-item > a { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; font-size: 15px; font-weight: 500; color: #222; text-decoration: none; }
-        .mobile-nav-item.flash-sale > a { color: #d9383a; }
-        .mobile-nav-toggle-btn { background: none; border: none; padding: 0; cursor: pointer; color: #666; }
-        .mobile-sub-menu { display: none; padding: 4px 0 8px; background: #fafafa; }
-        .mobile-sub-menu.open { display: block; }
-        .mobile-sub-menu a { display: block; padding: 10px 36px; font-size: 14px; color: #444; text-decoration: none; }
-        .mobile-sub-menu a:hover { color: #00828a; }
+    /* Header right cluster */
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+    }
+    .hdr-auth-desktop { display: flex; align-items: center; gap: 6px; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1200px) {
-            .hero-master-grid { grid-template-columns: 1.7fr 1.3fr; }
-            .hero-left-banner { padding: 40px; }
-            .slider-track .slide-item,
-            .slider-track.slides-5 .slide-item,
-            .slider-track.slides-featured .slide-item,
-            .slider-track.slides-profile .slide-item { flex: 0 0 calc(25% - 12px); }
-        }
-        @media (max-width: 1024px) {
-            .hero-master-grid { grid-template-columns: 1fr; }
-            .site-inner, .section-inner, .hero-section-container,
-            .header-inner, .nav-inner, .footer-inner { padding-left: 16px; padding-right: 16px; }
-            .util-inner { padding-left: 16px !important; padding-right: 16px !important; }
-            .nav-menu-list { display: none; }
-            .mobile-nav-toggle { display: block; }
-        }
-        @media (max-width: 768px) {
-            .search-container { max-width: 100%; order: 3; margin-top: 12px; width: 100%; }
-            .header-inner { flex-wrap: wrap; }
-            .slider-track .slide-item,
-            .slider-track.slides-5 .slide-item,
-            .slider-track.slides-featured .slide-item,
-            .slider-track.slides-profile .slide-item { flex: 0 0 calc(50% - 8px); }
-        }
-        @media (max-width: 480px) {
-            .hero-left-banner { min-height: 400px; padding: 25px; }
-            .hero-title-main { font-size: 28px; }
-            .hero-subtitle-sub { font-size: 16px; }
-        }
+    /* Auth buttons - SMALL */
+    .hdr-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 13px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        font-family: var(--font);
+        cursor: pointer;
+        transition: all .22s;
+        white-space: nowrap;
+        text-decoration: none;
+    }
+    .hdr-btn-outline {
+        border: 1.5px solid var(--teal);
+        color: var(--teal);
+        background: transparent;
+    }
+    .hdr-btn-outline:hover { background: var(--teal); color: #fff; }
+    .hdr-btn-fill { background: var(--teal); color: #fff; border: 1.5px solid var(--teal); }
+    .hdr-btn-fill:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+
+    /* Icon buttons */
+    .hdr-icon-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        color: var(--dark);
+        font-size: 18px;
+        text-decoration: none;
+        transition: background .15s;
+        flex-shrink: 0;
+    }
+    .hdr-icon-btn:hover { background: var(--bg-gray); color: var(--dark); }
+    .hdr-badge {
+        position: absolute;
+        top: 2px; right: 2px;
+        background: var(--red);
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        width: 16px; height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+    /* ── User dropdown ── */
+    .user-menu-wrap { position: relative; }
+    .user-toggle-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font);
+        font-size: 13px;
+        color: var(--dark);
+        padding: 6px 8px;
+        border-radius: 6px;
+        transition: background .15s;
+        white-space: nowrap;
+    }
+    .user-toggle-btn:hover { background: var(--bg-gray); }
+    .uarrow { font-size: 9px; transition: transform .22s; }
+    .user-menu-wrap.open .uarrow { transform: rotate(180deg); }
+
+    .user-drop-panel {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.14);
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity .22s, visibility .22s, transform .22s;
+        z-index: 700;
+        overflow: hidden;
+    }
+    .user-menu-wrap.open .user-drop-panel {
+        opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .drop-user-info { padding: 14px 16px 10px; }
+    .drop-greet { font-size: 11px; color: var(--muted); }
+    .drop-username { font-size: 14px; font-weight: 700; margin-top: 2px; }
+    .drop-divider { height: 1px; background: var(--border); }
+    .user-drop-panel a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 16px;
+        font-size: 13px;
+        color: var(--dark);
+        transition: background .15s;
+    }
+    .user-drop-panel a:hover { background: #f5f5f5; }
+    .drop-ico { color: var(--teal); width: 14px; text-align: center; }
+    .drop-logout .drop-ico { color: var(--red); }
+    .drop-logout { color: var(--red) !important; }
+
+    /* ── Hamburger ── */
+    .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        padding: 0;
+        flex-shrink: 0;
+    }
+    .hamburger-btn:hover { background: var(--bg-gray); }
+    .hamburger-btn span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--dark);
+        border-radius: 2px;
+        transition: all .2s;
+    }
+
+    /* ════════════════════════════════════════════
+       DESKTOP NAV
+    ════════════════════════════════════════════ */
+    .desktop-nav {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 60px; /* below header */
+        z-index: 500;
+    }
+    .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+    .nav-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+    }
+    .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 12px 12px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dark);
+        white-space: nowrap;
+        border-radius: 4px;
+        transition: background .15s;
+    }
+    .nav-item > a:hover { background: #f5f5f5; }
+    .sale-item > a { color: #d9383a !important; font-weight: 700; }
+    .nav-arrow { font-size: 9px; transition: transform .22s; }
+    .nav-item.has-drop:hover .nav-arrow { transform: rotate(180deg); }
+
+    .nav-drop {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 8px;
+        box-shadow: 0 8px 28px rgba(0,0,0,.12);
+        min-width: 210px;
+        padding: 8px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .2s, transform .2s, visibility .2s;
+        z-index: 600;
+    }
+    .nav-item.has-drop { position: relative; }
+    .nav-item.has-drop:hover .nav-drop {
+        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0);
+    }
+    .nav-drop-title {
+        padding: 5px 18px 3px;
+        font-size: 10px;
+        font-weight: 700;
+        color: #aaa;
+        text-transform: uppercase;
+        letter-spacing: .6px;
+    }
+    .nav-drop a {
+        display: block;
+        padding: 9px 18px;
+        font-size: 13px;
+        color: #333;
+        transition: background .15s;
+    }
+    .nav-drop a:hover { background: #f5f5f5; color: #000; }
+
+    /* ════════════════════════════════════════════
+       MOBILE DRAWER
+    ════════════════════════════════════════════ */
+    .mob-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.55);
+        z-index: 900;
+        opacity: 0;
+        transition: opacity .25s;
+    }
+    .mob-overlay.open { opacity: 1; }
+
+    .mob-drawer {
+        position: fixed;
+        top: 0; right: -310px;
+        width: min(300px, 88vw);
+        height: 100%;
+        background: #fff;
+        z-index: 950;
+        overflow-y: auto;
+        transition: right .3s cubic-bezier(.4,0,.2,1);
+        box-shadow: -6px 0 30px rgba(0,0,0,.18);
+    }
+    .mob-drawer.open { right: 0; }
+
+    .mob-drawer-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+    .mob-close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: var(--dark);
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 6px;
+    }
+    .mob-close-btn:hover { background: var(--bg-gray); }
+
+    .mob-search-wrap { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .mob-search-form {
+        display: flex;
+        border: 1.5px solid var(--border-l);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .mob-search-form input {
+        flex: 1;
+        border: none;
+        padding: 9px 12px;
+        font-size: 13px;
+        font-family: var(--font);
+        outline: none;
+        background: #fafafa;
+    }
+    .mob-search-form button {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+        padding: 0 13px;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    .mob-user-block {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 16px 10px;
+        background: var(--teal-light);
+    }
+    .mob-user-avatar { font-size: 36px; color: var(--teal); line-height: 1; }
+    .mob-greet { font-size: 11px; color: var(--muted); }
+    .mob-uname { font-size: 15px; font-weight: 700; }
+
+    .mob-user-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--teal-light);
+    }
+    .mob-user-links a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--dark);
+        padding: 8px 10px;
+        background: #fff;
+        border-radius: 6px;
+        border: 1px solid var(--border-l);
+    }
+    .mob-user-links a i { color: var(--teal); }
+
+    .mob-logout {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        font-size: 12px;
+        color: var(--red);
+        border-bottom: 1px solid var(--border);
+        background: var(--teal-light);
+        cursor: pointer;
+    }
+
+    .mob-auth-row {
+        display: flex;
+        gap: 8px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .mob-nav-list { padding: 0; }
+    .mob-nav-item { border-bottom: 1px solid var(--border); }
+    .mob-nav-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .mob-nav-row a {
+        flex: 1;
+        padding: 13px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark);
+    }
+    .mob-nav-item.sale-item .mob-nav-row a { color: #d9383a; }
+    .mob-nav-item:not(.has-sub) > a {
+        display: block;
+        padding: 13px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark);
+    }
+    .mob-sub-toggle {
+        background: none;
+        border: none;
+        padding: 13px 16px;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 12px;
+    }
+    .mob-sub-list {
+        display: none;
+        background: #fafafa;
+        padding: 4px 0 8px;
+    }
+    .mob-sub-list.open { display: block; }
+    .mob-sub-list li a {
+        display: block;
+        padding: 8px 32px;
+        font-size: 13px;
+        color: #555;
+    }
+    .mob-sub-list li a:hover { color: var(--teal); }
+
+    /* ════════════════════════════════════════════
+       SHARED LAYOUT HELPERS
+    ════════════════════════════════════════════ */
+    .site-wrap { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
+
+    /* Section header row */
+    .sec-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+    .sec-title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -.4px;
+        color: #000;
+    }
+    .view-all {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px 14px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        transition: background .15s;
+        white-space: nowrap;
+    }
+    .view-all:hover { background: #f5f5f5; }
+
+    /* ════════════════════════════════════════════
+       SLIDER SYSTEM
+    ════════════════════════════════════════════ */
+    .slider-wrap { position: relative; padding: 0 2px; }
+    .slider-viewport { overflow: hidden; }
+    .slider-track {
+        display: flex;
+        gap: 14px;
+        transition: transform .38s cubic-bezier(.4,0,.2,1);
+        will-change: transform;
+    }
+    .slider-track .slide-item { flex: 0 0 calc(16.666% - 12px); min-width: 0; }
+    .slider-track.cols-5 .slide-item  { flex: 0 0 calc(20% - 12px); }
+    .slider-track.cols-4 .slide-item  { flex: 0 0 calc(25% - 11px); }
+    .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }  /* video 2-col */
+
+    .sldr-btn {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        width: 34px; height: 34px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        font-size: 12px;
+        color: #333;
+        transition: all .2s;
+    }
+    .sldr-btn:hover { background: #000; color: #fff; border-color: #000; }
+    .sldr-btn.prev { left: -17px; }
+    .sldr-btn.next { right: -17px; }
+    .sldr-btn:disabled { opacity: .3; pointer-events: none; }
+
+    /* ════════════════════════════════════════════
+       HERO SECTION
+    ════════════════════════════════════════════ */
+    .hero-wrap { max-width: 1440px; margin: 0 auto; padding: 18px 24px; }
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1.9fr 1.1fr;
+        gap: 18px;
+    }
+    .hero-main {
+        position: relative;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 500px;
+        background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .hero-main img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 50px;
+        max-width: 440px;
+    }
+    .hero-content h1 { font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+    .hero-content p  { font-size: 18px; color: #444; margin-bottom: 28px; }
+    .hero-shop-btn {
+        display: inline-block;
+        border: 1.5px solid #000;
+        color: #000;
+        padding: 11px 40px;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        transition: all .25s;
+    }
+    .hero-shop-btn:hover { background: #000; color: #fff; }
+
+    .hero-stack { display: flex; flex-direction: column; gap: 18px; }
+    .hero-sub {
+        flex: 1;
+        border-radius: 6px;
+        overflow: hidden;
+        min-height: 235px;
+        position: relative;
+    }
+    .hero-sub img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ════════════════════════════════════════════
+       PRODUCT CARD
+    ════════════════════════════════════════════ */
+    .pcard {
+        background: #fff;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    .pcard-img {
+        position: relative;
+        width: 100%;
+        padding-top: 100%;
+        background: #f7f7f7;
+        overflow: hidden;
+    }
+    .pcard-img img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform .3s;
+    }
+    .pcard:hover .pcard-img img { transform: scale(1.04); }
+    .disc-badge {
+        position: absolute;
+        top: 8px; left: 8px;
+        background: var(--red);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 3px;
+        z-index: 2;
+    }
+    .wish-btn {
+        position: absolute;
+        top: 8px; right: 8px;
+        background: rgba(255,255,255,.92);
+        border: none;
+        border-radius: 50%;
+        width: 30px; height: 30px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        transition: transform .15s;
+        font-size: 13px;
+        color: #555;
+    }
+    .wish-btn:hover { transform: scale(1.1); }
+    .pcard-body { padding: 8px 8px 0; flex: 1; display: flex; flex-direction: column; }
+    .pcard-live {
+        font-size: 10px;
+        font-weight: 600;
+        color: #444;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 3px;
+    }
+    .green-dot { width: 6px; height: 6px; background: #29be53; border-radius: 50%; display: inline-block; }
+    .pcard-name {
+        font-size: 12px;
+        color: #333;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 34px;
+        margin-bottom: 4px;
+    }
+    .pcard-price { font-size: 12px; padding-bottom: 8px; }
+    .p-cur { font-weight: 700; color: #000; }
+    .p-old { text-decoration: line-through; color: #999; margin-left: 4px; font-size: 11px; }
+    .p-off { color: var(--red); font-weight: 600; margin-left: 3px; font-size: 11px; }
+    .pcard-atc {
+        background: #000;
+        color: #fff;
+        border: none;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: auto;
+        cursor: pointer;
+        font-family: var(--font);
+        transition: background .2s;
+    }
+    .pcard-atc:hover { background: #333; }
+
+    /* ════════════════════════════════════════════
+       BESTSELLERS SECTION
+    ════════════════════════════════════════════ */
+    .bestsellers-sec {
+        background: var(--best-bg);
+        background-image: radial-gradient(#f3dec2 1px, transparent 1px);
+        background-size: 16px 16px;
+        padding: 28px 0;
+    }
+
+    /* ════════════════════════════════════════════
+       FEATURED COLLECTIONS
+    ════════════════════════════════════════════ */
+    .feat-coll-sec { background: #fff; padding: 32px 0; }
+    .coll-card {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 130%;
+        border-radius: 4px;
+    }
+    .coll-card img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform .3s;
+    }
+    .coll-card:hover img { transform: scale(1.04); }
+    .coll-label {
+        position: absolute;
+        bottom: 12px; left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255,255,255,.94);
+        padding: 6px 16px;
+        font-size: 14px;
+        font-weight: 700;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        border-radius: 2px;
+        width: 82%;
+        text-align: center;
+    }
+
+    /* ════════════════════════════════════════════
+       FLASH SALE
+    ════════════════════════════════════════════ */
+    .flash-sec {
+        background: var(--flash-bg);
+        background-image: radial-gradient(#9bcad0 1px, transparent 1px);
+        background-size: 14px 14px;
+        padding: 28px 0;
+    }
+    .timer-chip {
+        background: var(--red);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* ════════════════════════════════════════════
+       VIDEO SECTION
+    ════════════════════════════════════════════ */
+    .video-sec { padding: 28px 0; }
+    .video-card-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .video-reel {
+        position: relative;
+        width: 100%;
+        padding-top: 170%;
+        overflow: hidden;
+        background: #111;
+        border-radius: 6px 6px 0 0;
+    }
+    .video-reel video {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .video-overlay {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        padding: 14px 12px 10px;
+        background: linear-gradient(transparent, rgba(0,0,0,.82));
+        color: #fff;
+    }
+    .video-thumb {
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid #fff;
+    }
+    .video-meta { font-size: 13px; line-height: 1.3; }
+    .video-meta strong { display: block; font-size: 12px; }
+    .video-explore {
+        display: block;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        padding: 8px 0;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 0 0 6px 6px;
+        transition: background .2s;
+    }
+    .video-explore:hover { background: #333; color: #fff; }
+
+    /* ════════════════════════════════════════════
+       HOME CATEGORY COMBO
+    ════════════════════════════════════════════ */
+    .cat-combo-sec { background: var(--bg-card); padding: 28px 0; }
+    .cat-hero-card {
+        background: #fff;
+        border: 1px solid var(--border-l);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .cat-hero-img { position: relative; width: 100%; padding-top: 72%; overflow: hidden; }
+    .cat-hero-img img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+    }
+    .promo-badge {
+        position: absolute;
+        top: 12px; right: 12px;
+        background: #14a4b9;
+        color: #fff;
+        width: 62px; height: 62px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        line-height: 1.1;
+        z-index: 5;
+    }
+    .promo-badge span:nth-child(1) { font-size: 9px; font-weight: 400; }
+    .promo-badge span:nth-child(2) { font-size: 18px; }
+    .promo-badge span:nth-child(3) { font-size: 10px; font-weight: 400; }
+    .cat-hero-body { padding: 24px 16px; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .cat-hero-body h3 { font-size: 26px; font-weight: 800; }
+    .cat-hero-body p  { font-size: 14px; color: var(--muted); margin: 6px 0 14px; }
+    .cat-hero-body a  { border: 1.5px solid #333; padding: 7px 30px; font-size: 14px; font-weight: 500; transition: all .25s; color: #000; }
+    .cat-hero-body a:hover { background: #000; color: #fff; }
+
+    .sub-tile {
+        background: #fff;
+        text-align: center;
+        padding-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+    }
+    .sub-tile-img { position: relative; width: 100%; padding-top: 100%; overflow: hidden; background: #f7f7f7; margin-bottom: 8px; }
+    .sub-tile-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .sub-tile span { font-size: 13px; color: #444; font-weight: 500; padding: 0 6px; }
+
+    /* ════════════════════════════════════════════
+       CATEGORY PROFILE CARDS
+    ════════════════════════════════════════════ */
+    .profile-sec { background: #fff; padding: 28px 0; }
+    .profile-card { position: relative; overflow: hidden; border: 1px solid var(--border-l); }
+    .profile-card img { width: 100%; height: 380px; object-fit: cover; display: block; }
+    .profile-label {
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 100%;
+        background: rgba(255,255,255,.9);
+        padding: 10px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    /* ════════════════════════════════════════════
+       TRUST SECTION
+    ════════════════════════════════════════════ */
+    .trust-sec {
+        background: linear-gradient(135deg, #00222a, #003540);
+        padding: 52px 0;
+        margin-top: 28px;
+    }
+    .trust-sec .sec-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); text-align: center; margin-bottom: 8px; }
+    .trust-sec .sec-head-title { font-size: 26px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 40px; }
+    .trust-card {
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 10px;
+        padding: 28px 20px;
+        text-align: center;
+        height: 100%;
+    }
+    .trust-icon {
+        width: 56px; height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--teal), #00b8c4);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 22px;
+        color: #fff;
+    }
+    .trust-card h5 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .trust-card p  { font-size: 12px; color: rgba(255,255,255,.6); margin: 0; }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    footer {
+        background: var(--footer-bg);
+        color: #fff;
+        font-size: 13px;
+        padding: 48px 0 20px;
+    }
+    footer h5 { font-size: 13px; font-weight: 700; margin-bottom: 18px; letter-spacing: .4px; }
+    footer ul li { margin-bottom: 10px; }
+    footer ul li a { color: #aaa; transition: color .15s; }
+    footer ul li a:hover { color: #fff; }
+    .newsletter-row { display: flex; margin-top: 14px; }
+    .newsletter-row input {
+        flex: 1;
+        background: transparent;
+        border: 1px solid #33535a;
+        padding: 8px 12px;
+        color: #fff;
+        font-size: 12px;
+        font-family: var(--font);
+        outline: none;
+    }
+    .newsletter-row button {
+        background: #fff;
+        border: none;
+        padding: 8px 16px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        padding-top: 16px;
+        border-top: 1px solid #1a3d47;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        color: #777;
+    }
+    .footer-bottom a { color: #777; transition: color .15s; }
+    .footer-bottom a:hover { color: #fff; }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(25% - 11px); }
+    }
+
+    @media (max-width: 900px) {
+        /* Hide desktop nav, show hamburger */
+        .desktop-nav { display: none; }
+        .hamburger-btn { display: flex; }
+
+        /* Hero stacks vertically */
+        .hero-grid { grid-template-columns: 1fr; }
+        .hero-main { min-height: 380px; }
+        .hero-content { padding: 30px; }
+        .hero-content h1 { font-size: 26px; }
+
+        /* Sliders: 3 per row on tablet */
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(33.333% - 10px); }
+    }
+
+    @media (max-width: 600px) {
+        /* Utility bar */
+        .util-inner { padding: 7px 14px; }
+        .util-promo { font-size: 11px; }
+
+        /* Header */
+        .header-inner { padding: 9px 14px; gap: 10px; }
+        .header-search { display: none; } /* moved into drawer */
+        .hdr-auth-desktop { display: none; } /* moved into drawer */
+        .brand-logo img { height: 32px; }
+
+        /* Site wrap padding reduction */
+        .site-wrap { padding: 0 14px; }
+        .hero-wrap { padding: 12px 14px; }
+
+        /* Hero */
+        .hero-main { min-height: 260px; }
+        .hero-content { padding: 20px; }
+        .hero-content h1 { font-size: 20px; }
+        .hero-content p  { font-size: 14px; margin-bottom: 16px; }
+        .hero-shop-btn { padding: 9px 26px; font-size: 13px; }
+
+        /* Sliders: 2 per row on mobile */
+        .slider-track .slide-item,
+        .slider-track.cols-5 .slide-item,
+        .slider-track.cols-4 .slide-item { flex: 0 0 calc(50% - 7px); }
+        /* Video: 2 per row already set via cols-2v */
+        .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }
+
+        /* Section titles */
+        .sec-title { font-size: 16px; }
+
+        /* Category combo */
+        .cat-combo-sec .row { gap: 0; }
+
+        /* Profile cards */
+        .profile-card img { height: 200px; }
+
+        /* Trust section */
+        .trust-sec { padding: 36px 0; }
+        .trust-sec .sec-head-title { font-size: 20px; }
+
+        /* Footer */
+        footer { padding: 36px 0 16px; }
+        .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
+
+        /* Slider buttons hidden on very small (touch swipe instead) */
+        .sldr-btn { display: none; }
+    }
+
+    @media (max-width: 380px) {
+        .brand-logo img { height: 28px; }
+        .hdr-icon-btn { width: 34px; height: 34px; font-size: 16px; }
+        .hamburger-btn { width: 34px; height: 34px; }
+    }
     </style>
 </head>
 <body>
 
-<!-- TOP UTILITY BAR -->
-<div class="top-utility-bar">
-    <div class="util-inner">
-        <div class="d-none d-md-flex">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-        </div>
-        <div class="text-center" style="flex:1;">🔥 Limited Time Deal! 🔥 Get 5% EXTRA OFF when you pay via UPI or any Debit/Credit Card!</div>
-    </div>
-</div>
-
-<!-- MAIN HEADER -->
-<header class="main-header">
-    <div class="header-inner">
-        <a href="{% url 'wopper:website_home' %}" class="brand-logo" style="flex-shrink:0;gap:8px;">
-            {% if site_settings.site_logo %}
-                <img src="{{ site_settings.site_logo.url }}" alt="{{ site_name }}" style="height:40px;">
-            {% else %}
-                <img src="https://static.wixstatic.com/media/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png/v1/crop/x_170,y_140,w_810,h_800/fill/w_96,h_91,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png" alt="{{ site_name }}" style="height:40px;">
-            {% endif %}
-            
-        </a>
-        <form action="{% url 'wopper:search' %}" method="get" class="search-container" style="flex:1;max-width:560px;">
-            <input type="text" name="q" class="search-input" placeholder="Search for products, categories or brands..." required>
-        </form>
-        <div class="d-flex align-items-center" style="flex-shrink:0;">
-            <div class="header-actions-icons d-flex align-items-center">
-                {% if user.is_authenticated %}
-                    <div class="user-menu-dropdown">
-                        <button class="user-menu-toggle">
-                            <i class="far fa-user"></i>
-                            <span style="font-size:12px;">{{ user.first_name|default:user.username }}</span>
-                            <i class="fas fa-chevron-down" style="font-size:10px;"></i>
-                        </button>
-                        <div class="user-dropdown-menu">
-                            <a href="{% url 'wopper:profile' %}"><i class="fas fa-user me-2" style="color:var(--primary-teal);"></i>My Profile</a>
-                            <a href="{% url 'wopper:orders' %}"><i class="fas fa-box me-2" style="color:var(--primary-teal);"></i>My Orders</a>
-                            <a href="{% url 'wopper:wishlist' %}"><i class="fas fa-heart me-2" style="color:var(--primary-teal);"></i>Wishlist</a>
-                            <a href="{% url 'wopper:cart' %}"><i class="fas fa-shopping-bag me-2" style="color:var(--primary-teal);"></i>Cart</a>
-                            <hr style="margin:0;border:none;border-top:1px solid var(--border-light);">
-                            <a href="{% url 'mck_auth:website_logout' %}"><i class="fas fa-sign-out-alt me-2" style="color:#eb3c24;"></i>Logout</a>
-                        </div>
-                    </div>
-                {% else %}
-                    <a href="{% url 'mck_auth:website_signin' %}" class="auth-btn">Sign In</a>
-                    <a href="{% url 'mck_auth:website_signup' %}" class="auth-btn primary">Register</a>
-                {% endif %}
-                <a href="{% url 'wopper:wishlist' %}" aria-label="Wishlist" style="position:relative;">
-                    <i class="far fa-heart"></i>
-                    <span class="wishlist-count-badge" style="position:absolute;top:-8px;right:-12px;background:#eb3c24;color:white;font-size:10px;border-radius:50%;width:18px;height:18px;display:none;align-items:center;justify-content:center;">{{ wishlist_count|default:0 }}</span>
-                </a>
-                <a href="{% url 'wopper:cart' %}" aria-label="Cart" style="position:relative;">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count-badge" style="position:absolute;top:-8px;right:-12px;background:#eb3c24;color:white;font-size:10px;border-radius:50%;width:18px;height:18px;display:{% if cart_count > 0 %}flex{% else %}none{% endif %};align-items:center;justify-content:center;">{{ cart_count|default:0 }}</span>
-                </a>
-            </div>
-            <button class="mobile-nav-toggle ms-3" onclick="openMobileNav()"><i class="fas fa-bars"></i></button>
-        </div>
-    </div>
-</header>
-
-<!-- DESKTOP NAV -->
-<nav class="nav-menu-bar">
-    <div class="nav-inner">
-        <ul class="nav-menu-list">
-        <li class="nav-menu-item flash-sale"><a href="{% url 'wopper:all_products' %}?sale=true"><i class="fas fa-bolt me-1"></i>Flash Sale</a></li>
-        <li class="nav-menu-item"><a href="{% url 'wopper:all_products' %}">Shop All</a></li>
-        <li class="nav-menu-item"><a href="#">Offers</a></li>
-        {% for category in categories|slice:":6" %}
-        <li class="nav-menu-item">
-            <a href="{% url 'wopper:category_products' slug=category.slug %}">
-                {{ category.name }}
-                <i class="fas fa-chevron-down ms-1" style="font-size:10px;"></i>
-            </a>
-            <div class="dropdown-mega">
-                <div class="dd-section-title">{{ category.name }}</div>
-                {% for product in category.products.all|slice:":5" %}
-                    <a href="{% url 'wopper:product_detail' slug=product.slug %}">{{ product.name|truncatewords:3 }}</a>
-                {% empty %}
-                    <a href="{% url 'wopper:category_products' slug=category.slug %}">Explore {{ category.name }}</a>
-                {% endfor %}
-            </div>
-        </li>
-        {% endfor %}
-        <li class="nav-menu-item">
-            <a href="#">More <i class="fas fa-chevron-down ms-1" style="font-size:10px;"></i></a>
-            <div class="dropdown-mega">
-                <div class="dd-section-title">More Categories</div>
-                <a href="{% url 'wopper:all_products' %}">All Products</a>
-            </div>
-        </li>
-    </ul>
-    </div>
-</nav>
-
-<!-- MOBILE NAV DRAWER -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
-<div class="mobile-nav-drawer" id="mobileNavDrawer">
-    <button class="mobile-nav-close" onclick="closeMobileNav()"><i class="fas fa-times"></i></button>
-    {% if user.is_authenticated %}
-        <div style="padding:20px 24px 16px;border-bottom:1px solid #f0f0f0;">
-            <div style="font-size:13px;color:var(--text-muted);">Welcome back!</div>
-            <div style="font-size:15px;font-weight:600;margin-top:4px;">{{ user.first_name|default:user.username }}</div>
-            <a href="{% url 'mck_auth:website_logout' %}" style="color:#eb3c24;font-size:12px;text-decoration:none;margin-top:12px;display:block;">Logout</a>
-        </div>
-    {% else %}
-        <div style="padding:16px 24px;border-bottom:1px solid #f0f0f0;display:flex;gap:8px;">
-            <a href="{% url 'mck_auth:website_signin' %}" class="auth-btn" style="flex:1;margin:0;text-align:center;">Sign In</a>
-            <a href="{% url 'mck_auth:website_signup' %}" class="auth-btn primary" style="flex:1;margin:0;text-align:center;">Register</a>
-        </div>
-    {% endif %}
-    <ul style="list-style:none;padding:0;margin:0;">
-        <li class="mobile-nav-item flash-sale"><a href="{% url 'wopper:all_products' %}?sale=true">🏷️ Flash Sale</a></li>
-        <li class="mobile-nav-item"><a href="{% url 'wopper:all_products' %}">Shop All</a></li>
-        <li class="mobile-nav-item"><a href="#">Offers</a></li>
-        {% for category in categories|slice:":10" %}
-        <li class="mobile-nav-item">
-            <a href="#">
-                {{ category.name }}
-                <button class="mobile-nav-toggle-btn" onclick="toggleMobileSub(this)">
-                    <i class="fas fa-plus" style="font-size:12px;"></i>
-                </button>
-            </a>
-            <div class="mobile-sub-menu">
-                {% for product in category.products.all|slice:":4" %}
-                    <a href="{% url 'wopper:product_detail' slug=product.slug %}">{{ product.name|truncatewords:3 }}</a>
-                {% empty %}
-                    <a href="{% url 'wopper:category_products' slug=category.slug %}">Explore {{ category.name }}</a>
-                {% endfor %}
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
+<!-- ══════════════════════════
+     HEADER INCLUDE
+══════════════════════════ -->
+{% include 'includes/header.html' %}
 
 <!-- ══════════════════════════════════════
-     HERO SECTION
+     HERO
 ══════════════════════════════════════ -->
-<main class="hero-section-container">
-    <div class="hero-master-grid">
-        <!-- Left Hero Banner -->
-        {% if hero_banners.0 %}
-        <section class="hero-left-banner" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
-            <picture>
-                <source media="(max-width:768px)" srcset="{% if hero_banners.0.mobile_image %}{{ hero_banners.0.mobile_image.url }}{% endif %}">
-                <source media="(min-width:769px)" srcset="{{ hero_banners.0.desktop_image.url }}">
-                <img src="{{ hero_banners.0.desktop_image.url }}" alt="Banner" style="width:100%;height:100%;object-fit:contain;object-position:center;position:absolute;top:0;left:0;background:#f8f9fa;">
-            </picture>
-            {% if hero_banners.0.title or hero_banners.0.subtitle %}
-            <div class="hero-content-wrapper">
-                <div class="hero-title-main">{{ hero_banners.0.title|default:"" }}</div>
-                <div class="hero-subtitle-sub">{{ hero_banners.0.subtitle|default:"" }}</div>
-                <a href="{% url 'wopper:all_products' %}" class="btn-hero-shop">Shop Now →</a>
-            </div>
-            {% endif %}
-        </section>
-        {% else %}
-        <section class="hero-left-banner" style="background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);">
-            <div class="hero-content-wrapper">
-                <div class="hero-title-main">Premium Home Solutions</div>
-                <div class="hero-subtitle-sub">Discover quality products for every space</div>
-                <a href="{% url 'wopper:all_products' %}" class="btn-hero-shop">Shop Now →</a>
-            </div>
-        </section>
-        {% endif %}
-
-        <!-- Right Stack -->
-        <div class="hero-right-stack">
-            <!-- Second Banner - Raw Image Only -->
-            {% if hero_banners.1 %}
-            <section class="right-stack-card" style="padding: 0; overflow: hidden; min-height: 240px;">
+<main>
+<div class="hero-wrap">
+    <div class="hero-grid">
+        <!-- Main banner -->
+        <div class="hero-main">
+            {% if hero_banners.0 %}
                 <picture>
-                    <source media="(max-width:768px)" srcset="{% if hero_banners.1.mobile_image %}{{ hero_banners.1.mobile_image.url }}{% endif %}">
-                    <source media="(min-width:769px)" srcset="{{ hero_banners.1.desktop_image.url }}">
-                    <img src="{{ hero_banners.1.desktop_image.url }}" alt="Banner" style="width:100%;height:100%;object-fit:cover;display:block;">
+                    <source media="(max-width:768px)" srcset="{% if hero_banners.0.mobile_image %}{{ hero_banners.0.mobile_image.url }}{% endif %}">
+                    <img src="{{ hero_banners.0.desktop_image.url }}" alt="Hero Banner">
                 </picture>
-            </section>
-            {% else %}
-            <section class="right-stack-card card-bamboo">
-                <div class="card-bamboo-content">
-                    <span class="brand-tag-mini">BAMBOO</span>
-                    <div class="card-bamboo-title">Eco-Friendly<br>Home Essentials</div>
-                    <a href="{% url 'wopper:all_products' %}" class="btn-mini-shop">SHOP NOW →</a>
+                {% if hero_banners.0.title %}
+                <div class="hero-content">
+                    <h1>{{ hero_banners.0.title }}</h1>
+                    {% if hero_banners.0.subtitle %}<p>{{ hero_banners.0.subtitle }}</p>{% endif %}
+                    <a href="{% url 'wopper:all_products' %}" class="hero-shop-btn">Shop Now →</a>
                 </div>
-            </section>
-            {% endif %}
-
-            <!-- Third Banner - Raw Image Only -->
-            {% if hero_banners.2 %}
-            <section class="right-stack-card" style="padding: 0; overflow: hidden; min-height: 240px;">
-                <picture>
-                    <source media="(max-width:768px)" srcset="{% if hero_banners.2.mobile_image %}{{ hero_banners.2.mobile_image.url }}{% endif %}">
-                    <source media="(min-width:769px)" srcset="{{ hero_banners.2.desktop_image.url }}">
-                    <img src="{{ hero_banners.2.desktop_image.url }}" alt="Banner" style="width:100%;height:100%;object-fit:cover;display:block;">
-                </picture>
-            </section>
+                {% endif %}
             {% else %}
-            <section class="right-stack-card card-trust">
-                <div class="trust-grid-headline"><strong>Why</strong> shop with us?</div>
-                <div class="trust-metrics-wrapper">
-                    <div class="metric-item-box"><i class="fas fa-truck-fast"></i><span class="metric-text-title">Fast Delivery Pan India</span></div>
-                    <div class="metric-item-box"><i class="fas fa-shield-halved"></i><span class="metric-text-title">100% Secure Payments</span></div>
-                    <div class="metric-item-box"><i class="fas fa-arrow-rotate-left"></i><span class="metric-text-title">Easy 7-Day Returns</span></div>
-                    <div class="metric-item-box"><i class="fas fa-star"></i><span class="metric-text-title">4.8★ Rated Brand</span></div>
+                <div class="hero-content">
+                    <h1>Premium Home Solutions</h1>
+                    <p>Discover quality for every space</p>
+                    <a href="{% url 'wopper:all_products' %}" class="hero-shop-btn">Shop Now →</a>
                 </div>
-            </section>
             {% endif %}
         </div>
+
+        <!-- Side stack -->
+        <div class="hero-stack">
+            <div class="hero-sub">
+                {% if hero_banners.1 %}
+                    <img src="{{ hero_banners.1.desktop_image.url }}" alt="Banner 2">
+                {% else %}
+                    <div style="background:#e0f4f5;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--teal);font-weight:600;">Eco Home</div>
+                {% endif %}
+            </div>
+            <div class="hero-sub">
+                {% if hero_banners.2 %}
+                    <img src="{{ hero_banners.2.desktop_image.url }}" alt="Banner 3">
+                {% else %}
+                    <div style="background:#fff3e0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#e65100;font-weight:600;">Why Us?</div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-</main>
+</div>
+
 <!-- ══════════════════════════════════════
      BESTSELLERS
 ══════════════════════════════════════ -->
 {% if bestsellers %}
-<section id="bestsellers-section">
-    <div class="section-inner">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+<section class="bestsellers-sec">
+    <div class="site-wrap">
+        <div class="sec-head">
             <div class="d-flex align-items-center gap-2">
-                <span style="color:#e2a02b;font-size:20px;"><i class="fa-solid fa-award"></i></span>
-                <h2 class="m-0 fw-bold" style="font-size:20px;letter-spacing:-.5px;">Bestsellers</h2>
+                <i class="fa-solid fa-award" style="color:#e2a02b;font-size:20px;"></i>
+                <h2 class="sec-title">Bestsellers</h2>
             </div>
-            <a href="{% url 'wopper:all_products' %}" class="view-all-btn">View All</a>
+            <a href="{% url 'wopper:all_products' %}" class="view-all">View All</a>
         </div>
-        <div class="slider-section" id="bs-slider">
-            <button class="slider-btn prev" onclick="slide('bs-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track" id="bs-track">
+        <div class="slider-wrap" id="bs-sec">
+            <button class="sldr-btn prev" onclick="slide('bs-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track">
                     {% for product in bestsellers %}
                     <div class="slide-item">
-                        <div class="custom-card">
-                            {% if product.is_new_arrival %}<span class="discount-badge">NEW</span>{% endif %}
-                            <button class="wishlist-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
+                        <div class="pcard">
+                            {% if product.is_new_arrival %}<span class="disc-badge">NEW</span>{% endif %}
+                            <button class="wish-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
                                 <i class="far fa-heart"></i>
                             </button>
                             <a href="{% url 'wopper:product_detail' slug=product.slug %}">
-                                <div class="card-img-wrapper">
-                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
+                                <div class="pcard-img">
+                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
                                 </div>
                             </a>
-                            <div class="viewing-indicator"><span class="viewing-dot"></span>Bestseller</div>
-                            <div class="product-title">{{ product.name }}</div>
-                            <div class="price-container">
-                                <span class="current-price">₹{{ product.price }}</span>
-                                {% if product.sale_price %}<span class="old-price">₹{{ product.sale_price }}</span><span class="discount-text">({{ product.discount_percentage|floatformat:0 }}% off)</span>{% endif %}
+                            <div class="pcard-body">
+                                <div class="pcard-live"><span class="green-dot"></span> Bestseller</div>
+                                <div class="pcard-name">{{ product.name }}</div>
+                                <div class="pcard-price">
+                                    <span class="p-cur">₹{{ product.price }}</span>
+                                    {% if product.sale_price %}<span class="p-old">₹{{ product.sale_price }}</span><span class="p-off">{{ product.discount_percentage|floatformat:0 }}% off</span>{% endif %}
+                                </div>
                             </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('{{ product.slug }}')">Add to cart</button>
+                            <button class="pcard-atc" onclick="addToCart('{{ product.slug }}')">Add to Cart</button>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('bs-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('bs-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -1073,30 +1203,26 @@
      FEATURED COLLECTIONS
 ══════════════════════════════════════ -->
 {% if categories %}
-<section id="featured-collections">
-    <div class="section-inner">
-        <h2 class="fw-bold mb-4 mt-3" style="font-size:20px;letter-spacing:-.5px;">Featured Collections</h2>
-        <div class="slider-section" id="fc-slider">
-            <button class="slider-btn prev" onclick="slide('fc-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track slides-featured" id="fc-track">
+<section class="feat-coll-sec">
+    <div class="site-wrap">
+        <div class="sec-head"><h2 class="sec-title">Featured Collections</h2></div>
+        <div class="slider-wrap" id="fc-sec">
+            <button class="sldr-btn prev" onclick="slide('fc-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track cols-5">
                     {% for category in categories|slice:":10" %}
                     <div class="slide-item">
-                        <a href="{% url 'wopper:category_products' slug=category.slug %}" style="text-decoration:none;">
-                            <div class="collection-card">
-                                {% if category.image %}
-                                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
-                                {% else %}
-                                    <img src="https://via.placeholder.com/300x400?text={{ category.name }}" alt="{{ category.name }}">
-                                {% endif %}
-                                <div class="collection-label">{{ category.name }}</div>
+                        <a href="{% url 'wopper:category_products' slug=category.slug %}">
+                            <div class="coll-card">
+                                {% if category.image %}<img src="{{ category.image.url }}" alt="{{ category.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x390?text={{ category.name }}">{% endif %}
+                                <div class="coll-label">{{ category.name }}</div>
                             </div>
                         </a>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('fc-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('fc-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -1106,110 +1232,115 @@
      FLASH SALE
 ══════════════════════════════════════ -->
 {% if flash_sales %}
-<section id="flash-sale-section">
-    <div class="section-inner">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="d-flex align-items-center gap-1 fw-bold" style="font-size:24px;">
-                    <span><i class="fa-solid fa-bolt"></i></span> Flash Sale
-                </div>
-                <div class="timer-box">
-                    <i class="fa-regular fa-clock"></i>
-                    <span id="countdown-timer">11:28:41</span>
-                </div>
+<section class="flash-sec">
+    <div class="site-wrap">
+        <div class="sec-head">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <h2 class="sec-title" style="color:#000;"><i class="fas fa-bolt" style="color:#d9383a;"></i> Flash Sale</h2>
+                <div class="timer-chip"><i class="far fa-clock"></i> <span id="countdown-timer">11:28:41</span></div>
             </div>
-            <a href="{% url 'wopper:all_products' %}" class="view-all-btn">View All</a>
+            <a href="{% url 'wopper:all_products' %}" class="view-all">View All</a>
         </div>
-        <div class="slider-section" id="fs-slider">
-            <button class="slider-btn prev" onclick="slide('fs-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track" id="fs-track">
+        <div class="slider-wrap" id="fs-sec">
+            <button class="sldr-btn prev" onclick="slide('fs-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track">
                     {% for product in flash_sales %}
                     <div class="slide-item">
-                        <div class="custom-card">
-                            <span class="discount-badge">- {{ product.discount_percentage|floatformat:0 }}%</span>
-                            <button class="wishlist-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
+                        <div class="pcard">
+                            <span class="disc-badge">-{{ product.discount_percentage|floatformat:0 }}%</span>
+                            <button class="wish-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
                                 <i class="far fa-heart"></i>
                             </button>
                             <a href="{% url 'wopper:product_detail' slug=product.slug %}">
-                                <div class="card-img-wrapper">
-                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
+                                <div class="pcard-img">
+                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
                                 </div>
                             </a>
-                            <div class="product-title" style="margin-top:12px;">{{ product.name }}</div>
-                            <div class="price-container">
-                                <span class="current-price">₹{{ product.price }}</span>
-                                {% if product.sale_price %}<span class="old-price">₹{{ product.sale_price }}</span><span class="discount-text">({{ product.discount_percentage|floatformat:0 }}% off)</span>{% endif %}
+                            <div class="pcard-body">
+                                <div class="pcard-name">{{ product.name }}</div>
+                                <div class="pcard-price">
+                                    <span class="p-cur">₹{{ product.price }}</span>
+                                    {% if product.sale_price %}<span class="p-old">₹{{ product.sale_price }}</span><span class="p-off">{{ product.discount_percentage|floatformat:0 }}% off</span>{% endif %}
+                                </div>
                             </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('{{ product.slug }}')">Add to cart</button>
+                            <button class="pcard-atc" onclick="addToCart('{{ product.slug }}')">Add to Cart</button>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('fs-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('fs-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
 {% endif %}
 
 <!-- ══════════════════════════════════════
-     SHOP BY VIDEO
+     SHOP BY VIDEO  ← 2-per-row on mobile
 ══════════════════════════════════════ -->
 {% if homepage_videos %}
-<section id="shop-by-video" class="py-4">
-    <div class="section-inner">
-        <h2 class="fw-bold mb-3" style="font-size:24px;letter-spacing:-.3px;color:#000;">Shop By Video</h2>
-        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3">
-            {% for video in homepage_videos|slice:":5" %}
-            <div class="col">
-                <div class="video-reel-card">
-                    <video class="video-main-cover" autoplay muted loop playsinline>
-                        <source src="{{ video.video.url }}" type="video/mp4">
-                    </video>
-                    <div class="video-overlay-content">
-                        <div class="d-flex align-items-center gap-2">
-                            <img src="{% if video.thumbnail_image %}{{ video.thumbnail_image.url }}{% else %}https://via.placeholder.com/52x52{% endif %}" class="video-mini-thumb" alt="{{ video.title }}">
-                            <div class="video-meta-text">
-                                <div>{{ video.title|truncatewords:2 }}</div>
-                                <div class="fw-bold">Shop Now</div>
+<section class="video-sec">
+    <div class="site-wrap">
+        <div class="sec-head">
+            <h2 class="sec-title">Shop By Video</h2>
+        </div>
+        <div class="slider-wrap" id="vid-sec">
+            <button class="sldr-btn prev" onclick="slide('vid-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <!-- cols-2v means 2 per row on mobile, 5 on desktop -->
+                <div class="slider-track cols-2v" id="vid-track">
+                    {% for video in homepage_videos|slice:":6" %}
+                    <div class="slide-item">
+                        <div class="video-card-wrap">
+                            <div class="video-reel">
+                                <video autoplay muted loop playsinline>
+                                    <source src="{{ video.video.url }}" type="video/mp4">
+                                </video>
+                                <div class="video-overlay">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <img src="{% if video.thumbnail_image %}{{ video.thumbnail_image.url }}{% else %}https://via.placeholder.com/44x44{% endif %}" class="video-thumb" alt="{{ video.title }}">
+                                        <div class="video-meta">
+                                            <span>{{ video.title|truncatewords:3 }}</span>
+                                            <strong>Shop Now</strong>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <a href="{% url 'wopper:all_products' %}" class="video-explore">Explore More</a>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-                <a href="{% url 'wopper:all_products' %}" class="explore-btn-video">Explore More</a>
             </div>
-            {% endfor %}
+            <button class="sldr-btn next" onclick="slide('vid-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
 {% endif %}
 
 <!-- ══════════════════════════════════════
-     HOME CATEGORY SECTION
+     CATEGORY COMBO
 ══════════════════════════════════════ -->
-<section id="home-category-section" class="my-3">
-    <div class="hybrid-container">
-        <div class="hybrid-inner">
+<section class="cat-combo-sec">
+    <div class="site-wrap">
         <div class="row g-3">
             <div class="col-12 col-lg-4">
-                <div class="category-hero-card">
-                    <div class="promo-circle-badge">
-                        <span class="badge-top">Upto</span>
-                        <span class="badge-middle">80%</span>
-                        <span class="badge-bottom">off</span>
-                    </div>
-                    <div class="cat-hero-img-container">
+                <div class="cat-hero-card">
+                    <div class="cat-hero-img">
                         {% if categories.0 and categories.0.image %}
-                            <img src="{{ categories.0.image.url }}" alt="Home Decor Hero">
+                            <img src="{{ categories.0.image.url }}" alt="Category">
                         {% else %}
-                            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&auto=format&fit=crop&q=60" alt="Home Decor Hero">
+                            <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&auto=format&fit=crop&q=60" alt="Home Decor">
                         {% endif %}
+                        <div class="promo-badge">
+                            <span>Upto</span><span>80%</span><span>off</span>
+                        </div>
                     </div>
-                    <div class="cat-hero-text-block">
+                    <div class="cat-hero-body">
                         <h3>Home Decor</h3>
                         <p>Sale up to 80% off on selected items*</p>
-                        <a href="{% url 'wopper:all_products' %}" class="cat-hero-btn">View All</a>
+                        <a href="{% url 'wopper:all_products' %}">View All</a>
                     </div>
                 </div>
             </div>
@@ -1217,16 +1348,12 @@
                 <div class="row row-cols-2 row-cols-sm-4 g-3">
                     {% for product in featured_products|slice:":8" %}
                     <div class="col">
-                        <a href="{% url 'wopper:product_detail' slug=product.slug %}" style="text-decoration:none;color:inherit;">
-                            <div class="sub-cat-tile">
-                                <div class="sub-cat-img">
-                                    {% if product.image %}
-                                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                                    {% else %}
-                                        <img src="https://via.placeholder.com/300x300?text=No+Image" alt="No image">
-                                    {% endif %}
+                        <a href="{% url 'wopper:product_detail' slug=product.slug %}">
+                            <div class="sub-tile">
+                                <div class="sub-tile-img">
+                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
                                 </div>
-                                <span>{{ product.name|truncatechars:50 }}</span>
+                                <span>{{ product.name|truncatechars:40 }}</span>
                             </div>
                         </a>
                     </div>
@@ -1241,43 +1368,42 @@
      BESTSELLERS IN HOME
 ══════════════════════════════════════ -->
 {% if bestsellers %}
-<section id="bestsellers-home" class="py-4">
-    <div class="section-inner">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="fw-bold m-0" style="font-size:24px;letter-spacing:-.3px;color:#000;">Bestsellers in Home</h2>
-            <a href="{% url 'wopper:all_products' %}" class="view-all-btn">View all</a>
+<section style="padding:28px 0;background:#fff;">
+    <div class="site-wrap">
+        <div class="sec-head">
+            <h2 class="sec-title">Bestsellers in Home</h2>
+            <a href="{% url 'wopper:all_products' %}" class="view-all">View All</a>
         </div>
-        <div class="slider-section" id="bsh-slider">
-            <button class="slider-btn prev" onclick="slide('bsh-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track slides-5" id="bsh-track">
+        <div class="slider-wrap" id="bsh-sec">
+            <button class="sldr-btn prev" onclick="slide('bsh-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track cols-5">
                     {% for product in bestsellers|slice:":12" %}
                     <div class="slide-item">
-                        <div class="product-card-standard">
-                            <button class="wishlist-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
+                        <div class="pcard">
+                            <button class="wish-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
                                 <i class="far fa-heart"></i>
                             </button>
                             <a href="{% url 'wopper:product_detail' slug=product.slug %}">
-                                <div class="prod-img-box">
-                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
+                                <div class="pcard-img">
+                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
                                 </div>
                             </a>
-                            <div class="prod-indicator-row">
-                                <span class="green-dot-pulse"></span>
-                                {{ product.view_count|default:"24" }} Viewing
+                            <div class="pcard-body">
+                                <div class="pcard-live"><span class="green-dot"></span> {{ product.view_count|default:"24" }} Viewing</div>
+                                <div class="pcard-name">{{ product.name }}</div>
+                                <div class="pcard-price">
+                                    <span class="p-cur">₹{{ product.price }}</span>
+                                    {% if product.sale_price %}<span class="p-old">₹{{ product.sale_price }}</span><span class="p-off">{{ product.discount_percentage|floatformat:0 }}% off</span>{% endif %}
+                                </div>
                             </div>
-                            <div class="prod-title-text">{{ product.name }}</div>
-                            <div class="prod-pricing-row">
-                                <span class="price-current">₹{{ product.price }}</span>
-                                {% if product.sale_price %}<span class="price-slashed">₹{{ product.sale_price }}</span><span class="price-percentage">({{ product.discount_percentage|floatformat:0 }}% off)</span>{% endif %}
-                            </div>
-                            <button class="add-cart-solid-btn" onclick="addToCart('{{ product.slug }}')">Add to cart</button>
+                            <button class="pcard-atc" onclick="addToCart('{{ product.slug }}')">Add to Cart</button>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('bsh-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('bsh-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -1287,70 +1413,65 @@
      EXPLORE COLLECTIONS
 ══════════════════════════════════════ -->
 {% if featured_products %}
-<section id="explore-collections" class="py-4">
-    <div class="section-inner">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="fw-bold m-0" style="font-size:24px;letter-spacing:-.3px;color:#000;">Explore Collections</h2>
-            <a href="{% url 'wopper:all_products' %}" class="view-all-btn">View all</a>
+<section style="padding:28px 0;background:var(--bg-card);">
+    <div class="site-wrap">
+        <div class="sec-head">
+            <h2 class="sec-title">Explore Collections</h2>
+            <a href="{% url 'wopper:all_products' %}" class="view-all">View All</a>
         </div>
-        <div class="slider-section" id="ec-slider">
-            <button class="slider-btn prev" onclick="slide('ec-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track slides-5" id="ec-track">
+        <div class="slider-wrap" id="ec-sec">
+            <button class="sldr-btn prev" onclick="slide('ec-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track cols-5">
                     {% for product in featured_products|slice:":12" %}
                     <div class="slide-item">
-                        <div class="product-card-standard">
-                            <button class="wishlist-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
+                        <div class="pcard">
+                            <button class="wish-btn" onclick="event.preventDefault();toggleWishlist('{{ product.slug }}',this)">
                                 <i class="far fa-heart"></i>
                             </button>
                             <a href="{% url 'wopper:product_detail' slug=product.slug %}">
-                                <div class="prod-img-box">
-                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
+                                <div class="pcard-img">
+                                    {% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/300x300?text=No+Image">{% endif %}
                                 </div>
                             </a>
-                            <div class="prod-indicator-row">
-                                <span class="green-dot-pulse"></span>
-                                {{ product.view_count|default:"24" }} Viewing
+                            <div class="pcard-body">
+                                <div class="pcard-live"><span class="green-dot"></span> {{ product.view_count|default:"12" }} Viewing</div>
+                                <div class="pcard-name">{{ product.name }}</div>
+                                <div class="pcard-price">
+                                    <span class="p-cur">₹{{ product.price }}</span>
+                                    {% if product.sale_price %}<span class="p-old">₹{{ product.sale_price }}</span><span class="p-off">{{ product.discount_percentage|floatformat:0 }}% off</span>{% endif %}
+                                </div>
                             </div>
-                            <div class="prod-title-text">{{ product.name }}</div>
-                            <div class="prod-pricing-row">
-                                <span class="price-current">₹{{ product.price }}</span>
-                                {% if product.sale_price %}<span class="price-slashed">₹{{ product.sale_price }}</span><span class="price-percentage">({{ product.discount_percentage|floatformat:0 }}% off)</span>{% endif %}
-                            </div>
-                            <button class="add-cart-solid-btn" onclick="addToCart('{{ product.slug }}')">Add to cart</button>
+                            <button class="pcard-atc" onclick="addToCart('{{ product.slug }}')">Add to Cart</button>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('ec-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('ec-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
 {% endif %}
 
 <!-- ══════════════════════════════════════
-     BOTTOM CATEGORY PROFILES
+     CATEGORY PROFILES SLIDER
 ══════════════════════════════════════ -->
 {% if categories %}
-<section id="bottom-category-profiles" class="py-4 bg-white">
-    <div class="section-inner">
-        <div class="slider-section" id="cp-slider">
-            <button class="slider-btn prev" onclick="slide('cp-slider',-1)"><i class="fas fa-chevron-left"></i></button>
-            <div class="slider-wrapper">
-                <div class="slider-track slides-profile" id="cp-track">
+<section class="profile-sec">
+    <div class="site-wrap">
+        <div class="slider-wrap" id="cp-sec">
+            <button class="sldr-btn prev" onclick="slide('cp-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-viewport">
+                <div class="slider-track cols-4">
                     {% for category in categories|slice:":10" %}
                     <div class="slide-item">
-                        <a href="{% url 'wopper:category_products' slug=category.slug %}" style="text-decoration:none;">
-                            <div class="profile-nav-card">
-                                {% if category.image %}
-                                    <img src="{{ category.image.url }}" alt="{{ category.name }}">
-                                {% else %}
-                                    <img src="https://via.placeholder.com/400x400?text={{ category.name }}" alt="{{ category.name }}">
-                                {% endif %}
-                                <div class="profile-nav-label-strip">
+                        <a href="{% url 'wopper:category_products' slug=category.slug %}">
+                            <div class="profile-card">
+                                {% if category.image %}<img src="{{ category.image.url }}" alt="{{ category.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/400x380?text={{ category.name }}">{% endif %}
+                                <div class="profile-label">
                                     <span>{{ category.name }}</span>
-                                    <i class="fa-solid fa-arrow-right"></i>
+                                    <i class="fas fa-arrow-right"></i>
                                 </div>
                             </div>
                         </a>
@@ -1358,329 +1479,277 @@
                     {% endfor %}
                 </div>
             </div>
-            <button class="slider-btn next" onclick="slide('cp-slider',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('cp-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
 {% endif %}
 
-<!-- TRUST SECTION -->
-<section class="trust-ribbon-new">
-    <div class="container">
-        <div class="section-label">Our Promise</div>
-        <div class="section-headline">Why 10 Million+ Customers Choose Us</div>
+<!-- ══════════════════════════════════════
+     TRUST
+══════════════════════════════════════ -->
+<section class="trust-sec">
+    <div class="site-wrap">
+        <div class="sec-label">Our Promise</div>
+        <div class="sec-head-title">Why 10 Million+ Customers Choose Us</div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4">
-            <div class="col"><div class="trust-card"><div class="trust-card-icon"><i class="fa-solid fa-boxes-packing"></i></div><h5>Wide Range of Products</h5><p>Transform your space with diverse home solutions.</p></div></div>
-            <div class="col"><div class="trust-card"><div class="trust-card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div><h5>Affordable Pricing</h5><p>Elevate your home without breaking the bank.</p></div></div>
-            <div class="col"><div class="trust-card"><div class="trust-card-icon"><i class="fa-solid fa-truck-fast"></i></div><h5>Fast & Reliable Shipping</h5><p>Swift delivery ensures your home upgrade never waits.</p></div></div>
-            <div class="col"><div class="trust-card"><div class="trust-card-icon"><i class="fa-solid fa-arrow-rotate-left"></i></div><h5>Easy Return Process</h5><p>Hassle-free returns, no questions asked.</p></div></div>
-            <div class="col"><div class="trust-card"><div class="trust-card-icon"><i class="fa-solid fa-handshake"></i></div><h5>Trusted Collaborations</h5><p>Curated collections from trusted brand partners.</p></div></div>
+            <div class="col"><div class="trust-card"><div class="trust-icon"><i class="fas fa-boxes-packing"></i></div><h5>Wide Range</h5><p>Diverse home solutions for every need.</p></div></div>
+            <div class="col"><div class="trust-card"><div class="trust-icon"><i class="fas fa-hand-holding-dollar"></i></div><h5>Affordable</h5><p>Elevate your home without overspending.</p></div></div>
+            <div class="col"><div class="trust-card"><div class="trust-icon"><i class="fas fa-truck-fast"></i></div><h5>Fast Shipping</h5><p>Swift delivery pan India.</p></div></div>
+            <div class="col"><div class="trust-card"><div class="trust-icon"><i class="fas fa-arrow-rotate-left"></i></div><h5>Easy Returns</h5><p>Hassle-free, no questions asked.</p></div></div>
+            <div class="col"><div class="trust-card"><div class="trust-icon"><i class="fas fa-handshake"></i></div><h5>Trusted Brands</h5><p>Curated from trusted partners.</p></div></div>
         </div>
     </div>
 </section>
+</main>
 
-<footer>
-    <div class="container-fluid px-5 container">
-        <div class="row border-bottom border-secondary pb-4 mb-4">
-            <div class="col-12 col-md-4 mb-3 mb-md-0">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                    <h4 class="fw-bold m-0" style="letter-spacing:-0.5px; font-size: 20px;">the better home</h4>
-                </div>
-                <p class="text-secondary" style="font-size:12px; line-height:1.6;">The Better Home offers innovative, premium-quality products that transform living spaces. Find everything from stylish appliances and décor to functional furnishings, storage solutions, kitchen and dining essentials, and travel gear.</p>
-                <div class="d-flex mt-3">
-                    <input type="email" class="footer-newsletter-input" placeholder="Email">
-                    <button class="footer-newsletter-btn"><i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-            </div>
-            <div class="col-6 col-md-2 offset-md-1">
-                <h5>Shop</h5>
-                <ul>
-                    <li><a href="#">Air Flyers</a></li>
-                    <li><a href="#">Bath Brushes</a></li>
-                    <li><a href="#">Candles and Tea Lights</a></li>
-                    <li><a href="#">Gymnastics</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md-2">
-                <h5>Bestselling Categories</h5>
-                <ul>
-                    <li><a href="#">Blenders and Grinders</a></li>
-                    <li><a href="#">Idols and Figurines</a></li>
-                    <li><a href="#">Sling and Cross-Body Bags</a></li>
-                    <li><a href="#">Sports and Fitness</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md-2">
-                <h5>Quick links</h5>
-                <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms Of Use</a></li>
-                </ul>
-            </div>
-            
-        </div>
-        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center text-secondary style-attribution" style="font-size:11px;">
-            <p class="mb-2 mb-sm-0">&copy; COPYRIGHT 2026, Merhaki Foods And Nutrition Pvt Ltd. All Rights Reserved.</p>
-            <div class="d-flex gap-3">
-                <a href="#" class="text-secondary text-decoration-none">Refund Policy</a>
-                <a href="#" class="text-secondary text-decoration-none">Privacy Policy</a>
-                <a href="#" class="text-secondary text-decoration-none">Terms Of Service</a>
-            </div>
-        </div>
-    </div>
-</footer>
+  {% include "includes/footer-website.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-// ── CSRF ──
-function getCookie(name) {
+/* ══ CSRF ══ */
+function getCookie(n) {
     let v = null;
-    if (document.cookie && document.cookie !== '') {
-        document.cookie.split(';').forEach(c => {
-            c = c.trim();
-            if (c.startsWith(name + '=')) v = decodeURIComponent(c.slice(name.length + 1));
-        });
-    }
+    document.cookie && document.cookie.split(';').forEach(c => {
+        c = c.trim();
+        if (c.startsWith(n + '=')) v = decodeURIComponent(c.slice(n.length + 1));
+    });
     return v;
 }
-const csrftoken = getCookie('csrftoken');
-const isAuthenticated = {{ user.is_authenticated|lower }};
+const csrf = getCookie('csrftoken');
+const isAuth = {{ user.is_authenticated|lower }};
 
-// ── NOTIFICATION ──
-function showNotification(message, type='info') {
-    let container = document.getElementById('notif-container');
-    if (!container) {
-        container = document.createElement('div');
-        container.id = 'notif-container';
-        container.style.cssText = 'position:fixed;top:20px;right:20px;z-index:9999;';
-        document.body.appendChild(container);
+/* ══ NOTIFICATIONS ══ */
+function showNotif(msg, type = 'info') {
+    let box = document.getElementById('_notif');
+    if (!box) {
+        box = document.createElement('div');
+        box.id = '_notif';
+        box.style.cssText = 'position:fixed;top:18px;right:18px;z-index:9999;max-width:300px;';
+        document.body.appendChild(box);
     }
     const n = document.createElement('div');
-    const bg = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6';
-    n.style.cssText = `background:${bg};color:white;padding:12px 20px;margin-bottom:10px;border-radius:8px;font-size:14px;font-weight:500;box-shadow:0 4px 12px rgba(0,0,0,.15);cursor:pointer;font-family:'Inter',sans-serif;`;
-    n.textContent = message;
-    container.appendChild(n);
-    setTimeout(() => n.remove(), 3000);
+    const bg = { success:'#10b981', error:'#ef4444', warning:'#f59e0b', info:'#3b82f6' }[type] || '#3b82f6';
+    n.style.cssText = `background:${bg};color:#fff;padding:11px 16px;margin-bottom:8px;border-radius:8px;font-size:13px;font-weight:500;box-shadow:0 4px 14px rgba(0,0,0,.15);cursor:pointer;font-family:var(--font);`;
+    n.textContent = msg;
     n.onclick = () => n.remove();
+    box.appendChild(n);
+    setTimeout(() => n.parentNode && n.remove(), 3500);
 }
 
-// ── WISHLIST ──
-const wishlistCache = new Map();
-
-async function toggleWishlist(productSlug, btnElement) {
-    if (!isAuthenticated) {
-        window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + window.location.pathname;
-        return;
-    }
-    const icon = btnElement.querySelector('i');
-    btnElement.disabled = true;
-    btnElement.style.opacity = '0.6';
-    try {
-        const response = await fetch("{% url 'wopper:toggle_wishlist' %}", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
-            body: JSON.stringify({ product_slug: productSlug })
-        });
-        const data = await response.json();
-        if (data.success) {
-            wishlistCache.set(productSlug, data.in_wishlist);
-            if (data.in_wishlist) {
-                icon.classList.replace('far','fas');
-                icon.style.color = '#eb3c24';
-                showNotification('Added to wishlist!', 'success');
-            } else {
-                icon.classList.replace('fas','far');
-                icon.style.color = '';
-                showNotification('Removed from wishlist', 'info');
-            }
-            // Update badge count
-            document.querySelectorAll('.wishlist-count-badge').forEach(b => {
-                if (data.wishlist_count > 0) { b.textContent = data.wishlist_count; b.style.display = 'flex'; }
-                else b.style.display = 'none';
-            });
-        } else {
-            showNotification(data.message || 'Error updating wishlist', 'error');
+/* ══ USER DROPDOWN (click toggle) ══ */
+(function () {
+    const wrap = document.getElementById('userMenuWrap');
+    const btn  = document.getElementById('userToggleBtn');
+    if (!wrap || !btn) return;
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = wrap.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+        if (!wrap.contains(e.target)) {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
         }
-    } catch (e) {
-        showNotification('Network error. Please try again.', 'error');
-    } finally {
-        setTimeout(() => { btnElement.disabled = false; btnElement.style.opacity = '1'; }, 500);
-    }
-}
-
-// ── ADD TO CART ──
-async function addToCart(productId, quantity=1) {
-    if (!isAuthenticated) {
-        window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + window.location.pathname;
-        return;
-    }
-    try {
-        const response = await fetch("{% url 'wopper:add_to_cart' %}", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
-            body: JSON.stringify({ product_id: productId, quantity })
-        });
-        const data = await response.json();
-        if (data.success) {
-            document.querySelectorAll('.cart-count-badge').forEach(b => {
-                if (data.cart_count > 0) { b.textContent = data.cart_count; b.style.display = 'flex'; }
-                else b.style.display = 'none';
-            });
-            showNotification('Product added to cart!', 'success');
-        } else {
-            showNotification(data.message || 'Error adding to cart', 'error');
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            wrap.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
         }
-    } catch(e) {
-        showNotification('Network error. Please try again.', 'error');
+    });
+})();
+
+/* ══ MOBILE NAV ══ */
+function openMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.add('open');
+    o.style.display = 'block';
+    requestAnimationFrame(() => o.classList.add('open'));
+    document.body.style.overflow = 'hidden';
+}
+function closeMobileNav() {
+    const d = document.getElementById('mobDrawer');
+    const o = document.getElementById('mobOverlay');
+    d.classList.remove('open');
+    o.classList.remove('open');
+    setTimeout(() => { o.style.display = 'none'; }, 280);
+    document.body.style.overflow = '';
+}
+function toggleMobSub(btn) {
+    const sub  = btn.closest('.mob-nav-item').querySelector('.mob-sub-list');
+    const icon = btn.querySelector('i');
+    if (!sub) return;
+    const opening = !sub.classList.contains('open');
+    document.querySelectorAll('.mob-sub-list.open').forEach(s => {
+        s.classList.remove('open');
+        const b = s.closest('.mob-nav-item').querySelector('.mob-sub-toggle i');
+        if (b) b.className = 'fas fa-plus';
+    });
+    if (opening) {
+        sub.classList.add('open');
+        icon.className = 'fas fa-minus';
     }
 }
 
-// ── NEWSLETTER ──
-function subscribeNewsletter() {
-    const email = document.getElementById('footer-email').value;
-    if (!email || !email.includes('@')) { showNotification('Please enter a valid email address', 'warning'); return; }
-    fetch('/api/newsletter/subscribe/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-CSRFToken': csrftoken },
-        body: JSON.stringify({ email })
-    }).then(r => r.json()).then(data => {
-        if (data.success) { showNotification('Thanks for subscribing!', 'success'); document.getElementById('footer-email').value = ''; }
-        else showNotification(data.message || 'Subscription failed', 'error');
-    }).catch(() => showNotification('Subscription failed. Please try again.', 'error'));
-}
-
-// ── SLIDER ──
-const sliderState = {};
-
-function getItemWidth(trackEl) {
-    const first = trackEl.querySelector('.slide-item');
-    if (!first) return 0;
-    const gap = parseFloat(getComputedStyle(trackEl).gap) || 16;
-    return first.offsetWidth + gap;
-}
-
-function getVisible(sectionId) {
-    const sec = document.getElementById(sectionId);
-    if (!sec) return 1;
-    const wrapper = sec.querySelector('.slider-wrapper');
-    const track = sec.querySelector('.slider-track');
-    if (!wrapper || !track) return 1;
+/* ══ SLIDER ══ */
+const SS = {};
+function _itemW(track) {
     const first = track.querySelector('.slide-item');
-    if (!first) return 1;
-    const gap = parseFloat(getComputedStyle(track).gap) || 16;
-    return Math.max(1, Math.round(wrapper.clientWidth / (first.offsetWidth + gap)));
+    if (!first) return 0;
+    return first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14);
 }
-
-function getTotal(sectionId) {
-    const sec = document.getElementById(sectionId);
-    if (!sec) return 0;
-    const track = sec.querySelector('.slider-track');
-    return track ? track.querySelectorAll('.slide-item').length : 0;
+function _visible(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 1;
+    const vp    = s.querySelector('.slider-viewport');
+    const track = s.querySelector('.slider-track');
+    const first = track && track.querySelector('.slide-item');
+    if (!vp || !first) return 1;
+    return Math.max(1, Math.round(vp.clientWidth / (first.offsetWidth + (parseFloat(getComputedStyle(track).gap) || 14))));
 }
-
-function updateBtns(sectionId) {
-    const state = sliderState[sectionId] || { i: 0 };
-    const sec = document.getElementById(sectionId);
-    if (!sec) return;
-    const prev = sec.querySelector('.slider-btn.prev');
-    const next = sec.querySelector('.slider-btn.next');
-    const max = getTotal(sectionId) - getVisible(sectionId);
+function _total(secId) {
+    const s = document.getElementById(secId);
+    if (!s) return 0;
+    const t = s.querySelector('.slider-track');
+    return t ? t.querySelectorAll('.slide-item').length : 0;
+}
+function _updBtns(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const state = SS[id] || { i: 0 };
+    const max   = _total(id) - _visible(id);
+    const prev  = s.querySelector('.sldr-btn.prev');
+    const next  = s.querySelector('.sldr-btn.next');
     if (prev) prev.disabled = state.i <= 0;
     if (next) next.disabled = state.i >= max;
 }
-
 function slide(id, dir) {
-    if (!sliderState[id]) sliderState[id] = { i: 0 };
-    const state = sliderState[id];
-    const sec = document.getElementById(id);
-    if (!sec) return;
-    const track = sec.querySelector('.slider-track');
+    if (!SS[id]) SS[id] = { i: 0 };
+    const s     = document.getElementById(id);
+    const track = s && s.querySelector('.slider-track');
     if (!track) return;
-    const max = getTotal(id) - getVisible(id);
-    state.i = Math.max(0, Math.min(state.i + dir, max));
-    track.style.transform = `translateX(-${state.i * getItemWidth(track)}px)`;
-    updateBtns(id);
+    const max = _total(id) - _visible(id);
+    SS[id].i  = Math.max(0, Math.min(SS[id].i + dir, max));
+    track.style.transform = `translateX(-${SS[id].i * _itemW(track)}px)`;
+    _updBtns(id);
+}
+
+/* Touch swipe support */
+function addSwipe(id) {
+    const s = document.getElementById(id);
+    if (!s) return;
+    const vp = s.querySelector('.slider-viewport');
+    if (!vp) return;
+    let startX = 0;
+    vp.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) slide(id, dx < 0 ? 1 : -1);
+    }, { passive: true });
 }
 
 function initSliders() {
-    document.querySelectorAll('.slider-section').forEach(sec => {
-        const id = sec.id;
-        if (id) { sliderState[id] = { i: 0 }; updateBtns(id); }
+    document.querySelectorAll('.slider-wrap').forEach(s => {
+        if (s.id) { SS[s.id] = { i: 0 }; _updBtns(s.id); addSwipe(s.id); }
     });
 }
-
 window.addEventListener('resize', () => {
-    Object.keys(sliderState).forEach(id => {
-        sliderState[id].i = 0;
-        const sec = document.getElementById(id);
-        if (sec) {
-            const t = sec.querySelector('.slider-track');
-            if (t) t.style.transform = 'translateX(0)';
-        }
-        updateBtns(id);
+    Object.keys(SS).forEach(id => {
+        SS[id].i = 0;
+        const s = document.getElementById(id);
+        if (s) { const t = s.querySelector('.slider-track'); if (t) t.style.transform = 'translateX(0)'; }
+        _updBtns(id);
     });
 });
 
-// ── COUNTDOWN TIMER ──
+/* ══ VIDEO: fix desktop width to 5-up ══ */
+function fixVideoSlider() {
+    const track = document.getElementById('vid-track');
+    if (!track) return;
+    const vp = track.closest('.slider-viewport');
+    if (!vp) return;
+    if (window.innerWidth > 600) {
+        // On desktop override to 5 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(20% - 12px)';
+        });
+    } else {
+        // On mobile: 2 columns
+        track.querySelectorAll('.slide-item').forEach(item => {
+            item.style.flex = '0 0 calc(50% - 7px)';
+        });
+    }
+    // Reset slider position
+    if (SS['vid-sec']) { SS['vid-sec'].i = 0; track.style.transform = 'translateX(0)'; _updBtns('vid-sec'); }
+}
+
+/* ══ COUNTDOWN ══ */
 function startCountdown() {
     let s = 11 * 3600 + 28 * 60 + 41;
     const el = document.getElementById('countdown-timer');
     if (!el) return;
     setInterval(() => {
-        if (s-- <= 0) s = 86399;
-        const h = String(Math.floor(s/3600)).padStart(2,'0');
-        const m = String(Math.floor((s%3600)/60)).padStart(2,'0');
-        const sc = String(s%60).padStart(2,'0');
-        el.textContent = `${h}:${m}:${sc}`;
+        if (--s < 0) s = 86399;
+        el.textContent = [Math.floor(s/3600), Math.floor((s%3600)/60), s%60].map(n => String(n).padStart(2,'0')).join(':');
     }, 1000);
 }
 
-// ── MOBILE NAV ──
-function openMobileNav() {
-    document.getElementById('mobileNavDrawer').classList.add('open');
-    const overlay = document.getElementById('mobileNavOverlay');
-    overlay.style.display = 'block';
-    requestAnimationFrame(() => overlay.classList.add('open'));
-    document.body.style.overflow = 'hidden';
-}
-function closeMobileNav() {
-    document.getElementById('mobileNavDrawer').classList.remove('open');
-    const overlay = document.getElementById('mobileNavOverlay');
-    overlay.classList.remove('open');
-    setTimeout(() => { overlay.style.display = 'none'; }, 260);
-    document.body.style.overflow = '';
-}
-function toggleMobileSub(btn) {
-    const sub = btn.closest('.mobile-nav-item').querySelector('.mobile-sub-menu');
-    const icon = btn.querySelector('i');
-    if (sub) {
-        sub.classList.toggle('open');
-        icon.className = sub.classList.contains('open') ? 'fas fa-minus' : 'fas fa-plus';
-        icon.style.fontSize = '12px';
-    }
+/* ══ WISHLIST ══ */
+async function toggleWishlist(slug, btn) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    const ico = btn.querySelector('i');
+    btn.disabled = true;
+    try {
+        const r = await fetch("{% url 'wopper:toggle_wishlist' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_slug:slug}) });
+        const d = await r.json();
+        if (d.success) {
+            ico.classList.replace(d.in_wishlist?'far':'fas', d.in_wishlist?'fas':'far');
+            ico.style.color = d.in_wishlist ? '#eb3c24' : '';
+            showNotif(d.in_wishlist ? 'Added to wishlist!' : 'Removed from wishlist', d.in_wishlist ? 'success' : 'info');
+            document.querySelectorAll('.wishlist-count-badge').forEach(b => {
+                b.textContent = d.wishlist_count;
+                b.style.display = d.wishlist_count > 0 ? 'flex' : 'none';
+            });
+        } else showNotif(d.message || 'Error', 'error');
+    } catch { showNotif('Network error', 'error'); }
+    finally { setTimeout(() => btn.disabled = false, 500); }
 }
 
-// ── INIT ──
+/* ══ ADD TO CART ══ */
+async function addToCart(pid, qty = 1) {
+    if (!isAuth) { window.location.href = "{% url 'mck_auth:website_signin' %}?next=" + encodeURIComponent(location.pathname); return; }
+    try {
+        const r = await fetch("{% url 'wopper:add_to_cart' %}", { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({product_id:pid,quantity:qty}) });
+        const d = await r.json();
+        if (d.success) {
+            document.querySelectorAll('.cart-count-badge').forEach(b => {
+                b.textContent = d.cart_count;
+                b.style.display = d.cart_count > 0 ? 'flex' : 'none';
+            });
+            showNotif('Added to cart!', 'success');
+        } else showNotif(d.message || 'Error adding to cart', 'error');
+    } catch { showNotif('Network error', 'error'); }
+}
+
+/* ══ NEWSLETTER ══ */
+function subscribeNewsletter() {
+    const el = document.getElementById('footer-email');
+    if (!el || !el.value.includes('@')) { showNotif('Enter a valid email', 'warning'); return; }
+    fetch('/api/newsletter/subscribe/', { method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':csrf}, body:JSON.stringify({email:el.value}) })
+        .then(r=>r.json()).then(d=>{ if(d.success){showNotif('Subscribed!','success');el.value='';}else showNotif(d.message||'Failed','error'); })
+        .catch(()=>showNotif('Failed','error'));
+}
+
+/* ══ INIT ══ */
 document.addEventListener('DOMContentLoaded', () => {
     initSliders();
+    fixVideoSlider();
     startCountdown();
-
-    // Hover effects on product cards
-    document.querySelectorAll('.product-card-standard, .custom-card').forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px)';
-            this.style.transition = 'transform 0.2s ease';
-            this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
-        });
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = 'none';
-        });
-    });
 });
+window.addEventListener('resize', fixVideoSlider);
 </script>
 </body>
 </html>

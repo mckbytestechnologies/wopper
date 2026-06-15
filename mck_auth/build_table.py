@@ -1075,7 +1075,7 @@ def build_address_table(request):
 
         table_data["columns"].append(dict(
             display_name="Customer", can_show=True,
-            class_name="", column_name="customer",
+            class_name="", column_name="user",
             search_key="customer__first_name"
         ))
         table_data["columns"].append(dict(

@@ -22,8 +22,18 @@ sys.path.insert(0, str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production 
 SECRET_KEY = 'django-insecure-adkq2p-(e(l)7xqztab_j@)x0)eu2nr@vi&6@))gz^1u&owj#-'
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    'mckbytes.tech',
+    'www.mckbytes.tech',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://mckbytes.tech',
+    'https://www.mckbytes.tech',
+]
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -203,25 +213,10 @@ AUTH_USER_MODEL = 'mck_auth.User'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 LOGIN_REDIRECT_URL = "/auth/login/"
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'bharathmckbytes@gmail.com'
-# EMAIL_HOST_PASSWORD = 'nlwyargkfxqeynjw'  # Use App Password, not your main password
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# ADMIN_EMAIL = 'admin@example.com'
 LOGIN_REDIRECT_URL = "/auth/login/"
 LOGIN_WEB_REDIRECT_URL = "/auth/website/login/"
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'bharathmckbytes@gmail.com'
-# EMAIL_HOST_PASSWORD = 'nlwyargkfxqeynjw'  # Use App Password, not your main password
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# ADMIN_EMAIL = 'admin@example.com'
+
 
 # settings.py
 CRISPY_TEMPLATE_PACK = 'bootstrap4'  # or 'bootstrap5' depending on your Bootstrap version
@@ -239,5 +234,5 @@ SUPPORT_EMAIL = 'bharathmckbytes@gmail.com'
 
 
 # Add Razorpay settings
-RAZORPAY_KEY_ID = 'rzp_test_T0dA1ODEpGyYRA'  # Get from Razorpay dashboard
+RAZORPAY_KEY_ID = 'rzp_test_T0dA1ODEpGyYRA'  
 RAZORPAY_KEY_SECRET = 'wAWRz2JMJd5uw25zjCrk0qJN'

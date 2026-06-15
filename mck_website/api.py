@@ -2,11 +2,13 @@ import sys
 from django.urls import reverse
 from django.forms.models import model_to_dict
 from phonenumber_field.phonenumber import PhoneNumber
+from django.urls import reverse, NoReverseMatch
 
 from config import app_utils
 from config import app_logger
 from mck_auth import api as auth_api
 from mck_website.models import *
+from mck_admin_console.models import *
 
 log_name = "app"
 logger = app_logger.createLogger(log_name)
@@ -1066,7 +1068,6 @@ def payment_gateway_update_status(request, id):
 # ══════════════════════════════════════════════════════════════════════════════
 # CART
 # ══════════════════════════════════════════════════════════════════════════════
-
 @app_logger.functionlogs(log=log_name)
 def cart_load_data(request, table_data):
     result, fResult = False, list()
@@ -1077,15 +1078,39 @@ def cart_load_data(request, table_data):
         for qs_instance in qs:
             qs_data = model_to_dict(qs_instance)
             data = []
-            edit_url = reverse('mck_website:mck_cart_update', args=[qs_data['id']])
+            # FIXED: Check if edit_url exists and is valid
+            try:
+                edit_url = reverse('mck_website:mck_cart_list', args=[qs_data['id']])
+            except NoReverseMatch:
+                edit_url = '#'
+            
             for column in table_data['columns']:
                 if column['column_name'] == 'datamode':
                     data.append('<div class="text-success">' + qs_instance.get_datamode_display() + '</div>')
                     data.append('<div class="text-end"><a href="' + edit_url + '" class="text-primary pe-2 ps-2">Edit</a></div>')
-                elif column['column_name'] == 'customer':
-                    data.append(str(qs_instance.customer) if qs_instance.customer else 'Guest')
+                elif column['column_name'] == 'user':  # CHANGED from 'customer' to 'user'
+                    # Handle user display properly
+                    if qs_instance.user:
+                        user_display = str(qs_instance.user)
+                        # If you want to show email or username
+                        if hasattr(qs_instance.user, 'get_full_name'):
+                            full_name = qs_instance.user.get_full_name()
+                            if full_name:
+                                user_display = f"{full_name} ({qs_instance.user.email})"
+                        data.append(user_display)
+                    else:
+                        # Check if there's a session_key for anonymous users
+                        session_info = qs_instance.session_key if qs_instance.session_key else 'Anonymous'
+                        data.append(f'Guest ({session_info[:8]}...)')  # Show first 8 chars of session
                 elif column['column_name'] == 'coupon':
                     data.append(str(qs_instance.coupon) if qs_instance.coupon else '-')
+                elif column['column_name'] == 'session_key':
+                    # Handle session key display
+                    session_val = qs_instance.session_key
+                    if session_val:
+                        data.append(session_val[:20] + '...' if len(session_val) > 20 else session_val)
+                    else:
+                        data.append('-')
                 else:
                     value = qs_data.get(column['column_name'], '-')
                     data.append(str(value) if value is not None else '-')
@@ -1095,7 +1120,8 @@ def cart_load_data(request, table_data):
     except Exception as e:
         result, msg = False, 'Internal Server Error'
         exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        logger.error('Error at %s:%s - %s' % (exc_traceback.tb_lineno, type(e).__name__, str(e)))
+        logger.error(f"Full error: {e}", exc_info=True)
     return result, msg, fResult
 
 @app_logger.functionlogs(log=log_name)
@@ -1103,7 +1129,11 @@ def cart_retrieve_data(request, id):
     result, data = False, {}
     try:
         obj = Cart.objects.filter(id=id).first()
-        if obj: data['cart'] = obj
+        if obj: 
+            data['cart'] = obj
+            # Include user info in response
+            data['user_id'] = obj.user.id if obj.user else None
+            data['username'] = str(obj.user) if obj.user else 'Anonymous'
         result, msg = True, 'Success'
     except Exception as e:
         result, msg = False, 'Internal Server Error'
@@ -1117,15 +1147,29 @@ def cart_create_update(request, id=None, mode=None):
     try:
         accountuser = auth_api.get_request_accountuser(request)
         p = request.POST
+        
+        # Get or create cart object
         obj = Cart.objects.filter(id=id).first() if (mode == 'edit' and id) else Cart()
-        if not (mode == 'edit' and id): obj.created_by = accountuser.id
-        obj.customer_id  = p.get('customer') or None
-        obj.session_key  = p.get('session_key', '')
-        obj.coupon_id    = p.get('coupon') or None
-        obj.updated_by   = accountuser.id
+        
+        if not (mode == 'edit' and id):
+            obj.created_by = accountuser.id
+        
+        # THE FIX: Always attach the Django auth user
+        if request.user.is_authenticated:
+            obj.user = request.user  # Changed from customer_id to user
+        
+        # Handle session for non-authenticated users
+        if not request.user.is_authenticated:
+            obj.session_key = p.get('session_key', request.session.session_key or '')
+        
+        obj.coupon_id = p.get('coupon') or None
+        obj.updated_by = accountuser.id
         obj.save()
+        
         data['cart'] = obj
+        data['user_assigned'] = bool(obj.user)
         result, msg = True, 'Success'
+        
     except Exception as e:
         result, msg = False, 'Internal Server Error'
         exc_type, exc_obj, exc_traceback = sys.exc_info()
@@ -1147,7 +1191,6 @@ def cart_update_status(request, id):
         exc_type, exc_obj, exc_traceback = sys.exc_info()
         logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
     return result, message
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # CART ITEM
@@ -1325,7 +1368,6 @@ def wishlist_update_status(request, id):
 # ══════════════════════════════════════════════════════════════════════════════
 # ORDER
 # ══════════════════════════════════════════════════════════════════════════════
-
 @app_logger.functionlogs(log=log_name)
 def order_load_data(request, table_data):
     result, fResult = False, list()
@@ -1333,41 +1375,89 @@ def order_load_data(request, table_data):
         queryset = Order.objects.exclude(datamode='D').order_by('-updated_on')
         qs, total_records, total_display_records = app_utils.method_for_datatable_operations(request, queryset)
         final_data = []
+        
+        # Import NoReverseMatch at the top of your file
+        from django.urls import NoReverseMatch
+        
         for qs_instance in qs:
             qs_data = model_to_dict(qs_instance)
             data = []
-            edit_url = reverse('mck_website:mck_order_update', args=[qs_data['id']])
+            
+            # Safe edit URL generation
+            edit_url = '#'
+            try:
+                edit_url = reverse('mck_website:mck_order_update', args=[qs_data['id']])
+            except NoReverseMatch:
+                edit_url = f"/admin/order/{qs_data['id']}/edit/"
+            
             for column in table_data['columns']:
-                if column['column_name'] == 'datamode':
+                column_name = column['column_name']
+                
+                if column_name == 'datamode':
                     data.append('<div class="text-success">' + qs_instance.get_datamode_display() + '</div>')
                     data.append('<div class="text-end"><a href="' + edit_url + '" class="text-primary pe-2 ps-2">Edit</a></div>')
-                elif column['column_name'] == 'customer':
-                    data.append(str(qs_instance.customer) if qs_instance.customer else '-')
+                
+                elif column_name == 'user':  # CHANGED from 'customer' to 'user'
+                    if qs_instance.user:
+                        # Display user info (email or username)
+                        user_display = qs_instance.user.email if hasattr(qs_instance.user, 'email') else str(qs_instance.user)
+                        if hasattr(qs_instance.user, 'get_full_name'):
+                            full_name = qs_instance.user.get_full_name()
+                            if full_name:
+                                user_display = f"{full_name} ({user_display})"
+                        data.append(user_display)
+                    else:
+                        data.append('Guest')
+                
+                elif column_name == 'customer':  # Handle if 'customer' still in table_data
+                    # Map to user field
+                    if qs_instance.user:
+                        data.append(str(qs_instance.user))
+                    else:
+                        data.append('-')
+                
                 else:
-                    value = qs_data.get(column['column_name'], '-')
-                    if isinstance(value, Decimal): value = float(value)
+                    value = qs_data.get(column_name, '-')
+                    if isinstance(value, Decimal): 
+                        value = float(value)
                     data.append(str(value) if value is not None else '-')
+            
             final_data.append(data)
+        
         fResult = app_utils.final_dict(request, total_records, total_display_records, final_data)
         result, msg = True, 'Success'
+        
     except Exception as e:
         result, msg = False, 'Internal Server Error'
         exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        logger.error('Error at %s:%s - %s' % (exc_traceback.tb_lineno, type(e).__name__, str(e)))
+        logger.error(f"Full error: {e}", exc_info=True)
+    
     return result, msg, fResult
+
 
 @app_logger.functionlogs(log=log_name)
 def order_retrieve_data(request, id):
     result, data = False, {}
     try:
         obj = Order.objects.filter(id=id).first()
-        if obj: data['order'] = obj
+        if obj: 
+            data['order'] = obj
+            # Include user info in response
+            if obj.user:
+                data['user_id'] = obj.user.id
+                data['user_email'] = obj.user.email if hasattr(obj.user, 'email') else str(obj.user)
+            else:
+                data['user_id'] = None
+                data['user_email'] = 'Guest'
         result, msg = True, 'Success'
     except Exception as e:
         result, msg = False, 'Internal Server Error'
         exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        logger.error('Error at %s:%s - %s' % (exc_traceback.tb_lineno, type(e).__name__, str(e)))
+        logger.error(f"Full error: {e}", exc_info=True)
     return result, msg, data
+
 
 @app_logger.functionlogs(log=log_name)
 def order_create_update(request, id=None, mode=None):
@@ -1375,36 +1465,65 @@ def order_create_update(request, id=None, mode=None):
     try:
         accountuser = auth_api.get_request_accountuser(request)
         p = request.POST
+        
+        # Get or create order object
         obj = Order.objects.filter(id=id).first() if (mode == 'edit' and id) else Order()
-        if not (mode == 'edit' and id): obj.created_by = accountuser.id
-        obj.customer_id             = p.get('customer') or None
-        obj.order_number            = p.get('order_number')
-        obj.status                  = p.get('status', 'pending')
-        obj.coupon_id               = p.get('coupon') or None
-        obj.shipping_full_name      = p.get('shipping_full_name')
-        obj.shipping_phone          = p.get('shipping_phone')
-        obj.shipping_address_line1  = p.get('shipping_address_line1')
-        obj.shipping_address_line2  = p.get('shipping_address_line2', '')
-        obj.shipping_city           = p.get('shipping_city')
-        obj.shipping_state          = p.get('shipping_state')
-        obj.shipping_pincode        = p.get('shipping_pincode')
-        obj.shipping_country        = p.get('shipping_country', 'India')
-        obj.subtotal                = p.get('subtotal') or 0
-        obj.discount_amount         = p.get('discount_amount') or 0
-        obj.shipping_charge         = p.get('shipping_charge') or 0
-        obj.tax_amount              = p.get('tax_amount') or 0
-        obj.total_amount            = p.get('total_amount') or 0
-        obj.notes                   = p.get('notes', '')
-        obj.delivered_on            = p.get('delivered_on') or None
-        obj.updated_by              = accountuser.id
+        
+        if not (mode == 'edit' and id): 
+            obj.created_by = accountuser.id if accountuser else 'system'
+        
+        # THE FIX: Use 'user' instead of 'customer_id'
+        if request.user and request.user.is_authenticated:
+            obj.user = request.user  # Changed from customer_id to user
+        else:
+            # For guest checkout, you might still want to capture email/name
+            guest_email = p.get('guest_email')
+            if guest_email:
+                # Store guest email in a separate field or create temporary user
+                # For now, just store as note or create a session-based identifier
+                obj.notes = f"Guest Checkout - Email: {guest_email}\n" + (obj.notes or '')
+        
+        # Order fields
+        obj.order_number = p.get('order_number')
+        obj.status = p.get('status', 'pending')
+        obj.coupon_id = p.get('coupon') or None
+        
+        # Shipping information
+        obj.shipping_full_name = p.get('shipping_full_name')
+        obj.shipping_phone = p.get('shipping_phone')
+        obj.shipping_address_line1 = p.get('shipping_address_line1')
+        obj.shipping_address_line2 = p.get('shipping_address_line2', '')
+        obj.shipping_city = p.get('shipping_city')
+        obj.shipping_state = p.get('shipping_state')
+        obj.shipping_pincode = p.get('shipping_pincode')
+        obj.shipping_country = p.get('shipping_country', 'India')
+        
+        # Amount fields
+        obj.subtotal = p.get('subtotal') or 0
+        obj.discount_amount = p.get('discount_amount') or 0
+        obj.shipping_charge = p.get('shipping_charge') or 0
+        obj.tax_amount = p.get('tax_amount') or 0
+        obj.total_amount = p.get('total_amount') or 0
+        
+        # Additional fields
+        obj.notes = p.get('notes', '')
+        obj.delivered_on = p.get('delivered_on') or None
+        
+        obj.updated_by = accountuser.id if accountuser else 'system'
         obj.save()
+        
         data['order'] = obj
+        data['user_assigned'] = bool(obj.user)
         result, msg = True, 'Success'
+        
     except Exception as e:
         result, msg = False, 'Internal Server Error'
         exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        logger.error('Error at %s:%s - %s' % (exc_traceback.tb_lineno, type(e).__name__, str(e)))
+        logger.error(f"Full error: {e}", exc_info=True)
+    
     return result, msg, data
+
 
 @app_logger.functionlogs(log=log_name)
 def order_update_status(request, id):
@@ -1413,15 +1532,15 @@ def order_update_status(request, id):
         accountuser = auth_api.get_request_accountuser(request)
         obj = Order.objects.filter(id=id).first()
         if obj:
-            obj.updated_by = accountuser.id
+            obj.updated_by = accountuser.id if accountuser else 'system'
             obj.datamode = 'A' if obj.datamode == 'I' else 'I'
             obj.save()
         result, message = True, 'Success'
     except Exception as e:
         exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        logger.error('Error at %s:%s - %s' % (exc_traceback.tb_lineno, type(e).__name__, str(e)))
+        logger.error(f"Full error: {e}", exc_info=True)
     return result, message
-
 
 # ══════════════════════════════════════════════════════════════════════════════
 # ORDER ITEM
@@ -1785,7 +1904,7 @@ def newsletter_update_status(request, id):
 def contact_us_load_data(request, table_data):
     result, fResult = False, list()
     try:
-        queryset = ContactUs.objects.exclude(datamode='D').order_by('-updated_on')
+        queryset = Contact.objects.exclude(datamode='D').order_by('-updated_on')
         qs, total_records, total_display_records = app_utils.method_for_datatable_operations(request, queryset)
         final_data = []
         for qs_instance in qs:
@@ -1812,7 +1931,7 @@ def contact_us_load_data(request, table_data):
 def contact_us_retrieve_data(request, id):
     result, data = False, {}
     try:
-        obj = ContactUs.objects.filter(id=id).first()
+        obj = Contact.objects.filter(id=id).first()
         if obj: data['contact_us'] = obj
         result, msg = True, 'Success'
     except Exception as e:
@@ -1827,7 +1946,7 @@ def contact_us_create_update(request, id=None, mode=None):
     try:
         accountuser = auth_api.get_request_accountuser(request)
         p = request.POST
-        obj = ContactUs.objects.filter(id=id).first() if (mode == 'edit' and id) else ContactUs()
+        obj = Contact.objects.filter(id=id).first() if (mode == 'edit' and id) else ContactUs()
         if not (mode == 'edit' and id): obj.created_by = accountuser.id
         obj.name        = p.get('name')
         obj.email       = p.get('email')
@@ -1839,7 +1958,7 @@ def contact_us_create_update(request, id=None, mode=None):
         obj.replied_on  = p.get('replied_on') or None
         obj.updated_by  = accountuser.id
         obj.save()
-        data['contact_us'] = obj
+        data['contact'] = obj
         result, msg = True, 'Success'
     except Exception as e:
         result, msg = False, 'Internal Server Error'
@@ -1852,7 +1971,7 @@ def contact_us_update_status(request, id):
     result, message = False, 'Error'
     try:
         accountuser = auth_api.get_request_accountuser(request)
-        obj = ContactUs.objects.filter(id=id).first()
+        obj = Contact.objects.filter(id=id).first()
         if obj:
             obj.updated_by = accountuser.id
             obj.datamode = 'A' if obj.datamode == 'I' else 'I'

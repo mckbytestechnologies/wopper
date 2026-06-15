@@ -34,6 +34,7 @@ from mck_auth import role_validations as rv
 
 from config import app_logger, app_seo as seo
 from mck_website import forms
+from mck_admin_console.models import Contact
 
 LOG_NAME = "app"
 logger = app_logger.createLogger(LOG_NAME)
@@ -1803,3 +1804,113 @@ class SiteSettingsUpdateView(TemplateView):
 
 
 
+class ContactPageView(TemplateView):
+    """Contact page"""
+    template_name = "pages/contact-us.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        """Handle regular form submission (non-AJAX)"""
+        context = self.get_context_data(**kwargs)
+        
+        # Check if it's an AJAX request
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            # Let the AJAX endpoint handle it
+            return ajax_contact_submit(request)
+        
+        # Regular form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone', '')
+        message = request.POST.get('message')
+        
+        if name and email and message:
+            try:
+                contact = Contact(
+                    name=name,
+                    email=email,
+                    phone=phone,
+                    message=message,
+                    created_by='0',
+                    updated_by='0',
+                    datamode='A'
+                )
+                contact.save()
+                messages.success(request, 'Thank you! Your message has been sent successfully.')
+                return redirect('mck_website:contact')
+            except Exception as e:
+                messages.error(request, f'Error: {str(e)}')
+        else:
+            messages.error(request, 'Please fill in all required fields.')
+        
+        return render(request, self.template_name, context)
+
+
+
+@require_POST
+@csrf_exempt
+def ajax_contact_submit(request):
+    """AJAX endpoint for contact form submission"""
+    try:
+        print("="*50)
+        print("AJAX contact submission received")
+        print("POST data:", request.POST)
+        
+        # Get data from POST request
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone', '')
+        message = request.POST.get('message')
+        
+        print(f"Name: {name}, Email: {email}, Phone: {phone}, Message: {message}")
+        
+        # Validate required fields
+        if not name or not name.strip():
+            return JsonResponse({
+                'success': False,
+                'message': 'Name is required.'
+            })
+        
+        if not email or not email.strip():
+            return JsonResponse({
+                'success': False,
+                'message': 'Email is required.'
+            })
+        
+        if not message or not message.strip():
+            return JsonResponse({
+                'success': False,
+                'message': 'Message is required.'
+            })
+        
+        # Create contact object
+        contact = Contact(
+            name=name.strip(),
+            email=email.strip(),
+            phone=phone.strip() if phone else '',
+            message=message.strip(),
+            created_by='0',  # Public submission
+            updated_by='0',
+            datamode='A'
+        )
+        contact.save()
+        
+        print(f"Contact saved with ID: {contact.id}")
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Thank you! Your message has been sent successfully.'
+        })
+        
+    except Exception as e:
+        print(f"Error in ajax_contact_submit: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
+        return JsonResponse({
+            'success': False,
+            'message': f'Error: {str(e)}'
+        })
