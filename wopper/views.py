@@ -66,7 +66,7 @@ from mck_website.models import (
     Category, Product, HomePageVideo, HeroBanner,
     Address, Cart, CartItem, Wishlist, Order, OrderItem,
     Payment, PaymentGateway, Coupon, ProductReview,
-    SiteSettings
+    SiteSettings,Blog
 )
 
 logger = logging.getLogger(__name__)
@@ -100,10 +100,6 @@ def _cart_totals(cart):
     }
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PUBLIC WEBSITE VIEWS
-# ══════════════════════════════════════════════════════════════════════════════
-
 class WebsiteHomeView(TemplateView):
     template_name = 'home.html'
 
@@ -116,6 +112,10 @@ class WebsiteHomeView(TemplateView):
             flash_sales = Product.objects.filter(datamode='A', is_flash_sale=True).order_by('-created_on')[:12]
             hero_banners = HeroBanner.objects.filter(datamode='A', is_active=True).order_by('sort_order')[:3]
             homepage_videos = HomePageVideo.objects.filter(datamode='A').order_by('sort_order')[:10]
+            
+            # Add blogs to context
+            blogs = Blog.objects.filter(datamode='A', is_published=True).order_by('-published_date')[:6]
+            
             site_settings = SiteSettings.load()
             
             cart_count = 0
@@ -133,6 +133,7 @@ class WebsiteHomeView(TemplateView):
                 'flash_sales': flash_sales,
                 'hero_banners': hero_banners,
                 'homepage_videos': homepage_videos,
+                'blogs': blogs,  # Add blogs to context
                 'site_settings': site_settings,
                 'site_name': site_settings.site_name if site_settings else 'The Better Home',
                 'site_email': site_settings.site_email if site_settings else 'info@thebetterhome.in',
@@ -1531,3 +1532,78 @@ def move_wishlist_to_cart(request, item_id):
             'error': 'SERVER_ERROR',
             'message': 'Failed to move item to cart'
         }, status=500)
+
+
+class BlogListView(TemplateView):
+    template_name = 'website/blog_list.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            blogs = Blog.objects.filter(datamode='A', is_published=True).order_by('-published_date')
+            context['blogs'] = blogs
+        except Exception as e:
+            logger.error(f"BlogListView error: {e}")
+        return context
+
+class BlogDetailView(TemplateView):
+    template_name = 'website/blog_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            slug = kwargs.get('slug')
+            blog = Blog.objects.filter(slug=slug, datamode='A', is_published=True).first()
+            
+            if blog:
+                # Get related blogs (same category or latest)
+                related_blogs = Blog.objects.filter(
+                    datamode='A', 
+                    is_published=True
+                ).exclude(id=blog.id).order_by('-published_date')[:3]
+                
+                # Increment view count if you have a view counter field
+                # blog.views += 1
+                # blog.save()
+                
+                context.update({
+                    'blog': blog,
+                    'related_blogs': related_blogs,
+                })
+            else:
+                context['error'] = 'Blog not found'
+                
+        except Exception as e:
+            logger.error(f"BlogDetailView error: {e}")
+            context['error'] = 'Error loading blog'
+            
+        return context
+
+class ShippingPolicyView(TemplateView):
+    page_type = 'shipping'
+    template_name = 'policies/shipping_policy.html'
+
+
+class ReturnsPolicyView(TemplateView):
+    page_type = 'returns'
+    template_name = 'policies/returns_policy.html'
+
+
+class TermsConditionsView(TemplateView):
+    page_type = 'terms'
+    template_name = 'policies/terms_conditions.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    page_type = 'privacy'
+    template_name = 'policies/privacy_policy.html'
+
+
+class PaymentMethodsView(TemplateView):
+    page_type = 'payment'
+    template_name = 'policies/payment_methods.html'
+
+
+class FAQView(TemplateView):
+    page_type = 'faq'
+    template_name = 'policies/faq.html'

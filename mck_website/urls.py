@@ -34,7 +34,29 @@ path(
     name='mck_category_delete'
 ),
 
+path(
+    'blog/list/',
+    views.BlogList.as_view(),
+    name='mck_blog_list'
+),
 
+path(
+    'blog/create/',
+    views.BlogCreateView.as_view(),
+    name='mck_blog_create'
+),
+
+path(
+    'blog/update/<int:id>/',
+    views.BlogUpdateView.as_view(),
+    name='mck_blog_update'
+),
+
+path(
+    'blog/delete/<int:id>/',
+    views.BlogDeleteView.as_view(),
+    name='mck_blog_delete'
+),
 
 path(
     'product/list/',

@@ -2,6 +2,11 @@
 
 from django.urls import path
 from wopper import views
+from .views import (
+    WebsiteHomeView,
+    BlogDetailView, BlogListView, ShippingPolicyView, ReturnsPolicyView, TermsConditionsView, PrivacyPolicyView, PaymentMethodsView, FAQView,# Add this import
+    # ... other imports
+)
 
 app_name = "wopper"
 
@@ -14,6 +19,9 @@ urlpatterns = [
     path('category/<slug:slug>/', views.CategoryDataView.as_view(), name='category_products'),
     path('product/<slug:slug>/', views.ProductDataView.as_view(), name='product_detail'),
     path('search/', views.SearchView.as_view(), name='search'),
+
+    path('blog/<slug:slug>/', BlogDetailView.as_view(), name='blog_detail'),
+    path('blogs/', BlogListView.as_view(), name='blog_list'),
 
     # ═════════════════════════════════════════════════════════════════════════
     # CART URLs
@@ -51,4 +59,13 @@ urlpatterns = [
     # ═════════════════════════════════════════════════════════════════════════
     path('orders/', views.OrdersView.as_view(), name='orders'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
+
+
+    path('shipping-policy/', ShippingPolicyView.as_view(), name='shipping_policy'),
+    path('returns-policy/', ReturnsPolicyView.as_view(), name='returns_policy'),
+    path('terms-conditions/', TermsConditionsView.as_view(), name='terms_conditions'),
+    path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
+    path('payment-methods/', PaymentMethodsView.as_view(), name='payment_methods'),
+    path('faq/', FAQView.as_view(), name='faq'),
+
 ]

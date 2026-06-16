@@ -1,0 +1,650 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ blog.title }} - {{ site_name|default:"Wopper" }}</title>
+    <meta name="description" content="{{ blog.meta_description|default:blog.description|striptags|truncatechars:160 }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+    /* ════════════════════════════════════════════
+       RESET & ROOT - Same as Home
+    ════════════════════════════════════════════ */
+    :root {
+        --teal:        #00828a;
+        --teal-dark:   #006d73;
+        --teal-light:  #e0f4f5;
+        --red:         #eb3c24;
+        --dark:        #222222;
+        --muted:       #666666;
+        --border:      #e5e5e5;
+        --border-l:    #e2e2e6;
+        --bg-gray:     #f1f3f4;
+        --bg-card:     #f5f6f9;
+        --footer-bg:   #00222a;
+        --font:        'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; font-family: var(--font); color: var(--dark); background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ════════════════════════════════════════════
+       BLOG DETAIL PAGE
+    ════════════════════════════════════════════ */
+    .blog-detail-page {
+        padding: 40px 0 60px;
+        background: #fff;
+    }
+
+    .blog-detail-wrapper {
+        max-width: 840px;
+        margin: 0 auto;
+    }
+
+    /* ── Breadcrumb ── */
+    .blog-breadcrumb {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 24px;
+    }
+
+    .blog-breadcrumb a {
+        color: var(--teal);
+        transition: color 0.2s;
+    }
+
+    .blog-breadcrumb a:hover {
+        color: var(--teal-dark);
+    }
+
+    .blog-breadcrumb .separator {
+        margin: 0 8px;
+        color: #ccc;
+    }
+
+    /* ── Blog Header ── */
+    .blog-detail-header {
+        margin-bottom: 32px;
+    }
+
+    .blog-detail-meta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+    }
+
+    .blog-detail-meta i {
+        color: var(--teal);
+        margin-right: 4px;
+    }
+
+    .blog-detail-meta .category {
+        color: var(--teal);
+        font-weight: 600;
+    }
+
+    .blog-detail-title {
+        font-size: 40px;
+        font-weight: 800;
+        color: var(--dark);
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+
+    .blog-detail-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+    }
+
+    .blog-detail-author .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--teal-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--teal);
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .blog-detail-author .info .name {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .blog-detail-author .info .role {
+        font-size: 13px;
+        color: var(--muted);
+    }
+
+    /* ── Featured Image ── */
+    .blog-detail-image {
+        border-radius: 16px;
+        overflow: hidden;
+        margin-bottom: 32px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .blog-detail-image img {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+    }
+
+    /* ── Blog Content ── */
+    .blog-detail-content {
+        font-size: 17px;
+        line-height: 1.9;
+        color: #333;
+        margin-bottom: 40px;
+    }
+
+    .blog-detail-content h2 {
+        font-size: 26px;
+        font-weight: 700;
+        margin: 32px 0 16px;
+        color: var(--dark);
+    }
+
+    .blog-detail-content h3 {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 24px 0 12px;
+        color: var(--dark);
+    }
+
+    .blog-detail-content p {
+        margin-bottom: 18px;
+    }
+
+    .blog-detail-content ul,
+    .blog-detail-content ol {
+        margin: 16px 0 20px 24px;
+    }
+
+    .blog-detail-content li {
+        margin-bottom: 8px;
+    }
+
+    .blog-detail-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+
+    .blog-detail-content blockquote {
+        border-left: 4px solid var(--teal);
+        padding: 16px 24px;
+        margin: 24px 0;
+        background: var(--teal-light);
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #444;
+    }
+
+    .blog-detail-content blockquote p {
+        margin-bottom: 0;
+    }
+
+    /* ── Share Section ── */
+    .blog-detail-share {
+        padding: 24px 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .blog-detail-share .label {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .share-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .share-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .share-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .share-btn.facebook { background: #1877f2; }
+    .share-btn.twitter { background: #1da1f2; }
+    .share-btn.linkedin { background: #0a66c2; }
+    .share-btn.whatsapp { background: #25d366; }
+    .share-btn.email { background: #ea4335; }
+
+    /* ── Navigation ── */
+    .blog-detail-nav {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 48px;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .blog-detail-nav .nav-item {
+        flex: 1;
+        max-width: 50%;
+    }
+
+    .blog-detail-nav .nav-item .label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+    }
+
+    .blog-detail-nav .nav-item .title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--dark);
+        transition: color 0.2s;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .blog-detail-nav .nav-item:hover .title {
+        color: var(--teal);
+    }
+
+    .blog-detail-nav .nav-item.next {
+        text-align: right;
+    }
+
+    /* ── Related Blogs ── */
+    .related-blogs {
+        margin-top: 40px;
+    }
+
+    .related-blogs-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 24px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--teal);
+        display: inline-block;
+    }
+
+    .related-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+    }
+
+    .related-card {
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .related-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .related-card-image {
+        position: relative;
+        width: 100%;
+        padding-top: 60%;
+        overflow: hidden;
+        background: #f7f7f7;
+    }
+
+    .related-card-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    .related-card:hover .related-card-image img {
+        transform: scale(1.05);
+    }
+
+    .related-card-content {
+        padding: 16px 18px 20px;
+    }
+
+    .related-card-content .date {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+    }
+
+    .related-card-content .date i {
+        color: var(--teal);
+        margin-right: 4px;
+    }
+
+    .related-card-content h4 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dark);
+        line-height: 1.4;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 44px;
+    }
+
+    .related-card-content h4 a:hover {
+        color: var(--teal);
+    }
+
+    .related-card-content .readmore {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--teal);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .related-card-content .readmore:hover {
+        gap: 10px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+        .blog-detail-title {
+            font-size: 28px;
+        }
+
+        .blog-detail-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .blog-detail-content h2 {
+            font-size: 22px;
+        }
+
+        .blog-detail-content h3 {
+            font-size: 19px;
+        }
+
+        .blog-detail-nav {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .blog-detail-nav .nav-item {
+            max-width: 100%;
+        }
+
+        .blog-detail-nav .nav-item.next {
+            text-align: left;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .blog-detail-page {
+            padding: 20px 0 40px;
+        }
+
+        .blog-detail-title {
+            font-size: 24px;
+        }
+
+        .blog-detail-meta {
+            font-size: 13px;
+            gap: 12px;
+        }
+
+        .blog-detail-share {
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+        }
+
+        .share-buttons {
+            justify-content: center;
+        }
+
+        .related-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .blog-detail-image {
+            border-radius: 8px;
+        }
+
+        .blog-detail-image img {
+            max-height: 280px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<main>
+    <section class="blog-detail-page">
+        <div class="site-wrap">
+            <div class="blog-detail-wrapper">
+
+                <!-- Breadcrumb -->
+                <div class="blog-breadcrumb">
+                    <a href="{% url 'wopper:website_home' %}">Home</a>
+                    <span class="separator">/</span>
+                    <a href="{% url 'wopper:blog_list' %}">Blog</a>
+                    {% if blog.category %}
+                    <span class="separator">/</span>
+                    <a href="{% url 'wopper:blog_category' slug=blog.category.slug %}">{{ blog.category.name }}</a>
+                    {% endif %}
+                    <span class="separator">/</span>
+                    <span>{{ blog.title|truncatechars:40 }}</span>
+                </div>
+
+                <!-- Blog Header -->
+                <div class="blog-detail-header">
+                    <div class="blog-detail-meta">
+                        <span>
+                            <i class="far fa-calendar-alt"></i>
+                            {{ blog.published_date|date:"F d, Y" }}
+                        </span>
+                        {% if blog.category %}
+                        <span class="category">
+                            <i class="far fa-folder"></i>
+                            {{ blog.category.name }}
+                        </span>
+                        {% endif %}
+                        <span>
+                            <i class="far fa-clock"></i>
+                            {{ blog.read_time|default:"5" }} min read
+                        </span>
+                    </div>
+
+                    <h1 class="blog-detail-title">{{ blog.title }}</h1>
+
+                    <div class="blog-detail-author">
+                        <div class="avatar">
+                            {{ blog.author|default:"A"|make_list|first|upper }}
+                        </div>
+                        <div class="info">
+                            <div class="name">{{ blog.author|default:"Admin" }}</div>
+                            <div class="role">Content Writer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Image -->
+                {% if blog.image %}
+                <div class="blog-detail-image">
+                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                </div>
+                {% endif %}
+
+                <!-- Blog Content -->
+                <div class="blog-detail-content">
+                    {{ blog.description|safe }}
+                </div>
+
+                <!-- Share Section -->
+                <div class="blog-detail-share">
+                    <span class="label"><i class="fas fa-share-alt"></i> Share this article</span>
+                    <div class="share-buttons">
+                        <button class="share-btn facebook" onclick="shareBlog('facebook')">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="share-btn twitter" onclick="shareBlog('twitter')">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="share-btn linkedin" onclick="shareBlog('linkedin')">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                        <button class="share-btn whatsapp" onclick="shareBlog('whatsapp')">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button class="share-btn email" onclick="shareBlog('email')">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                {% if prev_blog or next_blog %}
+                <div class="blog-detail-nav">
+                    {% if prev_blog %}
+                    <div class="nav-item prev">
+                        <div class="label"><i class="fas fa-chevron-left"></i> Previous</div>
+                        <a href="{% url 'wopper:blog_detail' slug=prev_blog.slug %}" class="title">{{ prev_blog.title }}</a>
+                    </div>
+                    {% endif %}
+                    {% if next_blog %}
+                    <div class="nav-item next {% if not prev_blog %}ms-auto{% endif %}">
+                        <div class="label">Next <i class="fas fa-chevron-right"></i></div>
+                        <a href="{% url 'wopper:blog_detail' slug=next_blog.slug %}" class="title">{{ next_blog.title }}</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- Related Blogs -->
+                {% if related_blogs %}
+                <div class="related-blogs">
+                    <h3 class="related-blogs-title">You Might Also Like</h3>
+                    <div class="related-grid">
+                        {% for related in related_blogs %}
+                        <div class="related-card">
+                            <div class="related-card-image">
+                                {% if related.image %}
+                                <img src="{{ related.image.url }}" alt="{{ related.title }}" loading="lazy">
+                                {% else %}
+                                <img src="https://via.placeholder.com/400x240?text={{ related.title|truncatechars:20 }}" loading="lazy">
+                                {% endif %}
+                            </div>
+                            <div class="related-card-content">
+                                <div class="date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    {{ related.published_date|date:"M d, Y" }}
+                                </div>
+                                <h4>
+                                    <a href="{% url 'wopper:blog_detail' slug=related.slug %}">{{ related.title }}</a>
+                                </h4>
+                                <a href="{% url 'wopper:blog_detail' slug=related.slug %}" class="readmore">
+                                    Read More <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'includes/footer-website.html' %}
+
+<script>
+function shareBlog(platform) {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("{{ blog.title }}");
+    let shareUrl = '';
+
+    switch(platform) {
+        case 'facebook':
+            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            break;
+        case 'twitter':
+            shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+            break;
+        case 'linkedin':
+            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+            break;
+        case 'whatsapp':
+            shareUrl = `https://api.whatsapp.com/send?text=${title}%20${url}`;
+            break;
+        case 'email':
+            shareUrl = `mailto:?subject=${title}&body=${url}`;
+            break;
+        default:
+            return;
+    }
+
+    if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=500');
+    }
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

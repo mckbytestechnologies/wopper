@@ -73,6 +73,12 @@ class Product(models.Model):
         upload_to='products/'
     )
 
+    image1 = models.ImageField(upload_to='products/', blank=True, null=True)
+    image2 = models.ImageField(upload_to='products/', blank=True, null=True)
+    image3 = models.ImageField(upload_to='products/', blank=True, null=True)
+    image4 = models.ImageField(upload_to='products/', blank=True, null=True)
+    image5 = models.ImageField(upload_to='products/', blank=True, null=True)
+
     price = models.DecimalField(
         max_digits=12,
         decimal_places=2
@@ -951,3 +957,37 @@ class SiteSettings(models.Model):
             'updated_by': 'system',
         })
         return obj
+
+class Blog(models.Model):
+    # Basic Information
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
+    description = models.TextField()  # Large paragraph for blog content
+    
+    # Status and visibility
+    is_published = models.BooleanField(default=False)
+    published_date = models.DateTimeField(blank=True, null=True)
+    
+    # Audit fields (same as Product model)
+    created_by = models.CharField(max_length=8, blank=True)
+    updated_by = models.CharField(max_length=8, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    datamode = models.CharField(
+        max_length=20,
+        default='A',
+        choices=gv.DATAMODE_CHOICES
+    )
+
+    class Meta:
+        db_table = 'blog'
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

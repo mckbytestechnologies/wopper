@@ -1,0 +1,611 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Wopper</title>
+    <meta name="description" content="Read Wopper's terms and conditions, governing law, dispute resolution, and user agreements for using wopper.store.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal:       #00828a;
+            --teal-dark:  #006d73;
+            --teal-light: #e0f4f5;
+            --red:        #eb3c24;
+            --dark:       #222222;
+            --muted:      #666666;
+            --border:     #e5e5e5;
+            --bg-gray:    #f1f3f4;
+            --bg-card:    #f5f6f9;
+            --footer-bg:  #00222a;
+            --font:       'Inter', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: var(--font); color: var(--dark); background: var(--bg-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Page Hero ── */
+        .policy-hero {
+            background: linear-gradient(135deg, #00222a 0%, #004d57 60%, #00828a 100%);
+            padding: 64px 24px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        .policy-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            color: #a8e6eb;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .policy-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.6px;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .policy-hero p {
+            font-size: 15px;
+            color: rgba(255,255,255,.65);
+            max-width: 480px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        .policy-hero-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.08);
+            color: rgba(255,255,255,.55);
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+
+        /* ── Quick-fact strip ── */
+        .fact-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .fact-strip-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            divide: solid var(--border);
+        }
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 22px 16px;
+            border-right: 1px solid var(--border);
+        }
+        .fact-item:last-child { border-right: none; }
+        .fact-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .fact-val {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 2px;
+        }
+        .fact-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ── Main layout ── */
+        .policy-body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        /* ── Section cards ── */
+        .policy-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            position: relative;
+            transition: box-shadow .2s;
+        }
+        .policy-card:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,.07);
+        }
+        .policy-card-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        .policy-card-icon {
+            width: 46px; height: 46px;
+            border-radius: 10px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .policy-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .policy-card-sub {
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .policy-card p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .policy-card p:last-child { margin-bottom: 0; }
+        .policy-card ul, .policy-card ol {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8;
+            margin: 12px 0 16px 24px;
+        }
+        .policy-card ul li, .policy-card ol li {
+            margin-bottom: 8px;
+        }
+        .policy-card ul li::marker {
+            color: var(--teal);
+        }
+        .policy-card strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+        .policy-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 20px 0 8px 0;
+        }
+
+        /* ── Alert box ── */
+        .policy-alert {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+        .alert-info  { background: #e8f4fd; border-left: 3px solid #3b82f6; color: #1a4a7a; }
+        .alert-warn  { background: #fff8e6; border-left: 3px solid #f59e0b; color: #7a4e1a; }
+        .alert-green { background: #e8f8ee; border-left: 3px solid #29be53; color: #1a4a2a; }
+        .alert-red   { background: #fde8e8; border-left: 3px solid #ef4444; color: #7a1a1a; }
+        .policy-alert i { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+        /* ── Payment methods grid ── */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 12px 0 4px;
+        }
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+        .payment-item i {
+            color: var(--teal);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ── Contact row ── */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .contact-chip {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 16px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .contact-chip-ico {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .contact-chip-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .contact-chip-val {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        .contact-chip-val a { color: var(--teal); }
+        .contact-chip-val a:hover { text-decoration: underline; }
+
+        /* ── Section divider ── */
+        .section-divider {
+            border: none;
+            border-top: 2px dashed var(--border);
+            margin: 8px 0 18px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .policy-hero h1 { font-size: 28px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .fact-item:nth-child(odd) { border-right: 1px solid var(--border); }
+            .fact-item:nth-last-child(-n+2) { border-bottom: none; }
+            .policy-card { padding: 24px 20px; }
+            .contact-row { grid-template-columns: 1fr; }
+            .payment-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .policy-hero { padding: 44px 16px 40px; }
+            .policy-hero h1 { font-size: 22px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { padding: 16px 10px; }
+            .policy-body { padding: 28px 14px 48px; }
+            .payment-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<!-- Hero -->
+<div class="policy-hero">
+    <div class="policy-hero-badge">
+        <i class="fas fa-gavel"></i> Terms & Conditions
+    </div>
+    <h1>Our Terms &amp; Conditions</h1>
+    <p>Understanding the rules and agreements that govern your use of our website and services.</p>
+    <div class="policy-hero-date">
+        <i class="far fa-calendar-alt"></i> Last Updated: December 26, 2024
+    </div>
+</div>
+
+<!-- Quick-fact strip -->
+<div class="fact-strip">
+    <div class="fact-strip-inner">
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-scale-balanced"></i></div>
+            <div class="fact-val">18+</div>
+            <div class="fact-label">Age Requirement</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-gavel"></i></div>
+            <div class="fact-val">Chennai</div>
+            <div class="fact-label">Governing Law</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-handshake"></i></div>
+            <div class="fact-val">Binding</div>
+            <div class="fact-label">Legal Agreement</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-shield"></i></div>
+            <div class="fact-val">30 Days</div>
+            <div class="fact-label">Notice Period</div>
+        </div>
+    </div>
+</div>
+
+<!-- Body -->
+<div class="policy-body">
+
+    <!-- 1. Definitions -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-book-open"></i></div>
+            <div>
+                <div class="policy-card-title">Definitions</div>
+                <div class="policy-card-sub">Understanding key terms used in this agreement</div>
+            </div>
+        </div>
+        <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
+
+        <ul>
+            <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
+            <li><strong>Country</strong> refers to: <strong>India</strong></li>
+            <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to <strong>Shri Meera Labs Pvt Ltd</strong>, G 181, Mathura, Bharathidasan 1st Street, Bhasker Colony, Saligramam, Chennai - 600092, India.</li>
+            <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
+            <li><strong>Service</strong> refers to the Website.</li>
+            <li><strong>Terms and Conditions</strong> (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</li>
+            <li><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</li>
+            <li><strong>Website</strong> refers to <strong>Wopper Cleaning Solutions</strong>, accessible from <a href="https://wopper.store" style="color:var(--teal);font-weight:600;">wopper.store</a></li>
+            <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
+        </ul>
+    </div>
+
+    <!-- 2. Acknowledgment -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-check-circle"></i></div>
+            <div>
+                <div class="policy-card-title">Acknowledgment</div>
+                <div class="policy-card-sub">Your acceptance of these terms</div>
+            </div>
+        </div>
+        <p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
+        
+        <div class="policy-alert alert-warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</span>
+        </div>
+
+        <p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
+
+        <div class="policy-alert alert-red">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>You represent that you are over the age of <strong>18</strong>. The Company does not permit those under 18 to use the Service.</span>
+        </div>
+
+        <p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the <a href="{% url 'wopper:privacy_policy' %}" style="color:var(--teal);font-weight:600;">Privacy Policy</a> of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</p>
+    </div>
+
+    <!-- 3. Links to Other Websites -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-link"></i></div>
+            <div>
+                <div class="policy-card-title">Links to Other Websites</div>
+                <div class="policy-card-sub">Third-party content and services</div>
+            </div>
+        </div>
+        <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.</p>
+        
+        <p>The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
+
+        <div class="policy-alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <span>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</span>
+        </div>
+    </div>
+
+    <!-- 4. Termination -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-times-circle"></i></div>
+            <div>
+                <div class="policy-card-title">Termination</div>
+                <div class="policy-card-sub">When and how your access may be terminated</div>
+            </div>
+        </div>
+        <p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions.</p>
+        
+        <div class="policy-alert alert-red">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>Upon termination, Your right to use the Service will cease immediately.</span>
+        </div>
+    </div>
+
+    <!-- 5. Limitation of Liability -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+                <div class="policy-card-title">Limitation of Liability</div>
+                <div class="policy-card-sub">Our liability to you is limited</div>
+            </div>
+        </div>
+        <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or <strong>INR 200/-</strong> if You haven't purchased anything through the Service.</p>
+
+        <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
+
+        <div class="policy-alert alert-warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</span>
+        </div>
+    </div>
+
+    <!-- 6. Governing Law -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-gavel"></i></div>
+            <div>
+                <div class="policy-card-title">Governing Law</div>
+                <div class="policy-card-sub">The legal framework governing this agreement</div>
+            </div>
+        </div>
+        <p>The court at <strong>Chennai, Tamil Nadu, India</strong> shall be deemed to be the court of jurisdiction in respect of any suits, claims, disputes etc arising out of or relating to Terms and Conditions.</p>
+    </div>
+
+    <!-- 7. Disputes Resolution -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-scale-balanced"></i></div>
+            <div>
+                <div class="policy-card-title">Disputes Resolution</div>
+                <div class="policy-card-sub">How disputes will be resolved</div>
+            </div>
+        </div>
+        <p>Any Controversy or claim arising out of or relating to the Terms &amp; Conditions or the breach there of shall be settled by arbitration under <strong>Chennai Jurisdiction</strong> and judgement upon the award rendered by the arbitrator or arbitrators shall be final and binding upon the parties here to.</p>
+    </div>
+
+    <!-- 8. Severability and Waiver -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-puzzle-piece"></i></div>
+            <div>
+                <div class="policy-card-title">Severability and Waiver</div>
+                <div class="policy-card-sub">How unenforceable provisions are handled</div>
+            </div>
+        </div>
+        
+        <h4>Severability</h4>
+        <p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
+
+        <h4>Waiver</h4>
+        <p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
+    </div>
+
+    <!-- 9. Translation Interpretation -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-language"></i></div>
+            <div>
+                <div class="policy-card-title">Translation Interpretation</div>
+                <div class="policy-card-sub">Which language prevails in case of dispute</div>
+            </div>
+        </div>
+        <p>These Terms and Conditions may have been translated if We have made them available to You on our Service. You agree that the <strong>original English text shall prevail</strong> in the case of a dispute.</p>
+    </div>
+
+    <!-- 10. Changes to Terms -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-pen"></i></div>
+            <div>
+                <div class="policy-card-title">Changes to These Terms</div>
+                <div class="policy-card-sub">When and how we update our terms</div>
+            </div>
+        </div>
+        <p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least <strong>30 days' notice</strong> prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
+
+        <div class="policy-alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <span>By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.</span>
+        </div>
+    </div>
+
+    <!-- 11. Payment Methods -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-credit-card"></i></div>
+            <div>
+                <div class="policy-card-title">Payment Methods</div>
+                <div class="policy-card-sub">Available payment options for your purchases</div>
+            </div>
+        </div>
+        <p>We offer a variety of secure payment methods to make your shopping experience convenient and hassle-free.</p>
+        
+        <div class="payment-grid">
+            <div class="payment-item">
+                <i class="fas fa-credit-card"></i> Credit Cards
+            </div>
+            <div class="payment-item">
+                <i class="fas fa-credit-card"></i> Debit Cards
+            </div>
+            <div class="payment-item">
+                <i class="fab fa-paypal"></i> PayPal
+            </div>
+            <div class="payment-item">
+                <i class="fas fa-university"></i> Net Banking
+            </div>
+            <div class="payment-item">
+                <i class="fas fa-mobile-alt"></i> UPI
+            </div>
+            <div class="payment-item">
+                <i class="fas fa-money-bill-wave"></i> Offline Payments
+            </div>
+        </div>
+
+        <div class="policy-alert alert-green">
+            <i class="fas fa-check-circle"></i>
+            <span>All payments are processed through secure payment gateways. Your financial information is encrypted and protected.</span>
+        </div>
+    </div>
+
+    <!-- 12. Contact -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-headset"></i></div>
+            <div>
+                <div class="policy-card-title">Get in Touch</div>
+                <div class="policy-card-sub">Have questions about our terms?</div>
+            </div>
+        </div>
+        <p>If you have any questions about these Terms &amp; Conditions, please contact us:</p>
+        <div class="contact-row">
+            <div class="contact-chip">
+                <div class="contact-chip-ico"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <div class="contact-chip-label">Email Us</div>
+                    <div class="contact-chip-val"><a href="mailto:admin@wopper.in">admin@wopper.in</a></div>
+                </div>
+            </div>
+            <div class="contact-chip">
+                <div class="contact-chip-ico"><i class="fas fa-location-dot"></i></div>
+                <div>
+                    <div class="contact-chip-label">Registered Address</div>
+                    <div class="contact-chip-val">Shri Meera Labs Pvt. Ltd., G-181, Mathura, Bharathidasan Street, Bhasker Colony, Saligramam, Chennai – 600092</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /policy-body -->
+
+{% include 'includes/footer-website.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

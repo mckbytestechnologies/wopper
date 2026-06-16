@@ -7,3 +7,46 @@ python manage.py migrate
 pkill -f gunicorn
 gunicorn config.wsgi:application --bind 127.0.0.1:8090 --workers 3 --daemon
 python scripts/script_db_init.py
+
+
+
+
+nano /etc/nginx/sites-enabled/mckbytes.tech.conf
+
+server {
+    listen 80;
+    server_name mckbytes.tech www.mckbytes.tech;
+
+    location ^~ /.well-known/acme-challenge/ {
+        root /home/mckbytes/htdocs/mckbytes.tech;
+        default_type "text/plain";
+        try_files $uri =404;
+    }
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name mckbytes.tech www.mckbytes.tech;
+
+    ssl_certificate /etc/nginx/ssl-certificates/mckbytes.tech.crt;
+    ssl_certificate_key /etc/nginx/ssl-certificates/mckbytes.tech.key;
+
+    location /static/ {
+        alias /home/mckbytes/htdocs/mckbytes.tech/mckbytes-website/mckbytes-website/media/static/;
+    }
+
+    location /media/ {
+        alias /home/mckbytes/htdocs/mckbytes.tech/mckbytes-website/media/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8095;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}

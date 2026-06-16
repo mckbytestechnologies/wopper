@@ -374,6 +374,168 @@ class ProductDeleteView(TemplateView):
 # ADD THESE CLASSES to your existing views.py
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Blog
+# ─────────────────────────────────────────────────────────────────────────────
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class BlogList(TemplateView):
+    template_name = "table_data_list.html"
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_kwargs'] = seo.get_page_tags("BlogList")
+        has_permission, accountuser = rv.validate_requested_user_function(request)
+        if not has_permission:
+            return render(request, "access_denied.html", context)
+        context['table_data'] = bt.build_blog_table(request)
+        return render(request, self.template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, *args, **kwargs):
+        context = dict()
+        try:
+            context['page_kwargs'] = seo.get_page_tags("BlogList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            table_data = bt.build_blog_table(request)
+            context['table_data'] = table_data
+            result, msg, data = api.blog_load_data(request, table_data)
+            return HttpResponse(json.dumps(data))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return HttpResponse(json.dumps(context))
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class BlogCreateView(TemplateView):
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Blog"
+            context['page_kwargs'] = seo.get_page_tags("BlogList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.BlogCreateUpdateForm()
+            context['form'] = form
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Blog"
+            context['page_kwargs'] = seo.get_page_tags("BlogList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.BlogCreateUpdateForm(request.POST, request.FILES)
+            logger.debug(request.POST)
+            if form.is_valid():
+                result, msg, data = api.blog_create_update(request)
+                logger.debug(data)
+                return HttpResponseRedirect(reverse("mck_website:mck_blog_list"))
+            else:
+                context['form'] = form
+                logger.warning(form.errors)
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class BlogUpdateView(TemplateView):
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "Blog"
+            context['page_kwargs'] = seo.get_page_tags("BlogList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            context['mode'] = mode
+            result, msg, data = api.blog_retrieve_data(request, id)
+            # Pass the instance so the form shows current values + image thumbnail
+            form = forms.BlogCreateUpdateForm(
+                instance=data.get("blog"),
+                mode=mode
+            )
+            context['form'] = form
+            context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "Blog"
+            context['page_kwargs'] = seo.get_page_tags("BlogList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            result, msg, data = api.category_retrieve_data(request, id)
+            # Pass BOTH the POST data AND the existing instance so Django
+            # knows which record it's editing (needed for field validation).
+            form = forms.CategoryCreateUpdateForm(
+                request.POST,
+                request.FILES,
+                instance=data.get("blog"),
+                mode=mode
+            )
+            if form.is_valid():
+                result, msg, data = api.category_create_update(request, id, mode)
+                return HttpResponseRedirect(reverse("mck_website:mck_blog_list"))
+            else:
+                logger.warning(form.errors)
+                context['form'] = form
+                context['mode'] = mode
+                context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class BlogDeleteView(TemplateView):
+    """
+    Toggles a Category between Active ('A') and Inactive ('I').
+    Called via AJAX; always returns JSON.
+    """
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        try:
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return JsonResponse(dict(result=False, message="Access denied"), status=403)
+            result, message = api.blog_update_status(request, id)
+            return JsonResponse(dict(result=result, message=message))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # HomePageVideo

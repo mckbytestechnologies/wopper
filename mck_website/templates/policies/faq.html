@@ -1,0 +1,830 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Wopper</title>
+    <meta name="description" content="Frequently asked questions about ordering, payments, shipping, and support at Wopper Cleaning Solutions.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal:       #00828a;
+            --teal-dark:  #006d73;
+            --teal-light: #e0f4f5;
+            --red:        #eb3c24;
+            --dark:       #222222;
+            --muted:      #666666;
+            --border:     #e5e5e5;
+            --bg-gray:    #f1f3f4;
+            --bg-card:    #f5f6f9;
+            --footer-bg:  #00222a;
+            --font:       'Inter', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: var(--font); color: var(--dark); background: var(--bg-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Page Hero ── */
+        .policy-hero {
+            background: linear-gradient(135deg, #00222a 0%, #004d57 60%, #00828a 100%);
+            padding: 64px 24px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        .policy-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            color: #a8e6eb;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .policy-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.6px;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .policy-hero p {
+            font-size: 15px;
+            color: rgba(255,255,255,.65);
+            max-width: 480px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        .policy-hero-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.08);
+            color: rgba(255,255,255,.55);
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+
+        /* ── Search Bar ── */
+        .faq-search-wrap {
+            max-width: 600px;
+            margin: -28px auto 0;
+            position: relative;
+            z-index: 5;
+            padding: 0 16px;
+        }
+        .faq-search {
+            display: flex;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.12);
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color .25s;
+        }
+        .faq-search:focus-within {
+            border-color: var(--teal);
+        }
+        .faq-search input {
+            flex: 1;
+            border: none;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-family: var(--font);
+            outline: none;
+            color: var(--dark);
+            background: transparent;
+        }
+        .faq-search input::placeholder {
+            color: #aaa;
+        }
+        .faq-search button {
+            background: var(--teal);
+            border: none;
+            color: #fff;
+            padding: 0 24px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background .25s;
+        }
+        .faq-search button:hover {
+            background: var(--teal-dark);
+        }
+
+        /* ── Quick-fact strip ── */
+        .fact-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            margin-top: 30px;
+        }
+        .fact-strip-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            divide: solid var(--border);
+        }
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 22px 16px;
+            border-right: 1px solid var(--border);
+        }
+        .fact-item:last-child { border-right: none; }
+        .fact-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .fact-val {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 2px;
+        }
+        .fact-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ── Main layout ── */
+        .policy-body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        /* ── Category Tabs ── */
+        .faq-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+            justify-content: center;
+        }
+        .faq-tab {
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--muted);
+            background: #fff;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: all .25s;
+            font-family: var(--font);
+        }
+        .faq-tab:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .faq-tab.active {
+            background: var(--teal);
+            color: #fff;
+            border-color: var(--teal);
+        }
+
+        /* ── FAQ Accordion ── */
+        .faq-section {
+            margin-bottom: 32px;
+        }
+        .faq-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--teal);
+            display: inline-block;
+        }
+
+        .faq-item {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all .25s;
+        }
+        .faq-item:hover {
+            border-color: var(--teal-light);
+        }
+        .faq-item.active {
+            border-color: var(--teal);
+            box-shadow: 0 2px 12px rgba(0,130,138,.08);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            gap: 16px;
+            background: #fff;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            transition: background .2s;
+        }
+        .faq-question:hover {
+            background: var(--bg-gray);
+        }
+        .faq-question .faq-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--teal-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-size: 13px;
+            transition: all .3s;
+        }
+        .faq-item.active .faq-question .faq-icon {
+            background: var(--teal);
+            color: #fff;
+            transform: rotate(180deg);
+        }
+        .faq-question .faq-toggle {
+            flex-shrink: 0;
+            color: var(--muted);
+            font-size: 14px;
+            transition: transform .3s;
+        }
+        .faq-item.active .faq-question .faq-toggle {
+            transform: rotate(45deg);
+            color: var(--teal);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, padding .3s ease;
+            padding: 0 22px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 22px 20px;
+        }
+        .faq-answer strong {
+            color: var(--dark);
+        }
+        .faq-answer a {
+            color: var(--teal);
+            font-weight: 600;
+        }
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+        .faq-answer ul, .faq-answer ol {
+            margin: 8px 0 8px 20px;
+        }
+        .faq-answer li {
+            margin-bottom: 4px;
+        }
+
+        /* ── No Results ── */
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .no-results i {
+            font-size: 48px;
+            color: var(--teal-light);
+            margin-bottom: 16px;
+        }
+        .no-results h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .no-results p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* ── Still have questions? ── */
+        .still-help {
+            background: var(--teal-light);
+            border-radius: 12px;
+            padding: 32px 36px;
+            text-align: center;
+            margin-top: 16px;
+        }
+        .still-help h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .still-help p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+        .still-help .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal);
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background .25s;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+        }
+        .still-help .btn-contact:hover {
+            background: var(--teal-dark);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .policy-hero h1 { font-size: 28px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .fact-item:nth-child(odd) { border-right: 1px solid var(--border); }
+            .fact-item:nth-last-child(-n+2) { border-bottom: none; }
+            .faq-question { font-size: 14px; padding: 14px 16px; }
+            .faq-answer { font-size: 13px; }
+            .faq-answer.active { padding: 0 16px 16px; }
+            .faq-tabs { gap: 8px; }
+            .faq-tab { padding: 8px 16px; font-size: 12px; }
+            .still-help { padding: 24px 20px; }
+        }
+        @media (max-width: 480px) {
+            .policy-hero { padding: 44px 16px 40px; }
+            .policy-hero h1 { font-size: 22px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { padding: 16px 10px; }
+            .policy-body { padding: 28px 14px 48px; }
+            .faq-search input { padding: 12px 16px; font-size: 13px; }
+            .faq-search button { padding: 0 16px; }
+            .faq-question { font-size: 13px; padding: 12px 14px; }
+            .faq-answer { font-size: 13px; }
+            .faq-tab { padding: 6px 14px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<!-- Hero -->
+<div class="policy-hero">
+    <div class="policy-hero-badge">
+        <i class="fas fa-question-circle"></i> FAQ
+    </div>
+    <h1>Frequently Asked Questions</h1>
+    <p>Find answers to the most common questions about ordering, payments, shipping, and more.</p>
+</div>
+
+<!-- Search Bar -->
+<div class="faq-search-wrap">
+    <form class="faq-search" onsubmit="event.preventDefault(); searchFAQ();">
+        <input type="text" id="faqSearchInput" placeholder="Search for answers..." aria-label="Search FAQ">
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+</div>
+
+<!-- Quick-fact strip -->
+<div class="fact-strip">
+    <div class="fact-strip-inner">
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="fact-val">Easy</div>
+            <div class="fact-label">Ordering Process</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-credit-card"></i></div>
+            <div class="fact-val">Secure</div>
+            <div class="fact-label">Payment Methods</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-truck"></i></div>
+            <div class="fact-val">Fast</div>
+            <div class="fact-label">Shipping & Delivery</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-headset"></i></div>
+            <div class="fact-val">24/7</div>
+            <div class="fact-label">Customer Support</div>
+        </div>
+    </div>
+</div>
+
+<!-- Body -->
+<div class="policy-body">
+
+    <!-- Category Tabs -->
+    <div class="faq-tabs" id="faqTabs">
+        <button class="faq-tab active" data-category="all">All</button>
+        <button class="faq-tab" data-category="ordering">Ordering &amp; Support</button>
+        <button class="faq-tab" data-category="navigation">Website Navigation</button>
+        <button class="faq-tab" data-category="product">Product Information</button>
+        <button class="faq-tab" data-category="general">General</button>
+    </div>
+
+    <!-- FAQ Sections -->
+    <div id="faqContainer">
+
+        <!-- Ordering & Support -->
+        <div class="faq-section" data-category="ordering">
+            <h3 class="faq-section-title">Ordering &amp; Support</h3>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How can I place an order on Wopper.store?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can place an order by following these simple steps:</p>
+                    <ol>
+                        <li><strong>Browse</strong> the website and add desired products to your cart.</li>
+                        <li><strong>Review</strong> your cart and proceed to the checkout page.</li>
+                        <li><strong>Enter</strong> your shipping address and select a payment method.</li>
+                        <li><strong>Confirm</strong> your order and complete the purchase.</li>
+                    </ol>
+                    <p>You will receive an order confirmation email once your order is successfully placed.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What are the accepted payment methods?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>We accept the following payment methods:</p>
+                    <ul>
+                        <li><strong>Credit Cards</strong> - Visa, Mastercard, American Express</li>
+                        <li><strong>Debit Cards</strong> - All major banks</li>
+                        <li><strong>Net Banking</strong> - All major banks</li>
+                        <li><strong>UPI</strong> - Google Pay, PhonePe, Paytm</li>
+                        <li><strong>Cash on Delivery</strong> - Available for eligible orders</li>
+                    </ul>
+                    <p>All payments are processed securely through our payment gateway partners.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How can I contact Wopper.store for support or inquiries?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can reach us through the following channels:</p>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="mailto:admin@wopper.in">admin@wopper.in</a></li>
+                        <li><strong>Phone:</strong> +91 9677051121</li>
+                        <li><strong>Address:</strong> Shri Meera Labs Pvt. Ltd., G-181, Mathura, Bharathidasan Street, Bhasker Colony, Saligramam, Chennai – 600092</li>
+                    </ul>
+                    <p>Our support team is available Monday to Saturday, 9:00 AM to 6:00 PM IST.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you offer bulk discounts for large orders?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, we offer bulk discounts for large orders. Please contact our support team at <a href="mailto:admin@wopper.in">admin@wopper.in</a> with your requirements, and we will provide you with a customized quote.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Website Navigation -->
+        <div class="faq-section" data-category="navigation">
+            <h3 class="faq-section-title">Website Navigation</h3>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I create an account on Wopper.store?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>To create an account:</p>
+                    <ol>
+                        <li>Click on the <strong>Login/Register</strong> button at the top of the page.</li>
+                        <li>Fill in your name, email address, and password.</li>
+                        <li>Click <strong>Register</strong> to complete the process.</li>
+                    </ol>
+                    <p>You will receive a confirmation email to verify your account.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I track my order?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can track your order by:</p>
+                    <ol>
+                        <li>Logging into your account and visiting the <strong>My Orders</strong> section.</li>
+                        <li>Clicking on the order number to view the tracking details.</li>
+                        <li>Using the tracking number provided in your shipping confirmation email.</li>
+                    </ol>
+                    <p>You will receive real-time updates on your delivery status.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I reset my password?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>To reset your password:</p>
+                    <ol>
+                        <li>Click on <strong>Login</strong> and select <strong>Forgot Password?</strong></li>
+                        <li>Enter your registered email address.</li>
+                        <li>You will receive a password reset link via email.</li>
+                        <li>Click the link and follow the instructions to set a new password.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Information -->
+        <div class="faq-section" data-category="product">
+            <h3 class="faq-section-title">Product Information</h3>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Are all products on Wopper.store authentic?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, all products on <strong>Wopper.store</strong> are 100% authentic and sourced directly from trusted manufacturers. We are committed to providing you with genuine products that meet quality standards.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What are the cleaning and hygiene benefits of Wopper products?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Wopper products are designed to provide superior cleaning and hygiene solutions. Our products feature:</p>
+                    <ul>
+                        <li><strong>Effective cleaning formulas</strong> that remove tough stains and germs</li>
+                        <li><strong>Eco-friendly ingredients</strong> safe for your family and the environment</li>
+                        <li><strong>Long-lasting freshness</strong> that keeps your home clean and inviting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I know which product is right for me?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Each product listing includes detailed information about:</p>
+                    <ul>
+                        <li><strong>Product description</strong> - What the product does</li>
+                        <li><strong>Usage instructions</strong> - How to use the product</li>
+                        <li><strong>Key features</strong> - What makes the product unique</li>
+                        <li><strong>Customer reviews</strong> - Real feedback from other users</li>
+                    </ul>
+                    <p>You can also contact our support team for personalized recommendations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- General -->
+        <div class="faq-section" data-category="general">
+            <h3 class="faq-section-title">General</h3>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What is your return policy?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer a <strong>7-day return policy</strong> from the date of delivery. If you are not completely satisfied with your purchase, you may return it for a full refund or exchange. Please visit our <a href="{% url 'wopper:returns_policy' %}">Returns Policy</a> page for detailed information.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I get in touch with customer support?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can reach our customer support team through:</p>
+                    <ul>
+                        <li><strong>Email:</strong> <a href="mailto:admin@wopper.in">admin@wopper.in</a></li>
+                        <li><strong>Contact Form:</strong> Visit our <a href="{% url 'mck_website:contact' %}">Contact Us</a> page</li>
+                        <li><strong>Phone:</strong> +91 9677051121</li>
+                    </ul>
+                    <p>Our team is available Monday to Saturday, 9:00 AM to 6:00 PM IST.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you ship to all locations in India?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes, we ship to all locations within India. Delivery times may vary based on your location and the product availability. Please visit our <a href="{% url 'wopper:shipping_policy' %}">Shipping Policy</a> page for more details.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How do I unsubscribe from marketing emails?</span>
+                    <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                </button>
+                <div class="faq-answer">
+                    <p>You can unsubscribe from marketing emails by:</p>
+                    <ol>
+                        <li>Clicking the <strong>Unsubscribe</strong> link at the bottom of any marketing email.</li>
+                        <li>Logging into your account and updating your communication preferences.</li>
+                        <li>Contacting our support team at <a href="mailto:admin@wopper.in">admin@wopper.in</a> to request removal from our mailing list.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message (hidden by default) -->
+        <div class="no-results" id="noResults" style="display:none;">
+            <i class="fas fa-search"></i>
+            <h4>No results found</h4>
+            <p>Try adjusting your search terms or browse through the categories above.</p>
+        </div>
+
+    </div>
+
+    <!-- Still have questions? -->
+    <div class="still-help">
+        <h3>Still have questions?</h3>
+        <p>Our support team is here to help. Reach out to us and we'll get back to you as soon as possible.</p>
+        <a href="{% url 'mck_website:contact' %}" class="btn-contact">
+            <i class="fas fa-envelope"></i> Contact Support
+        </a>
+    </div>
+
+</div><!-- /policy-body -->
+
+{% include 'includes/footer-website.html' %}
+
+<script>
+// ── Toggle FAQ ──
+function toggleFAQ(btn) {
+    const item = btn.closest('.faq-item');
+    const isActive = item.classList.contains('active');
+    
+    // Close all other items in the same section
+    const section = item.closest('.faq-section');
+    if (section) {
+        section.querySelectorAll('.faq-item.active').forEach(el => {
+            if (el !== item) {
+                el.classList.remove('active');
+            }
+        });
+    }
+    
+    // Toggle this item
+    item.classList.toggle('active');
+}
+
+// ── Category Tabs ──
+document.querySelectorAll('.faq-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Update active tab
+        document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.dataset.category;
+        const sections = document.querySelectorAll('.faq-section');
+        let hasVisible = false;
+        
+        sections.forEach(section => {
+            if (category === 'all' || section.dataset.category === category) {
+                section.style.display = 'block';
+                hasVisible = true;
+            } else {
+                section.style.display = 'none';
+            }
+        });
+        
+        // Show/hide no results
+        document.getElementById('noResults').style.display = hasVisible ? 'none' : 'block';
+        
+        // Clear search input when changing tabs
+        document.getElementById('faqSearchInput').value = '';
+    });
+});
+
+// ── Search FAQ ──
+function searchFAQ() {
+    const query = document.getElementById('faqSearchInput').value.toLowerCase().trim();
+    const items = document.querySelectorAll('.faq-item');
+    let hasResults = false;
+    
+    // Reset all items
+    items.forEach(item => {
+        const question = item.querySelector('.faq-question span:first-child').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+        const matches = query === '' || question.includes(query) || answer.includes(query);
+        
+        if (query === '') {
+            item.style.display = '';
+            item.closest('.faq-section').style.display = '';
+            hasResults = true;
+        } else if (matches) {
+            item.style.display = '';
+            // Show the parent section
+            const section = item.closest('.faq-section');
+            if (section) section.style.display = 'block';
+            // Auto-expand matching items
+            item.classList.add('active');
+            hasResults = true;
+        } else {
+            item.style.display = 'none';
+            item.classList.remove('active');
+        }
+    });
+    
+    // Show/hide sections with no results
+    document.querySelectorAll('.faq-section').forEach(section => {
+        const visibleItems = section.querySelectorAll('.faq-item[style*="display: block"], .faq-item:not([style*="display: none"])');
+        if (query !== '' && visibleItems.length === 0) {
+            section.style.display = 'none';
+        } else if (query !== '') {
+            section.style.display = 'block';
+        }
+    });
+    
+    // Show no results message
+    document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+    
+    // Reset tab selection when searching
+    document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+    document.querySelector('.faq-tab[data-category="all"]').classList.add('active');
+}
+
+// ── Search on Enter key ──
+document.getElementById('faqSearchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        searchFAQ();
+    }
+});
+
+// ── Open first FAQ by default on load ──
+document.addEventListener('DOMContentLoaded', function() {
+    const firstFaq = document.querySelector('.faq-item');
+    if (firstFaq) {
+        firstFaq.classList.add('active');
+    }
+});
+</script>
+</body>
+</html>

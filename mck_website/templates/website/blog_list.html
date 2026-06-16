@@ -1,0 +1,578 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - {{ site_name|default:"Wopper" }}</title>
+    <meta name="description" content="Read our latest articles and insights about home cleaning and hygiene solutions.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+    /* ════════════════════════════════════════════
+       RESET & ROOT - Same as Home
+    ════════════════════════════════════════════ */
+    :root {
+        --teal:        #00828a;
+        --teal-dark:   #006d73;
+        --teal-light:  #e0f4f5;
+        --red:         #eb3c24;
+        --dark:        #222222;
+        --muted:       #666666;
+        --border:      #e5e5e5;
+        --border-l:    #e2e2e6;
+        --bg-gray:     #f1f3f4;
+        --bg-card:     #f5f6f9;
+        --flash-bg:    #aadfe4;
+        --best-bg:     #fbebd4;
+        --footer-bg:   #00222a;
+        --font:        'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; font-family: var(--font); color: var(--dark); background: var(--bg-gray); }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ════════════════════════════════════════════
+       BLOG LIST PAGE
+    ════════════════════════════════════════════ */
+    .blog-list-page {
+        padding: 40px 0;
+        background: #fff;
+    }
+
+    .blog-list-header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 40px 0 20px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .blog-list-header h1 {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 10px;
+    }
+
+    .blog-list-header p {
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* ── Blog Grid ── */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    /* ── Blog Card (Enhanced) ── */
+    .blog-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border-l);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .blog-card-image {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        overflow: hidden;
+        background: #f7f7f7;
+    }
+
+    .blog-card-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+        transform: scale(1.05);
+    }
+
+    .blog-card-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--teal);
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        z-index: 2;
+    }
+
+    .blog-card-badge.featured {
+        background: var(--red);
+    }
+
+    .blog-card-content {
+        padding: 20px 22px 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+    }
+
+    .blog-card-meta i {
+        color: var(--teal);
+        margin-right: 4px;
+        font-size: 13px;
+    }
+
+    .blog-card-meta .category {
+        color: var(--teal);
+        font-weight: 600;
+    }
+
+    .blog-card-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dark);
+        line-height: 1.3;
+        margin-bottom: 12px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 52px;
+    }
+
+    .blog-card-title a {
+        transition: color 0.2s;
+    }
+
+    .blog-card-title a:hover {
+        color: var(--teal);
+    }
+
+    .blog-card-excerpt {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        flex: 1;
+    }
+
+    .blog-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        margin-top: auto;
+    }
+
+    .blog-card-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .blog-card-author .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--teal-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--teal);
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .blog-card-author .name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    .blog-card-readmore {
+        color: var(--teal);
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .blog-card-readmore:hover {
+        gap: 10px;
+        color: var(--teal-dark);
+    }
+
+    /* ── Pagination ── */
+    .blog-pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 20px;
+        padding: 20px 0;
+    }
+
+    .blog-pagination .page-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 40px;
+        padding: 0 12px;
+        border: 1px solid var(--border-l);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--dark);
+        background: #fff;
+        transition: all 0.2s;
+    }
+
+    .blog-pagination .page-link:hover {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+    }
+
+    .blog-pagination .page-link.active {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+    }
+
+    .blog-pagination .page-link.disabled {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    /* ── Sidebar ── */
+    .blog-sidebar {
+        position: sticky;
+        top: 100px;
+    }
+
+    .sidebar-widget {
+        background: #fff;
+        border: 1px solid var(--border-l);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+
+    .sidebar-widget-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid var(--teal);
+        display: inline-block;
+    }
+
+    .sidebar-search {
+        display: flex;
+        border: 1px solid var(--border-l);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .sidebar-search input {
+        flex: 1;
+        border: none;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-family: var(--font);
+        outline: none;
+        background: #fafafa;
+    }
+
+    .sidebar-search button {
+        background: var(--teal);
+        border: none;
+        color: #fff;
+        padding: 0 16px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .sidebar-search button:hover {
+        background: var(--teal-dark);
+    }
+
+    .sidebar-categories li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-categories li:last-child {
+        border-bottom: none;
+    }
+
+    .sidebar-categories a {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #555;
+        transition: color 0.2s;
+    }
+
+    .sidebar-categories a:hover {
+        color: var(--teal);
+    }
+
+    .sidebar-categories .count {
+        background: var(--teal-light);
+        padding: 0 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--teal);
+    }
+
+    .sidebar-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .sidebar-tags .tag {
+        padding: 6px 14px;
+        background: var(--bg-gray);
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #555;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+    }
+
+    .sidebar-tags .tag:hover {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 992px) {
+        .blog-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+        
+        .blog-sidebar {
+            position: static;
+            margin-top: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .blog-list-header h1 {
+            font-size: 28px;
+        }
+        
+        .blog-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .blog-card-title {
+            font-size: 18px;
+            min-height: 44px;
+        }
+        
+        .blog-card-content {
+            padding: 16px 18px 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .blog-list-page {
+            padding: 20px 0;
+        }
+        
+        .blog-list-header {
+            padding: 20px 0 16px;
+        }
+        
+        .blog-list-header h1 {
+            font-size: 24px;
+        }
+        
+        .blog-card-meta {
+            font-size: 12px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<main>
+    <section class="blog-list-page">
+        <div class="site-wrap">
+            <!-- Header -->
+            <div class="blog-list-header">
+                <h1>Our Blog</h1>
+                <p>Discover tips, insights, and stories about home cleaning and hygiene solutions.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Blog Grid -->
+                <div class="col-lg-8">
+                    {% if blogs %}
+                    <div class="blog-grid">
+                        {% for blog in blogs %}
+                        <div class="blog-card">
+                            <div class="blog-card-image">
+                                {% if blog.image %}
+                                <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+                                {% else %}
+                                <img src="https://via.placeholder.com/600x340?text={{ blog.title|truncatechars:30 }}" loading="lazy">
+                                {% endif %}
+                                {% if blog.is_featured %}
+                                <span class="blog-card-badge featured">Featured</span>
+                                {% endif %}
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span>
+                                        <i class="far fa-calendar-alt"></i>
+                                        {{ blog.published_date|date:"M d, Y" }}
+                                    </span>
+                                    {% if blog.category %}
+                                    <span class="category">
+                                        <i class="far fa-folder"></i>
+                                        {{ blog.category.name }}
+                                    </span>
+                                    {% endif %}
+                                </div>
+                                <h2 class="blog-card-title">
+                                    <a href="{% url 'wopper:blog_detail' slug=blog.slug %}">{{ blog.title }}</a>
+                                </h2>
+                                <p class="blog-card-excerpt">{{ blog.description|striptags|truncatechars:150 }}</p>
+                                <div class="blog-card-footer">
+                                    <div class="blog-card-author">
+                                        <div class="avatar">
+                                            {{ blog.author|default:"A"|make_list|first|upper }}
+                                        </div>
+                                        <span class="name">{{ blog.author|default:"Admin" }}</span>
+                                    </div>
+                                    <a href="{% url 'wopper:blog_detail' slug=blog.slug %}" class="blog-card-readmore">
+                                        Read More <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Pagination -->
+                    {% if blogs.has_other_pages %}
+                    <div class="blog-pagination">
+                        {% if blogs.has_previous %}
+                        <a href="?page={{ blogs.previous_page_number }}" class="page-link">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                        {% endif %}
+
+                        {% for num in blogs.paginator.page_range %}
+                            {% if blogs.number == num %}
+                            <span class="page-link active">{{ num }}</span>
+                            {% elif num > blogs.number|add:'-3' and num < blogs.number|add:'3' %}
+                            <a href="?page={{ num }}" class="page-link">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if blogs.has_next %}
+                        <a href="?page={{ blogs.next_page_number }}" class="page-link">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-newspaper" style="font-size:48px;color:var(--teal);margin-bottom:16px;"></i>
+                        <h3>No blogs found</h3>
+                        <p class="text-muted">Check back later for new articles.</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include 'includes/footer-website.html' %}
+
+<script>
+function subscribeBlogNewsletter(form) {
+    const email = form.querySelector('input[type="email"]').value;
+    if (!email || !email.includes('@')) {
+        showNotif('Please enter a valid email', 'warning');
+        return;
+    }
+    fetch('/api/newsletter/subscribe/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(r => r.json())
+    .then(d => {
+        if (d.success) {
+            showNotif('Subscribed successfully!', 'success');
+            form.querySelector('input[type="email"]').value = '';
+        } else {
+            showNotif(d.message || 'Failed to subscribe', 'error');
+        }
+    })
+    .catch(() => showNotif('Network error', 'error'));
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

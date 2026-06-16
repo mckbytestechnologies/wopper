@@ -3,12 +3,14 @@ from django.urls import reverse
 from django.forms.models import model_to_dict
 from phonenumber_field.phonenumber import PhoneNumber
 from django.urls import reverse, NoReverseMatch
-
+from django.utils import timezone
 from config import app_utils
 from config import app_logger
 from mck_auth import api as auth_api
 from mck_website.models import *
 from mck_admin_console.models import *
+from decimal import Decimal
+from datetime import datetime, date
 
 log_name = "app"
 logger = app_logger.createLogger(log_name)
@@ -135,12 +137,21 @@ def product_create_update(request, id=None, mode=None):
         obj.is_top_rated = bool(pDict.get("is_top_rated"))
         obj.is_active = bool(pDict.get("is_active"))
 
+        # Handle main image
         if request.FILES.get("image"):
             obj.image = request.FILES.get("image")
         elif not obj.image and mode != 'edit':
             # If no image is provided for new product, you might want to set a default or raise error
             error_msg = "Product image is required"
             return False, error_msg, data
+
+        # Handle additional images (image1 to image5)
+        image_fields = ['image1', 'image2', 'image3', 'image4', 'image5']
+        for field_name in image_fields:
+            if request.FILES.get(field_name):
+                setattr(obj, field_name, request.FILES.get(field_name))
+            # Note: We don't delete existing images if no new file is uploaded
+            # This allows keeping existing images during edit
 
         obj.updated_by = accountuser.id
         obj.save()
@@ -158,7 +169,13 @@ def product_create_update(request, id=None, mode=None):
             "stock": obj.stock,
             "category_id": obj.category.id,
             "category_name": obj.category.name,
-            "is_active": obj.is_active
+            "is_active": obj.is_active,
+            "image": obj.image.url if obj.image else None,
+            "image1": obj.image1.url if obj.image1 else None,
+            "image2": obj.image2.url if obj.image2 else None,
+            "image3": obj.image3.url if obj.image3 else None,
+            "image4": obj.image4.url if obj.image4 else None,
+            "image5": obj.image5.url if obj.image5 else None,
         }
         result, msg = True, success_msg
         
@@ -170,96 +187,7 @@ def product_create_update(request, id=None, mode=None):
         exc_type, exc_obj, exc_traceback = sys.exc_info()
         logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
     return result, msg, data
-
     
-@app_logger.functionlogs(log=log_name)
-def poduct_create_update(request, id=None, mode=None):
-    result = False
-    success_msg = "Success"
-    error_msg = 'Internal Server Error'
-    data = dict()
-    try:
-        accountuser = auth_api.get_request_accountuser(request)
-        pDict = request.POST
-        if mode == 'edit' and id:
-            obj = Product.objects.filter(id=id).first()
-        else:
-            obj = Product()
-            obj.created_by = accountuser.id
-            
-        obj.name = pDict.get("name")
-        obj.slug = pDict.get("slug")
-        obj.sku = pDict.get("sku")
-
-        obj.short_description = pDict.get(
-            "short_description"
-        )
-
-        obj.description = pDict.get(
-            "description"
-        )
-
-        obj.price = pDict.get("price") or 0
-        obj.sale_price = pDict.get("sale_price") or 0
-        obj.stock = pDict.get("stock") or 0
-
-        obj.is_featured = (
-            True if pDict.get(
-                "is_featured"
-            ) else False
-        )
-
-        obj.is_best_seller = (
-            True if pDict.get(
-                "is_best_seller"
-            ) else False
-        )
-
-        obj.is_flash_sale = (
-            True if pDict.get(
-                "is_flash_sale"
-            ) else False
-        )
-
-        obj.is_new_arrival = (
-            True if pDict.get(
-                "is_new_arrival"
-            ) else False
-        )
-
-        obj.is_trending = (
-            True if pDict.get(
-                "is_trending"
-            ) else False
-        )
-
-        obj.is_top_rated = (
-            True if pDict.get(
-                "is_top_rated"
-            ) else False
-        )
-
-        obj.is_active = (
-            True if pDict.get(
-                "is_active"
-            ) else False
-        )
-
-        if request.FILES.get("image"):
-            obj.image = request.FILES.get(
-                "image"
-            )
-
-        obj.updated_by = accountuser.id
-        obj.save()
-        data["product"] = obj
-        result, msg = True, success_msg
-    except Exception as e:
-        result, msg = False, error_msg
-        exc_type, exc_obj, exc_traceback = sys.exc_info()
-        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
-    return result, msg, data
-
 
 @app_logger.functionlogs(log=log_name)
 def product_update_status(request, id):
@@ -284,6 +212,211 @@ def product_update_status(request, id):
     return result, message
 
 
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Blog API Views
+# ─────────────────────────────────────────────────────────────────────────────
+
+@app_logger.functionlogs(log=log_name)
+def blog_load_data(request, table_data):
+    """
+    Load blog data for datatable
+    """
+    result = False
+    success_msg = "Success"
+    error_msg = 'Internal Server Error'
+    fResult = list()
+    try:
+        queryset = Blog.objects.exclude(datamode='D').order_by('-updated_on')
+        qs, total_records, total_display_records = app_utils.method_for_datatable_operations(
+            request, queryset)
+
+        final_data = list()
+        for qs_instance in qs:
+            qs_data = model_to_dict(qs_instance)
+            data = list()
+            edit_url = reverse('mck_website:mck_blog_update', args=[qs_data['id']])
+
+            for column in table_data['columns']:
+                if column['column_name'] == "datamode":
+                    data.append('<div class="text-success">'+qs_instance.get_datamode_display()+'</div>')
+                    data.append('<div class="text-end"><a href="'+edit_url+'" class="text-primary pe-2 ps-2">Edit</a>')
+                elif column['column_name'] == "is_published":
+                    # Display badge for published status
+                    if qs_instance.is_published:
+                        data.append('<span class="badge bg-success">Published</span>')
+                    else:
+                        data.append('<span class="badge bg-warning">Draft</span>')
+                elif column['column_name'] == "image":
+                    if qs_instance.image:
+                        data.append(f'<img src="{qs_instance.image.url}" width="50" height="50" style="object-fit:cover;" />')
+                    else:
+                        data.append('-')
+                else:
+                    if isinstance(qs_data.get(column['column_name']), (datetime, date)):
+                        data.append(qs_data.get(column['column_name']).strftime('%Y-%m-%d %H:%M'))
+                    else:
+                        value = qs_data.get(column['column_name'], "-")
+                        if isinstance(value, Decimal):
+                            value = float(value)
+                        data.append(value)
+            final_data.append(data)
+        fResult = app_utils.final_dict(request, total_records, total_display_records, final_data)
+
+        result, msg = True, success_msg
+    except Exception as e:
+        result, msg = False, error_msg
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return result, msg, fResult
+
+
+@app_logger.functionlogs(log=log_name)
+def blog_retrieve_data(request, id):
+    """
+    Retrieve single blog data
+    """
+    result = False
+    success_msg = "Success"
+    error_msg = 'Internal Server Error'
+    data = dict()
+    try:
+        blog = Blog.objects.filter(id=id).first()
+        if blog:
+            data['blog'] = blog
+            result, msg = True, success_msg
+        else:
+            result, msg, data = True, success_msg, data
+    except Exception as e:
+        result, msg = False, error_msg
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return result, msg, data
+
+
+@app_logger.functionlogs(log=log_name)
+def blog_create_update(request, id=None, mode=None):
+    """
+    Create or update a blog
+    """
+    result = False
+    success_msg = "Success"
+    error_msg = 'Internal Server Error'
+    data = dict()
+    try:
+        accountuser = auth_api.get_request_accountuser(request)
+        pDict = request.POST
+        
+        if mode == 'edit' and id:
+            obj = Blog.objects.filter(id=id).first()
+            if not obj:
+                error_msg = "Blog not found"
+                return False, error_msg, data
+        else:
+            obj = Blog()
+            obj.created_by = accountuser.id
+        
+        # Set basic fields
+        obj.title = pDict.get("title")
+        obj.slug = pDict.get("slug") or slugify(obj.title)
+        obj.description = pDict.get("description")
+        
+        # Status fields
+        is_published = pDict.get("is_published")
+        obj.is_published = bool(is_published)
+        
+        # Set published date if publishing
+        if is_published and not obj.published_date:
+            obj.published_date = timezone.now()
+        elif not is_published:
+            obj.published_date = None
+        
+        # Handle image
+        if request.FILES.get("image"):
+            obj.image = request.FILES.get("image")
+        elif not obj.image and mode != 'edit':
+            # Image is optional for blogs
+            pass
+        
+        obj.updated_by = accountuser.id
+        obj.save()
+        
+        # Prepare response data
+        data["blog"] = {
+            "id": obj.id,
+            "title": obj.title,
+            "slug": obj.slug,
+            "description": obj.description,
+            "is_published": obj.is_published,
+            "published_date": obj.published_date.strftime('%Y-%m-%d %H:%M:%S') if obj.published_date else None,
+            "image": obj.image.url if obj.image else None,
+            "created_on": obj.created_on.strftime('%Y-%m-%d %H:%M:%S'),
+            "updated_on": obj.updated_on.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+        result, msg = True, success_msg
+        
+    except ValueError as e:
+        result, msg = False, f"Invalid data format: {str(e)}"
+        logger.error(f'ValueError at blog_create_update: {e}')
+    except Exception as e:
+        result, msg = False, error_msg
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return result, msg, data
+
+
+@app_logger.functionlogs(log=log_name)
+def blog_update_status(request, id):
+    """
+    Update blog status (activate/inactivate)
+    """
+    result = False
+    message = 'Error'
+    try:
+        accountuser = auth_api.get_request_accountuser(request)
+        obj = Blog.objects.filter(id=id).first()
+        if obj:
+            obj.updated_by = accountuser.id
+            if obj.datamode == "I":
+                obj.datamode = "A"
+            else:
+                obj.datamode = "I"
+            obj.save()
+
+        result = True
+        message = 'Success'
+    except Exception as e:
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return result, message
+
+
+@app_logger.functionlogs(log=log_name)
+def blog_toggle_publish(request, id):
+    """
+    Toggle blog publish status
+    """
+    result = False
+    message = 'Error'
+    try:
+        accountuser = auth_api.get_request_accountuser(request)
+        obj = Blog.objects.filter(id=id).first()
+        if obj:
+            obj.updated_by = accountuser.id
+            obj.is_published = not obj.is_published
+            if obj.is_published:
+                obj.published_date = timezone.now()
+            else:
+                obj.published_date = None
+            obj.save()
+
+        result = True
+        message = 'Success'
+    except Exception as e:
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return result, message
 
 
 

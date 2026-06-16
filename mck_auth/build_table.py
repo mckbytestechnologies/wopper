@@ -1543,3 +1543,57 @@ def build_contact_us_table(request):
         exc_type, exc_obj, exc_traceback = sys.exc_info()
         logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
     return table_data
+
+
+@app_logger.functionlogs(log=log_name)
+def build_blog_table(request):
+    table_data = dict()
+    try:
+        table_data['title'] = "Blog"
+        table_data['sub_title'] = "Blog Management"
+
+        table_data['load_url'] = reverse('mck_website:mck_blog_list')
+        table_data['create_url'] = reverse('mck_website:mck_blog_create')
+        table_data['delete_url'] = reverse('mck_website:mck_blog_delete', args=[0])
+
+        table_data["columns"] = []
+
+        table_data["columns"].append(dict(
+            display_name="Title", can_show=True,
+            class_name="", column_name="title",
+            search_key="title"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Slug", can_show=True,
+            class_name="", column_name="slug",
+            search_key="slug"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Image", can_show=True,
+            class_name="", column_name="image",
+            search_key="image"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Published", can_show=True,
+            class_name="", column_name="is_published",
+            search_key="is_published"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Published On", can_show=True,
+            class_name="", column_name="published_date",
+            search_key="published_date"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Created On", can_show=True,
+            class_name="", column_name="created_on",
+            search_key="created_on"
+        ))
+        table_data["columns"].append(dict(
+            display_name="Status", can_show=True,
+            class_name="", column_name="datamode",
+            search_key="datamode"
+        ))
+    except Exception as e:
+        exc_type, exc_obj, exc_traceback = sys.exc_info()
+        logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+    return table_data

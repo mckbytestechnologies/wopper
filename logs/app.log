@@ -1,758 +1,138 @@
 2026-06-09 13:46:29,588 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : LandingPage.get
-2026-06-15 14:49:23,843 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:49:23,843 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:49:23,847 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004043 seconds
-2026-06-15 14:49:23,847 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:49:23,847 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 14:49:23,849 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.006053 seconds
-2026-06-15 14:49:23,969 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:49:23,969 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:49:23,983 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.013458 seconds
-2026-06-15 14:49:23,983 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:49:23,985 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 14:49:23,985 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 14:49:23,985 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:49:23,985 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 14:49:23,985 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:49:23,985 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:49:23,985 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:49:23,989 ERROR Error at 1080:Reverse for 'mck_cart_update' not found. 'mck_cart_update' is not a valid view function or pattern name.
-2026-06-15 14:49:23,990 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.004785 seconds
-2026-06-15 14:49:23,990 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.020627 seconds
-2026-06-15 14:50:07,258 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:50:07,258 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:50:07,258 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 14:50:07,258 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:50:07,273 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.015432 seconds
-2026-06-15 14:50:07,294 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.033593 seconds
-2026-06-15 14:50:07,425 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:50:07,425 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:50:07,425 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 14:50:07,425 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:50:07,425 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 14:50:07,425 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 14:50:07,434 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:50:07,434 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 14:50:07,434 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:50:07,434 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:50:07,434 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:50:07,436 ERROR Error at 1084:name 'edit_url' is not defined
-2026-06-15 14:50:07,436 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.010160 seconds
-2026-06-15 14:50:07,436 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.010160 seconds
-2026-06-15 14:50:42,198 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:50:42,198 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:50:42,203 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005824 seconds
-2026-06-15 14:50:42,203 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:50:42,230 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.026428 seconds
-2026-06-15 14:50:42,247 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.049552 seconds
-2026-06-15 14:50:42,385 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:50:42,385 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:50:42,391 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005764 seconds
-2026-06-15 14:50:42,391 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:50:42,391 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 14:50:42,391 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 14:50:42,391 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:50:42,391 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 14:50:42,391 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:50:42,391 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:50:42,391 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:50:42,398 ERROR Error at 1080:Reverse for '' not found. '' is not a valid view function or pattern name.
-2026-06-15 14:50:42,402 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.010872 seconds
-2026-06-15 14:50:42,402 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.016636 seconds
-2026-06-15 14:51:59,959 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:51:59,959 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:51:59,959 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 14:51:59,959 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:51:59,988 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.029534 seconds
-2026-06-15 14:51:59,990 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.031570 seconds
-2026-06-15 14:52:00,151 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:52:00,151 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:52:00,154 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002998 seconds
-2026-06-15 14:52:00,155 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:52:00,157 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.001006 seconds
-2026-06-15 14:52:00,157 ERROR Error at 1334:module 'mck_website.api' has no attribute 'cart_load_data'
-2026-06-15 14:52:00,158 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.007332 seconds
-2026-06-15 14:52:18,988 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:52:18,989 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:52:18,991 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002038 seconds
-2026-06-15 14:52:18,991 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:52:19,006 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.014557 seconds
-2026-06-15 14:52:19,006 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.017398 seconds
-2026-06-15 14:52:19,116 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:52:19,117 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:52:19,118 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001010 seconds
-2026-06-15 14:52:19,119 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:52:19,119 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 14:52:19,119 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 14:52:19,120 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:52:19,120 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 14:52:19,120 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:52:19,120 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:52:19,120 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:52:19,123 ERROR Error at 1082:NameError - name 'NoReverseMatch' is not defined
-2026-06-15 14:52:19,123 ERROR Full error: name 'NoReverseMatch' is not defined
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1081, in cart_load_data
-    edit_url = reverse('mck_website:mck_cart_update', args=[qs_data['id']])
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'mck_cart_update' not found. 'mck_cart_update' is not a valid view function or pattern name.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1082, in cart_load_data
-    except NoReverseMatch:
-           ^^^^^^^^^^^^^^
-NameError: name 'NoReverseMatch' is not defined
-2026-06-15 14:52:19,127 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.008397 seconds
-2026-06-15 14:52:19,127 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.011386 seconds
-2026-06-15 14:53:12,978 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 14:53:12,978 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:53:12,978 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 14:53:12,988 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:53:13,007 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.018385 seconds
-2026-06-15 14:53:13,028 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.050443 seconds
-2026-06-15 14:53:13,153 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 14:53:13,153 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 14:53:13,160 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006579 seconds
-2026-06-15 14:53:13,160 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 14:53:13,161 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.000995 seconds
-2026-06-15 14:53:13,161 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 14:53:13,166 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:53:13,167 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 14:53:13,167 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:53:13,167 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 14:53:13,167 ERROR --------------------------------------------------------------------------------
-2026-06-15 14:53:13,170 ERROR Error at 1082:NameError - name 'NoReverseMatch' is not defined
-2026-06-15 14:53:13,170 ERROR Full error: name 'NoReverseMatch' is not defined
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1081, in cart_load_data
-    edit_url = reverse('mck_website:mck_cart_list', args=[qs_data['id']])
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'mck_cart_list' with arguments '(1,)' not found. 1 pattern(s) tried: ['mck_websitecarts/\\Z']
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1082, in cart_load_data
-    except NoReverseMatch:
-           ^^^^^^^^^^^^^^
-NameError: name 'NoReverseMatch' is not defined
-2026-06-15 14:53:13,174 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.013821 seconds
-2026-06-15 14:53:13,174 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.021395 seconds
-2026-06-15 15:15:38,373 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : LandingPage.get
-2026-06-15 15:15:38,380 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : LandingPage.get in 0:00:00.007508 seconds
-2026-06-15 15:15:38,393 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:15:38,396 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:38,484 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.087657 seconds
-2026-06-15 15:15:38,617 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.223500 seconds
-2026-06-15 15:15:45,448 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:15:45,448 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:45,455 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006742 seconds
-2026-06-15 15:15:45,455 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:15:45,455 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:15:45,592 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.143816 seconds
-2026-06-15 15:15:45,924 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:15:45,924 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:45,927 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003273 seconds
-2026-06-15 15:15:45,928 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:15:45,928 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:15:45,929 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:15:45,945 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.016137 seconds
-2026-06-15 15:15:45,946 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.022490 seconds
-2026-06-15 15:15:50,568 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : HomePageVideoList.get
-2026-06-15 15:15:50,568 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:50,571 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003512 seconds
-2026-06-15 15:15:50,571 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_homepage_video_table
-2026-06-15 15:15:50,572 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_homepage_video_table in 0:00:00.001001 seconds
-2026-06-15 15:15:50,574 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : HomePageVideoList.get in 0:00:00.006511 seconds
-2026-06-15 15:15:50,775 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : HomePageVideoList.post
-2026-06-15 15:15:50,776 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:50,788 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.011882 seconds
-2026-06-15 15:15:50,790 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_homepage_video_table
-2026-06-15 15:15:50,790 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_homepage_video_table in 0:00:00 seconds
-2026-06-15 15:15:50,790 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : homepage_video_load_data
-2026-06-15 15:15:50,796 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : homepage_video_load_data in 0:00:00.006214 seconds
-2026-06-15 15:15:50,796 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : HomePageVideoList.post in 0:00:00.020674 seconds
-2026-06-15 15:15:54,825 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 15:15:54,825 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:54,829 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004000 seconds
-2026-06-15 15:15:54,829 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:15:54,830 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.000996 seconds
-2026-06-15 15:15:54,834 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.009337 seconds
-2026-06-15 15:15:54,998 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 15:15:54,999 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:15:55,007 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.008008 seconds
-2026-06-15 15:15:55,008 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:15:55,008 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00 seconds
-2026-06-15 15:15:55,008 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 15:15:55,012 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:15:55,012 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 15:15:55,012 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:15:55,013 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:15:55,013 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:15:55,015 ERROR Error at 1082:NameError - name 'NoReverseMatch' is not defined
-2026-06-15 15:15:55,015 ERROR Full error: name 'NoReverseMatch' is not defined
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1081, in cart_load_data
-    edit_url = reverse('mck_website:mck_cart_list', args=[qs_data['id']])
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\base.py", line 98, in reverse
-    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\USER\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'mck_cart_list' with arguments '(1,)' not found. 1 pattern(s) tried: ['mck_websitecarts/\\Z']
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "D:\Bharath\wensite\wopper\django basic setup\appsource\mck_website\api.py", line 1082, in cart_load_data
-    except NoReverseMatch:
-           ^^^^^^^^^^^^^^
-NameError: name 'NoReverseMatch' is not defined
-2026-06-15 15:15:55,090 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.081938 seconds
-2026-06-15 15:15:55,090 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.091984 seconds
-2026-06-15 15:16:46,750 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 15:16:46,750 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:16:46,750 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 15:16:46,750 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:16:46,776 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.026240 seconds
-2026-06-15 15:16:46,784 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.034471 seconds
-2026-06-15 15:16:46,932 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 15:16:46,933 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:16:46,936 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002997 seconds
-2026-06-15 15:16:46,936 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:16:46,937 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.001001 seconds
-2026-06-15 15:16:46,937 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 15:16:46,939 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:16:46,939 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 15:16:46,939 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:16:46,940 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:16:46,940 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:16:46,941 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.004003 seconds
-2026-06-15 15:16:46,941 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.008994 seconds
-2026-06-15 15:17:10,529 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get
-2026-06-15 15:17:10,529 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:17:10,534 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004375 seconds
-2026-06-15 15:17:10,534 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:17:10,535 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00.000949 seconds
-2026-06-15 15:17:10,538 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get in 0:00:00.008317 seconds
-2026-06-15 15:17:10,653 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post
-2026-06-15 15:17:10,655 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:17:10,658 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004727 seconds
-2026-06-15 15:17:10,658 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:17:10,658 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:17:10,658 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data
-2026-06-15 15:17:10,665 ERROR Error at 1387:'Order' object has no attribute 'customer'
-2026-06-15 15:17:10,665 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data in 0:00:00.006534 seconds
-2026-06-15 15:17:10,665 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post in 0:00:00.011261 seconds
-2026-06-15 15:19:32,956 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get
-2026-06-15 15:19:32,956 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:32,967 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.011040 seconds
-2026-06-15 15:19:32,967 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:19:32,985 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00.018078 seconds
-2026-06-15 15:19:33,012 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get in 0:00:00.056859 seconds
-2026-06-15 15:19:33,126 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post
-2026-06-15 15:19:33,127 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:33,135 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.008110 seconds
-2026-06-15 15:19:33,135 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:19:33,135 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:19:33,135 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data
-2026-06-15 15:19:33,145 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data in 0:00:00.010171 seconds
-2026-06-15 15:19:33,145 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post in 0:00:00.018851 seconds
-2026-06-15 15:19:38,631 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.get
-2026-06-15 15:19:38,631 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:38,635 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004127 seconds
-2026-06-15 15:19:38,635 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table
-2026-06-15 15:19:38,635 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table in 0:00:00 seconds
-2026-06-15 15:19:38,639 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.get in 0:00:00.007459 seconds
-2026-06-15 15:19:38,753 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.post
-2026-06-15 15:19:38,753 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:38,754 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001000 seconds
-2026-06-15 15:19:38,754 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table
-2026-06-15 15:19:38,754 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table in 0:00:00 seconds
-2026-06-15 15:19:38,754 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : address_load_data
-2026-06-15 15:19:38,762 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:19:38,762 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 15:19:38,762 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: address_line1, address_line2, address_type, city, country, created_by, created_on, datamode, full_name, id, is_default, phone, pincode, state, updated_by, updated_on, user, user_id
-2026-06-15 15:19:38,762 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: address_line1, address_line2, address_type, city, country, created_by, created_on, datamode, full_name, id, is_default, phone, pincode, state, updated_by, updated_on, user, user_id
-2026-06-15 15:19:38,762 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:19:38,769 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : address_load_data in 0:00:00.015531 seconds
-2026-06-15 15:19:38,769 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.post in 0:00:00.016531 seconds
-2026-06-15 15:19:40,559 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CustomerList.get
-2026-06-15 15:19:40,561 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:40,564 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003827 seconds
-2026-06-15 15:19:40,566 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_customer_table
-2026-06-15 15:19:40,568 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_customer_table in 0:00:00.001630 seconds
-2026-06-15 15:19:40,570 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CustomerList.get in 0:00:00.011003 seconds
-2026-06-15 15:19:40,743 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CustomerList.post
-2026-06-15 15:19:40,743 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:40,746 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003417 seconds
-2026-06-15 15:19:40,746 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_customer_table
-2026-06-15 15:19:40,746 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_customer_table in 0:00:00 seconds
-2026-06-15 15:19:40,746 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : customer_load_data
-2026-06-15 15:19:40,755 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : customer_load_data in 0:00:00.008994 seconds
-2026-06-15 15:19:40,756 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CustomerList.post in 0:00:00.013410 seconds
-2026-06-15 15:19:41,936 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.get
-2026-06-15 15:19:41,937 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:41,939 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002006 seconds
-2026-06-15 15:19:41,940 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table
-2026-06-15 15:19:41,940 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table in 0:00:00 seconds
-2026-06-15 15:19:41,942 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.get in 0:00:00.005978 seconds
-2026-06-15 15:19:42,057 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.post
-2026-06-15 15:19:42,057 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:42,060 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002775 seconds
-2026-06-15 15:19:42,060 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table
-2026-06-15 15:19:42,060 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_address_table in 0:00:00 seconds
-2026-06-15 15:19:42,060 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : address_load_data
-2026-06-15 15:19:42,062 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:19:42,062 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 15:19:42,062 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: address_line1, address_line2, address_type, city, country, created_by, created_on, datamode, full_name, id, is_default, phone, pincode, state, updated_by, updated_on, user, user_id
-2026-06-15 15:19:42,062 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: address_line1, address_line2, address_type, city, country, created_by, created_on, datamode, full_name, id, is_default, phone, pincode, state, updated_by, updated_on, user, user_id
-2026-06-15 15:19:42,062 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:19:42,065 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : address_load_data in 0:00:00.005058 seconds
-2026-06-15 15:19:42,066 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : AddressList.post in 0:00:00.008842 seconds
-2026-06-15 15:19:42,879 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.get
-2026-06-15 15:19:42,879 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:42,882 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002919 seconds
-2026-06-15 15:19:42,883 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table
-2026-06-15 15:19:42,883 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table in 0:00:00 seconds
-2026-06-15 15:19:42,887 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.get in 0:00:00.007674 seconds
-2026-06-15 15:19:43,007 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.post
-2026-06-15 15:19:43,007 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:43,014 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007000 seconds
-2026-06-15 15:19:43,014 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table
-2026-06-15 15:19:43,015 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table in 0:00:00.000999 seconds
-2026-06-15 15:19:43,015 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_load_data
-2026-06-15 15:19:43,023 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_load_data in 0:00:00.006760 seconds
-2026-06-15 15:19:43,023 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.post in 0:00:00.015757 seconds
-2026-06-15 15:19:44,769 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.get
-2026-06-15 15:19:44,769 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:19:44,772 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002825 seconds
-2026-06-15 15:19:45,067 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.get in 0:00:00.297990 seconds
-2026-06-15 15:20:13,644 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.post
-2026-06-15 15:20:13,644 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:20:13,650 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005801 seconds
-2026-06-15 15:20:13,650 WARNING <ul class="errorlist"><li>valid_from<ul class="errorlist" id="id_valid_from_error"><li>Enter a valid date/time.</li></ul></li><li>valid_until<ul class="errorlist" id="id_valid_until_error"><li>Enter a valid date/time.</li></ul></li></ul>
-2026-06-15 15:20:13,703 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.post in 0:00:00.058187 seconds
-2026-06-15 15:21:28,950 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.post
-2026-06-15 15:21:28,950 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:28,957 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007023 seconds
-2026-06-15 15:21:28,960 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_create_update
-2026-06-15 15:21:28,960 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser
-2026-06-15 15:21:28,962 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser in 0:00:00.001792 seconds
-2026-06-15 15:21:28,972 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_create_update in 0:00:00.011630 seconds
-2026-06-15 15:21:28,973 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponCreateView.post in 0:00:00.024677 seconds
-2026-06-15 15:21:28,990 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.get
-2026-06-15 15:21:28,990 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:28,994 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003105 seconds
-2026-06-15 15:21:28,994 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table
-2026-06-15 15:21:28,994 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table in 0:00:00 seconds
-2026-06-15 15:21:28,997 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.get in 0:00:00.006531 seconds
-2026-06-15 15:21:29,133 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.post
-2026-06-15 15:21:29,133 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:29,141 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007519 seconds
-2026-06-15 15:21:29,141 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table
-2026-06-15 15:21:29,142 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_coupon_table in 0:00:00.001000 seconds
-2026-06-15 15:21:29,142 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_load_data
-2026-06-15 15:21:29,146 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : coupon_load_data in 0:00:00.004134 seconds
-2026-06-15 15:21:29,146 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CouponList.post in 0:00:00.012653 seconds
-2026-06-15 15:21:31,377 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : NewsletterList.get
-2026-06-15 15:21:31,377 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:31,382 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004541 seconds
-2026-06-15 15:21:31,382 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_newsletter_table
-2026-06-15 15:21:31,383 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_newsletter_table in 0:00:00.000999 seconds
-2026-06-15 15:21:31,387 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : NewsletterList.get in 0:00:00.010080 seconds
-2026-06-15 15:21:31,513 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : NewsletterList.post
-2026-06-15 15:21:31,514 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:31,522 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007922 seconds
-2026-06-15 15:21:31,523 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_newsletter_table
-2026-06-15 15:21:31,523 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_newsletter_table in 0:00:00 seconds
-2026-06-15 15:21:31,524 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : newsletter_load_data
-2026-06-15 15:21:31,530 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : newsletter_load_data in 0:00:00.004997 seconds
-2026-06-15 15:21:31,530 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : NewsletterList.post in 0:00:00.016917 seconds
-2026-06-15 15:21:36,871 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get
-2026-06-15 15:21:36,871 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:36,874 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003006 seconds
-2026-06-15 15:21:36,874 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:21:36,874 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:21:36,876 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get in 0:00:00.005370 seconds
-2026-06-15 15:21:36,996 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post
-2026-06-15 15:21:36,996 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:37,006 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.009700 seconds
-2026-06-15 15:21:37,006 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:21:37,006 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:21:37,006 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data
-2026-06-15 15:21:37,025 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data in 0:00:00.019482 seconds
-2026-06-15 15:21:37,025 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post in 0:00:00.029558 seconds
-2026-06-15 15:21:38,072 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get
-2026-06-15 15:21:38,072 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:38,075 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002996 seconds
-2026-06-15 15:21:38,075 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:21:38,076 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.001002 seconds
-2026-06-15 15:21:38,077 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.get in 0:00:00.004998 seconds
-2026-06-15 15:21:38,189 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post
-2026-06-15 15:21:38,190 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:38,194 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003519 seconds
-2026-06-15 15:21:38,194 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table
-2026-06-15 15:21:38,195 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_cart_table in 0:00:00.000999 seconds
-2026-06-15 15:21:38,195 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data
-2026-06-15 15:21:38,201 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:21:38,201 ERROR Error Type   : <class 'django.core.exceptions.FieldError'>
-2026-06-15 15:21:38,202 ERROR Error Trace  : Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:21:38,202 ERROR Error Line: 74 Cannot resolve keyword 'customer' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id
-2026-06-15 15:21:38,202 ERROR --------------------------------------------------------------------------------
-2026-06-15 15:21:38,206 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : cart_load_data in 0:00:00.010581 seconds
-2026-06-15 15:21:38,206 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CartList.post in 0:00:00.016106 seconds
-2026-06-15 15:21:39,768 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get
-2026-06-15 15:21:39,768 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:39,772 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003620 seconds
-2026-06-15 15:21:39,772 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:21:39,773 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00.000926 seconds
-2026-06-15 15:21:39,775 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get in 0:00:00.006624 seconds
-2026-06-15 15:21:39,888 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post
-2026-06-15 15:21:39,890 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:39,894 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003969 seconds
-2026-06-15 15:21:39,894 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:21:39,894 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00 seconds
-2026-06-15 15:21:39,894 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data
-2026-06-15 15:21:39,901 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data in 0:00:00.007161 seconds
-2026-06-15 15:21:39,901 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post in 0:00:00.012693 seconds
-2026-06-15 15:21:42,631 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayCreateView.get
-2026-06-15 15:21:42,632 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:42,637 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005145 seconds
-2026-06-15 15:21:42,643 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayCreateView.get in 0:00:00.012686 seconds
-2026-06-15 15:21:47,607 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get
-2026-06-15 15:21:47,608 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:47,611 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003011 seconds
-2026-06-15 15:21:47,611 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:21:47,612 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00.001002 seconds
-2026-06-15 15:21:47,613 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get in 0:00:00.006533 seconds
-2026-06-15 15:21:47,721 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post
-2026-06-15 15:21:47,721 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:47,725 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004007 seconds
-2026-06-15 15:21:47,726 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:21:47,726 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00.000999 seconds
-2026-06-15 15:21:47,726 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data
-2026-06-15 15:21:47,732 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data in 0:00:00.005542 seconds
-2026-06-15 15:21:47,733 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post in 0:00:00.012076 seconds
-2026-06-15 15:21:52,863 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get
-2026-06-15 15:21:52,863 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:52,868 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005003 seconds
-2026-06-15 15:21:52,868 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:21:52,868 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:21:52,870 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.get in 0:00:00.007005 seconds
-2026-06-15 15:21:52,991 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post
-2026-06-15 15:21:52,991 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:21:52,995 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003583 seconds
-2026-06-15 15:21:52,995 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table
-2026-06-15 15:21:52,995 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_order_table in 0:00:00 seconds
-2026-06-15 15:21:52,995 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data
-2026-06-15 15:21:53,002 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : order_load_data in 0:00:00.007641 seconds
-2026-06-15 15:21:53,002 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : OrderList.post in 0:00:00.011224 seconds
-2026-06-15 15:22:00,560 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get
-2026-06-15 15:22:00,560 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:00,563 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003016 seconds
-2026-06-15 15:22:00,563 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:22:00,563 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00 seconds
-2026-06-15 15:22:00,567 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.get in 0:00:00.007017 seconds
-2026-06-15 15:22:00,725 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post
-2026-06-15 15:22:00,725 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:00,728 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003003 seconds
-2026-06-15 15:22:00,728 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table
-2026-06-15 15:22:00,728 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_payment_gateway_table in 0:00:00 seconds
-2026-06-15 15:22:00,728 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data
-2026-06-15 15:22:00,735 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : payment_gateway_load_data in 0:00:00.006630 seconds
-2026-06-15 15:22:00,735 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : PaymentGatewayList.post in 0:00:00.009633 seconds
-2026-06-15 15:22:02,697 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ProductReviewList.get
-2026-06-15 15:22:02,697 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:02,703 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005686 seconds
-2026-06-15 15:22:02,703 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_product_review_table
-2026-06-15 15:22:02,703 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_product_review_table in 0:00:00 seconds
-2026-06-15 15:22:02,704 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ProductReviewList.get in 0:00:00.006686 seconds
-2026-06-15 15:22:02,813 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ProductReviewList.post
-2026-06-15 15:22:02,813 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:02,819 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006008 seconds
-2026-06-15 15:22:02,819 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_product_review_table
-2026-06-15 15:22:02,819 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_product_review_table in 0:00:00 seconds
-2026-06-15 15:22:02,819 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : product_review_load_data
-2026-06-15 15:22:02,825 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : product_review_load_data in 0:00:00.006699 seconds
-2026-06-15 15:22:02,825 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ProductReviewList.post in 0:00:00.012707 seconds
-2026-06-15 15:22:07,249 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get
-2026-06-15 15:22:07,249 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:07,254 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004555 seconds
-2026-06-15 15:22:07,254 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:22:07,255 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00.001006 seconds
-2026-06-15 15:22:07,257 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get in 0:00:00.007545 seconds
-2026-06-15 15:22:07,369 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post
-2026-06-15 15:22:07,370 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:22:07,373 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003495 seconds
-2026-06-15 15:22:07,374 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:22:07,374 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:22:07,374 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
-2026-06-15 15:22:07,378 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.004002 seconds
-2026-06-15 15:22:07,378 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.009501 seconds
-2026-06-15 15:23:51,827 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get
-2026-06-15 15:23:51,827 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:23:51,834 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006508 seconds
-2026-06-15 15:23:51,835 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:23:51,913 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00.078274 seconds
-2026-06-15 15:23:51,933 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get in 0:00:00.105481 seconds
-2026-06-15 15:23:52,057 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post
-2026-06-15 15:23:52,057 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:23:52,068 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.010836 seconds
-2026-06-15 15:23:52,069 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:23:52,069 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:23:52,069 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
-2026-06-15 15:23:52,070 ERROR Error at 1906:name 'Contact' is not defined
-2026-06-15 15:23:52,070 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.001001 seconds
-2026-06-15 15:23:52,070 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.012852 seconds
-2026-06-15 15:24:28,964 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get
-2026-06-15 15:24:28,964 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:24:28,972 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007700 seconds
-2026-06-15 15:24:28,972 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:24:28,997 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00.025542 seconds
-2026-06-15 15:24:29,118 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get in 0:00:00.153691 seconds
-2026-06-15 15:24:29,225 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post
-2026-06-15 15:24:29,226 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:24:29,230 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004998 seconds
-2026-06-15 15:24:29,230 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:24:29,230 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:24:29,231 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
-2026-06-15 15:24:29,243 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.011851 seconds
-2026-06-15 15:24:29,244 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.019132 seconds
-2026-06-15 15:24:36,322 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : SiteSettingsUpdateView.get
-2026-06-15 15:24:36,322 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:24:36,324 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002002 seconds
-2026-06-15 15:24:36,324 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : site_settings_retrieve_data
-2026-06-15 15:24:36,325 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : site_settings_retrieve_data in 0:00:00.000999 seconds
-2026-06-15 15:24:36,586 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : SiteSettingsUpdateView.get in 0:00:00.263539 seconds
-2026-06-15 15:24:44,442 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:24:44,442 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:24:44,446 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004006 seconds
-2026-06-15 15:24:44,446 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:24:44,447 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001000 seconds
-2026-06-15 15:24:44,450 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.008004 seconds
-2026-06-15 15:24:44,574 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:24:44,574 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:24:44,578 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004000 seconds
-2026-06-15 15:24:44,578 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:24:44,578 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:24:44,578 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:24:44,589 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.010532 seconds
-2026-06-15 15:24:44,590 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.015967 seconds
-2026-06-15 15:26:39,134 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:26:39,134 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:26:39,138 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004061 seconds
-2026-06-15 15:26:39,138 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:26:39,139 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.000978 seconds
-2026-06-15 15:26:39,158 ERROR Function 'CategoryList.get' raised NoReverseMatch with error 'Reverse for 'dashboard' not found. 'dashboard' is not a valid view function or pattern name.'
-2026-06-15 15:26:57,933 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:26:57,934 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:26:57,936 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002025 seconds
-2026-06-15 15:26:57,936 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:26:57,936 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:26:57,956 ERROR Function 'CategoryList.get' raised NoReverseMatch with error 'Reverse for 'profile' not found. 'profile' is not a valid view function or pattern name.'
-2026-06-15 15:27:20,532 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:27:20,532 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:27:20,537 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005649 seconds
-2026-06-15 15:27:20,537 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:27:20,537 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:27:20,556 ERROR Function 'CategoryList.get' raised NoReverseMatch with error 'Reverse for 'logout' not found. 'logout' is not a valid view function or pattern name.'
-2026-06-15 15:27:33,460 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:27:33,460 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:27:33,463 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003007 seconds
-2026-06-15 15:27:33,463 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:27:33,463 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:27:33,481 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.021291 seconds
-2026-06-15 15:27:33,597 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:27:33,597 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:27:33,602 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005002 seconds
-2026-06-15 15:27:33,602 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:27:33,603 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001012 seconds
-2026-06-15 15:27:33,603 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:27:33,607 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.003515 seconds
-2026-06-15 15:27:33,608 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.010529 seconds
-2026-06-15 15:28:25,997 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:28:25,998 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:26,003 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004995 seconds
-2026-06-15 15:28:26,003 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:26,004 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001070 seconds
-2026-06-15 15:28:26,026 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.029408 seconds
-2026-06-15 15:28:26,154 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:28:26,155 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:26,159 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004005 seconds
-2026-06-15 15:28:26,159 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:26,159 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:28:26,160 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:28:26,166 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.005499 seconds
-2026-06-15 15:28:26,167 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.013566 seconds
-2026-06-15 15:28:31,626 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:28:31,626 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:31,628 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002001 seconds
-2026-06-15 15:28:31,628 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:31,628 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:28:31,630 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.004014 seconds
-2026-06-15 15:28:31,749 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:28:31,749 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:31,757 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.008474 seconds
-2026-06-15 15:28:31,757 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:31,757 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:28:31,757 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:28:31,759 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.001767 seconds
-2026-06-15 15:28:31,759 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.010241 seconds
-2026-06-15 15:28:33,328 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:28:33,328 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:33,331 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003012 seconds
-2026-06-15 15:28:33,331 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:33,331 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:28:33,335 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.006552 seconds
-2026-06-15 15:28:33,453 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:28:33,453 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:28:33,458 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.005283 seconds
-2026-06-15 15:28:33,458 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:28:33,458 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:28:33,458 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:28:33,461 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.003008 seconds
-2026-06-15 15:28:33,461 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.008291 seconds
-2026-06-15 15:29:35,968 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
-2026-06-15 15:29:35,968 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:29:35,972 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003722 seconds
-2026-06-15 15:29:35,973 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:29:35,973 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
-2026-06-15 15:29:36,004 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.035931 seconds
-2026-06-15 15:29:36,114 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
-2026-06-15 15:29:36,114 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:29:36,124 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.010095 seconds
-2026-06-15 15:29:36,124 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
-2026-06-15 15:29:36,125 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.000508 seconds
-2026-06-15 15:29:36,125 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
-2026-06-15 15:29:36,129 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.004041 seconds
-2026-06-15 15:29:36,129 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.014644 seconds
-2026-06-15 15:29:37,800 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:29:37,801 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:29:37,804 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003241 seconds
-2026-06-15 15:29:37,820 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.020493 seconds
-2026-06-15 15:29:39,774 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:29:39,774 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:29:39,774 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00 seconds
-2026-06-15 15:29:39,774 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00 seconds
-2026-06-15 15:29:41,289 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:29:41,289 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:29:41,292 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002994 seconds
-2026-06-15 15:29:41,293 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.003994 seconds
-2026-06-15 15:35:03,493 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:35:03,493 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:35:03,499 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006672 seconds
-2026-06-15 15:35:03,500 ERROR Function 'DashboardView.get' raised NameError with error 'name 'Product' is not defined'
-2026-06-15 15:35:54,889 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:35:54,891 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:35:54,893 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002073 seconds
-2026-06-15 15:35:54,906 ERROR Function 'DashboardView.get' raised FieldError with error 'Cannot resolve keyword 'orderitem' into field. Choices are: cart_items, category, category_id, created_by, created_on, datamode, description, gallery, id, image, is_active, is_best_seller, is_featured, is_flash_sale, is_new_arrival, is_top_rated, is_trending, name, order_items, price, reviews, sale_price, short_description, sku, slug, stock, updated_by, updated_on, wishlisted_by'
-2026-06-15 15:37:21,824 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:37:21,824 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:37:21,828 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004010 seconds
-2026-06-15 15:37:21,839 ERROR Function 'DashboardView.get' raised FieldError with error 'Cannot resolve keyword 'order' into field. Choices are: coupon, coupon_id, created_by, created_on, datamode, id, items, session_key, updated_by, updated_on, user, user_id'
-2026-06-15 15:38:08,727 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:38:08,728 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:38:08,731 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003005 seconds
-2026-06-15 15:38:08,742 ERROR Function 'DashboardView.get' raised FieldError with error 'Unsupported lookup 'order__isnull' for ManyToOneRel or join on the field not permitted.'
-2026-06-15 15:38:10,228 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:38:10,228 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:38:10,230 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001999 seconds
-2026-06-15 15:38:10,239 ERROR Function 'DashboardView.get' raised FieldError with error 'Unsupported lookup 'order__isnull' for ManyToOneRel or join on the field not permitted.'
-2026-06-15 15:38:10,411 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:38:10,411 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:38:10,413 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001999 seconds
-2026-06-15 15:38:10,419 ERROR Function 'DashboardView.get' raised FieldError with error 'Unsupported lookup 'order__isnull' for ManyToOneRel or join on the field not permitted.'
-2026-06-15 15:38:33,174 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:38:33,174 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:38:33,178 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004019 seconds
-2026-06-15 15:38:33,228 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.055267 seconds
-2026-06-15 15:42:46,293 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get
-2026-06-15 15:42:46,293 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:42:46,297 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004523 seconds
-2026-06-15 15:42:46,308 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_admin_console\\views.py'] : DashboardView.get in 0:00:00.015588 seconds
-2026-06-15 15:42:55,240 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get
-2026-06-15 15:42:55,241 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:42:55,244 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002702 seconds
-2026-06-15 15:42:55,244 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:42:55,244 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:42:55,251 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get in 0:00:00.010135 seconds
-2026-06-15 15:42:55,394 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post
-2026-06-15 15:42:55,394 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:42:55,397 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003006 seconds
-2026-06-15 15:42:55,398 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:42:55,398 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:42:55,399 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
-2026-06-15 15:42:55,407 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.007548 seconds
-2026-06-15 15:42:55,408 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.014093 seconds
-2026-06-15 15:48:36,491 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get
-2026-06-15 15:48:36,492 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:48:36,496 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004055 seconds
-2026-06-15 15:48:36,496 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:48:36,498 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00.002258 seconds
-2026-06-15 15:48:36,513 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.get in 0:00:00.022178 seconds
-2026-06-15 15:48:36,676 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post
-2026-06-15 15:48:36,677 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
-2026-06-15 15:48:36,678 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001001 seconds
-2026-06-15 15:48:36,678 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table
-2026-06-15 15:48:36,678 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_contact_us_table in 0:00:00 seconds
-2026-06-15 15:48:36,678 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data
-2026-06-15 15:48:36,681 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : contact_us_load_data in 0:00:00.003001 seconds
-2026-06-15 15:48:36,681 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : ContactUsList.post in 0:00:00.005002 seconds
-2026-06-15 16:20:08,613 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
-2026-06-15 16:20:08,621 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get in 0:00:00.007935 seconds
-2026-06-15 16:20:27,030 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
-2026-06-15 16:20:27,030 INFO Registration attempt for email: bharathmck@gmail.com
-2026-06-15 16:20:27,037 INFO Deleted existing OTPs for bharathmck@gmail.com
-2026-06-15 16:20:27,041 INFO Created new OTP for bharathmck@gmail.com: 052751
-2026-06-15 16:20:27,041 INFO Attempting to send OTP email to bharathmck@gmail.com
-2026-06-15 16:20:28,125 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
-2026-06-15 16:20:28,125 INFO Registration attempt for email: bharathmck@gmail.com
-2026-06-15 16:20:28,143 INFO Deleted existing OTPs for bharathmck@gmail.com
-2026-06-15 16:20:28,144 INFO Created new OTP for bharathmck@gmail.com: 201517
-2026-06-15 16:20:28,144 INFO Attempting to send OTP email to bharathmck@gmail.com
-2026-06-15 16:20:29,639 ERROR Failed to send OTP email to bharathmck@gmail.com
-2026-06-15 16:20:29,641 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:02.611437 seconds
-2026-06-15 16:20:30,650 ERROR Failed to send OTP email to bharathmck@gmail.com
-2026-06-15 16:20:30,654 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:02.528383 seconds
-2026-06-15 16:24:01,802 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url
-2026-06-15 16:24:01,817 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteLogOut.get_redirect_url in 0:00:00.015373 seconds
-2026-06-15 16:24:03,429 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
-2026-06-15 16:24:03,440 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get in 0:00:00.010374 seconds
-2026-06-15 16:24:11,986 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post
-2026-06-15 16:24:11,986 INFO Registration attempt for email: bharathmckbytes@gmail.com
-2026-06-15 16:24:11,999 INFO Deleted existing OTPs for bharathmckbytes@gmail.com
-2026-06-15 16:24:12,005 INFO Created new OTP for bharathmckbytes@gmail.com: 724114
-2026-06-15 16:24:12,005 INFO Attempting to send OTP email to bharathmckbytes@gmail.com
-2026-06-15 16:24:15,708 INFO OTP email sent successfully to bharathmckbytes@gmail.com
-2026-06-15 16:24:15,710 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.post in 0:00:03.724466 seconds
-2026-06-15 16:24:15,719 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
-2026-06-15 16:24:15,730 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.011273 seconds
-2026-06-15 16:26:26,826 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : ResendOTPView.post
-2026-06-15 16:26:30,678 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : ResendOTPView.post in 0:00:03.852705 seconds
-2026-06-15 16:26:30,684 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
-2026-06-15 16:26:30,711 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.026451 seconds
-2026-06-15 16:26:43,725 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.post
-2026-06-15 16:26:43,734 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : website_user_register
-2026-06-15 16:26:44,243 ERROR Account creation failed but user was created: AccountUser.save() got an unexpected keyword argument 'force_insert'
-2026-06-15 16:26:44,243 INFO User registered successfully: bharathmckbytes@gmail.com
-2026-06-15 16:26:44,243 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : website_user_register in 0:00:00.508737 seconds
-2026-06-15 16:26:44,750 ERROR OTP verification error at line 388: Reverse for 'profile_page' not found. 'profile_page' is not a valid view function or pattern name.
-2026-06-15 16:26:44,751 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.post in 0:00:01.026518 seconds
-2026-06-15 16:26:44,759 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get
-2026-06-15 16:26:44,762 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : OTPVerificationView.get in 0:00:00.002970 seconds
-2026-06-15 16:26:44,768 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\views.py'] : WebsiteSignUp.get
-2026-06-15 16:26:44,770 ERROR Function 'WebsiteSignUp.get' raised NoReverseMatch with error 'Reverse for 'home_page' not found. 'home_page' is not a valid view function or pattern name.'
+2026-06-16 11:52:51,964 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get
+2026-06-16 11:52:51,964 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:51,968 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004314 seconds
+2026-06-16 11:52:51,976 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get in 0:00:00.012725 seconds
+2026-06-16 11:52:54,037 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get
+2026-06-16 11:52:54,037 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:54,040 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003074 seconds
+2026-06-16 11:52:54,040 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
+2026-06-16 11:52:54,041 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00.001020 seconds
+2026-06-16 11:52:54,042 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.get in 0:00:00.005080 seconds
+2026-06-16 11:52:54,152 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post
+2026-06-16 11:52:54,152 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:54,156 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003997 seconds
+2026-06-16 11:52:54,156 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table
+2026-06-16 11:52:54,156 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_category_table in 0:00:00 seconds
+2026-06-16 11:52:54,156 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data
+2026-06-16 11:52:54,165 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_load_data in 0:00:00.009053 seconds
+2026-06-16 11:52:54,165 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : CategoryList.post in 0:00:00.013050 seconds
+2026-06-16 11:52:55,817 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get
+2026-06-16 11:52:55,817 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:55,820 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003028 seconds
+2026-06-16 11:52:55,820 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:52:55,820 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:52:55,822 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get in 0:00:00.005039 seconds
+2026-06-16 11:52:55,945 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post
+2026-06-16 11:52:55,948 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:55,955 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.006995 seconds
+2026-06-16 11:52:55,955 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:52:55,955 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:52:55,955 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data
+2026-06-16 11:52:55,957 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data in 0:00:00.001495 seconds
+2026-06-16 11:52:55,957 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post in 0:00:00.011814 seconds
+2026-06-16 11:52:57,152 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get
+2026-06-16 11:52:57,152 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:52:57,154 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002011 seconds
+2026-06-16 11:52:57,159 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get in 0:00:00.006602 seconds
+2026-06-16 11:53:20,629 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.post
+2026-06-16 11:53:20,629 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:53:20,632 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002996 seconds
+2026-06-16 11:53:20,632 DEBUG <QueryDict: {'csrfmiddlewaretoken': ['pYQOsdtid721JVDd7LgbDV3o5ej93imQ9KEXtstjH9uS4b3wBX8YCoCHfZrnCF64', 'pYQOsdtid721JVDd7LgbDV3o5ej93imQ9KEXtstjH9uS4b3wBX8YCoCHfZrnCF64'], 'title': ['wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities'], 'slug': ['wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities'], 'is_published': ['on'], 'description': ['In the bustling economic landscape of Tamil Nadu, a state known for its vibrant industries, diverse commercial enterprises, and rapid urban development, maintaining cleanliness and hygiene is more than just a matter of appearance — it’s a critical component of operational efficiency, health standards, and brand reputation. From manufacturing units and industrial plants to commercial offices and hospitality establishments, the demand for high-quality cleaning solutions and supplies is ever-growing. This article explores the top commercial and industrial cleaning solutions and supplies available in Tamil Nadu, highlighting the key sectors, products, and suppliers that are shaping the cleaning industry in this dynamic state.\r\n\r\n\r\nThe Growing Need for Commercial Cleaning Solutions in Tamil Nadu\r\n\r\nTamil Nadu’s economy is driven by a wide array of sectors such as automotive, textiles, information technology, healthcare, and manufacturing industries. These sectors require specialized cleaning solutions to ensure their facilities meet hygiene standards, comply with regulations, and operate efficiently. Commercial cleaning solutions in Tamil Nadu encompass a broad spectrum of products and services tailored to meet these needs.\r\n\r\n\r\nWhether it’s maintaining spotless office spaces, ensuring sterile conditions in healthcare facilities, or keeping industrial machinery free of dust and grime, the importance of reliable cleaning solutions cannot be overstated. The increasing focus on sustainability and eco-friendly practices has further propelled the demand for innovative, high-performance cleaning agents that are both effective and environmentally responsible.\r\n\r\n\r\nIndustrial Cleaning Supplies in Tamil Nadu\r\n\r\nIndustrial cleaning supplies form the backbone of maintaining cleanliness in large-scale facilities such as factories, warehouses, and manufacturing plants. These supplies include heavy-duty cleaning chemicals, degreasers, industrial detergents, and equipment designed to handle tough grime and residues.\r\n\r\n\r\nIn Tamil Nadu, industrial cleaning supplies are supplied by numerous specialized suppliers who cater to the needs of various industries. These suppliers offer products that are formulated to withstand rigorous cleaning processes, ensure safety for workers, and meet environmental standards. For example, industrial degreasers are used in automotive and manufacturing units to remove oil, grease, and grime from machinery and floors, thereby prolonging equipment life and improving safety.\r\n\r\n\r\nB2B Cleaning Products in Tamil Nadu\r\n\r\nBusiness-to-business (B2B) cleaning products are essential for companies that require large quantities of cleaning agents, tools, and equipment to maintain their facilities. Tamil Nadu’s B2B market for cleaning products is thriving, fueled by the state’s expanding industrial base and commercial infrastructure.\r\n\r\n\r\nB2B suppliers in Tamil Nadu offer a comprehensive range of products, including bulk cleaning chemicals, specialized disinfectants, and janitorial supplies. These suppliers often provide customized solutions, bulk procurement discounts, and timely delivery, making them invaluable partners for large organizations looking to streamline their cleaning operations.\r\n\r\n\r\nBulk Cleaning Chemicals in Tamil Nadu\r\n\r\nBulk cleaning chemicals are vital for large-scale cleaning operations, offering cost-effective solutions for industrial and institutional cleaning needs. Tamil Nadu, being a hub of manufacturing and commercial activities, sees a high demand for bulk cleaning chemicals such as disinfectants, surfactants, acids, alkalis, and sanitizers.\r\n\r\n\r\nLocal suppliers and distributors provide high-quality, bulk quantities of these chemicals, ensuring safety, efficacy, and compliance with regulatory standards. These bulk chemicals are used across various sectors, including healthcare, hospitality, manufacturing, and government institutions.\r\n\r\n\r\nHousekeeping Chemicals Suppliers in Tamil Nadu\r\n\r\nHousekeeping chemicals are specialized cleaning agents used for daily maintenance of commercial and institutional premises. These include floor cleaners, glass cleaners, toilet cleaners, surface disinfectants, and multipurpose cleaning agents.\r\n\r\n\r\nTamil Nadu hosts several reputed housekeeping chemicals suppliers who provide high-quality products designed to meet the diverse needs of businesses. These suppliers focus on delivering safe, effective, and eco-friendly products that help maintain hygiene standards while reducing environmental impact.\r\n\r\n\r\nInstitutional Cleaning Products in Tamil Nadu\r\n\r\nInstitutions such as schools, colleges, hospitals, and government offices require specialized cleaning solutions to ensure a safe and hygienic environment. Institutional cleaning products in Tamil Nadu are formulated to cater to these unique requirements, emphasizing disinfection, safety, and ease of use.\r\n\r\nSuppliers offer a range of institutional cleaning products, including disinfectant sprays, surface sanitizers, and cleaning tools. These products are often compliant with health and safety regulations, ensuring that institutions can maintain high standards of hygiene.\r\n\r\n\r\nProfessional Janitorial Supplies in Tamil Nadu\r\n\r\nJanitorial supplies encompass a broad range of products necessary for daily cleaning and maintenance in commercial settings. These include mops, brooms, trash bags, cleaning cloths, dusters, and cleaning carts.\r\n\r\n\r\nTamil Nadu’s market for professional janitorial supplies is well-developed, with suppliers offering durable, high-quality products suitable for various industries. These supplies enable facilities to maintain cleanliness efficiently and cost-effectively, contributing to a healthier workspace environment.\r\n\r\n\r\nHigh-Performance Cleaning Agents in Tamil Nadu\r\n\r\nWith increasing awareness of the importance of effective cleaning, there is a rising demand for high-performance cleaning agents that deliver superior results. These agents include heavy-duty disinfectants, enzyme-based cleaners, bio-enzymatic solutions, and other advanced formulations.\r\n\r\n\r\nTamil Nadu’s suppliers are at the forefront of innovation, providing high-performance cleaning agents that combine efficacy with safety. These products are particularly vital in sectors like healthcare, food processing, and hospitality, where hygiene standards are paramount.\r\n\r\n\r\nLeading Suppliers and Market Trends in Tamil Nadu\r\n\r\nThe market for commercial and industrial cleaning solutions in Tamil Nadu is characterized by a mix of local manufacturers, regional distributors, and international brands. Some of the key players focus on eco-friendly and sustainable cleaning products, aligning with global trends towards greener cleaning practices.\r\n\r\nAdditionally, technological advancements such as automated cleaning systems, eco-friendly chemicals, and smart cleaning solutions are gaining popularity. Suppliers are investing in research and development to offer innovative products that meet the evolving needs of Tamil Nadu’s diverse industries.\r\n\r\n\r\nConclusion\r\n\r\nMaintaining cleanliness is a fundamental aspect of operational excellence in Tamil Nadu’s thriving industrial and commercial sectors. The availability of top-quality cleaning solutions and supplies—ranging from industrial chemicals to janitorial products—plays a crucial role in ensuring health, safety, and efficiency.\r\n\r\nWhether you are a large manufacturing unit, a healthcare facility, or a commercial office, partnering with reputable suppliers of cleaning products in Tamil Nadu can significantly enhance your cleaning protocols. As the market continues to evolve, embracing innovative, eco-friendly, and high-performance cleaning solutions will be key to sustaining a clean and healthy environment in Tamil Nadu’s dynamic landscape.'], 'create_button': ['SAVE']}>
+2026-06-16 11:53:20,633 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_create_update
+2026-06-16 11:53:20,634 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser
+2026-06-16 11:53:20,634 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser in 0:00:00 seconds
+2026-06-16 11:53:20,634 ERROR Error at 329:name 'timezone' is not defined
+2026-06-16 11:53:20,634 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_create_update in 0:00:00.000990 seconds
+2026-06-16 11:53:20,634 DEBUG {}
+2026-06-16 11:53:20,634 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.post in 0:00:00.004999 seconds
+2026-06-16 11:53:20,639 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get
+2026-06-16 11:53:20,639 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:53:20,641 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001999 seconds
+2026-06-16 11:53:20,642 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:53:20,642 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:53:20,646 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get in 0:00:00.007246 seconds
+2026-06-16 11:53:20,771 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post
+2026-06-16 11:53:20,771 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:53:20,783 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.011917 seconds
+2026-06-16 11:53:20,783 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:53:20,783 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:53:20,783 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data
+2026-06-16 11:53:20,786 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data in 0:00:00.003377 seconds
+2026-06-16 11:53:20,786 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post in 0:00:00.015294 seconds
+2026-06-16 11:53:58,897 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get
+2026-06-16 11:53:58,898 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:53:58,900 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.002000 seconds
+2026-06-16 11:53:58,900 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:53:58,928 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00.028756 seconds
+2026-06-16 11:53:58,946 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get in 0:00:00.049706 seconds
+2026-06-16 11:53:59,082 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post
+2026-06-16 11:53:59,082 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:53:59,086 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004023 seconds
+2026-06-16 11:53:59,086 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:53:59,086 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:53:59,086 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data
+2026-06-16 11:53:59,089 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data in 0:00:00.003004 seconds
+2026-06-16 11:53:59,089 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post in 0:00:00.007027 seconds
+2026-06-16 11:54:00,286 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get
+2026-06-16 11:54:00,286 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:54:00,289 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.003336 seconds
+2026-06-16 11:54:00,334 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.get in 0:00:00.048327 seconds
+2026-06-16 11:55:00,002 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.post
+2026-06-16 11:55:00,003 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:00,008 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004005 seconds
+2026-06-16 11:55:00,010 DEBUG <QueryDict: {'csrfmiddlewaretoken': ['y4zHDQDp6O8LAx7txEVgJ9L2dzR1Mb9OiQnQE5DqAQACVNxM1QN3ICklnkZflyT2', 'y4zHDQDp6O8LAx7txEVgJ9L2dzR1Mb9OiQnQE5DqAQACVNxM1QN3ICklnkZflyT2'], 'title': ['Wopper: Top Class Cleaning Solutions for Hospitals, Restaurants, Automobiles, and Laundry Facilities'], 'slug': ['wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities'], 'is_published': ['on'], 'description': ['wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities'], 'create_button': ['SAVE']}>
+2026-06-16 11:55:00,017 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_create_update
+2026-06-16 11:55:00,017 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser
+2026-06-16 11:55:00,019 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\api.py'] : get_request_accountuser in 0:00:00.001996 seconds
+2026-06-16 11:55:00,033 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_create_update in 0:00:00.016367 seconds
+2026-06-16 11:55:00,033 DEBUG {'blog': {'id': 1, 'title': 'Wopper: Top Class Cleaning Solutions for Hospitals, Restaurants, Automobiles, and Laundry Facilities', 'slug': 'wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities', 'description': 'wopper-top-class-cleaning-solutions-for-hospitals-restaurants-automobiles-and-laundry-facilities', 'is_published': True, 'published_date': '2026-06-16 11:55:00', 'image': '/site-media/blog_images/68a9c2_1b0f7fa02b2e48179e31716e9a978f54mv2.avif', 'created_on': '2026-06-16 11:55:00', 'updated_on': '2026-06-16 11:55:00'}}
+2026-06-16 11:55:00,034 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogCreateView.post in 0:00:00.031678 seconds
+2026-06-16 11:55:00,060 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get
+2026-06-16 11:55:00,061 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:00,069 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.009227 seconds
+2026-06-16 11:55:00,069 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:55:00,069 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:55:00,074 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get in 0:00:00.015477 seconds
+2026-06-16 11:55:00,207 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post
+2026-06-16 11:55:00,208 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:00,216 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.007730 seconds
+2026-06-16 11:55:00,216 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:55:00,216 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:55:00,216 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data
+2026-06-16 11:55:00,219 ERROR Error at 255:name 'datetime' is not defined
+2026-06-16 11:55:00,219 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data in 0:00:00.003320 seconds
+2026-06-16 11:55:00,219 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post in 0:00:00.012027 seconds
+2026-06-16 11:55:29,155 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get
+2026-06-16 11:55:29,155 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:29,160 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004483 seconds
+2026-06-16 11:55:29,160 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:55:29,181 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00.021381 seconds
+2026-06-16 11:55:29,195 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.get in 0:00:00.039505 seconds
+2026-06-16 11:55:29,288 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post
+2026-06-16 11:55:29,288 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:29,299 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.010992 seconds
+2026-06-16 11:55:29,299 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table
+2026-06-16 11:55:29,299 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\build_table.py'] : build_blog_table in 0:00:00 seconds
+2026-06-16 11:55:29,299 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data
+2026-06-16 11:55:29,302 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_load_data in 0:00:00.003105 seconds
+2026-06-16 11:55:29,302 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogList.post in 0:00:00.014097 seconds
+2026-06-16 11:55:32,809 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.get
+2026-06-16 11:55:32,809 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:32,811 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001965 seconds
+2026-06-16 11:55:32,811 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_retrieve_data
+2026-06-16 11:55:32,811 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_retrieve_data in 0:00:00 seconds
+2026-06-16 11:55:32,834 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.get in 0:00:00.025262 seconds
+2026-06-16 11:55:51,433 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.post
+2026-06-16 11:55:51,433 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:51,434 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.001000 seconds
+2026-06-16 11:55:51,435 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_retrieve_data
+2026-06-16 11:55:51,435 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : category_retrieve_data in 0:00:00 seconds
+2026-06-16 11:55:51,438 WARNING <ul class="errorlist"><li>name<ul class="errorlist" id="id_name_error"><li>This field is required.</li></ul></li><li>sort_order<ul class="errorlist" id="id_sort_order_error"><li>This field is required.</li></ul></li></ul>
+2026-06-16 11:55:51,600 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.post in 0:00:00.167035 seconds
+2026-06-16 11:55:54,605 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.get
+2026-06-16 11:55:54,605 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function
+2026-06-16 11:55:54,609 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_auth\\role_validations.py'] : validate_requested_user_function in 0:00:00.004468 seconds
+2026-06-16 11:55:54,610 INFO *******Starting function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_retrieve_data
+2026-06-16 11:55:54,611 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\api.py'] : blog_retrieve_data in 0:00:00.000998 seconds
+2026-06-16 11:55:54,615 INFO *******Finished function ['D:\\Bharath\\wensite\\wopper\\django basic setup\\appsource\\mck_website\\views.py'] : BlogUpdateView.get in 0:00:00.010469 seconds

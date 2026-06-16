@@ -9,7 +9,7 @@ from crispy_forms.helper import *
 from crispy_forms.layout import *
 from crispy_forms.bootstrap import *
 
-from mck_website.models import Category, Product
+from mck_website.models import Category, Product, Blog
 from config import app_gv as gv
 from mck_website import models
 
@@ -178,7 +178,133 @@ class CategoryCreateUpdateForm(forms.ModelForm):
             'datamode'
         ]
 
+class BlogCreateUpdateForm(forms.ModelForm):
 
+    def __init__(self, *args, **kwargs):
+        mode = kwargs.pop('mode', None)
+        
+        super(BlogCreateUpdateForm, self).__init__(*args, **kwargs)
+
+        # Keep a reference to the current instance pk so we can exclude it
+        # from the slug uniqueness check below.
+        self._instance_pk = self.instance.pk if self.instance else None
+
+        for field_name in self.fields:
+            self.fields[field_name].label = str(
+                self.fields[field_name].label
+            ).upper()
+
+            # Skip styling for image fields
+            if field_name in ['image']:
+                self.fields[field_name].required = False
+                self.fields[field_name].widget = forms.HiddenInput()
+            else:
+                self.fields[field_name].widget.attrs[
+                    'class'
+                ] = "form-control form-control-solid"
+
+        save_button_name = "SAVE" if mode != 'edit' else "UPDATE"
+
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
+        self.helper.form.enctype = "multipart/form-data"
+
+        self.helper.layout = Layout(
+
+            Fieldset(
+                '',
+
+                Row(
+                    Column(Field('title'), css_class='col-md-12'),
+                    css_class='row'
+                ),
+
+                Row(
+                    Column(Field('slug'), css_class='col-md-6'),
+                    Column(Field('is_published'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+
+                Row(
+                    Column(
+                        _image_upload_block('image', 'Blog Image', accept="image/*"),
+                        css_class='col-md-12'
+                    ),
+                    css_class='row'
+                ),
+
+                Row(
+                    Column(Field('description'), css_class='col-md-12'),
+                    css_class='row'
+                ),
+            ),
+
+            ButtonHolder(
+                Div(
+                    HTML(
+                        '<a class="btn btn-lg btn-secondary me-3" '
+                        'href="javascript:void();" '
+                        'onclick="history.back()">CANCEL</a>'
+                    ),
+
+                    Submit(
+                        'create_button',
+                        save_button_name,
+                        css_class='btn btn-lg btn-primary'
+                    ),
+
+                    css_class="d-flex text-right justify-content-end pt-10 col-12"
+                ),
+                css_class="row col-12 pe-5",
+            )
+        )
+
+    # ── Slug uniqueness: exclude the current record when editing ──────────────
+    def clean_slug(self):
+        slug = self.cleaned_data.get('slug')
+        if not slug:
+            # Auto-generate slug from title if not provided
+            title = self.cleaned_data.get('title')
+            if title:
+                slug = slugify(title)
+            else:
+                raise forms.ValidationError("Slug is required")
+
+        qs = Blog.objects.filter(slug=slug)
+
+        # On edit: exclude the record being updated
+        if self._instance_pk:
+            qs = qs.exclude(pk=self._instance_pk)
+
+        if qs.exists():
+            raise forms.ValidationError(
+                "A blog with this slug already exists. Please use a unique slug."
+            )
+        return slug
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if not title:
+            raise forms.ValidationError("Title is required")
+        return title
+
+    class Meta:
+        model = Blog
+        exclude = [
+            'created_on',
+            'updated_on',
+            'created_by',
+            'updated_by',
+            'datamode',
+            'published_date'  # Will be set programmatically
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 15}),
+        }
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Product form
+# ─────────────────────────────────────────────────────────────────────────────
 # ─────────────────────────────────────────────────────────────────────────────
 # Product form
 # ─────────────────────────────────────────────────────────────────────────────
@@ -198,9 +324,10 @@ class ProductCreateUpdateForm(forms.ModelForm):
                 self.fields[field_name].label
             ).upper()
 
-            if field_name == 'image':
-                self.fields[field_name].widget = ImageUploadWidget()
+            # Skip styling for image fields as they use custom widgets
+            if field_name in ['image', 'image1', 'image2', 'image3', 'image4', 'image5']:
                 self.fields[field_name].required = False
+                self.fields[field_name].widget = forms.HiddenInput()  # Hide default widget
             else:
                 self.fields[field_name].widget.attrs[
                     'class'
@@ -210,6 +337,7 @@ class ProductCreateUpdateForm(forms.ModelForm):
 
         self.helper = FormHelper(self)
         self.helper.form_tag = False
+        self.helper.form.enctype = "multipart/form-data"  # Important for file uploads
 
         self.helper.layout = Layout(
 
@@ -229,14 +357,51 @@ class ProductCreateUpdateForm(forms.ModelForm):
                 ),
 
                 Row(
-                    Column(Field('image'), css_class='col-md-6'),
                     Column(Field('stock'), css_class='col-md-6'),
+                    Column(Field('price'), css_class='col-md-6'),
                     css_class='row'
                 ),
 
                 Row(
-                    Column(Field('price'), css_class='col-md-6'),
                     Column(Field('sale_price'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+
+                # Main Image - Full width
+                Row(
+                    Column(
+                        _image_upload_block('image', 'Main Image', accept="image/*"),
+                        css_class='col-md-12'
+                    ),
+                    css_class='row'
+                ),
+
+                # Additional Images - 3 per row
+                Row(
+                    Column(
+                        _image_upload_block('image1', 'Image 1', accept="image/*"),
+                        css_class='col-md-4'
+                    ),
+                    Column(
+                        _image_upload_block('image2', 'Image 2', accept="image/*"),
+                        css_class='col-md-4'
+                    ),
+                    Column(
+                        _image_upload_block('image3', 'Image 3', accept="image/*"),
+                        css_class='col-md-4'
+                    ),
+                    css_class='row'
+                ),
+
+                Row(
+                    Column(
+                        _image_upload_block('image4', 'Image 4', accept="image/*"),
+                        css_class='col-md-4'
+                    ),
+                    Column(
+                        _image_upload_block('image5', 'Image 5', accept="image/*"),
+                        css_class='col-md-4'
+                    ),
                     css_class='row'
                 ),
 

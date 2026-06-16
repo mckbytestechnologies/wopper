@@ -111,7 +111,7 @@ DEFAULT_DATE_TIME_FORMAT = '%d %b, %Y %I:%M:%S %p'
 DEFAULT_DATE_FORMAT = '%d %b, %Y'
 DEFAULT_TIME_FORMAT = '%I:%M:%S %p'
 
-# Static files (CSS, JavaScript, Images)
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For production
 STATICFILES_DIRS = [
@@ -127,16 +127,7 @@ MEDIA_STATIC_URL = "/app-static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'media', 'static')
 
-# # Media files (user uploaded content)
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_ROOT = "G:/square_box/appsource/media"
 
-
-# MEDIA_STATIC_ROOT = os.path.join(BASE_DIR, 'media', 'static')
-
-# # Static files storage (for production)
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Security settings
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None

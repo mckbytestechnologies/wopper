@@ -1092,6 +1092,309 @@
         .hdr-icon-btn { width: 34px; height: 34px; font-size: 16px; }
         .hamburger-btn { width: 34px; height: 34px; }
     }
+
+
+    /* ════════════════════════════════════════════
+   BLOG SECTION - Matching Theme
+═══════════════════════════════════════════ */
+.blog-section {
+    padding: 28px 0;
+    background: #fff;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    color: #000;
+    margin: 0;
+}
+
+.section-title i {
+    color: var(--teal);
+    margin-right: 8px;
+}
+
+.view-all {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.view-all:hover {
+    background: #f5f5f5;
+}
+
+/* ── Blog Card ── */
+.blog-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-l);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.blog-image {
+    position: relative;
+    width: 100%;
+    padding-top: 65%;
+    overflow: hidden;
+    background: #f7f7f7;
+}
+
+.blog-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.04);
+}
+
+.blog-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--teal);
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.blog-content {
+    padding: 16px 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.blog-meta i {
+    font-size: 12px;
+    color: var(--teal);
+    margin-right: 4px;
+}
+
+.blog-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 44px;
+}
+
+.blog-excerpt {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+.blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    text-decoration: none;
+}
+
+.blog-read-more:hover {
+    gap: 10px;
+    color: var(--teal-dark);
+}
+
+.blog-read-more i {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.blog-read-more:hover i {
+    transform: translateX(4px);
+}
+
+/* ── Blog Slider Override ── */
+#blog-sec .slider-track.cols-3 .slide-item {
+    flex: 0 0 calc(33.333% - 10px);
+}
+
+/* ── Blog Responsive ── */
+@media (max-width: 1100px) {
+    #blog-sec .slider-track .slide-item {
+        flex: 0 0 calc(33.333% - 10px);
+    }
+}
+
+@media (max-width: 768px) {
+    #blog-sec .slider-track .slide-item {
+        flex: 0 0 calc(50% - 8px);
+    }
+    
+    .blog-title {
+        font-size: 14px;
+        min-height: 38px;
+    }
+    
+    .blog-excerpt {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    #blog-sec .slider-track .slide-item {
+        flex: 0 0 calc(100% - 0px);
+    }
+    
+    .blog-image {
+        padding-top: 55%;
+    }
+    
+    .blog-content {
+        padding: 14px 14px 16px;
+    }
+    
+    .blog-title {
+        font-size: 15px;
+        min-height: auto;
+        -webkit-line-clamp: 1;
+    }
+    
+    .section-title {
+        font-size: 17px;
+    }
+    
+    .view-all {
+        font-size: 11px;
+        padding: 4px 12px;
+    }
+}
+
+/* ── Slider buttons for blog ── */
+#blog-sec .sldr-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    font-size: 12px;
+    color: #333;
+    transition: all 0.2s;
+}
+
+#blog-sec .sldr-btn:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+#blog-sec .sldr-btn.prev {
+    left: -17px;
+}
+
+#blog-sec .sldr-btn.next {
+    right: -17px;
+}
+
+#blog-sec .sldr-btn:disabled {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ── Hide slider buttons on mobile ── */
+@media (max-width: 600px) {
+    #blog-sec .sldr-btn {
+        display: none;
+    }
+}
+
+/* ── Blog Section Divider ── */
+.blog-section .section-header {
+    border-bottom: none;
+}
+
+.blog-section .section-header .section-title {
+    position: relative;
+}
+
+.blog-section .section-header .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+}
+
+
     </style>
 </head>
 <body>
@@ -1457,21 +1760,53 @@
 <!-- ══════════════════════════════════════
      CATEGORY PROFILES SLIDER
 ══════════════════════════════════════ -->
-{% if categories %}
-<section class="profile-sec">
+<!-- Blog Section -->
+<!-- ══════════════════════════════════════
+     BLOG SECTION
+══════════════════════════════════════ -->
+{% if blogs %}
+<section class="blog-section">
     <div class="site-wrap">
-        <div class="slider-wrap" id="cp-sec">
-            <button class="sldr-btn prev" onclick="slide('cp-sec',-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-pen-fancy"></i> Latest Blogs
+            </h2>
+            <a href="{% url 'wopper:blog_list' %}" class="view-all">
+                View All <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="slider-wrap" id="blog-sec">
+            <button class="sldr-btn prev" onclick="slide('blog-sec',-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
             <div class="slider-viewport">
-                <div class="slider-track cols-4">
-                    {% for category in categories|slice:":10" %}
+                <div class="slider-track cols-3">
+                    {% for blog in blogs %}
                     <div class="slide-item">
-                        <a href="{% url 'wopper:category_products' slug=category.slug %}">
-                            <div class="profile-card">
-                                {% if category.image %}<img src="{{ category.image.url }}" alt="{{ category.name }}" loading="lazy">{% else %}<img src="https://via.placeholder.com/400x380?text={{ category.name }}">{% endif %}
-                                <div class="profile-label">
-                                    <span>{{ category.name }}</span>
-                                    <i class="fas fa-arrow-right"></i>
+                        <a href="{% url 'wopper:blog_detail' slug=blog.slug %}" style="text-decoration:none;display:block;height:100%;">
+                            <div class="blog-card">
+                                <div class="blog-image">
+                                    {% if blog.image %}
+                                    <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
+                                    {% else %}
+                                    <img src="https://via.placeholder.com/400x260?text={{ blog.title|truncatechars:20 }}" loading="lazy">
+                                    {% endif %}
+                                    {% if blog.is_featured %}
+                                    <span class="blog-badge">Featured</span>
+                                    {% endif %}
+                                </div>
+                                <div class="blog-content">
+                                    <div class="blog-meta">
+                                        <span>
+                                            <i class="far fa-calendar-alt"></i> 
+                                            {{ blog.published_date|date:"M d, Y" }}
+                                        </span>
+                                    </div>
+                                    <h3 class="blog-title">{{ blog.title|truncatechars:60 }}</h3>
+                                    <p class="blog-excerpt">{{ blog.description|striptags|truncatechars:100 }}</p>
+                                    <span class="blog-read-more">
+                                        Read More <i class="fas fa-arrow-right"></i>
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -1479,7 +1814,9 @@
                     {% endfor %}
                 </div>
             </div>
-            <button class="sldr-btn next" onclick="slide('cp-sec',1)"><i class="fas fa-chevron-right"></i></button>
+            <button class="sldr-btn next" onclick="slide('blog-sec',1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 </section>

@@ -1,0 +1,646 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Wopper</title>
+    <meta name="description" content="Read Wopper's privacy policy to understand how we collect, use, and protect your personal information when you use wopper.store.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal:       #00828a;
+            --teal-dark:  #006d73;
+            --teal-light: #e0f4f5;
+            --red:        #eb3c24;
+            --dark:       #222222;
+            --muted:      #666666;
+            --border:     #e5e5e5;
+            --bg-gray:    #f1f3f4;
+            --bg-card:    #f5f6f9;
+            --footer-bg:  #00222a;
+            --font:       'Inter', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: var(--font); color: var(--dark); background: var(--bg-gray); overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── Page Hero ── */
+        .policy-hero {
+            background: linear-gradient(135deg, #00222a 0%, #004d57 60%, #00828a 100%);
+            padding: 64px 24px 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .policy-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        .policy-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            color: #a8e6eb;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .policy-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.6px;
+            margin-bottom: 12px;
+            line-height: 1.15;
+        }
+        .policy-hero p {
+            font-size: 15px;
+            color: rgba(255,255,255,.65);
+            max-width: 480px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+        .policy-hero-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.08);
+            color: rgba(255,255,255,.55);
+            font-size: 12px;
+            padding: 5px 14px;
+            border-radius: 4px;
+        }
+
+        /* ── Quick-fact strip ── */
+        .fact-strip {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .fact-strip-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            divide: solid var(--border);
+        }
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 22px 16px;
+            border-right: 1px solid var(--border);
+        }
+        .fact-item:last-child { border-right: none; }
+        .fact-icon {
+            width: 44px; height: 44px;
+            border-radius: 10px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .fact-val {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--dark);
+            line-height: 1.1;
+            margin-bottom: 2px;
+        }
+        .fact-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ── Main layout ── */
+        .policy-body {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+
+        /* ── Section cards ── */
+        .policy-card {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            position: relative;
+            transition: box-shadow .2s;
+        }
+        .policy-card:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,.07);
+        }
+        .policy-card-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+        .policy-card-icon {
+            width: 46px; height: 46px;
+            border-radius: 10px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .policy-card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .policy-card-sub {
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .policy-card p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .policy-card p:last-child { margin-bottom: 0; }
+        .policy-card ul, .policy-card ol {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.8;
+            margin: 12px 0 16px 24px;
+        }
+        .policy-card ul li, .policy-card ol li {
+            margin-bottom: 8px;
+        }
+        .policy-card ul li::marker {
+            color: var(--teal);
+        }
+        .policy-card strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+        .policy-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 20px 0 8px 0;
+        }
+
+        /* ── Alert box ── */
+        .policy-alert {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 6px;
+        }
+        .alert-info  { background: #e8f4fd; border-left: 3px solid #3b82f6; color: #1a4a7a; }
+        .alert-warn  { background: #fff8e6; border-left: 3px solid #f59e0b; color: #7a4e1a; }
+        .alert-green { background: #e8f8ee; border-left: 3px solid #29be53; color: #1a4a2a; }
+        .alert-red   { background: #fde8e8; border-left: 3px solid #ef4444; color: #7a1a1a; }
+        .policy-alert i { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+
+        /* ── Info grid ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0 4px;
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px 16px;
+            background: var(--bg-card);
+            border-radius: 8px;
+            font-size: 13px;
+            color: #555;
+            border: 1px solid var(--border);
+        }
+        .info-item i {
+            color: var(--teal);
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .info-item strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* ── Contact row ── */
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 6px;
+        }
+        .contact-chip {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 16px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .contact-chip-ico {
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: var(--teal-light);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--teal);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .contact-chip-label {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        .contact-chip-val {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            word-break: break-word;
+            line-height: 1.4;
+        }
+        .contact-chip-val a { color: var(--teal); }
+        .contact-chip-val a:hover { text-decoration: underline; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .policy-hero h1 { font-size: 28px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .fact-item:nth-child(odd) { border-right: 1px solid var(--border); }
+            .fact-item:nth-last-child(-n+2) { border-bottom: none; }
+            .policy-card { padding: 24px 20px; }
+            .contact-row { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .policy-hero { padding: 44px 16px 40px; }
+            .policy-hero h1 { font-size: 22px; }
+            .fact-strip-inner { grid-template-columns: 1fr 1fr; }
+            .fact-item { padding: 16px 10px; }
+            .policy-body { padding: 28px 14px 48px; }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<!-- Hero -->
+<div class="policy-hero">
+    <div class="policy-hero-badge">
+        <i class="fas fa-shield-halved"></i> Privacy Policy
+    </div>
+    <h1>Your Privacy Matters</h1>
+    <p>We are committed to protecting your personal information and being transparent about how we use it.</p>
+    <div class="policy-hero-date">
+        <i class="far fa-calendar-alt"></i> Effective Date: December 26, 2024
+    </div>
+</div>
+
+<!-- Quick-fact strip -->
+<div class="fact-strip">
+    <div class="fact-strip-inner">
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-lock"></i></div>
+            <div class="fact-val">Secure</div>
+            <div class="fact-label">Data Protection</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-user-shield"></i></div>
+            <div class="fact-val">13+</div>
+            <div class="fact-label">Age Requirement</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-eye"></i></div>
+            <div class="fact-val">Transparent</div>
+            <div class="fact-label">Data Usage</div>
+        </div>
+        <div class="fact-item">
+            <div class="fact-icon"><i class="fas fa-envelope"></i></div>
+            <div class="fact-val">Contact</div>
+            <div class="fact-label">admin@wopper.in</div>
+        </div>
+    </div>
+</div>
+
+<!-- Body -->
+<div class="policy-body">
+
+    <!-- 1. Introduction -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-info-circle"></i></div>
+            <div>
+                <div class="policy-card-title">Introduction</div>
+                <div class="policy-card-sub">Our commitment to your privacy</div>
+            </div>
+        </div>
+        <p>This Privacy Policy describes how <strong>Shri Meera Labs Private Limited</strong> ("we," "us," or "our") collects, uses, and discloses your information when you use our website, <a href="https://wopper.store" style="color:var(--teal);font-weight:600;">wopper.store</a> (the "Site").</p>
+        <p>We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This policy explains what information we collect, how we use it, and the choices you have regarding your data.</p>
+        <div class="policy-alert alert-green">
+            <i class="fas fa-check-circle"></i>
+            <span>By using our Site, you agree to the collection and use of information in accordance with this Privacy Policy.</span>
+        </div>
+    </div>
+
+    <!-- 2. Information We Collect -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-database"></i></div>
+            <div>
+                <div class="policy-card-title">Information We Collect</div>
+                <div class="policy-card-sub">What data we gather from you</div>
+            </div>
+        </div>
+        <p>We collect several different types of information for various purposes to improve our services to you.</p>
+
+        <h4>Personal Information</h4>
+        <p>We may collect personal information, such as your name, email address, postal address, phone number, and payment information, when you:</p>
+        <ul>
+            <li>Create an account on the Site.</li>
+            <li>Place an order.</li>
+            <li>Subscribe to our newsletter.</li>
+            <li>Contact us for customer support.</li>
+            <li>Participate in surveys or promotions.</li>
+        </ul>
+
+        <h4>Usage Data</h4>
+        <p>We may also collect usage data, such as your browsing history, search queries, and IP address, when you use the Site. This information helps us understand how you use the Site and improve your experience.</p>
+        
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-user"></i>
+                <div>
+                    <strong>Personal Information</strong>
+                    Name, email, address, phone, payment details
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <strong>Usage Data</strong>
+                    Browsing history, search queries, IP address
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-cookie"></i>
+                <div>
+                    <strong>Cookies</strong>
+                    Session data, preferences, analytics
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-mobile-alt"></i>
+                <div>
+                    <strong>Device Information</strong>
+                    Device type, browser, operating system
+                </div>
+            </div>
+        </div>
+
+        <div class="policy-alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <span>We collect this information to provide you with a better shopping experience and to improve our services.</span>
+        </div>
+    </div>
+
+    <!-- 3. How We Use Your Information -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-gears"></i></div>
+            <div>
+                <div class="policy-card-title">How We Use Your Information</div>
+                <div class="policy-card-sub">The purposes for which we process your data</div>
+            </div>
+        </div>
+        <p>We use the information we collect for various purposes, including:</p>
+        <ul>
+            <li>To process your orders and provide you with the products and services you request.</li>
+            <li>To send you important information about your orders, including order confirmations and shipping notifications.</li>
+            <li>To send you marketing communications, such as newsletters and promotions, with your consent. (<strong>You can opt-out of receiving marketing communications at any time.</strong>)</li>
+            <li>To personalize your experience on the Site.</li>
+            <li>To improve the Site and our services.</li>
+            <li>To comply with legal and regulatory requirements.</li>
+            <li>To prevent fraud and enhance security.</li>
+        </ul>
+        <div class="policy-alert alert-warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>We will not use your personal information for purposes other than those stated in this policy without your explicit consent.</span>
+        </div>
+    </div>
+
+    <!-- 4. Sharing Your Information -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-share-nodes"></i></div>
+            <div>
+                <div class="policy-card-title">Sharing Your Information</div>
+                <div class="policy-card-sub">When and with whom we share your data</div>
+            </div>
+        </div>
+        <p>We may share your information with third-party service providers who help us operate the Site and provide our services, such as:</p>
+        <ul>
+            <li><strong>Payment Processors</strong> - To securely process your payments.</li>
+            <li><strong>Shipping Companies</strong> - To deliver your orders.</li>
+            <li><strong>Marketing Agencies</strong> - To help us with promotional activities.</li>
+            <li><strong>IT Service Providers</strong> - To maintain and improve our systems.</li>
+        </ul>
+        <p>These third-party service providers are obligated to use your information only to perform services on our behalf and in accordance with this Privacy Policy.</p>
+        <p>We may also disclose your information if required by law or to protect the rights, property, or safety of ourselves or others.</p>
+        <div class="policy-alert alert-green">
+            <i class="fas fa-check-circle"></i>
+            <span>We never sell your personal information to third parties for their marketing purposes.</span>
+        </div>
+    </div>
+
+    <!-- 5. Data Retention -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-clock"></i></div>
+            <div>
+                <div class="policy-card-title">Data Retention</div>
+                <div class="policy-card-sub">How long we keep your information</div>
+            </div>
+        </div>
+        <p>We will retain your information for as long as it is necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+        <p>We retain your personal information for:</p>
+        <ul>
+            <li>As long as you have an active account with us.</li>
+            <li>As long as needed to provide you with our services.</li>
+            <li>To comply with legal and regulatory requirements.</li>
+            <li>To resolve disputes and enforce our agreements.</li>
+        </ul>
+        <div class="policy-alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <span>When we no longer need your personal information, we will securely delete or anonymize it.</span>
+        </div>
+    </div>
+
+    <!-- 6. Your Choices -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-user-gear"></i></div>
+            <div>
+                <div class="policy-card-title">Your Choices</div>
+                <div class="policy-card-sub">You have control over your information</div>
+            </div>
+        </div>
+        <p>You have several choices regarding your information:</p>
+        <ul>
+            <li><strong>Access and Update:</strong> You can access and update your personal information in your account settings.</li>
+            <li><strong>Opt-out of Marketing:</strong> You can opt-out of receiving marketing communications from us by following the unsubscribe instructions in our emails or by contacting us.</li>
+            <li><strong>Request Deletion:</strong> You can request that we delete your information by contacting us.</li>
+            <li><strong>Cookie Preferences:</strong> You can manage your cookie preferences through your browser settings.</li>
+        </ul>
+        <div class="policy-alert alert-green">
+            <i class="fas fa-check-circle"></i>
+            <span>To exercise any of these rights, please contact us at <a href="mailto:admin@wopper.in" style="color:var(--teal);font-weight:600;">admin@wopper.in</a></span>
+        </div>
+    </div>
+
+    <!-- 7. Children's Privacy -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-child"></i></div>
+            <div>
+                <div class="policy-card-title">Children's Privacy</div>
+                <div class="policy-card-sub">Our policy regarding children under 13</div>
+            </div>
+        </div>
+        <p>Our Site is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and you believe your child has provided us with personal information, please contact us. We will take steps to remove the information from our records.</p>
+        <div class="policy-alert alert-red">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>If you are under the age of 13, please do not use our Site or provide any personal information to us.</span>
+        </div>
+    </div>
+
+    <!-- 8. Security -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+                <div class="policy-card-title">Security</div>
+                <div class="policy-card-sub">How we protect your information</div>
+            </div>
+        </div>
+        <p>We take reasonable steps to protect your information from unauthorized access, disclosure, alteration, or destruction. We implement industry-standard security measures including:</p>
+        <ul>
+            <li><strong>SSL/TLS Encryption</strong> - For secure data transmission.</li>
+            <li><strong>Secure Servers</strong> - Protected by firewalls and access controls.</li>
+            <li><strong>Regular Security Audits</strong> - To identify and address vulnerabilities.</li>
+            <li><strong>Access Controls</strong> - Limited to authorized personnel only.</li>
+        </ul>
+        <div class="policy-alert alert-warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>No internet transmission or electronic storage is ever completely secure. We cannot guarantee the absolute security of your information, but we strive to protect it to the best of our ability.</span>
+        </div>
+    </div>
+
+    <!-- 9. Cookies -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-cookie-bite"></i></div>
+            <div>
+                <div class="policy-card-title">Cookies</div>
+                <div class="policy-card-sub">How we use cookies and similar technologies</div>
+            </div>
+        </div>
+        <p>We use cookies and similar tracking technologies to track activity on our Site and hold certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier.</p>
+        <p>We use cookies for:</p>
+        <ul>
+            <li><strong>Essential Cookies:</strong> Necessary for the basic functioning of the Site.</li>
+            <li><strong>Preference Cookies:</strong> To remember your preferences and settings.</li>
+            <li><strong>Analytics Cookies:</strong> To understand how visitors interact with the Site.</li>
+            <li><strong>Marketing Cookies:</strong> To deliver relevant advertisements.</li>
+        </ul>
+        <p>You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.</p>
+        <div class="policy-alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            <span>By continuing to use our Site, you consent to our use of cookies as described in this policy.</span>
+        </div>
+    </div>
+
+    <!-- 10. Changes to This Privacy Policy -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-pen"></i></div>
+            <div>
+                <div class="policy-card-title">Changes to This Privacy Policy</div>
+                <div class="policy-card-sub">When and how we update our policy</div>
+            </div>
+        </div>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on the Site. You are advised to review this Privacy Policy periodically for any changes.</p>
+        <p>Changes to this Privacy Policy are effective when they are posted on this page. If we make any material changes, we will notify you by email or through a prominent notice on our Site prior to the change becoming effective.</p>
+        <div class="policy-alert alert-warn">
+            <i class="fas fa-triangle-exclamation"></i>
+            <span>Your continued use of the Site after any changes to this Privacy Policy will constitute your acceptance of such changes.</span>
+        </div>
+    </div>
+
+    <!-- 11. Contact Us -->
+    <div class="policy-card">
+        <div class="policy-card-head">
+            <div class="policy-card-icon"><i class="fas fa-headset"></i></div>
+            <div>
+                <div class="policy-card-title">Contact Us</div>
+                <div class="policy-card-sub">How to reach us with privacy concerns</div>
+            </div>
+        </div>
+        <p>If you have any questions about this Privacy Policy, please contact us:</p>
+        <div class="contact-row">
+            <div class="contact-chip">
+                <div class="contact-chip-ico"><i class="fas fa-envelope"></i></div>
+                <div>
+                    <div class="contact-chip-label">Email Us</div>
+                    <div class="contact-chip-val"><a href="mailto:admin@wopper.in">admin@wopper.in</a></div>
+                </div>
+            </div>
+            <div class="contact-chip">
+                <div class="contact-chip-ico"><i class="fas fa-location-dot"></i></div>
+                <div>
+                    <div class="contact-chip-label">Registered Address</div>
+                    <div class="contact-chip-val">Shri Meera Labs Private Limited, G-181, Mathura, Bharathidasan Street, Bhasker Colony, Saligramam, Chennai – 600092</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /policy-body -->
+
+{% include 'includes/footer-website.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
