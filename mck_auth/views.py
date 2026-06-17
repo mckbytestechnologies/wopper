@@ -379,7 +379,7 @@ class OTPVerificationView(TemplateView):
                     
                     if user:
                         login(request, user)
-                        messages.success(request, "Registration successful! Welcome to SRI VARAM MANAMALAI.")
+                        messages.success(request, "Registration successful! Welcome to WOPPER.")
                         
                         # Check user type for redirect
                         if user.is_staff or user.is_superuser:

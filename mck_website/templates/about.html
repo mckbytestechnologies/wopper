@@ -1,0 +1,512 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Wopper Cleaning Solutions</title>
+    <meta name="description" content="Wopper Cleaning Solutions - A trusted name in cleaning products since 2017. ISO 9001 certified, eco-friendly solutions for residential and commercial needs.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal:       #00828a;
+            --teal-dark:  #006d73;
+            --teal-light: #e0f4f5;
+            --red:        #eb3c24;
+            --dark:       #222222;
+            --muted:      #666666;
+            --border:     #e5e5e5;
+            --bg-gray:    #f1f3f4;
+            --bg-card:    #f5f6f9;
+            --footer-bg:  #00222a;
+            --font:       'Inter', sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { font-family: var(--font); color: var(--dark); background: #fff; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ── Page Hero ── */
+        .about-hero {
+            background: linear-gradient(135deg, #00222a 0%, #004d57 60%, #00828a 100%);
+            padding: 80px 24px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+        }
+        .about-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.18);
+            color: #a8e6eb;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+        .about-hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -.6px;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .about-hero h1 span {
+            color: #a8e6eb;
+        }
+        .about-hero p {
+            font-size: 17px;
+            color: rgba(255,255,255,.7);
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── Stats Bar ── */
+        .stats-bar {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+        .stats-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 12px 16px;
+            border-right: 1px solid var(--border);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--teal);
+            line-height: 1.2;
+        }
+        .stat-number .plus {
+            font-size: 20px;
+            color: var(--teal);
+        }
+        .stat-label {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* ── Main Content ── */
+        .about-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* ── Section Cards ── */
+        .about-card {
+            background: #fff;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 36px 40px;
+            margin-bottom: 28px;
+            transition: box-shadow .25s;
+        }
+        .about-card:hover {
+            box-shadow: 0 4px 28px rgba(0,0,0,.06);
+        }
+        .about-card-head {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .about-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--teal-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .about-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+        .about-card-sub {
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .about-card p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+        .about-card p:last-child { margin-bottom: 0; }
+        .about-card strong {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        /* ── Mission Vision Grid ── */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .mv-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 28px 30px;
+            border: 1px solid var(--border);
+            transition: all .25s;
+        }
+        .mv-card:hover {
+            border-color: var(--teal);
+            box-shadow: 0 4px 20px rgba(0,0,0,.06);
+        }
+        .mv-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--teal);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 14px;
+        }
+        .mv-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .mv-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ── Certifications Grid ── */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .cert-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 14px;
+            text-align: center;
+            transition: all .25s;
+        }
+        .cert-item:hover {
+            border-color: var(--teal);
+            transform: translateY(-3px);
+        }
+        .cert-item i {
+            font-size: 28px;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+        .cert-item .name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            display: block;
+        }
+        .cert-item .desc {
+            font-size: 11px;
+            color: var(--muted);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* ── Founded Info ── */
+        .founded-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal-light);
+            color: var(--teal-dark);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .founded-badge i {
+            font-size: 16px;
+        }
+
+        /* ── Image Section ── */
+        .about-image-wrap {
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.08);
+        }
+        .about-image-wrap img {
+            width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: cover;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 992px) {
+            .about-hero h1 { font-size: 34px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+            .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+            .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+            .mv-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .about-hero { padding: 56px 20px 48px; }
+            .about-hero h1 { font-size: 28px; }
+            .about-body { padding: 40px 16px; }
+            .about-card { padding: 24px 20px; }
+            .cert-grid { grid-template-columns: repeat(2, 1fr); }
+            .mv-card { padding: 22px 20px; }
+        }
+        @media (max-width: 480px) {
+            .about-hero h1 { font-size: 22px; }
+            .about-hero p { font-size: 14px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-number { font-size: 22px; }
+            .stat-item { padding: 10px 8px; }
+            .cert-grid { grid-template-columns: 1fr 1fr; }
+            .about-card-head { gap: 12px; }
+            .about-card-icon { width: 42px; height: 42px; font-size: 18px; }
+            .about-card-title { font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+
+{% include 'includes/header.html' %}
+
+<!-- Hero -->
+<section class="about-hero">
+    <div class="about-hero-badge">
+        <i class="fas fa-leaf"></i> Since 2017
+    </div>
+    <h1>We’re <span>Wopper</span> —<br>Your Trusted Cleaning Partner</h1>
+    <p>For over a decade, we’ve been crafting cleaning solutions that are effective, eco-friendly, and built for real-world needs — from your home to large-scale industries.</p>
+</section>
+
+<!-- Stats -->
+<section class="stats-bar">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">2017 <span class="plus"></span></div>
+            <div class="stat-label">Year Founded</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">ISO 9001 <span class="plus"></span></div>
+            <div class="stat-label">Certified Quality</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">50+ <span class="plus"></span></div>
+            <div class="stat-label">Product Categories</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100+ <span class="plus"></span></div>
+            <div class="stat-label">Trusted Partners</div>
+        </div>
+    </div>
+</section>
+
+<!-- Body -->
+<section class="about-body">
+
+    <!-- Image -->
+    <div class="about-image-wrap">
+        <img src="{% static 'img/about-wopper.jpg' %}" alt="Wopper Cleaning Solutions Team" loading="lazy">
+    </div>
+
+    <!-- 1. Who We Are -->
+    <div class="about-card">
+        <div class="about-card-head">
+            <div class="about-card-icon"><i class="fas fa-building"></i></div>
+            <div>
+                <div class="about-card-title">Who We Are</div>
+                <div class="about-card-sub">A legacy of quality, a future of innovation</div>
+            </div>
+        </div>
+        <p><strong>Wopper Cleaning Solutions</strong> is an innovative new segment launched by <strong>Shri Meera Labs Pvt Ltd</strong>, a reputable company known for its diverse range of products. Wopper specializes in providing a wide variety of cleaning solutions tailored to both residential and commercial needs.</p>
+        <p>With a focus on innovation and customer satisfaction, Wopper Cleaning Solutions is committed to establishing itself as a trusted name in the cleaning industry by offering reliable products that cater to the evolving demands of consumers. This new segment started in <strong>2017</strong>, signifies Shri Meera Labs Pvt Ltd’s expansion into the cleaning sector, reflecting their dedication to growth and excellence across multiple product categories.</p>
+        <div style="margin-top:12px;">
+            <span class="founded-badge"><i class="fas fa-calendar-check"></i> Founded in 2017</span>
+        </div>
+    </div>
+
+    <!-- 2. About Shri Meera Labs -->
+    <div class="about-card">
+        <div class="about-card-head">
+            <div class="about-card-icon"><i class="fas fa-flask"></i></div>
+            <div>
+                <div class="about-card-title">The Parent Company</div>
+                <div class="about-card-sub">Shri Meera Labs Pvt Ltd — Leaders in Specialty Chemicals</div>
+            </div>
+        </div>
+        <p><strong>Shri Meera Labs Private Limited</strong> is one of the leading manufacturers of <strong>Specialty Chemicals</strong> based in Chennai, catering to the needs of a variety of industries across India and globally.</p>
+        <p>We are an <strong>ISO 9001 Company</strong>, certified by TUV India, a member of TUV Nord, Germany. Our products are of international quality, competitive, eco-friendly, biodegradable and are totally compliant with norms for a pollution-free environment.</p>
+    </div>
+
+    <!-- 3. Certifications -->
+    <div class="about-card">
+        <div class="about-card-head">
+            <div class="about-card-icon"><i class="fas fa-certificate"></i></div>
+            <div>
+                <div class="about-card-title">Certifications &amp; Accreditations</div>
+                <div class="about-card-sub">Setting the standard for quality and trust</div>
+            </div>
+        </div>
+        <p>Our product certifications include:</p>
+        <div class="cert-grid">
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">GOTS</span>
+                <span class="desc">Global Organic Textile Standard</span>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">REACh</span>
+                <span class="desc">Registration, Evaluation, Authorisation &amp; Restriction of Chemicals</span>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">NSF</span>
+                <span class="desc">National Sanitation Foundation</span>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">ZDHC</span>
+                <span class="desc">Zero Discharge of Hazardous Chemicals</span>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">Oekotex</span>
+                <span class="desc">Standard 100 Certified</span>
+            </div>
+            <div class="cert-item">
+                <i class="fas fa-check-circle"></i>
+                <span class="name">ISO 9001</span>
+                <span class="desc">TUV India Certified</span>
+            </div>
+        </div>
+        <p style="margin-top:16px;">We are also part of the <strong>Dun and Bradstreet Global Database</strong>.</p>
+    </div>
+
+    <!-- 4. Mission & Vision -->
+    <div class="about-card">
+        <div class="about-card-head">
+            <div class="about-card-icon"><i class="fas fa-bullseye"></i></div>
+            <div>
+                <div class="about-card-title">Our Mission &amp; Vision</div>
+                <div class="about-card-sub">Building a cleaner, greener future together</div>
+            </div>
+        </div>
+        <div class="mv-grid">
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-rocket"></i></div>
+                <h4>Our Mission</h4>
+                <p>Harness the capabilities of like-minded SMEs to help grow each other. Bring the fruits of technical competence to effective industrial applications. Contribute to the green cause by actively developing eco-friendly products.</p>
+            </div>
+            <div class="mv-card">
+                <div class="mv-icon"><i class="fas fa-eye"></i></div>
+                <h4>Our Vision</h4>
+                <p>A diversified conglomerate and market leader in specialty chemicals arena by offering continual value addition. Synergise all our efforts to instil a sense of fulfillment in our customers and ensure a win-win situation for all stakeholders.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Expertise & Reach -->
+    <div class="about-card">
+        <div class="about-card-head">
+            <div class="about-card-icon"><i class="fas fa-handshake"></i></div>
+            <div>
+                <div class="about-card-title">Our Expertise &amp; Reach</div>
+                <div class="about-card-sub">Custom solutions backed by deep industry knowledge</div>
+            </div>
+        </div>
+        <p>We understand buyer requirements and offer <strong>application-specific custom-made products</strong> to suit exact customer needs. Designs and formulations are carried out by well-qualified professionals with ample experience in the Process Industry and Research Institutions.</p>
+        <p>The Company has deep, rich and strong technical expertise with one of the founders being an <strong>IIT-educated technocrat</strong> and with <strong>IIM-trained technical backup</strong> — ensuring the right product positioning, excellent marketing network and skilled business promotion.</p>
+    </div>
+
+</section>
+
+{% include 'includes/footer-website.html' %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // ── Smooth number counter animation ──
+    document.addEventListener('DOMContentLoaded', function() {
+        const counters = document.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+            const text = counter.textContent;
+            const number = parseInt(text);
+            if (!isNaN(number)) {
+                let current = 0;
+                const increment = Math.ceil(number / 30);
+                const updateCounter = () => {
+                    current += increment;
+                    if (current >= number) {
+                        counter.textContent = text;
+                        return;
+                    }
+                    counter.textContent = current + '+';
+                    requestAnimationFrame(updateCounter);
+                };
+                // Start counter when in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

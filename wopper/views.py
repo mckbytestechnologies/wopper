@@ -1607,3 +1607,95 @@ class PaymentMethodsView(TemplateView):
 class FAQView(TemplateView):
     page_type = 'faq'
     template_name = 'policies/faq.html'
+
+class AboutView(TemplateView):
+    page_type = 'about'
+    template_name = 'about.html'
+
+
+import json
+import logging
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from mck_website.models import Newsletter
+
+logger = logging.getLogger(__name__)
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def newsletter_subscribe(request):
+    """
+    API endpoint for newsletter subscription
+    """
+    try:
+        # Parse JSON data
+        data = json.loads(request.body)
+        email = data.get('email', '').strip()
+        
+        # Validate email
+        if not email:
+            return JsonResponse({
+                'success': False,
+                'message': 'Email address is required'
+            }, status=400)
+        
+        if '@' not in email or '.' not in email:
+            return JsonResponse({
+                'success': False,
+                'message': 'Please enter a valid email address'
+            }, status=400)
+        
+        # Check if email already exists
+        existing = Newsletter.objects.filter(email=email).first()
+        
+        if existing:
+            if existing.datamode == 'D':
+                # Reactivate deleted subscription
+                existing.datamode = 'A'
+                existing.is_active = True
+                existing.save()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Your subscription has been reactivated!'
+                })
+            elif existing.is_active:
+                return JsonResponse({
+                    'success': False,
+                    'message': 'This email is already subscribed to our newsletter'
+                }, status=400)
+            else:
+                # Reactivate inactive subscription
+                existing.is_active = True
+                existing.datamode = 'A'
+                existing.save()
+                return JsonResponse({
+                    'success': True,
+                    'message': 'Your subscription has been reactivated!'
+                })
+        
+        # Create new subscription
+        newsletter = Newsletter.objects.create(
+            email=email,
+            is_active=True,
+            datamode='A'
+        )
+        
+        logger.info(f'Newsletter subscription: {email}')
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Thank you for subscribing to our newsletter!'
+        })
+        
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'message': 'Invalid JSON data'
+        }, status=400)
+    except Exception as e:
+        logger.error(f'Newsletter subscription error: {e}')
+        return JsonResponse({
+            'success': False,
+            'message': 'Something went wrong. Please try again later.'
+        }, status=500)

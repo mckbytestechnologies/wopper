@@ -4,7 +4,7 @@ from django.urls import path
 from wopper import views
 from .views import (
     WebsiteHomeView,
-    BlogDetailView, BlogListView, ShippingPolicyView, ReturnsPolicyView, TermsConditionsView, PrivacyPolicyView, PaymentMethodsView, FAQView,# Add this import
+    BlogDetailView, BlogListView, ShippingPolicyView, ReturnsPolicyView, TermsConditionsView, PrivacyPolicyView, PaymentMethodsView, FAQView, AboutView, newsletter_subscribe,# Add this import
     # ... other imports
 )
 
@@ -67,5 +67,9 @@ urlpatterns = [
     path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy_policy'),
     path('payment-methods/', PaymentMethodsView.as_view(), name='payment_methods'),
     path('faq/', FAQView.as_view(), name='faq'),
+    path('about-us/', AboutView.as_view(), name='about'),
+
+
+    path('api/newsletter/subscribe/', newsletter_subscribe, name='newsletter_subscribe'),
 
 ]

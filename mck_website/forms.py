@@ -8,8 +8,9 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder
 from crispy_forms.helper import *
 from crispy_forms.layout import *
 from crispy_forms.bootstrap import *
+from mck_auth.models import *
 
-from mck_website.models import Category, Product, Blog
+from mck_website.models import Category, Product, Blog, Order
 from config import app_gv as gv
 from mck_website import models
 
@@ -1554,3 +1555,323 @@ class SiteSettingsForm(forms.ModelForm):
     class Meta:
         model = models.SiteSettings
         exclude = ['created_on', 'updated_on', 'created_by', 'updated_by']
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# User Form
+# ─────────────────────────────────────────────────────────────────────────────
+
+class UserCreateUpdateForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        mode = kwargs.pop('mode', None)
+        super().__init__(*args, **kwargs)
+        
+        # Make password optional on update
+        if mode == 'edit':
+            self.fields['password'].required = False
+            self.fields['password'].help_text = "Leave blank to keep current password"
+        
+        # Add Bootstrap classes
+        for field_name in self.fields:
+            self.fields[field_name].widget.attrs['class'] = 'form-control form-control-solid'
+            
+        # Special styling for checkbox fields
+        checkbox_fields = ['is_active', 'is_staff', 'is_superuser', 'is_profile_completed']
+        for field_name in checkbox_fields:
+            if field_name in self.fields:
+                self.fields[field_name].widget.attrs['class'] = 'form-check-input'
+                
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
+        self.helper.layout = Layout(
+            Fieldset('',
+                Row(
+                    Column(Field('username'), css_class='col-md-6'),
+                    Column(Field('email'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+                Row(
+                    Column(Field('first_name'), css_class='col-md-4'),
+                    Column(Field('last_name'), css_class='col-md-4'),
+                    Column(Field('mobile_number'), css_class='col-md-4'),
+                    css_class='row'
+                ),
+                Row(
+                    Column(Field('password'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+                Row(
+                    Column(Field('is_profile_completed'), css_class='col-md-3'),
+                    Column(Field('is_active'), css_class='col-md-3'),
+                    Column(Field('is_staff'), css_class='col-md-3'),
+                    Column(Field('is_superuser'), css_class='col-md-3'),
+                    css_class='row'
+                ),
+            ),
+            ButtonHolder(
+                Div(
+                    HTML('<a class="btn btn-lg btn-secondary me-3" href="javascript:void();" onclick="history.back()">CANCEL</a>'),
+                    Submit('create_button', 'SAVE', css_class='btn btn-lg btn-primary'),
+                    css_class='d-flex text-right justify-content-end pt-10 col-12'
+                ),
+                css_class='row col-12 pe-5',
+            )
+        )
+    
+    class Meta:
+        model = User
+        fields = [
+            'username', 'email', 'first_name', 'last_name', 
+            'mobile_number', 'password', 'is_profile_completed',
+            'is_active', 'is_staff', 'is_superuser'
+        ]
+        widgets = {
+            'password': forms.PasswordInput(render_value=False),
+        }
+    
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if username:
+            # Check for duplicate username
+            qs = User.objects.filter(username=username)
+            if self.instance and self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            if qs.exists():
+                raise forms.ValidationError("A user with this username already exists.")
+        return username
+    
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email:
+            # Check for duplicate email
+            qs = User.objects.filter(email=email)
+            if self.instance and self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+            if qs.exists():
+                raise forms.ValidationError("A user with this email already exists.")
+        return email
+    
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        password = self.cleaned_data.get('password')
+        if password:
+            user.set_password(password)
+        if commit:
+            user.save()
+        return user
+# ─────────────────────────────────────────────────────────────────────────────
+# Order Forms
+# ─────────────────────────────────────────────────────────────────────────────
+
+class OrderForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        mode = kwargs.pop('mode', None)
+        self.instance_id = kwargs.get('instance') and kwargs['instance'].pk
+        
+        super(OrderForm, self).__init__(*args, **kwargs)
+        
+        for field_name in self.fields:
+            self.fields[field_name].label = str(
+                self.fields[field_name].label
+            ).upper()
+            
+            if field_name not in ['notes', 'status']:
+                self.fields[field_name].widget.attrs[
+                    'class'
+                ] = "form-control form-control-solid"
+            else:
+                self.fields[field_name].widget.attrs[
+                    'class'
+                ] = "form-control form-control-solid"
+                if field_name == 'notes':
+                    self.fields[field_name].widget.attrs['rows'] = 3
+        
+        # Customize status field
+        self.fields['status'].widget = forms.Select(
+            choices=Order.ORDER_STATUS_CHOICES,
+            attrs={'class': 'form-control form-control-solid'}
+        )
+        
+        # Make user field optional in form but handle in API
+        self.fields['user'].required = False
+        self.fields['user'].widget.attrs['class'] = 'form-control form-control-solid'
+        
+        save_button_name = "SAVE"
+        
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
+        
+        self.helper.layout = Layout(
+            Fieldset(
+                '',
+                Row(
+                    Column(Field('order_number'), css_class='col-md-4'),
+                    Column(Field('user'), css_class='col-md-4'),
+                    Column(Field('status'), css_class='col-md-4'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('subtotal'), css_class='col-md-3'),
+                    Column(Field('discount_amount'), css_class='col-md-3'),
+                    Column(Field('shipping_charge'), css_class='col-md-3'),
+                    Column(Field('tax_amount'), css_class='col-md-3'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('total_amount'), css_class='col-md-4'),
+                    Column(Field('coupon'), css_class='col-md-4'),
+                    Column(Field('delivered_on'), css_class='col-md-4'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('shipping_full_name'), css_class='col-md-6'),
+                    Column(Field('shipping_phone'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('shipping_address_line1'), css_class='col-md-6'),
+                    Column(Field('shipping_address_line2'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('shipping_city'), css_class='col-md-3'),
+                    Column(Field('shipping_state'), css_class='col-md-3'),
+                    Column(Field('shipping_pincode'), css_class='col-md-3'),
+                    Column(Field('shipping_country'), css_class='col-md-3'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('notes'), css_class='col-md-12'),
+                    css_class='row'
+                ),
+            ),
+            
+            ButtonHolder(
+                Div(
+                    HTML(
+                        '<a class="btn btn-lg btn-secondary me-3" '
+                        'href="javascript:void();" '
+                        'onclick="history.back()">CANCEL</a>'
+                    ),
+                    Submit(
+                        'create_button',
+                        save_button_name,
+                        css_class='btn btn-lg btn-primary'
+                    ),
+                    css_class="d-flex text-right justify-content-end pt-10 col-12"
+                ),
+                css_class="row col-12 pe-5",
+            )
+        )
+    
+    class Meta:
+        model = models.Order
+        exclude = [
+            'created_on',
+            'updated_on',
+            'created_by',
+            'updated_by',
+            'datamode'
+        ]
+
+
+class OrderItemForm(forms.ModelForm):
+    
+    def __init__(self, *args, **kwargs):
+        mode = kwargs.pop('mode', None)
+        self.instance_id = kwargs.get('instance') and kwargs['instance'].pk
+        self.order_id = kwargs.pop('order_id', None)
+        
+        super(OrderItemForm, self).__init__(*args, **kwargs)
+        
+        for field_name in self.fields:
+            self.fields[field_name].label = str(
+                self.fields[field_name].label
+            ).upper()
+            
+            if field_name in ['product_image']:
+                self.fields[field_name].widget.attrs[
+                    'class'
+                ] = "form-control form-control-solid"
+                self.fields[field_name].required = False
+            else:
+                self.fields[field_name].widget.attrs[
+                    'class'
+                ] = "form-control form-control-solid"
+        
+        # Customize product field to show product name and SKU
+        self.fields['product'].queryset = models.Product.objects.filter(datamode='A')
+        self.fields['product'].widget.attrs['class'] = 'form-control form-control-solid'
+        
+        # Make fields optional for better UX
+        self.fields['product_image'].required = False
+        
+        # If this is a new item for a specific order
+        if self.order_id and not self.instance.pk:
+            self.fields['order'].initial = self.order_id
+            self.fields['order'].widget = forms.HiddenInput()
+        
+        save_button_name = "SAVE"
+        
+        self.helper = FormHelper(self)
+        self.helper.form_tag = False
+        
+        self.helper.layout = Layout(
+            Fieldset(
+                '',
+                Row(
+                    Column(Field('order'), css_class='col-md-6'),
+                    Column(Field('product'), css_class='col-md-6'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('product_name'), css_class='col-md-4'),
+                    Column(Field('product_sku'), css_class='col-md-4'),
+                    Column(Field('product_image'), css_class='col-md-4'),
+                    css_class='row'
+                ),
+                
+                Row(
+                    Column(Field('unit_price'), css_class='col-md-4'),
+                    Column(Field('quantity'), css_class='col-md-4'),
+                    Column(Field('total_price'), css_class='col-md-4'),
+                    css_class='row'
+                ),
+            ),
+            
+            ButtonHolder(
+                Div(
+                    HTML(
+                        '<a class="btn btn-lg btn-secondary me-3" '
+                        'href="javascript:void();" '
+                        'onclick="history.back()">CANCEL</a>'
+                    ),
+                    Submit(
+                        'create_button',
+                        save_button_name,
+                        css_class='btn btn-lg btn-primary'
+                    ),
+                    css_class="d-flex text-right justify-content-end pt-10 col-12"
+                ),
+                css_class="row col-12 pe-5",
+            )
+        )
+    
+    class Meta:
+        model = models.OrderItem
+        exclude = [
+            'created_on',
+            'updated_on',
+            'created_by',
+            'updated_by',
+            'datamode'
+        ]

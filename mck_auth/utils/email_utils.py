@@ -14,13 +14,13 @@ def send_otp_email(email, otp_code, first_name=None):
     """
     Send OTP verification email
     """
-    subject = 'Verify Your Email - SRI VARAM MANAMALAI '
+    subject = 'Verify Your Email - WOPPER '
     
     context = {
         'otp_code': otp_code,
         'first_name': first_name or 'User',
         'expiry_minutes': 10,
-        'site_name': 'SRI VARAM MANAMALAI ',
+        'site_name': 'WOPPER ',
     }
     
     try:

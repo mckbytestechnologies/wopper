@@ -67,54 +67,50 @@
        MAIN HEADER
     ════════════════════════════════════════════ */
     .main-header {
-    background: #fff;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 600;
-    width: 100%;
-}
-.header-inner {
-    max-width: 1600px;        /* widened so the header lines up with wider sections */
-    margin: 0 auto;
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;       /* vertically centers logo, search, icons */
-    justify-content: space-between;
-    gap: 14px;
-}
- /* ── LOGO ── */
-.brand-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;   /* centers the image inside its box */
-    flex-shrink: 0;
-}
-.brand-logo img {
-    height: 56px;               /* bigger logo */
-    width: auto;
-    max-width: 220px;
-    object-fit: contain;
-    display: block;
-}
-.site-logo-img {
-    height: 56px;
-    width: auto;
-    max-width: 220px;
-    object-fit: contain;
-    display: block;
-}
-
-/* ── RESPONSIVE LOGO SIZING ── */
-@media (max-width: 1024px) {
-    .brand-logo img,
-    .site-logo-img { height: 60px; max-width: 200px; }
-}
-@media (max-width: 480px) {
-    .brand-logo img,
-    .site-logo-img { height: 48px; max-width: 160px; }
-}
-
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 600;
+        width: 100%;
+    }
+    .header-inner {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+    }
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .brand-logo img {
+        height: 56px;
+        width: auto;
+        max-width: 220px;
+        object-fit: contain;
+        display: block;
+    }
+    .site-logo-img {
+        height: 56px;
+        width: auto;
+        max-width: 220px;
+        object-fit: contain;
+        display: block;
+    }
+    @media (max-width: 1024px) {
+        .brand-logo img,
+        .site-logo-img { height: 60px; max-width: 200px; }
+    }
+    @media (max-width: 480px) {
+        .brand-logo img,
+        .site-logo-img { height: 48px; max-width: 160px; }
+    }
 
     /* Search */
     .header-search {
@@ -149,7 +145,6 @@
     }
     .header-search button:hover { background: var(--teal-dark); }
 
-    /* Header right cluster */
     .header-right {
         display: flex;
         align-items: center;
@@ -158,7 +153,6 @@
     }
     .hdr-auth-desktop { display: flex; align-items: center; gap: 6px; }
 
-    /* Auth buttons - SMALL */
     .hdr-btn {
         display: inline-flex;
         align-items: center;
@@ -182,7 +176,6 @@
     .hdr-btn-fill { background: var(--teal); color: #fff; border: 1.5px solid var(--teal); }
     .hdr-btn-fill:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
 
-    /* Icon buttons */
     .hdr-icon-btn {
         position: relative;
         display: flex;
@@ -213,7 +206,6 @@
         line-height: 1;
     }
 
-    /* ── User dropdown ── */
     .user-menu-wrap { position: relative; }
     .user-toggle-btn {
         display: flex;
@@ -271,7 +263,6 @@
     .drop-logout .drop-ico { color: var(--red); }
     .drop-logout { color: var(--red) !important; }
 
-    /* ── Hamburger ── */
     .hamburger-btn {
         display: none;
         flex-direction: column;
@@ -304,7 +295,7 @@
         background: #fff;
         border-bottom: 1px solid var(--border);
         position: sticky;
-        top: 60px; /* below header */
+        top: 60px;
         z-index: 500;
     }
     .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
@@ -539,7 +530,6 @@
     ════════════════════════════════════════════ */
     .site-wrap { max-width: 1440px; margin: 0 auto; padding: 0 24px; }
 
-    /* Section header row */
     .sec-head {
         display: flex;
         align-items: center;
@@ -563,6 +553,10 @@
         cursor: pointer;
         transition: background .15s;
         white-space: nowrap;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
     }
     .view-all:hover { background: #f5f5f5; }
 
@@ -580,7 +574,8 @@
     .slider-track .slide-item { flex: 0 0 calc(16.666% - 12px); min-width: 0; }
     .slider-track.cols-5 .slide-item  { flex: 0 0 calc(20% - 12px); }
     .slider-track.cols-4 .slide-item  { flex: 0 0 calc(25% - 11px); }
-    .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }  /* video 2-col */
+    .slider-track.cols-3 .slide-item  { flex: 0 0 calc(33.333% - 10px); }
+    .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }
 
     .sldr-btn {
         position: absolute;
@@ -603,7 +598,7 @@
     .sldr-btn:disabled { opacity: .3; pointer-events: none; }
 
     /* ════════════════════════════════════════════
-       HERO SECTION
+       HERO SECTION - FIXED (No Zoom/Crop)
     ════════════════════════════════════════════ */
     .hero-wrap { max-width: 1440px; margin: 0 auto; padding: 18px 24px; }
     .hero-grid {
@@ -615,16 +610,43 @@
         position: relative;
         border-radius: 6px;
         overflow: hidden;
-        min-height: 500px;
-        background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+        background: #f0f0f0;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        /* Use min-height with aspect-ratio for consistent sizing */
+        min-height: 400px;
     }
-    .hero-main img {
-        position: absolute; inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
+    /* Hero image container - uses contain to show full image without cropping */
+    .hero-main picture,
+    .hero-main picture img,
+    .hero-main > img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .hero-main picture {
+        position: absolute;
+        inset: 0;
+    }
+    .hero-main picture img,
+    .hero-main > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        background: #f0f0f0;
+    }
+    /* Fallback for direct img (no picture) */
+    .hero-main > img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
     }
     .hero-content {
         position: relative;
@@ -652,10 +674,25 @@
         flex: 1;
         border-radius: 6px;
         overflow: hidden;
-        min-height: 235px;
+        min-height: 180px;
         position: relative;
+        background: #f0f0f0;
     }
-    .hero-sub img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-sub img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    /* Fallback for hero-sub when no image */
+    .hero-sub div {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
 
     /* ════════════════════════════════════════════
        PRODUCT CARD
@@ -817,10 +854,7 @@
        VIDEO SECTION
     ════════════════════════════════════════════ */
     .video-sec { padding: 28px 0; }
-    .video-card-wrap {
-        display: flex;
-        flex-direction: column;
-    }
+    .video-card-wrap { display: flex; flex-direction: column; }
     .video-reel {
         position: relative;
         width: 100%;
@@ -876,11 +910,7 @@
         position: relative;
     }
     .cat-hero-img { position: relative; width: 100%; padding-top: 72%; overflow: hidden; }
-    .cat-hero-img img {
-        position: absolute; inset: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-    }
+    .cat-hero-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .promo-badge {
         position: absolute;
         top: 12px; right: 12px;
@@ -905,13 +935,7 @@
     .cat-hero-body a  { border: 1.5px solid #333; padding: 7px 30px; font-size: 14px; font-weight: 500; transition: all .25s; color: #000; }
     .cat-hero-body a:hover { background: #000; color: #fff; }
 
-    .sub-tile {
-        background: #fff;
-        text-align: center;
-        padding-bottom: 12px;
-        display: flex;
-        flex-direction: column;
-    }
+    .sub-tile { background: #fff; text-align: center; padding-bottom: 12px; display: flex; flex-direction: column; }
     .sub-tile-img { position: relative; width: 100%; padding-top: 100%; overflow: hidden; background: #f7f7f7; margin-bottom: 8px; }
     .sub-tile-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .sub-tile span { font-size: 13px; color: #444; font-weight: 500; padding: 0 6px; }
@@ -1012,410 +1036,189 @@
     .footer-bottom a:hover { color: #fff; }
 
     /* ════════════════════════════════════════════
+       BLOG SECTION
+    ════════════════════════════════════════════ */
+    .blog-section {
+        padding: 28px 0;
+        background: #fff;
+    }
+    .blog-section .sec-head {
+        margin-bottom: 16px;
+    }
+
+    #blog-sec .pcard-img {
+        padding-top: 60%;
+    }
+    #blog-sec .pcard-name {
+        font-size: 14px;
+        font-weight: 600;
+        height: auto;
+        min-height: 40px;
+        -webkit-line-clamp: 3;
+        margin-bottom: 6px;
+    }
+    #blog-sec .pcard-price {
+        font-size: 12px !important;
+        font-weight: 400 !important;
+        color: #666 !important;
+        line-height: 1.5 !important;
+        padding-bottom: 6px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    @media (max-width: 600px) {
+        #blog-sec .pcard-img { padding-top: 56%; }
+        #blog-sec .pcard-name { font-size: 15px; -webkit-line-clamp: 2; min-height: 0; }
+        #blog-sec .pcard-price { -webkit-line-clamp: 2; }
+    }
+    .blog-feat-badge {
+        position: absolute;
+        top: 8px; left: 8px;
+        background: var(--teal);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 7px;
+        border-radius: 3px;
+        z-index: 2;
+    }
+
+    .blog-date {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 3px;
+    }
+    .blog-date i { color: var(--teal); font-size: 10px; }
+
+    .blog-atc {
+        background: var(--teal);
+        color: #fff;
+        border: none;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: auto;
+        cursor: pointer;
+        font-family: var(--font);
+        transition: background .2s;
+        text-align: center;
+        display: block;
+    }
+    .blog-atc:hover { background: var(--teal-dark); color: #fff; }
+
+    #blog-sec .slider-track .slide-item {
+        flex: 0 0 calc(25% - 11px);
+    }
+
+    /* ════════════════════════════════════════════
        RESPONSIVE
     ════════════════════════════════════════════ */
     @media (max-width: 1100px) {
         .slider-track .slide-item,
         .slider-track.cols-5 .slide-item,
         .slider-track.cols-4 .slide-item { flex: 0 0 calc(25% - 11px); }
+        #blog-sec .slider-track .slide-item { flex: 0 0 calc(25% - 11px); }
     }
 
     @media (max-width: 900px) {
-        /* Hide desktop nav, show hamburger */
         .desktop-nav { display: none; }
         .hamburger-btn { display: flex; }
-
-        /* Hero stacks vertically */
         .hero-grid { grid-template-columns: 1fr; }
-        .hero-main { min-height: 380px; }
+        .hero-main { min-height: 320px; }
         .hero-content { padding: 30px; }
         .hero-content h1 { font-size: 26px; }
-
-        /* Sliders: 3 per row on tablet */
         .slider-track .slide-item,
         .slider-track.cols-5 .slide-item,
         .slider-track.cols-4 .slide-item { flex: 0 0 calc(33.333% - 10px); }
+        #blog-sec .slider-track .slide-item { flex: 0 0 calc(50% - 7px); }
+        .hero-stack { gap: 12px; }
+        .hero-sub { min-height: 140px; }
+    }
+
+    @media (max-width: 768px) {
+        .hero-main { min-height: 260px; }
+        .hero-content { padding: 24px; }
+        .hero-content h1 { font-size: 22px; }
+        .hero-content p { font-size: 14px; margin-bottom: 16px; }
+        .hero-shop-btn { padding: 9px 28px; font-size: 13px; }
+        .hero-sub { min-height: 110px; }
+        .hero-wrap { padding: 12px 16px; }
     }
 
     @media (max-width: 600px) {
-        /* Utility bar */
         .util-inner { padding: 7px 14px; }
         .util-promo { font-size: 11px; }
-
-        /* Header */
         .header-inner { padding: 9px 14px; gap: 10px; }
-        .header-search { display: none; } /* moved into drawer */
-        .hdr-auth-desktop { display: none; } /* moved into drawer */
+        .header-search { display: none; }
+        .hdr-auth-desktop { display: none; }
         .brand-logo img { height: 32px; }
-
-        /* Site wrap padding reduction */
         .site-wrap { padding: 0 14px; }
-        .hero-wrap { padding: 12px 14px; }
-
-        /* Hero */
-        .hero-main { min-height: 260px; }
-        .hero-content { padding: 20px; }
-        .hero-content h1 { font-size: 20px; }
-        .hero-content p  { font-size: 14px; margin-bottom: 16px; }
-        .hero-shop-btn { padding: 9px 26px; font-size: 13px; }
-
-        /* Sliders: 2 per row on mobile */
+        .hero-wrap { padding: 10px 14px; }
+        .hero-main { min-height: 200px; border-radius: 4px; }
+        .hero-content { padding: 16px 18px; }
+        .hero-content h1 { font-size: 18px; }
+        .hero-content p { font-size: 13px; margin-bottom: 12px; }
+        .hero-shop-btn { padding: 7px 20px; font-size: 12px; }
+        .hero-sub { min-height: 80px; border-radius: 4px; }
+        .hero-stack { gap: 10px; }
         .slider-track .slide-item,
         .slider-track.cols-5 .slide-item,
         .slider-track.cols-4 .slide-item { flex: 0 0 calc(50% - 7px); }
-        /* Video: 2 per row already set via cols-2v */
         .slider-track.cols-2v .slide-item { flex: 0 0 calc(50% - 7px); }
-
-        /* Section titles */
+        #blog-sec .slider-track .slide-item { flex: 0 0 calc(100% - 0px); }
         .sec-title { font-size: 16px; }
-
-        /* Category combo */
         .cat-combo-sec .row { gap: 0; }
-
-        /* Profile cards */
         .profile-card img { height: 200px; }
-
-        /* Trust section */
         .trust-sec { padding: 36px 0; }
         .trust-sec .sec-head-title { font-size: 20px; }
-
-        /* Footer */
         footer { padding: 36px 0 16px; }
         .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
-
-        /* Slider buttons hidden on very small (touch swipe instead) */
         .sldr-btn { display: none; }
+        .hero-grid { gap: 10px; }
+    }
+
+    @media (max-width: 480px) {
+        .hero-main { min-height: 170px; }
+        .hero-content { padding: 12px 14px; }
+        .hero-content h1 { font-size: 16px; }
+        .hero-content p { font-size: 12px; margin-bottom: 10px; }
+        .hero-shop-btn { padding: 6px 16px; font-size: 11px; }
+        .hero-sub { min-height: 60px; }
     }
 
     @media (max-width: 380px) {
         .brand-logo img { height: 28px; }
         .hdr-icon-btn { width: 34px; height: 34px; font-size: 16px; }
         .hamburger-btn { width: 34px; height: 34px; }
+        .hero-main { min-height: 140px; }
+        .hero-content { padding: 10px 12px; }
+        .hero-content h1 { font-size: 14px; }
+        .hero-content p { display: none; }
     }
-
-
-    /* ════════════════════════════════════════════
-   BLOG SECTION - Matching Theme
-═══════════════════════════════════════════ */
-.blog-section {
-    padding: 28px 0;
-    background: #fff;
-}
-
-.section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.section-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -.4px;
-    color: #000;
-    margin: 0;
-}
-
-.section-title i {
-    color: var(--teal);
-    margin-right: 8px;
-}
-
-.view-all {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px 14px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #333;
-    cursor: pointer;
-    transition: background .15s;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.view-all:hover {
-    background: #f5f5f5;
-}
-
-/* ── Blog Card ── */
-.blog-card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: all 0.3s ease;
-    border: 1px solid var(--border-l);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-.blog-image {
-    position: relative;
-    width: 100%;
-    padding-top: 65%;
-    overflow: hidden;
-    background: #f7f7f7;
-}
-
-.blog-image img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.blog-card:hover .blog-image img {
-    transform: scale(1.04);
-}
-
-.blog-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--teal);
-    color: #fff;
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    z-index: 2;
-}
-
-.blog-content {
-    padding: 16px 16px 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 10px;
-}
-
-.blog-meta i {
-    font-size: 12px;
-    color: var(--teal);
-    margin-right: 4px;
-}
-
-.blog-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--dark);
-    line-height: 1.4;
-    margin-bottom: 10px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 44px;
-}
-
-.blog-excerpt {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 14px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
-}
-
-.blog-read-more {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--teal);
-    font-weight: 600;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    margin-top: auto;
-    text-decoration: none;
-}
-
-.blog-read-more:hover {
-    gap: 10px;
-    color: var(--teal-dark);
-}
-
-.blog-read-more i {
-    font-size: 12px;
-    transition: transform 0.3s ease;
-}
-
-.blog-read-more:hover i {
-    transform: translateX(4px);
-}
-
-/* ── Blog Slider Override ── */
-#blog-sec .slider-track.cols-3 .slide-item {
-    flex: 0 0 calc(33.333% - 10px);
-}
-
-/* ── Blog Responsive ── */
-@media (max-width: 1100px) {
-    #blog-sec .slider-track .slide-item {
-        flex: 0 0 calc(33.333% - 10px);
-    }
-}
-
-@media (max-width: 768px) {
-    #blog-sec .slider-track .slide-item {
-        flex: 0 0 calc(50% - 8px);
-    }
-    
-    .blog-title {
-        font-size: 14px;
-        min-height: 38px;
-    }
-    
-    .blog-excerpt {
-        font-size: 12px;
-        -webkit-line-clamp: 2;
-    }
-}
-
-@media (max-width: 480px) {
-    #blog-sec .slider-track .slide-item {
-        flex: 0 0 calc(100% - 0px);
-    }
-    
-    .blog-image {
-        padding-top: 55%;
-    }
-    
-    .blog-content {
-        padding: 14px 14px 16px;
-    }
-    
-    .blog-title {
-        font-size: 15px;
-        min-height: auto;
-        -webkit-line-clamp: 1;
-    }
-    
-    .section-title {
-        font-size: 17px;
-    }
-    
-    .view-all {
-        font-size: 11px;
-        padding: 4px 12px;
-    }
-}
-
-/* ── Slider buttons for blog ── */
-#blog-sec .sldr-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 34px;
-    height: 34px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-    font-size: 12px;
-    color: #333;
-    transition: all 0.2s;
-}
-
-#blog-sec .sldr-btn:hover {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-}
-
-#blog-sec .sldr-btn.prev {
-    left: -17px;
-}
-
-#blog-sec .sldr-btn.next {
-    right: -17px;
-}
-
-#blog-sec .sldr-btn:disabled {
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-/* ── Hide slider buttons on mobile ── */
-@media (max-width: 600px) {
-    #blog-sec .sldr-btn {
-        display: none;
-    }
-}
-
-/* ── Blog Section Divider ── */
-.blog-section .section-header {
-    border-bottom: none;
-}
-
-.blog-section .section-header .section-title {
-    position: relative;
-}
-
-.blog-section .section-header .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background: var(--teal);
-    border-radius: 2px;
-}
-
-
     </style>
 </head>
 <body>
 
-<!-- ══════════════════════════
-     HEADER INCLUDE
-══════════════════════════ -->
 {% include 'includes/header.html' %}
 
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
 <main>
+<!-- ══════════════════════════════════════
+     HERO - FIXED (No Zoom)
+══════════════════════════════════════ -->
 <div class="hero-wrap">
     <div class="hero-grid">
-        <!-- Main banner -->
         <div class="hero-main">
             {% if hero_banners.0 %}
                 <picture>
-                    <source media="(max-width:768px)" srcset="{% if hero_banners.0.mobile_image %}{{ hero_banners.0.mobile_image.url }}{% endif %}">
-                    <img src="{{ hero_banners.0.desktop_image.url }}" alt="Hero Banner">
+                    <source media="(max-width:768px)" srcset="{% if hero_banners.0.mobile_image %}{{ hero_banners.0.mobile_image.url }}{% else %}{{ hero_banners.0.desktop_image.url }}{% endif %}">
+                    <img src="{{ hero_banners.0.desktop_image.url }}" alt="Hero Banner" loading="lazy">
                 </picture>
                 {% if hero_banners.0.title %}
                 <div class="hero-content">
@@ -1432,21 +1235,19 @@
                 </div>
             {% endif %}
         </div>
-
-        <!-- Side stack -->
         <div class="hero-stack">
             <div class="hero-sub">
                 {% if hero_banners.1 %}
-                    <img src="{{ hero_banners.1.desktop_image.url }}" alt="Banner 2">
+                    <img src="{{ hero_banners.1.desktop_image.url }}" alt="Banner 2" loading="lazy">
                 {% else %}
-                    <div style="background:#e0f4f5;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--teal);font-weight:600;">Eco Home</div>
+                    <div style="background:#e0f4f5;color:var(--teal);">Eco Home</div>
                 {% endif %}
             </div>
             <div class="hero-sub">
                 {% if hero_banners.2 %}
-                    <img src="{{ hero_banners.2.desktop_image.url }}" alt="Banner 3">
+                    <img src="{{ hero_banners.2.desktop_image.url }}" alt="Banner 3" loading="lazy">
                 {% else %}
-                    <div style="background:#fff3e0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#e65100;font-weight:600;">Why Us?</div>
+                    <div style="background:#fff3e0;color:#e65100;">Why Us?</div>
                 {% endif %}
             </div>
         </div>
@@ -1580,7 +1381,7 @@
 {% endif %}
 
 <!-- ══════════════════════════════════════
-     SHOP BY VIDEO  ← 2-per-row on mobile
+     SHOP BY VIDEO
 ══════════════════════════════════════ -->
 {% if homepage_videos %}
 <section class="video-sec">
@@ -1591,7 +1392,6 @@
         <div class="slider-wrap" id="vid-sec">
             <button class="sldr-btn prev" onclick="slide('vid-sec',-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-viewport">
-                <!-- cols-2v means 2 per row on mobile, 5 on desktop -->
                 <div class="slider-track cols-2v" id="vid-track">
                     {% for video in homepage_videos|slice:":6" %}
                     <div class="slide-item">
@@ -1758,65 +1558,54 @@
 {% endif %}
 
 <!-- ══════════════════════════════════════
-     CATEGORY PROFILES SLIDER
-══════════════════════════════════════ -->
-<!-- Blog Section -->
-<!-- ══════════════════════════════════════
      BLOG SECTION
 ══════════════════════════════════════ -->
 {% if blogs %}
 <section class="blog-section">
     <div class="site-wrap">
-        <div class="section-header">
-            <h2 class="section-title">
-                <i class="fas fa-pen-fancy"></i> Latest Blogs
-            </h2>
-            <a href="{% url 'wopper:blog_list' %}" class="view-all">
-                View All <i class="fas fa-arrow-right"></i>
-            </a>
+        <div class="sec-head">
+            <div class="d-flex align-items-center gap-2">
+                <i class="fas fa-pen-fancy" style="color:var(--teal);font-size:18px;"></i>
+                <h2 class="sec-title">Latest Blogs</h2>
+            </div>
+            <a href="{% url 'wopper:blog_list' %}" class="view-all">View All</a>
         </div>
         <div class="slider-wrap" id="blog-sec">
-            <button class="sldr-btn prev" onclick="slide('blog-sec',-1)">
-                <i class="fas fa-chevron-left"></i>
-            </button>
+            <button class="sldr-btn prev" onclick="slide('blog-sec',-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="slider-viewport">
-                <div class="slider-track cols-3">
+                <div class="slider-track cols-4">
                     {% for blog in blogs %}
                     <div class="slide-item">
-                        <a href="{% url 'wopper:blog_detail' slug=blog.slug %}" style="text-decoration:none;display:block;height:100%;">
-                            <div class="blog-card">
-                                <div class="blog-image">
+                        <div class="pcard">
+                            {% if blog.is_featured %}
+                            <span class="blog-feat-badge">Featured</span>
+                            {% endif %}
+                            <a href="{% url 'wopper:blog_detail' slug=blog.slug %}">
+                                <div class="pcard-img">
                                     {% if blog.image %}
                                     <img src="{{ blog.image.url }}" alt="{{ blog.title }}" loading="lazy">
                                     {% else %}
-                                    <img src="https://via.placeholder.com/400x260?text={{ blog.title|truncatechars:20 }}" loading="lazy">
-                                    {% endif %}
-                                    {% if blog.is_featured %}
-                                    <span class="blog-badge">Featured</span>
+                                    <img src="https://via.placeholder.com/300x300?text=Blog" loading="lazy">
                                     {% endif %}
                                 </div>
-                                <div class="blog-content">
-                                    <div class="blog-meta">
-                                        <span>
-                                            <i class="far fa-calendar-alt"></i> 
-                                            {{ blog.published_date|date:"M d, Y" }}
-                                        </span>
-                                    </div>
-                                    <h3 class="blog-title">{{ blog.title|truncatechars:60 }}</h3>
-                                    <p class="blog-excerpt">{{ blog.description|striptags|truncatechars:100 }}</p>
-                                    <span class="blog-read-more">
-                                        Read More <i class="fas fa-arrow-right"></i>
-                                    </span>
+                            </a>
+                            <div class="pcard-body">
+                                <div class="blog-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    {{ blog.published_date|date:"M d, Y" }}
+                                </div>
+                                <div class="pcard-name">{{ blog.title|truncatechars:60 }}</div>
+                                <div class="pcard-price" style="color:#666;font-weight:400;font-size:11px;line-height:1.4;">
+                                    {{ blog.description|striptags|truncatechars:60 }}
                                 </div>
                             </div>
-                        </a>
+                            <a href="{% url 'wopper:blog_detail' slug=blog.slug %}" class="blog-atc">Read More</a>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <button class="sldr-btn next" onclick="slide('blog-sec',1)">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            <button class="sldr-btn next" onclick="slide('blog-sec',1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -1840,7 +1629,7 @@
 </section>
 </main>
 
-  {% include "includes/footer-website.html" %}
+{% include "includes/footer-website.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
@@ -2009,17 +1798,14 @@ function fixVideoSlider() {
     const vp = track.closest('.slider-viewport');
     if (!vp) return;
     if (window.innerWidth > 600) {
-        // On desktop override to 5 columns
         track.querySelectorAll('.slide-item').forEach(item => {
             item.style.flex = '0 0 calc(20% - 12px)';
         });
     } else {
-        // On mobile: 2 columns
         track.querySelectorAll('.slide-item').forEach(item => {
             item.style.flex = '0 0 calc(50% - 7px)';
         });
     }
-    // Reset slider position
     if (SS['vid-sec']) { SS['vid-sec'].i = 0; track.style.transform = 'translateX(0)'; _updBtns('vid-sec'); }
 }
 

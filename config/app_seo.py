@@ -8,9 +8,9 @@ def get_page_tags(func, dynamic_seo_kwargs=None):
     """
     Build Page SEO
     """
-    global_title="SRI VARAM MANAMALAI "
-    global_description = "SRI VARAM MANAMALAI "
-    global_keywords = """SRI VARAM MANAMALAI """
+    global_title="WOPPER "
+    global_description = "WOPPER "
+    global_keywords = """WOPPER """
 
     page_kwargs = {}
     if dynamic_seo_kwargs:

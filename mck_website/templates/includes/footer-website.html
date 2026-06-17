@@ -356,7 +356,7 @@
             <!-- Column 1: Brand Info -->
             <div class="col-12 col-md-4 mb-4 mb-md-0">
                 <a href="/" class="footer-brand">
-                    the better <span>home</span>
+                    Wopper
                 </a>
                 <p class="footer-description">
                     The Better Home offers innovative, premium-quality products that transform living spaces. 
@@ -393,13 +393,12 @@
 
             <!-- Column 3: Bestselling Categories -->
             <div class="col-6 col-md-2 mb-4 mb-md-0">
-                <h5>Bestsellers</h5>
+                <h5>Customer Support</h5>
                 <ul>
-                    <li><a href="#">Blenders & Grinders</a></li>
-                    <li><a href="#">Idols & Figurines</a></li>
-                    <li><a href="#">Sling & Cross-Body Bags</a></li>
-                    <li><a href="#">Sports & Fitness</a></li>
-                    <li><a href="#">Travel Gear</a></li>
+                    <li><a href="{% url 'wopper:about' %}">About Us</a></li>
+                    <li><a href="{% url 'mck_website:contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'wopper:blog_list' %}">Blogs</a></li>
+                    <li><a href="{% url 'wopper:faq' %}">FAQs</a></li>
                 </ul>
             </div>
 
@@ -407,7 +406,6 @@
             <div class="col-12 col-md-3">
                 <h5>Quick Links</h5>
                 <ul class="mb-3">
-                    <li><a href="{% url 'wopper:faq' %}">FAQs</a></li>
                     <li><a href="{% url 'wopper:privacy_policy' %}">Privacy Policy</a></li>
                     <li><a href="{% url 'wopper:terms_conditions' %}">Terms of Use</a></li>
                     <li><a href="{% url 'wopper:shipping_policy' %}">Shipping Policy</a></li>
@@ -431,7 +429,7 @@
         <div class="row align-items-center">
             <div class="col-12 col-md-6">
                 <div class="footer-copyright">
-                    &copy; COPYRIGHT 2026, Merhaki Foods And Nutrition Pvt Ltd. All Rights Reserved.
+                    &copy; COPYRIGHT 2026, mckbytes. All Rights Reserved.
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -439,7 +437,7 @@
                     <a href="{% url 'wopper:returns_policy' %}">Refund Policy</a>
                     <a href="{% url 'wopper:privacy_policy' %}">Privacy Policy</a>
                     <a href="{% url 'wopper:terms_conditions' %}">Terms of Service</a>
-                    <a href="#">Sitemap</a>
+                    
                 </div>
             </div>
         </div>

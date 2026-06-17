@@ -1,5 +1,28 @@
+# urls.py
+
 from django.urls import path
 from mck_website import views
+from .views import (
+    UserList, UserCreateView, UserUpdateView, UserDeleteView,
+    # Order Views - Add these imports
+    OrderList, OrderCreateView, OrderUpdateView, OrderDeleteView,
+    OrderItemList, OrderItemCreateView, OrderItemUpdateView, OrderItemDeleteView,
+    # Other views
+    CategoryList, CategoryCreateView, CategoryUpdateView, CategoryDeleteView,
+    BlogList, BlogCreateView, BlogUpdateView, BlogDeleteView,
+    ProductList, ProductCreateView, ProductUpdateView, ProductDeleteView,
+    HomePageVideoList, HomePageVideoCreateView, HomePageVideoUpdateView, HomePageVideoDeleteView,
+    HeroBannerList, HeroBannerCreateView, HeroBannerUpdateView, HeroBannerDeleteView,
+    CustomerList, CustomerCreateView, CustomerUpdateView, CustomerDeleteView,
+    AddressList, AddressCreateView, AddressUpdateView, AddressDeleteView,
+    CouponList, CouponCreateView, CouponUpdateView, CouponDeleteView,
+    PaymentGatewayList, PaymentGatewayCreateView, PaymentGatewayUpdateView, PaymentGatewayDeleteView,
+    CartList, CartDeleteView,
+    ProductReviewList, ProductReviewUpdateView, ProductReviewDeleteView,
+    NewsletterList, NewsletterDeleteView,
+    ContactUsList, ContactUsUpdateView, ContactUsDeleteView,
+    SiteSettingsUpdateView, ContactPageView, ajax_contact_submit,
+)
 
 app_name = "mck_website"
 
@@ -8,265 +31,274 @@ urlpatterns = [
     # --------------------
     # Main Pages
     # --------------------
-#     path('', views.HomePage.as_view(), name='home_page'),
+    # path('', views.HomePage.as_view(), name='home_page'),
 
     path(
-    'category/list/',
-    views.CategoryList.as_view(),
-    name='mck_category_list'
-),
+        'category/list/',
+        CategoryList.as_view(),
+        name='mck_category_list'
+    ),
 
-path(
-    'category/create/',
-    views.CategoryCreateView.as_view(),
-    name='mck_category_create'
-),
+    path(
+        'category/create/',
+        CategoryCreateView.as_view(),
+        name='mck_category_create'
+    ),
 
-path(
-    'category/update/<int:id>/',
-    views.CategoryUpdateView.as_view(),
-    name='mck_category_update'
-),
+    path(
+        'category/update/<int:id>/',
+        CategoryUpdateView.as_view(),
+        name='mck_category_update'
+    ),
 
-path(
-    'category/delete/<int:id>/',
-    views.CategoryDeleteView.as_view(),
-    name='mck_category_delete'
-),
+    path(
+        'category/delete/<int:id>/',
+        CategoryDeleteView.as_view(),
+        name='mck_category_delete'
+    ),
 
-path(
-    'blog/list/',
-    views.BlogList.as_view(),
-    name='mck_blog_list'
-),
+    path(
+        'blog/list/',
+        BlogList.as_view(),
+        name='mck_blog_list'
+    ),
 
-path(
-    'blog/create/',
-    views.BlogCreateView.as_view(),
-    name='mck_blog_create'
-),
+    path(
+        'blog/create/',
+        BlogCreateView.as_view(),
+        name='mck_blog_create'
+    ),
 
-path(
-    'blog/update/<int:id>/',
-    views.BlogUpdateView.as_view(),
-    name='mck_blog_update'
-),
+    path(
+        'blog/update/<int:id>/',
+        BlogUpdateView.as_view(),
+        name='mck_blog_update'
+    ),
 
-path(
-    'blog/delete/<int:id>/',
-    views.BlogDeleteView.as_view(),
-    name='mck_blog_delete'
-),
+    path(
+        'blog/delete/<int:id>/',
+        BlogDeleteView.as_view(),
+        name='mck_blog_delete'
+    ),
 
-path(
-    'product/list/',
-    views.ProductList.as_view(),
-    name='mck_product_list'
-),
+    path(
+        'product/list/',
+        ProductList.as_view(),
+        name='mck_product_list'
+    ),
 
-path(
-    'product/create/',
-    views.ProductCreateView.as_view(),
-    name='mck_product_create'
-),
+    path(
+        'product/create/',
+        ProductCreateView.as_view(),
+        name='mck_product_create'
+    ),
 
-path(
-    'product/update/<int:id>/',
-    views.ProductUpdateView.as_view(),
-    name='mck_product_update'
-),
+    path(
+        'product/update/<int:id>/',
+        ProductUpdateView.as_view(),
+        name='mck_product_update'
+    ),
 
-path(
-    'product/delete/<int:id>/',
-    views.ProductDeleteView.as_view(),
-    name='mck_product_delete'
-),
+    path(
+        'product/delete/<int:id>/',
+        ProductDeleteView.as_view(),
+        name='mck_product_delete'
+    ),
 
-path('homepage-video/',
-         views.HomePageVideoList.as_view(),
+    path('homepage-video/',
+         HomePageVideoList.as_view(),
          name='mck_homepage_video_list'),
  
     path('homepage-video/create/',
-         views.HomePageVideoCreateView.as_view(),
+         HomePageVideoCreateView.as_view(),
          name='mck_homepage_video_create'),
  
     path('homepage-video/<int:id>/edit/',
-         views.HomePageVideoUpdateView.as_view(),
+         HomePageVideoUpdateView.as_view(),
          name='mck_homepage_video_update'),
  
     path('homepage-video/<int:id>/delete/',
-         views.HomePageVideoDeleteView.as_view(),
+         HomePageVideoDeleteView.as_view(),
          name='mck_homepage_video_delete'),
  
     # ── HeroBanner ───────────────────────────────────────────────────────
     path('hero-banner/',
-         views.HeroBannerList.as_view(),
+         HeroBannerList.as_view(),
          name='mck_hero_banner_list'),
  
     path('hero-banner/create/',
-         views.HeroBannerCreateView.as_view(),
+         HeroBannerCreateView.as_view(),
          name='mck_hero_banner_create'),
  
     path('hero-banner/<int:id>/edit/',
-         views.HeroBannerUpdateView.as_view(),
+         HeroBannerUpdateView.as_view(),
          name='mck_hero_banner_update'),
  
     path('hero-banner/<int:id>/delete/',
-         views.HeroBannerDeleteView.as_view(),
+         HeroBannerDeleteView.as_view(),
          name='mck_hero_banner_delete'),
 
     
-# ─────────────────────────────────────────────────────────────────────────────
-# Customer URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('customers/',
-     views.CustomerList.as_view(),
-     name='mck_customer_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Customer URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('customers/',
+         CustomerList.as_view(),
+         name='mck_customer_list'),
 
-path('customers/create/',
-     views.CustomerCreateView.as_view(),
-     name='mck_customer_create'),
+    path('customers/create/',
+         CustomerCreateView.as_view(),
+         name='mck_customer_create'),
 
-path('customers/<int:id>/edit/',
-     views.CustomerUpdateView.as_view(),
-     name='mck_customer_update'),
+    path('customers/<int:id>/edit/',
+         CustomerUpdateView.as_view(),
+         name='mck_customer_update'),
 
-path('customers/<int:id>/delete/',
-     views.CustomerDeleteView.as_view(),
-     name='mck_customer_delete'),
+    path('customers/<int:id>/delete/',
+         CustomerDeleteView.as_view(),
+         name='mck_customer_delete'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Address URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('addresses/',
-     views.AddressList.as_view(),
-     name='mck_address_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Address URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('addresses/',
+         AddressList.as_view(),
+         name='mck_address_list'),
 
-path('addresses/create/',
-     views.AddressCreateView.as_view(),
-     name='mck_address_create'),
+    path('addresses/create/',
+         AddressCreateView.as_view(),
+         name='mck_address_create'),
 
-path('addresses/<int:id>/edit/',
-     views.AddressUpdateView.as_view(),
-     name='mck_address_update'),
+    path('addresses/<int:id>/edit/',
+         AddressUpdateView.as_view(),
+         name='mck_address_update'),
 
-path('addresses/<int:id>/delete/',
-     views.AddressDeleteView.as_view(),
-     name='mck_address_delete'),
+    path('addresses/<int:id>/delete/',
+         AddressDeleteView.as_view(),
+         name='mck_address_delete'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Coupon URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('coupons/',
-     views.CouponList.as_view(),
-     name='mck_coupon_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Coupon URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('coupons/',
+         CouponList.as_view(),
+         name='mck_coupon_list'),
 
-path('coupons/create/',
-     views.CouponCreateView.as_view(),
-     name='mck_coupon_create'),
+    path('coupons/create/',
+         CouponCreateView.as_view(),
+         name='mck_coupon_create'),
 
-path('coupons/<int:id>/edit/',
-     views.CouponUpdateView.as_view(),
-     name='mck_coupon_update'),
+    path('coupons/<int:id>/edit/',
+         CouponUpdateView.as_view(),
+         name='mck_coupon_update'),
 
-path('coupons/<int:id>/delete/',
-     views.CouponDeleteView.as_view(),
-     name='mck_coupon_delete'),
+    path('coupons/<int:id>/delete/',
+         CouponDeleteView.as_view(),
+         name='mck_coupon_delete'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# PaymentGateway URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('payment-gateways/',
-     views.PaymentGatewayList.as_view(),
-     name='mck_payment_gateway_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # PaymentGateway URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('payment-gateways/',
+         PaymentGatewayList.as_view(),
+         name='mck_payment_gateway_list'),
 
-path('payment-gateways/create/',
-     views.PaymentGatewayCreateView.as_view(),
-     name='mck_payment_gateway_create'),
+    path('payment-gateways/create/',
+         PaymentGatewayCreateView.as_view(),
+         name='mck_payment_gateway_create'),
 
-path('payment-gateways/<int:id>/edit/',
-     views.PaymentGatewayUpdateView.as_view(),
-     name='mck_payment_gateway_update'),
+    path('payment-gateways/<int:id>/edit/',
+         PaymentGatewayUpdateView.as_view(),
+         name='mck_payment_gateway_update'),
 
-path('payment-gateways/<int:id>/delete/',
-     views.PaymentGatewayDeleteView.as_view(),
-     name='mck_payment_gateway_delete'),
+    path('payment-gateways/<int:id>/delete/',
+         PaymentGatewayDeleteView.as_view(),
+         name='mck_payment_gateway_delete'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Cart URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('carts/',
-     views.CartList.as_view(),
-     name='mck_cart_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Cart URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('carts/',
+         CartList.as_view(),
+         name='mck_cart_list'),
 
-path('carts/<int:id>/delete/',
-     views.CartDeleteView.as_view(),
-     name='mck_cart_delete'),
+    path('carts/<int:id>/delete/',
+         CartDeleteView.as_view(),
+         name='mck_cart_delete'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Order URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('orders/',
-     views.OrderList.as_view(),
-     name='mck_order_list'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Order URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Order URLs
+    path('orders/', OrderList.as_view(), name='mck_order_list'),
+    path('orders/create/', OrderCreateView.as_view(), name='mck_order_create'),
+    path('orders/<int:id>/update/', OrderUpdateView.as_view(), name='mck_order_update'),
+    path('orders/<int:id>/delete/', OrderDeleteView.as_view(), name='mck_order_delete'),
 
-path('orders/<int:id>/edit/',
-     views.OrderUpdateView.as_view(),
-     name='mck_order_update'),
+    # OrderItem URLs
+    path('order-items/', OrderItemList.as_view(), name='mck_order_item_list_all'),
+    path('orders/<int:order_id>/items/', OrderItemList.as_view(), name='mck_order_item_list'),
+    path('order-items/create/', OrderItemCreateView.as_view(), name='mck_order_item_create'),
+    path('orders/<int:order_id>/items/create/', OrderItemCreateView.as_view(), name='mck_order_item_create_with_order'),
+    path('order-items/<int:id>/update/', OrderItemUpdateView.as_view(), name='mck_order_item_update'),
+    path('order-items/<int:id>/delete/', OrderItemDeleteView.as_view(), name='mck_order_item_delete'),
 
-path('orders/<int:id>/delete/',
-     views.OrderDeleteView.as_view(),
-     name='mck_order_delete'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # ProductReview URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('product-reviews/',
+         ProductReviewList.as_view(),
+         name='mck_product_review_list'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# ProductReview URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('product-reviews/',
-     views.ProductReviewList.as_view(),
-     name='mck_product_review_list'),
+    path('product-reviews/<int:id>/edit/',
+         ProductReviewUpdateView.as_view(),
+         name='mck_product_review_update'),
 
-path('product-reviews/<int:id>/edit/',
-     views.ProductReviewUpdateView.as_view(),
-     name='mck_product_review_update'),
+    path('product-reviews/<int:id>/delete/',
+         ProductReviewDeleteView.as_view(),
+         name='mck_product_review_delete'),
 
-path('product-reviews/<int:id>/delete/',
-     views.ProductReviewDeleteView.as_view(),
-     name='mck_product_review_delete'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # Newsletter URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('newsletters/',
+         NewsletterList.as_view(),
+         name='mck_newsletter_list'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Newsletter URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('newsletters/',
-     views.NewsletterList.as_view(),
-     name='mck_newsletter_list'),
+    path('newsletters/<int:id>/delete/',
+         NewsletterDeleteView.as_view(),
+         name='mck_newsletter_delete'),
 
-path('newsletters/<int:id>/delete/',
-     views.NewsletterDeleteView.as_view(),
-     name='mck_newsletter_delete'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # ContactUs URLs
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('contact-us/',
+         ContactUsList.as_view(),
+         name='mck_contact_us_list'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# ContactUs URLs
-# ─────────────────────────────────────────────────────────────────────────────
-path('contact-us/',
-     views.ContactUsList.as_view(),
-     name='mck_contact_us_list'),
+    path('contact-us/<int:id>/edit/',
+         ContactUsUpdateView.as_view(),
+         name='mck_contact_us_update'),
 
-path('contact-us/<int:id>/edit/',
-     views.ContactUsUpdateView.as_view(),
-     name='mck_contact_us_update'),
+    path('contact-us/<int:id>/delete/',
+         ContactUsDeleteView.as_view(),
+         name='mck_contact_us_delete'),
 
-path('contact-us/<int:id>/delete/',
-     views.ContactUsDeleteView.as_view(),
-     name='mck_contact_us_delete'),
+    # ─────────────────────────────────────────────────────────────────────────────
+    # SiteSettings URLs (Singleton)
+    # ─────────────────────────────────────────────────────────────────────────────
+    path('site-settings/',
+         SiteSettingsUpdateView.as_view(),
+         name='mck_site_settings'),
 
-# ─────────────────────────────────────────────────────────────────────────────
-# SiteSettings URLs (Singleton)
-# ─────────────────────────────────────────────────────────────────────────────
-path('site-settings/',
-     views.SiteSettingsUpdateView.as_view(),
-     name='mck_site_settings'),
+    path('contact/', ContactPageView.as_view(), name='contact'),
+    path('contact/ajax-submit/', ajax_contact_submit, name='contact_ajax_submit'),
 
-path('contact/', views.ContactPageView.as_view(), name='contact'),
-path('contact/ajax-submit/', views.ajax_contact_submit, name='contact_ajax_submit'),
+    # User Management
+    path('users/', UserList.as_view(), name='mck_user_list'),
+    path('users/create/', UserCreateView.as_view(), name='mck_user_create'),
+    path('users/<int:id>/update/', UserUpdateView.as_view(), name='mck_user_update'),
+    path('users/<int:id>/delete/', UserDeleteView.as_view(), name='mck_user_delete'),
+    # path('users/<int:id>/hard-delete/', UserHardDeleteView.as_view(), name='mck_user_hard_delete'),
 
 ]

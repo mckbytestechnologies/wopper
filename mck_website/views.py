@@ -35,15 +35,15 @@ from mck_auth import role_validations as rv
 from config import app_logger, app_seo as seo
 from mck_website import forms
 from mck_admin_console.models import Contact
+from mck_auth.models import User
+from mck_website.models import Order, Category, Product, Blog
 
 LOG_NAME = "app"
 logger = app_logger.createLogger(LOG_NAME)
 
 
-
-
 # ─────────────────────────────────────────────────────────────────────────────
-# Category
+# Category Views
 # ─────────────────────────────────────────────────────────────────────────────
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
@@ -139,7 +139,6 @@ class CategoryUpdateView(TemplateView):
                 return render(request, "access_denied.html", context)
             context['mode'] = mode
             result, msg, data = api.category_retrieve_data(request, id)
-            # Pass the instance so the form shows current values + image thumbnail
             form = forms.CategoryCreateUpdateForm(
                 instance=data.get("category"),
                 mode=mode
@@ -163,8 +162,6 @@ class CategoryUpdateView(TemplateView):
             if not has_permission:
                 return render(request, "access_denied.html", context)
             result, msg, data = api.category_retrieve_data(request, id)
-            # Pass BOTH the POST data AND the existing instance so Django
-            # knows which record it's editing (needed for field validation).
             form = forms.CategoryCreateUpdateForm(
                 request.POST,
                 request.FILES,
@@ -187,10 +184,7 @@ class CategoryUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class CategoryDeleteView(TemplateView):
-    """
-    Toggles a Category between Active ('A') and Inactive ('I').
-    Called via AJAX; always returns JSON.
-    """
+    """Toggles a Category between Active ('A') and Inactive ('I')."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -207,7 +201,7 @@ class CategoryDeleteView(TemplateView):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Product
+# Product Views
 # ─────────────────────────────────────────────────────────────────────────────
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
@@ -217,7 +211,7 @@ class ProductList(TemplateView):
     @app_logger.functionlogs(log=LOG_NAME)
     def get(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page_kwargs'] = seo.get_page_tags("ProductyList")
+        context['page_kwargs'] = seo.get_page_tags("ProductList")
         has_permission, accountuser = rv.validate_requested_user_function(request)
         if not has_permission:
             return render(request, "access_denied.html", context)
@@ -303,8 +297,6 @@ class ProductUpdateView(TemplateView):
                 return render(request, "access_denied.html", context)
             context['mode'] = mode
             result, msg, data = api.product_retrieve_data(request, id)
-            # Pass the instance so the form pre-populates all fields
-            # and the image widget can render the current thumbnail.
             form = forms.ProductCreateUpdateForm(
                 instance=data.get("product"),
                 mode=mode
@@ -328,8 +320,6 @@ class ProductUpdateView(TemplateView):
             if not has_permission:
                 return render(request, "access_denied.html", context)
             result, msg, data = api.product_retrieve_data(request, id)
-            # Pass the existing instance so Django's ModelForm excludes it
-            # from the unique SKU check in clean_sku().
             form = forms.ProductCreateUpdateForm(
                 request.POST,
                 request.FILES,
@@ -352,10 +342,7 @@ class ProductUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class ProductDeleteView(TemplateView):
-    """
-    Toggles a Product between Active ('A') and Inactive ('I').
-    Called via AJAX; always returns JSON.
-    """
+    """Toggles a Product between Active ('A') and Inactive ('I')."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -370,12 +357,9 @@ class ProductDeleteView(TemplateView):
             logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
         return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
 
-# ─────────────────────────────────────────────────────────────────────────────
-# ADD THESE CLASSES to your existing views.py
-# ─────────────────────────────────────────────────────────────────────────────
 
 # ─────────────────────────────────────────────────────────────────────────────
-# Blog
+# Blog Views
 # ─────────────────────────────────────────────────────────────────────────────
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
@@ -471,7 +455,6 @@ class BlogUpdateView(TemplateView):
                 return render(request, "access_denied.html", context)
             context['mode'] = mode
             result, msg, data = api.blog_retrieve_data(request, id)
-            # Pass the instance so the form shows current values + image thumbnail
             form = forms.BlogCreateUpdateForm(
                 instance=data.get("blog"),
                 mode=mode
@@ -494,17 +477,15 @@ class BlogUpdateView(TemplateView):
             has_permission, accountuser = rv.validate_requested_user_function(request)
             if not has_permission:
                 return render(request, "access_denied.html", context)
-            result, msg, data = api.category_retrieve_data(request, id)
-            # Pass BOTH the POST data AND the existing instance so Django
-            # knows which record it's editing (needed for field validation).
-            form = forms.CategoryCreateUpdateForm(
+            result, msg, data = api.blog_retrieve_data(request, id)
+            form = forms.BlogCreateUpdateForm(
                 request.POST,
                 request.FILES,
                 instance=data.get("blog"),
                 mode=mode
             )
             if form.is_valid():
-                result, msg, data = api.category_create_update(request, id, mode)
+                result, msg, data = api.blog_create_update(request, id, mode)
                 return HttpResponseRedirect(reverse("mck_website:mck_blog_list"))
             else:
                 logger.warning(form.errors)
@@ -519,10 +500,7 @@ class BlogUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class BlogDeleteView(TemplateView):
-    """
-    Toggles a Category between Active ('A') and Inactive ('I').
-    Called via AJAX; always returns JSON.
-    """
+    """Toggles a Blog between Active ('A') and Inactive ('I')."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -537,9 +515,10 @@ class BlogDeleteView(TemplateView):
             logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
         return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
 
-# ══════════════════════════════════════════════════════════════════════════════
-# HomePageVideo
-# ══════════════════════════════════════════════════════════════════════════════
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HomePageVideo Views
+# ─────────────────────────────────────────────────────────────────────────────
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class HomePageVideoList(TemplateView):
@@ -675,7 +654,7 @@ class HomePageVideoUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class HomePageVideoDeleteView(TemplateView):
-    """Toggles datamode A ↔ I. Called via AJAX, always returns JSON."""
+    """Toggles datamode A ↔ I."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -691,9 +670,9 @@ class HomePageVideoDeleteView(TemplateView):
         return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# HeroBanner
-# ══════════════════════════════════════════════════════════════════════════════
+# ─────────────────────────────────────────────────────────────────────────────
+# HeroBanner Views
+# ─────────────────────────────────────────────────────────────────────────────
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class HeroBannerList(TemplateView):
@@ -829,7 +808,7 @@ class HeroBannerUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class HeroBannerDeleteView(TemplateView):
-    """Toggles datamode A ↔ I. Called via AJAX, always returns JSON."""
+    """Toggles datamode A ↔ I."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -843,6 +822,7 @@ class HeroBannerDeleteView(TemplateView):
             exc_type, exc_obj, exc_traceback = sys.exc_info()
             logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
         return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Customer Views
@@ -984,7 +964,7 @@ class CustomerUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class CustomerDeleteView(TemplateView):
-    """Toggles Customer between Active ('A') and Inactive ('I')"""
+    """Toggles Customer between Active ('A') and Inactive ('I')."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -1555,8 +1535,53 @@ class OrderList(TemplateView):
 
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
-class OrderUpdateView(TemplateView):
+class OrderCreateView(TemplateView):
+    
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Order"
+            context['page_kwargs'] = seo.get_page_tags("OrderList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.OrderForm()
+            context['form'] = form
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
 
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Order"
+            context['page_kwargs'] = seo.get_page_tags("OrderList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.OrderForm(request.POST)
+            logger.debug(request.POST)
+            if form.is_valid():
+                result, msg, data = api.order_create_update(request)
+                logger.debug(data)
+                return HttpResponseRedirect(reverse("mck_website:mck_order_list"))
+            else:
+                context['form'] = form
+                logger.warning(form.errors)
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class OrderUpdateView(TemplateView):
+    
     @app_logger.functionlogs(log=LOG_NAME)
     def get(self, request, id=None, *args, **kwargs):
         context = dict()
@@ -1570,7 +1595,7 @@ class OrderUpdateView(TemplateView):
                 return render(request, "access_denied.html", context)
             context['mode'] = mode
             result, msg, data = api.order_retrieve_data(request, id)
-            form = forms.OrderUpdateForm(
+            form = forms.OrderForm(
                 instance=data.get("order"),
                 mode=mode
             )
@@ -1593,13 +1618,13 @@ class OrderUpdateView(TemplateView):
             if not has_permission:
                 return render(request, "access_denied.html", context)
             result, msg, data = api.order_retrieve_data(request, id)
-            form = forms.OrderUpdateForm(
+            form = forms.OrderForm(
                 request.POST,
                 instance=data.get("order"),
                 mode=mode
             )
             if form.is_valid():
-                result, msg, data = api.order_update(request, id, mode)
+                result, msg, data = api.order_create_update(request, id, mode)
                 return HttpResponseRedirect(reverse("mck_website:mck_order_list"))
             else:
                 logger.warning(form.errors)
@@ -1614,6 +1639,7 @@ class OrderUpdateView(TemplateView):
 
 @method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
 class OrderDeleteView(TemplateView):
+    """Toggles an Order between Active ('A') and Inactive ('I')."""
 
     @app_logger.functionlogs(log=LOG_NAME)
     def post(self, request, id=None, *args, **kwargs):
@@ -1622,6 +1648,181 @@ class OrderDeleteView(TemplateView):
             if not has_permission:
                 return JsonResponse(dict(result=False, message="Access denied"), status=403)
             result, message = api.order_update_status(request, id)
+            return JsonResponse(dict(result=result, message=message))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OrderItem Views
+# ─────────────────────────────────────────────────────────────────────────────
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class OrderItemList(TemplateView):
+    template_name = "table_data_list.html"
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, order_id=None, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+        has_permission, accountuser = rv.validate_requested_user_function(request)
+        if not has_permission:
+            return render(request, "access_denied.html", context)
+        
+        if order_id:
+            request.session['current_order_id'] = order_id
+            context['order'] = Order.objects.filter(id=order_id).first()
+        
+        context['table_data'] = bt.build_order_item_table(request, order_id)
+        return render(request, self.template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, order_id=None, *args, **kwargs):
+        context = dict()
+        try:
+            context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            
+            if not order_id:
+                order_id = request.session.get('current_order_id')
+            
+            table_data = bt.build_order_item_table(request, order_id)
+            context['table_data'] = table_data
+            result, msg, data = api.order_item_load_data(request, table_data, order_id)
+            return HttpResponse(json.dumps(data))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return HttpResponse(json.dumps(context))
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class OrderItemCreateView(TemplateView):
+    
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, order_id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Order Item"
+            context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            
+            form = forms.OrderItemForm(order_id=order_id)
+            context['form'] = form
+            if order_id:
+                context['order'] = Order.objects.filter(id=order_id).first()
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, order_id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "Order Item"
+            context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            
+            form = forms.OrderItemForm(request.POST)
+            logger.debug(request.POST)
+            if form.is_valid():
+                result, msg, data = api.order_item_create_update(request, order_id=order_id)
+                logger.debug(data)
+                if order_id:
+                    return HttpResponseRedirect(reverse("mck_website:mck_order_item_list", args=[order_id]))
+                return HttpResponseRedirect(reverse("mck_website:mck_order_item_list_all"))
+            else:
+                context['form'] = form
+                logger.warning(form.errors)
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class OrderItemUpdateView(TemplateView):
+    
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "Order Item"
+            context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            context['mode'] = mode
+            result, msg, data = api.order_item_retrieve_data(request, id)
+            form = forms.OrderItemForm(
+                instance=data.get("order_item"),
+                mode=mode
+            )
+            context['form'] = form
+            context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "Order Item"
+            context['page_kwargs'] = seo.get_page_tags("OrderItemList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            result, msg, data = api.order_item_retrieve_data(request, id)
+            form = forms.OrderItemForm(
+                request.POST,
+                instance=data.get("order_item"),
+                mode=mode
+            )
+            if form.is_valid():
+                result, msg, data = api.order_item_create_update(request, id, mode)
+                order_id = data.get('order_item').order.id if data.get('order_item') else None
+                if order_id:
+                    return HttpResponseRedirect(reverse("mck_website:mck_order_item_list", args=[order_id]))
+                return HttpResponseRedirect(reverse("mck_website:mck_order_item_list_all"))
+            else:
+                logger.warning(form.errors)
+                context['form'] = form
+                context['mode'] = mode
+                context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class OrderItemDeleteView(TemplateView):
+    """Toggles an OrderItem between Active ('A') and Inactive ('I')."""
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        try:
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return JsonResponse(dict(result=False, message="Access denied"), status=403)
+            result, message = api.order_item_update_status(request, id)
             return JsonResponse(dict(result=result, message=message))
         except Exception as e:
             exc_type, exc_obj, exc_traceback = sys.exc_info()
@@ -1965,9 +2166,11 @@ class SiteSettingsUpdateView(TemplateView):
         return render(request, template_name, context)
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Contact Page View
+# ─────────────────────────────────────────────────────────────────────────────
 
 class ContactPageView(TemplateView):
-    """Contact page"""
     template_name = "pages/contact-us.html"
     
     def get_context_data(self, **kwargs):
@@ -1975,15 +2178,11 @@ class ContactPageView(TemplateView):
         return context
     
     def post(self, request, *args, **kwargs):
-        """Handle regular form submission (non-AJAX)"""
         context = self.get_context_data(**kwargs)
         
-        # Check if it's an AJAX request
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            # Let the AJAX endpoint handle it
             return ajax_contact_submit(request)
         
-        # Regular form submission
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone', '')
@@ -2011,56 +2210,34 @@ class ContactPageView(TemplateView):
         return render(request, self.template_name, context)
 
 
-
 @require_POST
 @csrf_exempt
 def ajax_contact_submit(request):
-    """AJAX endpoint for contact form submission"""
     try:
-        print("="*50)
-        print("AJAX contact submission received")
-        print("POST data:", request.POST)
-        
-        # Get data from POST request
         name = request.POST.get('name')
         email = request.POST.get('email')
         phone = request.POST.get('phone', '')
         message = request.POST.get('message')
         
-        print(f"Name: {name}, Email: {email}, Phone: {phone}, Message: {message}")
-        
-        # Validate required fields
         if not name or not name.strip():
-            return JsonResponse({
-                'success': False,
-                'message': 'Name is required.'
-            })
+            return JsonResponse({'success': False, 'message': 'Name is required.'})
         
         if not email or not email.strip():
-            return JsonResponse({
-                'success': False,
-                'message': 'Email is required.'
-            })
+            return JsonResponse({'success': False, 'message': 'Email is required.'})
         
         if not message or not message.strip():
-            return JsonResponse({
-                'success': False,
-                'message': 'Message is required.'
-            })
+            return JsonResponse({'success': False, 'message': 'Message is required.'})
         
-        # Create contact object
         contact = Contact(
             name=name.strip(),
             email=email.strip(),
             phone=phone.strip() if phone else '',
             message=message.strip(),
-            created_by='0',  # Public submission
+            created_by='0',
             updated_by='0',
             datamode='A'
         )
         contact.save()
-        
-        print(f"Contact saved with ID: {contact.id}")
         
         return JsonResponse({
             'success': True,
@@ -2068,11 +2245,180 @@ def ajax_contact_submit(request):
         })
         
     except Exception as e:
-        print(f"Error in ajax_contact_submit: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        
-        return JsonResponse({
-            'success': False,
-            'message': f'Error: {str(e)}'
-        })
+        return JsonResponse({'success': False, 'message': f'Error: {str(e)}'})
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# User Management Views
+# ─────────────────────────────────────────────────────────────────────────────
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class UserList(TemplateView):
+    template_name = "table_data_list.html"
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_kwargs'] = seo.get_page_tags("UserList")
+        has_permission, accountuser = rv.validate_requested_user_function(request)
+        if not has_permission:
+            return render(request, "access_denied.html", context)
+        context['table_data'] = bt.build_user_table(request)
+        return render(request, self.template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, *args, **kwargs):
+        context = dict()
+        try:
+            context['page_kwargs'] = seo.get_page_tags("UserList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            table_data = bt.build_user_table(request)
+            context['table_data'] = table_data
+            result, msg, data = api.user_load_data(request, table_data)
+            return HttpResponse(json.dumps(data))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return HttpResponse(json.dumps(context))
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class UserCreateView(TemplateView):
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "User"
+            context['page_kwargs'] = seo.get_page_tags("UserList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.UserCreateUpdateForm()
+            context['form'] = form
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            context['name'] = "User"
+            context['page_kwargs'] = seo.get_page_tags("UserList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            form = forms.UserCreateUpdateForm(request.POST, request.FILES)
+            logger.debug(request.POST)
+            if form.is_valid():
+                result, msg, data = api.user_create_update(request)
+                logger.debug(data)
+                return HttpResponseRedirect(reverse("mck_website:mck_user_list"))
+            else:
+                context['form'] = form
+                logger.warning(form.errors)
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class UserUpdateView(TemplateView):
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def get(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "User"
+            context['page_kwargs'] = seo.get_page_tags("UserList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            context['mode'] = mode
+            result, msg, data = api.user_retrieve_data(request, id)
+            form = forms.UserCreateUpdateForm(
+                instance=data.get("user"),
+                mode=mode
+            )
+            context['form'] = form
+            context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        context = dict()
+        template_name = "common_cu.html"
+        try:
+            mode = "edit"
+            context['name'] = "User"
+            context['page_kwargs'] = seo.get_page_tags("UserList")
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return render(request, "access_denied.html", context)
+            result, msg, data = api.user_retrieve_data(request, id)
+            form = forms.UserCreateUpdateForm(
+                request.POST,
+                request.FILES,
+                instance=data.get("user"),
+                mode=mode
+            )
+            if form.is_valid():
+                result, msg, data = api.user_create_update(request, id, mode)
+                return HttpResponseRedirect(reverse("mck_website:mck_user_list"))
+            else:
+                logger.warning(form.errors)
+                context['form'] = form
+                context['mode'] = mode
+                context['data'] = data
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return render(request, template_name, context)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class UserDeleteView(TemplateView):
+    """Toggles a User between Active ('A') and Inactive ('I')."""
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        try:
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return JsonResponse(dict(result=False, message="Access denied"), status=403)
+            result, message = api.user_update_status(request, id)
+            return JsonResponse(dict(result=result, message=message))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)
+
+
+@method_decorator(login_required(login_url=settings.LOGIN_REDIRECT_URL), name='dispatch')
+class UserHardDeleteView(TemplateView):
+    """Hard deletes a User (sets datamode='D')."""
+
+    @app_logger.functionlogs(log=LOG_NAME)
+    def post(self, request, id=None, *args, **kwargs):
+        try:
+            has_permission, accountuser = rv.validate_requested_user_function(request)
+            if not has_permission:
+                return JsonResponse(dict(result=False, message="Access denied"), status=403)
+            result, message = api.user_delete(request, id)
+            return JsonResponse(dict(result=result, message=message))
+        except Exception as e:
+            exc_type, exc_obj, exc_traceback = sys.exc_info()
+            logger.error('Error at %s:%s' % (exc_traceback.tb_lineno, e))
+        return JsonResponse(dict(result=False, message="Internal Server Error"), status=500)

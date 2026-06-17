@@ -210,7 +210,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'bharathmckbytes@gmail.com'
 EMAIL_HOST_PASSWORD = 'ccvo xyhw qrum kguw'  # Use app password for Gmail
-DEFAULT_FROM_EMAIL = 'SRI VARAM MANAMALAI <supportsrivarammanamalai@gmail.com>'
+DEFAULT_FROM_EMAIL = 'WOPPER <supportsrivarammanamalai@gmail.com>'
 SUPPORT_EMAIL = 'bharathmckbytes@gmail.com'
 
 

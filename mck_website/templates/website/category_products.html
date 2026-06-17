@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Your existing CSS styles here (same as before) */
+        /* Your existing CSS styles here */
         :root {
             --primary-teal: #00828a;
             --text-dark: #222222;
@@ -38,45 +38,6 @@
         }
 
         .container { max-width: 1500px; margin: auto; }
-
-        /* ── TOP UTILITY BAR ── */
-        .top-utility-bar {
-            background-color: var(--primary-teal);
-            color: #fff;
-            font-size: 13px; font-weight: 500;
-            padding: 8px 80px;
-        }
-        .top-utility-bar a { color:#fff; text-decoration:none; margin-right:15px; font-size:14px; transition:opacity .2s; }
-        .top-utility-bar a:hover { opacity:.8; }
-
-        /* ── MAIN HEADER ── */
-        .main-header { padding:15px 40px; border-bottom:1px solid var(--border-color); background:#fff; position:relative; z-index:100; }
-        .brand-logo { font-size:24px; font-weight:700; letter-spacing:-.5px; color:#000; text-decoration:none; display:flex; align-items:center; gap:8px; }
-        .brand-logo img { max-height: 45px; }
-        .brand-logo span { color:var(--primary-teal); }
-        .search-container { position:relative; width:100%; max-width:550px; }
-        .search-input { width:100%; padding:10px 20px; background-color:#f1f3f4; border:1px solid transparent; border-radius:4px; font-size:14px; outline:none; }
-        .header-actions-icons a { color:var(--text-dark); font-size:20px; margin-left:25px; position:relative; text-decoration:none; }
-        .auth-btn { background:transparent; border:1px solid var(--primary-teal); color:var(--primary-teal); padding:8px 20px; border-radius:4px; font-size:13px; font-weight:600; text-decoration:none; margin-left:12px; transition:all .3s; }
-        .auth-btn:hover { background:var(--primary-teal); color:#fff; }
-        .auth-btn.primary { background:var(--primary-teal); color:#fff; }
-
-        /* ── NAV MENU ── */
-        .nav-menu-bar { background:#fff; border-bottom:1px solid var(--border-color); padding:0 40px; position:relative; z-index:99; }
-        .nav-menu-list { list-style:none; margin:0; padding:0; display:flex; align-items:center; justify-content:center; gap:30px; }
-        .nav-menu-item { position:relative; }
-        .nav-menu-item > a { display:block; padding:14px 0; color:var(--text-dark); text-decoration:none; font-size:14px; font-weight:500; white-space:nowrap; }
-        .nav-menu-item.flash-sale > a { color:#d9383a; font-weight:600; }
-        .dropdown-mega {
-            position:absolute; top:calc(100% + 1px); left:50%; transform:translateX(-50%) translateY(-8px);
-            background:#fff; border:1px solid var(--border-light); box-shadow:0 8px 32px rgba(0,0,0,.12);
-            min-width:220px; padding:12px 0; opacity:0; visibility:hidden;
-            transition:opacity .22s ease, transform .22s ease, visibility .22s;
-            z-index:200; border-radius:2px;
-        }
-        .nav-menu-item:hover .dropdown-mega { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-        .dropdown-mega a { display:block; padding:9px 22px; font-size:13px; color:#333; text-decoration:none; }
-        .dropdown-mega a:hover { background:#f5f5f5; }
 
         /* LISTING PAGE LAYOUT */
         .listing-main-wrapper {
@@ -198,6 +159,29 @@
         .badge-bestseller { background: #e2a02b; color: white; }
         .badge-flash { background: #eb3c24; color: white; }
         
+        /* Wishlist Button on Product Card */
+        .wishlist-btn-card {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255,255,255,.92);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0,0,0,.1);
+            transition: transform .15s;
+            font-size: 14px;
+            color: #555;
+        }
+        .wishlist-btn-card:hover { transform: scale(1.1); }
+        .wishlist-btn-card i.fas { color: #eb3c24; }
+        
         .prod-img-box-listing {
             position: relative;
             width: 100%;
@@ -253,15 +237,6 @@
             background: #f5f5f5;
         }
 
-        /* Mobile */
-        .mobile-filter-toggle { display: none; background: #000; color: #fff; border: none; padding: 8px 18px; font-size: 13px; border-radius: 30px; margin-bottom: 16px; align-items: center; gap: 8px; cursor: pointer; }
-        .mobile-nav-toggle { display:none; background:none; border:none; font-size:22px; color:#333; cursor:pointer; padding:4px; }
-        .mobile-nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:300; opacity:0; transition:opacity .25s; }
-        .mobile-nav-overlay.open { opacity:1; }
-        .mobile-nav-drawer { position:fixed; top:0; right:-320px; width:300px; height:100%; background:#fff; z-index:400; overflow-y:auto; transition:right .3s ease; padding:20px 0; box-shadow: -4px 0 30px rgba(0,0,0,.15); }
-        .mobile-nav-drawer.open { right:0; }
-        .mobile-nav-close { position:absolute; top:16px; right:16px; background:none; border:none; font-size:22px; cursor:pointer; color:#333; }
-
         /* Trust & Footer */
         .trust-ribbon-new { background: linear-gradient(135deg, #00222a 0%, #003540 100%); padding: 56px 0 52px; margin-top: 40px; }
         .trust-ribbon-new .section-label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--primary-teal); text-align: center; margin-bottom: 8px; }
@@ -302,86 +277,13 @@
         @media (max-width: 640px) {
             .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
             .listing-header h1 { font-size: 22px; }
+            .wishlist-btn-card { width: 28px; height: 28px; font-size: 12px; top: 5px; right: 5px; }
         }
     </style>
 </head>
 <body>
 
-<!-- TOP UTILITY BAR -->
-<div class="top-utility-bar d-flex justify-content-between align-items-center">
-    <div class="d-none d-md-flex">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-    </div>
-    <div class="text-center w-100">🔥 Limited Time Deal! 🔥 Get 5% EXTRA OFF when you pay via UPI or any Debit/Credit Card!</div>
-</div>
-
-<!-- MAIN HEADER -->
-<header class="main-header">
-    <div class="container-fluid p-0 d-flex justify-content-between align-items-center flex-wrap header-main-row container">
-        <a href="{% url 'wopper:website_home' %}" class="brand-logo">
-            {% if site_settings.site_logo %}
-                <img src="{{ site_settings.site_logo.url }}" alt="{{ site_name }}">
-            {% else %}
-                <img src="https://static.wixstatic.com/media/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png/v1/crop/x_170,y_140,w_810,h_800/fill/w_96,h_91,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/daf1e1_e8f44bb6199847e1a9175b60262763b1~mv2.png" alt="logo">
-            {% endif %}
-            <span>{{ site_name|default:"The Better Home" }}</span>
-        </a>
-        <form action="{% url 'wopper:all_products' %}" method="get" class="search-container" id="searchForm">
-            <input type="text" name="q" class="search-input" placeholder="Search for products, categories or brands..." value="{{ request.GET.q|default:'' }}">
-        </form>
-        <div class="d-flex align-items-center">
-            <div class="header-actions-icons d-flex">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'wopper:profile' %}"><i class="far fa-user"></i></a>
-                {% else %}
-                    <a href="{% url 'mck_auth:website_signin' %}"><i class="far fa-user"></i></a>
-                {% endif %}
-                <a href="{% url 'wopper:cart' %}"><i class="fas fa-shopping-bag"></i></a>
-            </div>
-            <button class="mobile-nav-toggle ms-3" onclick="openMobileNav()"><i class="fas fa-bars"></i></button>
-        </div>
-    </div>
-</header>
-
-<!-- DESKTOP NAV -->
-<nav class="nav-menu-bar">
-    <ul class="nav-menu-list">
-        <li class="nav-menu-item"><a href="{% url 'wopper:all_products' %}">All Products</a></li>
-        <li class="nav-menu-item flash-sale"><a href="{% url 'wopper:all_products' %}?flash_sale=true"><i class="fas fa-bolt me-1"></i>Flash Sale</a></li>
-        {% for cat in categories|slice:":8" %}
-        <li class="nav-menu-item">
-            <a href="{% url 'wopper:category_products' slug=cat.slug %}">
-                {{ cat.name }}
-                {% if cat.products.count > 0 %}<i class="fas fa-chevron-down ms-1" style="font-size:10px;"></i>{% endif %}
-            </a>
-            {% if cat.products.count > 0 %}
-            <div class="dropdown-mega">
-                <div class="dd-section-title">{{ cat.name }}</div>
-                {% for product in cat.products.all|slice:":5" %}
-                    <a href="{% url 'wopper:product_detail' slug=product.slug %}">{{ product.name|truncatechars:30 }}</a>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-</nav>
-
-<!-- MOBILE DRAWER -->
-<div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
-<div class="mobile-nav-drawer" id="mobileNavDrawer">
-    <button class="mobile-nav-close" onclick="closeMobileNav()"><i class="fas fa-times"></i></button>
-    <div style="padding:20px 24px;"><span class="brand-logo">the<span style="color:#00828a;">better</span>home</span></div>
-    <ul style="list-style:none;padding:0;">
-        <li class="mobile-nav-item"><a href="{% url 'wopper:all_products' %}">All Products</a></li>
-        <li class="mobile-nav-item flash-sale"><a href="{% url 'wopper:all_products' %}?flash_sale=true">⚡ Flash Sale</a></li>
-        {% for cat in categories|slice:":8" %}
-        <li class="mobile-nav-item"><a href="{% url 'wopper:category_products' slug=cat.slug %}">{{ cat.name }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
+{% include 'includes/header.html' %}
 
 <!-- LISTING PAGE: FILTER LEFT & PRODUCT GRID RIGHT -->
 <div class="listing-main-wrapper container">
@@ -430,10 +332,6 @@
 
     <!-- PRODUCT GRID AREA -->
     <div class="products-grid-area">
-        <button class="mobile-filter-toggle" id="mobileFilterToggle" onclick="toggleMobileFilter()">
-            <i class="fas fa-filter"></i> Show Filters
-        </button>
-        
         <div class="listing-header">
             <h1>{% if category %}{{ category.name }}{% else %}All Products{% endif %}</h1>
             <div class="sort-by">
@@ -448,12 +346,18 @@
         
         <div class="product-grid" id="productGridContainer">
             {% for product in products %}
-            <div class="product-card-listing" data-product-id="{{ product.id }}">
+            <div class="product-card-listing" data-product-id="{{ product.id }}" data-product-slug="{{ product.slug }}">
                 <div class="product-badge">
                     {% if product.is_new_arrival %}<span class="badge-new">NEW</span>{% endif %}
                     {% if product.is_best_seller %}<span class="badge-bestseller">BESTSELLER</span>{% endif %}
                     {% if product.is_flash_sale %}<span class="badge-flash">FLASH SALE</span>{% endif %}
                 </div>
+                
+                <!-- Wishlist Button -->
+                <button class="wishlist-btn-card" data-product-slug="{{ product.slug }}" onclick="event.preventDefault(); toggleWishlist('{{ product.slug }}', this)">
+                    <i class="{% if product.in_wishlist %}fas{% else %}far{% endif %} fa-heart"></i>
+                </button>
+                
                 <a href="{% url 'wopper:product_detail' slug=product.slug %}" style="text-decoration: none; color: inherit;">
                     <div class="prod-img-box-listing">
                         {% if product.image %}
@@ -526,52 +430,13 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="footer-new">
-    <div class="footer-top">
-        <div><h4>Join Our Community</h4><p>Get exclusive deals, new arrivals and lifestyle inspiration straight to your inbox.</p></div>
-        <div class="footer-newsletter-form">
-            <input type="email" placeholder="Enter your email address">
-            <button>Subscribe</button>
-        </div>
-    </div>
-    <div class="footer-main container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <a href="#" class="footer-logo">the<span>better</span>home</a>
-                <p class="mt-3 text-white-50">{{ site_settings.site_description|default:"The Better Home offers innovative, premium-quality products that transform living spaces."|truncatechars:120 }}</p>
-            </div>
-            <div class="col-md-2">
-                <div class="footer-col-title">Shop</div>
-                <ul class="footer-links">
-                    {% for cat in categories|slice:":5" %}
-                    <li><a href="{% url 'wopper:category_products' slug=cat.slug %}">{{ cat.name }}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-md-2">
-                <div class="footer-col-title">Support</div>
-                <ul class="footer-links">
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <div class="footer-col-title">Contact</div>
-                <p class="text-white-50">Email: {{ site_email }}<br>Phone: {{ site_phone }}<br>Mon–Sat, 9am – 7pm</p>
-            </div>
-        </div>
-    </div>
-    <hr class="text-white-50 m-0">
-    <div class="footer-bottom">
-        <span>&copy; 2026 {{ site_name|default:"The Better Home" }}. All Rights Reserved.</span>
-        <div><a href="#">Sitemap</a> | <a href="#">Refund Policy</a></div>
-    </div>
-</footer>
+  {% include "includes/footer-website.html" %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Get CSRF token
+    // ============================================
+    // CSRF TOKEN HELPER
+    // ============================================
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -586,102 +451,176 @@
         }
         return cookieValue;
     }
-    
-    const csrftoken = getCookie('csrftoken');
-    
-    // Mobile filter toggle
-    function toggleMobileFilter() {
-        const sidebar = document.getElementById('filterSidebar');
-        const btn = document.getElementById('mobileFilterToggle');
-        sidebar.classList.toggle('open');
-        if (sidebar.classList.contains('open')) {
-            btn.innerHTML = '<i class="fas fa-times"></i> Hide Filters';
-        } else {
-            btn.innerHTML = '<i class="fas fa-filter"></i> Show Filters';
+
+    const csrfToken = getCookie('csrftoken');
+    const isAuthenticated = {{ user.is_authenticated|lower }};
+
+    // ============================================
+    // NOTIFICATION SYSTEM (Same as homepage)
+    // ============================================
+    function showNotif(message, type = 'info') {
+        let container = document.getElementById('_notifContainer');
+        if (!container) {
+            container = document.createElement('div');
+            container.id = '_notifContainer';
+            container.style.cssText = 'position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;';
+            document.body.appendChild(container);
+        }
+        
+        const notif = document.createElement('div');
+        const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : type === 'warning' ? '#f59e0b' : '#3b82f6';
+        
+        notif.style.cssText = `
+            background: ${bgColor};
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            min-width: 200px;
+            max-width: 350px;
+            animation: slideInRight 0.3s ease;
+        `;
+        notif.textContent = message;
+        
+        notif.onclick = () => {
+            notif.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notif.remove(), 300);
+        };
+        
+        container.appendChild(notif);
+        
+        setTimeout(() => {
+            if (notif.parentNode) {
+                notif.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => notif.remove(), 300);
+            }
+        }, 4000);
+    }
+
+    // Add animation styles
+    if (!document.querySelector('#notif-animation-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notif-animation-styles';
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // ============================================
+    // WISHLIST FUNCTIONALITY (Same as homepage)
+    // ============================================
+    async function toggleWishlist(slug, btnElement) {
+        if (!isAuthenticated) {
+            const currentUrl = encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.href = "/signin/?next=" + currentUrl;
+            return;
+        }
+
+        if (btnElement) {
+            btnElement.disabled = true;
+            btnElement.style.opacity = '0.6';
+        }
+
+        try {
+            const response = await fetch("{% url 'wopper:toggle_wishlist' %}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({ product_slug: slug })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                const icon = btnElement.querySelector('i');
+                
+                if (data.in_wishlist) {
+                    if (icon) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                    }
+                    showNotif('Added to wishlist!', 'success');
+                } else {
+                    if (icon) {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                    }
+                    showNotif('Removed from wishlist', 'info');
+                }
+
+                // Update wishlist count badges in header
+                document.querySelectorAll('.wishlist-count-badge').forEach(badge => {
+                    badge.textContent = data.wishlist_count;
+                    badge.style.display = data.wishlist_count > 0 ? 'flex' : 'none';
+                });
+            } else {
+                showNotif(data.message || 'Error updating wishlist', 'error');
+            }
+        } catch (error) {
+            console.error('Wishlist error:', error);
+            showNotif('Network error. Please try again.', 'error');
+        } finally {
+            if (btnElement) {
+                btnElement.disabled = false;
+                btnElement.style.opacity = '';
+            }
         }
     }
-    
-    function openMobileNav() {
-        document.getElementById('mobileNavDrawer').classList.add('open');
-        document.getElementById('mobileNavOverlay').style.display = 'block';
-        setTimeout(() => document.getElementById('mobileNavOverlay').classList.add('open'), 10);
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeMobileNav() {
-        document.getElementById('mobileNavDrawer').classList.remove('open');
-        const ov = document.getElementById('mobileNavOverlay');
-        ov.classList.remove('open');
-        setTimeout(() => ov.style.display = 'none', 260);
-        document.body.style.overflow = '';
-    }
-    
-    // Add to Cart function
+
+    // ============================================
+    // ADD TO CART FUNCTION
+    // ============================================
     function addToCart(productId) {
-        fetch("{% url 'wopper:add_to_cart' %}", {
+        if (!isAuthenticated) {
+            const currentUrl = encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.href = "/signin/?next=" + currentUrl;
+            return;
+        }
+        
+        const url = "{% url 'wopper:add_to_cart' %}";
+        
+        fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': csrftoken
+                'X-CSRFToken': csrfToken
             },
             body: JSON.stringify({ product_id: productId, quantity: 1 })
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                showNotification('Product added to cart successfully!', 'success');
+                showNotif('Product added to cart successfully!', 'success');
                 updateCartCount(data.cart_count);
+            } else if (data.redirect_to_login) {
+                window.location.href = '/signin/?next=' + encodeURIComponent(window.location.pathname);
             } else {
-                showNotification(data.message || 'Error adding product to cart', 'error');
+                showNotif(data.message || 'Error adding product to cart', 'error');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            showNotification('Network error. Please try again.', 'error');
+            showNotif('Network error. Please try again.', 'error');
         });
     }
-    
-    function showNotification(message, type) {
-        let container = document.getElementById('notification-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'notification-container';
-            container.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-            `;
-            document.body.appendChild(container);
-        }
-        
-        const notification = document.createElement('div');
-        const bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
-        notification.style.cssText = `
-            background: ${bgColor};
-            color: white;
-            padding: 12px 20px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            animation: slideInRight 0.3s ease;
-            cursor: pointer;
-        `;
-        notification.textContent = message;
-        container.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.animation = 'slideOutRight 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-    }
-    
+
     function updateCartCount(count) {
         const cartBadges = document.querySelectorAll('.cart-count-badge');
         cartBadges.forEach(badge => {
-            if (count > 0) {
+            if (count && count > 0) {
                 badge.textContent = count;
                 badge.style.display = 'flex';
             } else {
@@ -689,19 +628,20 @@
             }
         });
     }
-    
-    // Filter functionality - UPDATED to preserve checkbox states
+
+    // ============================================
+    // FILTER FUNCTIONS
+    // ============================================
     function applyFilters() {
         const selectedCategories = Array.from(document.querySelectorAll('#categoryFilter input:checked')).map(cb => cb.value);
         const selectedFeatures = Array.from(document.querySelectorAll('#featureFilter input:checked')).map(cb => cb.value);
-        const minPrice = document.getElementById('minPrice').value;
-        const maxPrice = document.getElementById('maxPrice').value;
-        const sortBy = document.getElementById('sortSelect').value;
+        const minPrice = document.getElementById('minPrice')?.value;
+        const maxPrice = document.getElementById('maxPrice')?.value;
+        const sortBy = document.getElementById('sortSelect')?.value;
         
         let url = window.location.pathname;
         let params = new URLSearchParams();
         
-        // Preserve search query if exists
         const searchQuery = document.querySelector('input[name="q"]')?.value;
         if (searchQuery && searchQuery.trim() !== '') {
             params.set('q', searchQuery.trim());
@@ -726,9 +666,8 @@
         const queryString = params.toString();
         window.location.href = queryString ? `${url}?${queryString}` : url;
     }
-    
+
     function clearFilters() {
-        // Preserve search query when clearing filters
         const searchQuery = document.querySelector('input[name="q"]')?.value;
         let url = window.location.pathname;
         if (searchQuery && searchQuery.trim() !== '') {
@@ -736,51 +675,186 @@
         }
         window.location.href = url;
     }
-    
-    // Event listeners
-    document.getElementById('applyPriceBtn')?.addEventListener('click', applyFilters);
-    document.getElementById('clearFiltersBtn')?.addEventListener('click', clearFilters);
-    document.getElementById('sortSelect')?.addEventListener('change', applyFilters);
-    
-    document.querySelectorAll('#categoryFilter input, #featureFilter input').forEach(el => {
-        el.addEventListener('change', applyFilters);
-    });
-    
-    // Search form submission - preserve filters
-    const searchForm = document.getElementById('searchForm');
-    if (searchForm) {
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const searchQuery = this.querySelector('input[name="q"]').value;
-            let url = window.location.pathname;
-            const params = new URLSearchParams(window.location.search);
-            
-            // Remove existing q parameter
-            params.delete('q');
-            
-            if (searchQuery && searchQuery.trim() !== '') {
-                params.set('q', searchQuery.trim());
+
+    function toggleMobileFilter() {
+        const sidebar = document.getElementById('filterSidebar');
+        const btn = document.getElementById('mobileFilterToggle');
+        
+        if (!sidebar) return;
+        
+        sidebar.classList.toggle('open');
+        if (btn) {
+            if (sidebar.classList.contains('open')) {
+                btn.innerHTML = '<i class="fas fa-times"></i> Hide Filters';
+            } else {
+                btn.innerHTML = '<i class="fas fa-filter"></i> Show Filters';
             }
-            
-            // Preserve other filter parameters
-            const queryString = params.toString();
-            window.location.href = queryString ? `${url}?${queryString}` : url;
-        });
+        }
     }
-    
-    // Animation styles
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+
+    // ============================================
+    // NEWSLETTER SUBSCRIPTION
+    // ============================================
+    function subscribeNewsletter() {
+        const emailInput = document.querySelector('.footer-newsletter-form input');
+        if (!emailInput) return;
+        const email = emailInput.value;
+        if (!email.includes('@')) {
+            showNotif('Enter a valid email', 'warning');
+            return;
         }
-        @keyframes slideOutRight {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(100%); opacity: 0; }
+        fetch('/api/newsletter/subscribe/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showNotif('Subscribed successfully!', 'success');
+                emailInput.value = '';
+            } else {
+                showNotif(data.message || 'Subscription failed', 'error');
+            }
+        })
+        .catch(() => showNotif('Network error', 'error'));
+    }
+
+    // ============================================
+    // MOBILE NAVIGATION FUNCTIONS
+    // ============================================
+    function openMobileNav() {
+        const drawer = document.getElementById('mobDrawer');
+        const overlay = document.getElementById('mobOverlay');
+        
+        if (!drawer || !overlay) return;
+        
+        drawer.classList.add('open');
+        overlay.style.display = 'block';
+        requestAnimationFrame(() => overlay.classList.add('open'));
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        const drawer = document.getElementById('mobDrawer');
+        const overlay = document.getElementById('mobOverlay');
+        
+        if (!drawer || !overlay) return;
+        
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        setTimeout(() => { overlay.style.display = 'none'; }, 280);
+        document.body.style.overflow = '';
+    }
+
+    function toggleMobSub(btn) {
+        if (!btn) return;
+        const navItem = btn.closest('.mob-nav-item');
+        if (!navItem) return;
+        const subList = navItem.querySelector('.mob-sub-list');
+        const icon = btn.querySelector('i');
+        if (!subList) return;
+        const isOpening = !subList.classList.contains('open');
+        
+        document.querySelectorAll('.mob-sub-list.open').forEach(openSub => {
+            if (openSub !== subList) {
+                openSub.classList.remove('open');
+                const parentBtn = openSub.closest('.mob-nav-item')?.querySelector('.mob-sub-toggle i');
+                if (parentBtn) parentBtn.className = 'fas fa-plus';
+            }
+        });
+        
+        if (isOpening) {
+            subList.classList.add('open');
+            if (icon) icon.className = 'fas fa-minus';
+        } else {
+            subList.classList.remove('open');
+            if (icon) icon.className = 'fas fa-plus';
         }
-    `;
-    document.head.appendChild(style);
+    }
+
+    // ============================================
+    // USER DROPDOWN
+    // ============================================
+    (function initUserDropdown() {
+        const wrap = document.getElementById('userMenuWrap');
+        const btn = document.getElementById('userToggleBtn');
+        if (!wrap || !btn) return;
+        
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = wrap.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen);
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!wrap.contains(e.target)) {
+                wrap.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                wrap.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    })();
+
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        const applyPriceBtn = document.getElementById('applyPriceBtn');
+        if (applyPriceBtn) applyPriceBtn.addEventListener('click', applyFilters);
+        
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', clearFilters);
+        
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) sortSelect.addEventListener('change', applyFilters);
+        
+        document.querySelectorAll('#categoryFilter input, #featureFilter input').forEach(el => {
+            el.addEventListener('change', applyFilters);
+        });
+        
+        const searchForm = document.getElementById('searchForm');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const searchQuery = this.querySelector('input[name="q"]')?.value;
+                let url = window.location.pathname;
+                const params = new URLSearchParams(window.location.search);
+                
+                params.delete('q');
+                
+                if (searchQuery && searchQuery.trim() !== '') {
+                    params.set('q', searchQuery.trim());
+                }
+                
+                const queryString = params.toString();
+                window.location.href = queryString ? `${url}?${queryString}` : url;
+            });
+        }
+    });
+
+    // ============================================
+    // MAKE FUNCTIONS GLOBALLY AVAILABLE
+    // ============================================
+    window.toggleWishlist = toggleWishlist;
+    window.addToCart = addToCart;
+    window.applyFilters = applyFilters;
+    window.clearFilters = clearFilters;
+    window.toggleMobileFilter = toggleMobileFilter;
+    window.openMobileNav = openMobileNav;
+    window.closeMobileNav = closeMobileNav;
+    window.toggleMobSub = toggleMobSub;
+    window.subscribeNewsletter = subscribeNewsletter;
+    window.showNotif = showNotif;
 </script>
 </body>
 </html>
